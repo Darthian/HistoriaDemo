@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Historia Clinica UN</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+	<script type="text/javascript">
+		function volver(){
+			window.history.back();	
+		}
+	</script>
+
+</h:head>
+<body>
+
+	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{LoginController.verificarSesion() eq false}" />
+	<h:form id="editarUsuario" rendered="#{LoginController.verificarSesion()}">
+		<div id="contenedor" class="center">
+			<div id="cabecera" align="center">
+				<a href="#"> <img src="images/logo.png" />
+				</a>
+				<h2>Edicion</h2>
+			</div>
+
+			<div id="lista" align="center">
+				<ul>
+					<li class="item"><a href="registrar.xhtml">Crea Usuarios</a></li>
+					<li class="item"><a href="adminUsuarios.xhtml">Buscar Usuarios</a></li>
+				</ul>
+			</div>
+
+			<div id="contenedor-cuerpo" align="center">
+			<p:commandButton value="Volver" onclick="volver()"/>
+				<p:panelGrid columns="2">
+					<h:outputLabel value="Seudonimo" />
+					<h:inputText value="#{userMB.usuario.nickName}" />
+
+					<h:outputLabel value="Nombre" />
+					<h:inputText value="#{userMB.usuario.nombre}" />
+
+					<h:outputLabel value="Apellidos" />
+					<h:inputText value="#{userMB.usuario.apellidos}" />
+
+					<h:outputLabel value="Rol" />
+					<h:inputText value="#{userMB.usuario.rol}" />
+
+					<h:outputLabel value="Clave" />
+					<h:inputText value="#{userMB.usuario.password}" />
+
+					<p:commandButton update="editarUsuario" action="adminUsuarios.xhtml" actionListener="#{userMB.modificar()}" value="Modificar" />
+
+					<p:commandButton action="adminUsuarios" immediate="true" value="Cancelar" />
+				</p:panelGrid>			</div>
+
+			<div class="clear"></div>
+
+			<div id="piePagina">
+				<div id="linkList">
+					<ul>
+						<li>Link1</li>
+						<li>Link2</li>
+						<li>Link3</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="clear"></div>
+
+		</div>
+	</h:form>
+</body>
+</html>

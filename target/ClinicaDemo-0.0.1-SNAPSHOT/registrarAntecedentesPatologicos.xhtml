@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Historia Clinica UN</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+	<script type="text/javascript">
+		function volver(){
+			window.history.back();	
+		}
+	</script>
+	
+</h:head>
+<body>
+
+	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{LoginController.verificarSesion() eq false}" />
+	<h:form id="registrarAntecedentes" rendered="#{LoginController.verificarSesion()}">
+		<div id="contenedor" class="center">
+			<div id="cabecera" align="center">
+				<a href="#"> <img src="images/logo.png" />
+				</a>
+				<h2>Registrar Antecedentes Patologicos</h2>
+			</div>
+			<div id="lista" align="center">
+				<ul>
+					<li class="item"><a href="adminAntecedentesPatologicos.xhtml">Buscar Antecedentes</a></li>
+				</ul>
+			</div>
+
+			<div id="contenedor-cuerpo" align="center">
+				<p:commandButton value="Volver" onclick="volver()"/>
+				<p:panelGrid columns="3">
+					
+					<p>Cedula del Paciente:</p>
+					<h:outputLabel id="cedula" value="#{pacienteMB.paciente.cedula}"/>
+					<p:message for="cedula"/>
+					
+					<p>Complicaciones de Diabetes:</p>
+					<p:inputText id="complicacionesDiabetes" value="#{antecedentesPatologicosMB.complicacionesDiabetes}" required="true" label="Complicaciones de Diabetes"/>
+					<p:message for="complicacionesDiabetes"/>
+					
+					<p>Retinopatia Diabetica:</p>
+					<p:inputText id="retinopatiaDiabetica" value="#{antecedentesPatologicosMB.retinopatiaDiabetica}" required="true" label="Retinopatia Diabetica"/>
+					<p:message for="retinopatiaDiabetica"/>
+					
+					<p>Nefropatia Diabetica:</p>
+<!-- 					<p:inputText id="nefropatiaDiabetica" value="#{antecedentesPatologicosMB.nefropatiaDiabetica}" required="true" label="Nefropatia Diabetica"/> -->
+					<p:selectOneMenu id="nefropatiaDiabetica" value="#{antecedentesPatologicosMB.nefropatiaDiabetica}" required="true" label="Nefropatia Diabetica">
+						<f:selectItem itemLabel="1" itemValue="1"/>
+						<f:selectItem itemLabel="2" itemValue="2"/>
+						<f:selectItem itemLabel="3" itemValue="3"/>
+						<f:selectItem itemLabel="4" itemValue="4"/>
+						<f:selectItem itemLabel="5" itemValue="5"/>
+					</p:selectOneMenu>
+					<p:message for="nefropatiaDiabetica"/>
+					
+					<p>Estado Nefropatia:</p>
+					<p:inputText id="estadoNefropatia" value="#{antecedentesPatologicosMB.estadoNefropatia}" required="true" label="Estado Nefropatia"/>
+					<p:message for="estadoNefropatia"/>
+					
+					<p>Hipertension:</p>
+					<p:inputText id="hipertension" value="#{antecedentesPatologicosMB.hipertension}" required="true" label="Hipertension"/>
+					<p:message for="hipertension"/>
+					
+					<p>Dislipidemia:</p>
+					<p:inputText id="dislipidemia" value="#{antecedentesPatologicosMB.dislipidemia}" required="true" label="Dislipidemia"/>
+					<p:message for="dislipidemia"/>
+					
+					<p>Tipo Dislipidemia:</p>
+					<p:inputText id="tipoDislipidemia" value="#{antecedentesPatologicosMB.tipoDislipidemia}" required="true" label="Tipo Dislipidemia"/>
+					<p:message for="tipoDislipidemia"/>
+					
+					<p>Otros:</p>
+					<p:inputText id="otros" value="#{antecedentesPatologicosMB.otros}" required="true" label="Otros"/>
+					<p:message for="otros"/>
+					
+					</p:panelGrid>
+
+				<p:commandButton update="registrarAntecedentes" action="adminAntecedentesPatologicos.xhtml" actionListener="#{antecedentesPatologicosMB.guardarAntecedentePatologico()}" value="Registrar" />
+				<p:commandButton action="adminAntecedentesPatologicos" immediate="true" value="Cancelar" />
+			</div>
+
+			<div class="clear"></div>
+
+			<div id="piePagina">
+				<div id="linkList">
+					<ul>
+						<li>Link1</li>
+						<li>Link2</li>
+						<li>Link3</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="clear"></div>
+
+		</div>
+	</h:form>
+</body>
+</html>

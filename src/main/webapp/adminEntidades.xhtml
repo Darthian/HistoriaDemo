@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Historia Clinica UN</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+	<f:metadata>
+        <f:event type="preRenderView" listener="#{entidadMB.listar()}"/>
+	</f:metadata>
+	<script type="text/javascript">
+		function volver(){
+			window.history.back();	
+		}
+	</script>
+	
+</h:head>
+<body>
+
+	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{loginController.verificarSesion() eq false}" />
+	<h:form id="listaDiagnosticos" rendered="#{loginController.verificarSesion()}">
+		<div id="contenedor" class="center">
+			<div id="cabecera" align="center">
+				<a href="#"> <img src="images/logo.png" />
+				</a>
+				<h2>Entidades Registradas</h2>
+			</div>
+
+			<div id="lista" align="center">
+				<ul>
+					<li class="item"><a href="registrarEntidad.xhtml">Registrar Entidad</a></li>
+					<li class="item"><a href="adminUsuarios.xhtml">Ir a Usuarios</a></li>
+				</ul>
+			</div>
+
+			<div id="contenedor-cuerpo" align="center">
+<!-- 				<p:commandButton value="Volver" onclick="volver()"/> -->
+				<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" />
+
+				<p:dataTable tableStyle="width:auto" value="#{entidadMB.listEntidades}" var="entidad" paginator="true" rows="3">
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Nombre de la Entidad" />
+						</f:facet>
+						<h:outputLabel value="#{entidad.nombre}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Descripcion" />
+						</f:facet>
+						<h:outputLabel value="#{entidad.descripcion}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Modificar" />
+						</f:facet>
+						<h:commandButton action="#{entidadMB.leer(entidad)}" value="Modificar" />
+					</p:column>
+					
+				</p:dataTable>
+			</div>
+
+			<div id="piePagina">
+				<div id="linkList">
+					<ul>
+						<li>Link1</li>
+						<li>Link2</li>
+						<li>Link3</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="clear"></div>
+
+		</div>
+	</h:form>
+</body>
+</html>

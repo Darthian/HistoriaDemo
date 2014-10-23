@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Historia Clinica UN</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+	<script type="text/javascript">
+		function volver(){
+			window.history.back();	
+		}
+	</script>
+</h:head>
+<body>
+
+	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{loginController.verificarSesion() eq false}" />
+	<h:form id="registrarRevision" rendered="#{loginController.verificarSesion()}">
+		<div id="contenedor" class="center">
+			<div id="cabecera" align="center">
+				<a href="#"> <img src="images/logo.png" />
+				</a>
+				<h2>Registrar Revision de Sistema</h2>
+			</div>
+			<div id="lista" align="center">
+				<ul>
+					<li class="item"><a href="adminRevisionSistema.xhtml">Buscar Revision</a></li>
+				</ul>
+			</div>
+
+			<div id="contenedor-cuerpo" align="center">
+				<p:commandButton value="Volver" onclick="volver()"/>
+				<p:panelGrid columns="3">
+					
+					<p>Cedula del Paciente:</p>
+					<h:outputLabel id="cedula" value="#{pacienteMB.paciente.cedula}"  />
+					<p:message for="cedula"/>
+					
+					<p>Estado General:</p>
+					<p:inputText id="estadoGeneral" value="#{revisionSistemaMB.estadoGeneral}" required="true" label="estadoGeneral"/>
+					<p:message for="estadoGeneral"/>	
+					
+					<p>Cardiovascular:</p>
+					<p:inputText id="cardioVascular" value="#{revisionSistemaMB.cardioVascular}" required="true" label="cardioVascular"/>
+					<p:message for="cardioVascular"/>	
+					
+					<p>Respiratorio:</p>
+					<p:inputText id="respiratorio" value="#{revisionSistemaMB.respiratorio}" required="true" label="respiratorio"/>
+					<p:message for="respiratorio"/>	
+					
+					<p>Gastrointestinal:</p>
+					<p:inputText id="gastrointestinal" value="#{revisionSistemaMB.gastrointestinal}" required="true" label="gastrointestinal"/>
+					<p:message for="gastrointestinal"/>	
+					
+					<p>Musculo Esqueletico:</p>
+					<p:inputText id="musculoEsqueletico" value="#{revisionSistemaMB.musculoEsqueletico}" required="true" label="musculoEsqueletico"/>
+					<p:message for="musculoEsqueletico"/>	
+						
+					</p:panelGrid>
+
+				<p:commandButton update="registrarRevision" action="adminRevisionSistema.xhtml" actionListener="#{revisionSistemaMB.guardarRevision()}" value="Registrar" />
+				<p:commandButton action="adminRevisionSistema" immediate="true" value="Cancelar" />
+			</div>
+
+			<div class="clear"></div>
+
+			<div id="piePagina">
+				<div id="linkList">
+					<ul>
+						<li>Link1</li>
+						<li>Link2</li>
+						<li>Link3</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="clear"></div>
+
+		</div>
+	</h:form>
+</body>
+</html>

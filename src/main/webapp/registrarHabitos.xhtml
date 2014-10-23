@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Historia Clinica UN</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+	<script type="text/javascript">
+		function volver(){
+			window.history.back();	
+		}
+	</script>
+</h:head>
+<body>
+
+	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{loginController.verificarSesion() eq false}" />
+	<h:form id="registrarHabitos" rendered="#{loginController.verificarSesion()}">
+		<div id="contenedor" class="center">
+			<div id="cabecera" align="center">
+				<a href="#"> <img src="images/logo.png" />
+				</a>
+				<h2>Registrar Habitos del Paciente</h2>
+			</div>
+			<div id="lista" align="center">
+				<ul>
+					<li class="item"><a href="adminHabitos.xhtml">Buscar Habitos</a></li>
+				</ul>
+			</div>
+
+			<div id="contenedor-cuerpo" align="center">
+				<p:commandButton value="Volver" onclick="volver()"/>
+				<p:panelGrid columns="3">
+					
+					<p>Cedula del Paciente:</p>
+					<h:outputLabel id="cedula" value="#{pacienteMB.paciente.cedula}"  />
+					<p:message for="cedula"/>
+										
+					<p>Fumador:</p>
+					<p:inputText id="fumador" value="#{habitosMB.fumador}" required="true" label="fumador"/>
+					<p:message for="fumador"/>	
+					
+					<p>Exfumador:</p>
+					<p:inputText id="exfumador" value="#{habitosMB.exfumador}" required="true" label="exfumador"/>
+					<p:message for="exfumador"/>	
+					
+					<p>Consumidor de Alcohol:</p>
+					<p:inputText id="consumidorAlcohol" value="#{habitosMB.consumidorAlcohol}" required="true" label="consumidorAlcohol}}"/>
+					<p:message for="consumidorAlcohol"/>	
+					
+					<p>Ejercicio:</p>
+					<p:inputText id="ejercicio" value="#{habitosMB.ejercicio}" required="true" label="ejercicio"/>
+					<p:message for="ejercicio"/>	
+					
+					</p:panelGrid>
+
+				<p:commandButton update="registrarHabitos" action="adminHabitos.xhtml" actionListener="#{habitosMB.guardarHabitos()}" value="Registrar" />
+				<p:commandButton action="adminHabitos" immediate="true" value="Cancelar" />
+			</div>
+
+			<div class="clear"></div>
+
+			<div id="piePagina">
+				<div id="linkList">
+					<ul>
+						<li>Link1</li>
+						<li>Link2</li>
+						<li>Link3</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="clear"></div>
+
+		</div>
+	</h:form>
+</body>
+</html>

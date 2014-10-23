@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Historia Clinica UN</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+	<f:metadata>
+        <f:event type="preRenderView" listener="#{revisionSistemaMB.listar()}"/>
+	</f:metadata>
+	<script type="text/javascript">
+		function volver(){
+			window.history.back();	
+		}
+	</script>
+	
+</h:head>
+<body>
+
+	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{LoginController.verificarSesion() eq false}" />
+	<h:form id="listaRevisiones" rendered="#{LoginController.verificarSesion()}">
+		<div id="contenedor" class="center">
+			<div id="cabecera" align="center">
+				<a href="#"> <img src="images/logo.png" />
+				</a>
+				<h2>Revision de Sistema</h2>
+			</div>
+
+			<div id="lista" align="center" >
+				<ul>
+					<li class="item">
+						<h:link value="Registrar Revision" outcome="registrarRevisionSistema.xhtml" rendered="#{loginController.usuario.rol eq 'MEDICO'}" />
+					</li>
+					<li class="item"><a href="adminPacientes.xhtml">Buscar Pacientes</a></li>
+				</ul>
+			</div>
+
+			<div id="contenedor-cuerpo" align="center">
+<!-- 				<p:commandButton value="Volver" onclick="volver()"/> -->
+				<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" />
+
+				<p:dataTable tableStyle="width:auto" value="#{revisionSistemaMB.listRevi}" var="revi" paginator="true" rows="3">
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Cedula del Paciente" />
+						</f:facet>
+						<h:outputLabel value="#{revi.cedula}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Revision General" />
+						</f:facet>
+						<h:outputLabel value="#{revi.estadoGeneral}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="CardioVascular" />
+						</f:facet>
+						<h:outputLabel value="#{revi.cardioVascular}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Respiratorio" />
+						</f:facet>
+						<h:outputLabel value="#{revi.respiratorio}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Gastrointestinal" />
+						</f:facet>
+						<h:outputLabel value="#{revi.gastrointestinal}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Musculo Esqueltico" />
+						</f:facet>
+						<h:outputLabel value="#{revi.musculoEsqueletico}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Fecha de Creacion" />
+						</f:facet>
+						<h:outputLabel value="#{revi.fechaCreacion}" />
+					</p:column>
+				</p:dataTable>
+			</div>
+
+			<div id="piePagina">
+				<div id="linkList">
+					<ul>
+						<li>Link1</li>
+						<li>Link2</li>
+						<li>Link3</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="clear"></div>
+
+		</div>
+	</h:form>
+</body>
+</html>

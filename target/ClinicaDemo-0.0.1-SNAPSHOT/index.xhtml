@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Historia Clinica UN</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+	<script type="text/javascript">
+		function volver(){
+			window.history.back();	
+		}
+	</script>
+</h:head>
+<body>
+	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{loginController.verificarSesion() eq false}" />
+	
+	<h:form id="listaUsuarios" rendered="#{loginController.verificarSesion()}">
+	 
+		<div id="contenedor" class="center">
+			<div id="cabecera" align="center">
+				<a href="#"> <img src="images/logo.png" />
+				</a>
+				<h2>Sistema de Gestión de pacientes con Diabetes</h2>
+				<h:outputLabel value="Bienvenido DOCTOR"
+					rendered="#{loginController.usuario.rol eq 'MEDICO'}" />
+				<h:outputLabel value="Bienvenido ADMIN"
+					rendered="#{loginController.usuario.rol eq 'ADMINISTRADOR'}" />
+			</div>
+
+			<div id="lista" align="center">
+				<ul>
+					<li class="item"><a href="acercaSistema.xhtml">El sistema</a></li>
+					<li class="item"><a href="acercaConsultorio.xhtml">Elconsultorio</a></li>
+					<li class="item"><a href="#">La aplicacion</a></li>
+				</ul>
+				</div>
+
+			<div id="contenedor-cuerpo">
+
+				<div id="contenedor-formulario">
+					<div id="formulario-enunciado">
+						<h:commandLink action="adminUsuarios.xhtml" rendered="#{loginController.usuario.rol eq 'ADMINISTRADOR'}">
+							<img src="images/unal7.jpg" width="460" height="300" />
+						</h:commandLink>
+						
+						<h:commandLink action="adminConsulta.xhtml" rendered="#{loginController.usuario.rol eq 'MEDICO'}">
+							<img src="images/unal12.jpg" width="460" height="300" />
+						</h:commandLink>
+					</div>
+				</div>
+
+				<div id="contenedor-imagen2">
+					<div id="formulario-leyendas">
+						<a href="adminPacientes.xhtml"><img src="images/unal11.jpg"
+							width="460" height="300" /></a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="clear"></div>
+
+		<div id="piePagina">
+			<div id="linkList">
+				<ul>
+					<li>Link1</li>
+					<li>Link2</li>
+					<li>Link3</li>
+				</ul>
+			</div>
+		</div>
+
+
+	</h:form>
+</body>
+</html>

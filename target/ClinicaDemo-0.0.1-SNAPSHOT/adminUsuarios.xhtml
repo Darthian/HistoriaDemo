@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Historia Clinica UN</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+<!-- 	<f:metadata> -->
+<!--         <f:event type="preRenderView" listener="#{userMB.listar()}"/> -->
+<!-- 	</f:metadata> -->
+	<script type="text/javascript">
+		function volver(){
+			window.history.back();	
+		}
+	</script>
+	
+</h:head>
+<body>
+
+	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{loginController.verificarSesion() eq false}" />
+	<h:form id="listaUsuarios" rendered="#{loginController.verificarSesion()}">
+	<p:growl id="growl" showDetail="true" sticky="false" />
+		<div id="contenedor" class="center">
+			<div id="cabecera" align="center">
+				<a href="#"> <img src="images/logo.png" />
+				</a>
+				<h2>Bienvenido</h2>
+			</div>
+
+			<div id="lista" align="center">
+				<ul>
+					<li class="item"><a href="registrar.xhtml">Crea Usuarios</a></li>
+					<li class="item"><a href="adminListaDiagnosticos.xhtml">Registrar Diagnosticos</a></li>					
+					<li class="item"><a href="adminEntidades.xhtml">Registrar Entidad</a></li>
+				</ul>
+			</div>
+
+			<div id="contenedor-cuerpo" align="center">
+<!-- 				<p:commandButton update="listaUsuarios" actionListener="#{loginController.listar()}" value="Listar" /> -->
+				<p:commandButton action="#{loginController.cerrarSesion()}" value="Cerrar Sesión"/>
+				<p:commandButton action="index.xhtml" value="Terminar Administracion de Usuarios"/>
+<!-- 				<p:commandButton value="Volver" onclick="volver()"/> -->
+
+				<p:dataTable tableStyle="width:auto" value="#{userMB.listaUsuarios}" var="user" paginator="true" rows="5">
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="NickName" />
+						</f:facet>
+						<h:outputLabel value="#{user.nickName}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Nombre" />
+						</f:facet>
+						<h:outputLabel value="#{user.nombre}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Apellidos" />
+						</f:facet>
+						<h:outputLabel value="#{user.apellidos}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Rol" />
+						</f:facet>
+						<h:outputLabel value="#{user.rol}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Modificar" />
+						</f:facet>
+						<h:commandButton action="#{userMB.leer(user)}" value="Modificar" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Eliminar" />
+						</f:facet>
+						<h:commandButton update="growl" actionListener="#{userMB.eliminar(user)}" value="Eliminar"  />
+					</p:column>
+				</p:dataTable>
+			</div>
+
+			<div id="piePagina">
+				<div id="linkList">
+					<ul>
+						<li>Link1</li>
+						<li>Link2</li>
+						<li>Link3</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="clear"></div>
+
+		</div>
+	</h:form>
+</body>
+</html>

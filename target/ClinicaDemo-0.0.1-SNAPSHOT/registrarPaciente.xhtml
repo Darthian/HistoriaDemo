@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Historia Clinica UN</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+	<script type="text/javascript">
+		function volver(){
+			window.history.back();	
+		}
+	</script>
+</h:head>
+<body>
+
+	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{LoginController.verificarSesion() eq false}" />
+	<h:form id="registrarPaciente" rendered="#{LoginController.verificarSesion()}">
+		<div id="contenedor" class="center">
+			<div id="cabecera" align="center">
+				<a href="#"> <img src="images/logo.png" />
+				</a>
+				<h2>Registrar Paciente</h2>
+			</div>
+			<div id="lista" align="center">
+				<ul>
+					<li class="item"><a href="adminPacientes.xhtml">Buscar Pacientes</a></li>
+				</ul>
+			</div>
+
+			<div id="contenedor-cuerpo" align="center">
+<!-- 			<p:commandButton value="Volver" onclick="volver()"/> -->
+				<p:panelGrid columns="3">
+					<p>Nombre:</p>
+					<p:inputText id="nombre" value="#{pacienteMB.nombre_Paciente}" required="true" label="nombre"/>
+					<p:message for="nombre"/>				
+				
+					<p>Edad:</p>
+					<p:inputText id="edad" value="#{pacienteMB.edad}" required="true" label="Edad"/>
+					<p:message for="edad"/>	
+				
+					<p>Fecha de Nacimiento:</p>
+					<p:calendar id="fechaNacimiento" value="#{pacienteMB.fecha_Nacimiento}" navigator="true" label="Fecha de Nacimiento"/>
+					<p:message for="fechaNacimiento"/>					
+				
+					<p>Cedula:</p>
+					<p:inputText id="cedula" value="#{pacienteMB.cedula}" required="true" label="Cedula"/>
+					<p:message for="cedula"/>					
+				
+					<p>Procedencia:</p>
+					<p:inputText id="procedencia" value="#{pacienteMB.procedencia}" required="true" label="Procedencia"/>
+					<p:message for="procedencia"/>					
+				
+					<p>Genero:</p>
+<!-- 					<p:inputText id="genero" value="#{pacienteMB.genero}" required="true" label="Genero"/> -->
+					<p:selectOneMenu id="genero" value="#{pacienteMB.genero}" required="true" label="Genero">
+						<f:selectItem itemLabel="Mujer" itemValue="Mujer"/>
+						<f:selectItem itemLabel="Hombre" itemValue="Hombre"/>						
+					</p:selectOneMenu>
+					<p:message for="genero"/>			
+				
+					<p>EPS:</p>
+<!-- 					<p:inputText id="eps" value="#{pacienteMB.eps}" required="true" label="EPS"/> -->
+					<h:selectOneMenu id="eps" value="#{pacienteMB.eps}" required="true" label = "EPS">
+						<f:selectItems value="#{entidadMB.listaEntidades}"/>
+					</h:selectOneMenu>	
+					<p:message for="eps"/>					
+				
+					<p>Estado Financiero:</p>
+<!-- 					<p:inputText id="estadoFinanciero" value="#{pacienteMB.estado_Financiero}" required="true" label="Estado Financiero"/> -->
+					<p:selectOneMenu id="estadoFinanciero" value="#{pacienteMB.estado_Financiero}" required="true" label="Estado Financiero">
+						<f:selectItem itemLabel="Cotizante" itemValue="Cotizante"/>
+						<f:selectItem itemLabel="Beneficiario" itemValue="Benaficiario"/>						
+					</p:selectOneMenu>
+					<p:message for="estadoFinanciero"/>					
+				
+					<p>Ocupacion:</p>
+					<p:inputText id="ocupacion" value="#{pacienteMB.ocupacion}" required="true" label="Ocupacion"/>
+					<p:message for="ocupacion"/>	
+				
+					<p>Estado Civil:</p>
+<!-- 					<p:inputText id="estadoCivil" value="#{pacienteMB.estado_Civil}" required="true" label="Estado Civil"/> -->
+					<p:selectOneMenu id="estadoCivil" value="#{pacienteMB.estado_Civil}" required="true" label="Estado Civil">
+						<f:selectItem itemLabel="Soltero" itemValue="Soltero"/>
+						<f:selectItem itemLabel="Casado" itemValue="Casado"/>
+						<f:selectItem itemLabel="Union Libre" itemValue="Union Libre"/>
+						<f:selectItem itemLabel="Divorciado" itemValue="Divorciado"/>
+						<f:selectItem itemLabel="Viudo" itemValue="Viudo"/>						
+					</p:selectOneMenu>
+					<p:message for="estadoCivil"/>					
+				
+					<p>Escolaridad:</p>
+<!-- 					<p:inputText id="escolaridad" value="#{pacienteMB.escolaridad}" required="true" label="Escolaridad"/> -->
+					<p:selectOneMenu id="escolaridad" value="#{pacienteMB.escolaridad}" required="true" label="Escolaridad">
+						<f:selectItem itemLabel="Bachiller" itemValue="Bachiller"/>
+						<f:selectItem itemLabel="Tecnico" itemValue="Tecnico"/>						
+						<f:selectItem itemLabel="Universitario" itemValue="Universitario"/>
+					</p:selectOneMenu>
+					<p:message for="escolaridad"/>					
+				
+					<p>Telefono:</p>
+					<p:inputText id="telefono" value="#{pacienteMB.telefono}" required="true" label="Edad"/>
+					<p:message for="telefono"/>			
+					
+				</p:panelGrid>
+
+				<p:commandButton update="registrarPaciente" action="adminPacientes.xhtml" actionListener="#{pacienteMB.guardarPaciente()}" value="Registrar"  />
+				<p:commandButton action="adminPacientes" immediate="true" value="Cancelar" />
+			</div>
+
+			<div class="clear"></div>
+
+			<div id="piePagina">
+				<div id="linkList">
+					<ul>
+						<li>Link1</li>
+						<li>Link2</li>
+						<li>Link3</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="clear"></div>
+
+		</div>
+	</h:form>
+</body>
+</html>
