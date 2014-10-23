@@ -8,16 +8,6 @@
 <h:head>
 	<title>Historia Clinica UN</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
-	<script language="text/javascript">
-		function goBack() {
-			window.history.back()
-		}	
-
-
-		function volver(){
-			window.history.back();	
-		}
-	</script>
 </h:head>
 <body>
 	<div id="contenedor" class="center">
@@ -40,37 +30,29 @@
 
 			<div id="contenedor-formulario">
 				<div id="formulario-enunciado">
-					<p>Revisa tus datos y vuelve a intentarlo</p><br/>
-					<h:commandButton action="index" immediate="true" value="Volver" />
+					<p>Revisa tus datos y vuelve a intentarlo</p>
+					<br />
+					<h:commandButton action="login" immediate="true" value="Volver" />
 				</div>
-				<div id="formulario-leyendas"></div>
-				<div id="formulario-controles"></div>
-				<div class="clear"></div>
-				<div id="contenedor-boton">				
 
-				</div>
-			</div>
-
-			<div id="contenedor-imagen">
-				<img id="imagenFuente" src="images/gente.jpg" />
-			</div>
-
-		</div>
-
-		<div class="clear"></div>
-
-		<div id="piePagina">
-			<div id="linkList">
-				<ul>
-					<li>Link1</li>
-					<li>Link2</li>
-					<li>Link3</li>
-				</ul>
 			</div>
 		</div>
-
-		<div class="clear"></div>
 
 	</div>
+
+	<div class="clear"></div>
+
+	<div id="piePagina">
+		<div id="linkList">
+			<ul>
+				<li>Link1</li>
+				<li>Link2</li>
+				<li>Link3</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="clear"></div>
+
 </body>
 </html>

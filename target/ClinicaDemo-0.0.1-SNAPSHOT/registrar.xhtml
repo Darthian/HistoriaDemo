@@ -18,8 +18,8 @@
 </h:head>
 <body>
 
-	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{UserMB.verificarSesion() eq false}" />
-	<h:form id="registrarUsuario" rendered="#{LoginController.verificarSesion()}">
+	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{loginController.verificarSesion() eq false}" />
+	<h:form id="registrarUsuario" rendered="#{loginController.verificarSesion()}">
 	<p:growl id="growl" showDetail="true" sticky="false" />
 		<div id="contenedor" class="center">
 			<div id="cabecera" align="center">

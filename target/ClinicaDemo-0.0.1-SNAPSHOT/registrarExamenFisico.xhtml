@@ -18,8 +18,8 @@
 </h:head>
 <body>
 
-	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{LoginController.verificarSesion() eq false}" />
-	<h:form id="registrarExamen" rendered="#{LoginController.verificarSesion()}">
+	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{loginController.verificarSesion() eq false}" />
+	<h:form id="registrarExamen" rendered="#{loginController.verificarSesion()}">
 		<div id="contenedor" class="center">
 			<div id="cabecera" align="center">
 				<a href="#"> <img src="images/logo.png" />

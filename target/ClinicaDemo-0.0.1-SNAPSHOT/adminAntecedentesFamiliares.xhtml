@@ -10,7 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
 	<f:metadata>
-        <f:event type="preRenderView" listener="#{antecedentesFamiliaresMB.listar}"/>
+        <f:event type="preRenderView" listener="#{antecedentesFamiliaresMB.listar()}"/>
 	</f:metadata>
 	
 	<script type="text/javascript">
@@ -22,8 +22,8 @@
 </h:head>
 <body>
 
-	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{UserMB.verificarSesion eq false}" />
-	<h:form id="listaPacientes" rendered="#{UserMB.verificarSesion()}">
+	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{loginController.verificarSesion() eq false}" />
+	<h:form id="listaPacientes" rendered="#{loginController.verificarSesion()}">
 		<div id="contenedor" class="center">
 			<div id="cabecera" align="center">
 				<a href="#"> <img src="images/logo.png" />
