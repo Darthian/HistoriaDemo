@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory name="MySQL">
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.password">admin</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/HISTORIA_CLINICA</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        
+        <mapping class="co.edu.unal.clinica.hibernate.data.Usuario"/>
+        <mapping class="co.edu.unal.clinica.hibernate.data.Paciente"/>
+        <mapping class="co.edu.unal.clinica.hibernate.data.Antecedentes_Familiares"/>
+        <mapping class="co.edu.unal.clinica.hibernate.data.Antecedentes_Farmacologicos"/>
+        <mapping class="co.edu.unal.clinica.hibernate.data.Antecedentes_Patologicos"/>
+        <mapping class="co.edu.unal.clinica.hibernate.data.Diagnosticos"/>
+        <mapping class="co.edu.unal.clinica.hibernate.data.Examen_Fisico"/>
+        <mapping class="co.edu.unal.clinica.hibernate.data.Habitos"/>
+        <mapping class="co.edu.unal.clinica.hibernate.data.Paraclinicos"/>
+        <mapping class="co.edu.unal.clinica.hibernate.data.Revision_Sistema"/>
+        <mapping class="co.edu.unal.clinica.hibernate.data.Motivo_Consulta"/>
+        <mapping class="co.edu.unal.clinica.hibernate.data.Enfermedad_Actual"/>
+        <mapping class="co.edu.unal.clinica.hibernate.data.Lista_Diagnosticos"/>
+        <mapping class="co.edu.unal.clinica.hibernate.data.Entidad"/>
+        <mapping class="co.edu.unal.clinica.hibernate.data.Otros_Antecedentes"/>
+    </session-factory>
+</hibernate-configuration>

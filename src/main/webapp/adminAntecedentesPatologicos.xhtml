@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Historia Clinica UN</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+	<f:metadata>
+        <f:event type="preRenderView" listener="#{antecedentesPatologicosMB.listar()}"/>
+	</f:metadata>
+	
+	<script type="text/javascript">
+		function volver(){
+			window.history.back();	
+		}
+	</script>
+	
+</h:head>
+<body>
+
+	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{loginController.verificarSesion() eq false}" />
+	<h:form id="listaPacientes" rendered="#{loginController.verificarSesion()}">
+		<div id="contenedor" class="center">
+			<div id="cabecera" align="center">
+				<img src="images/logo.png" width="25%" height="15%" />
+				<h2>Antecedentes Patologicos</h2>
+			</div>
+
+			<div id="lista" align="center">
+				<ul>
+					<li class="item">
+						<h:link value="Registrar Antecedente" outcome="registrarAntecedentesPatologicos.xhtml" rendered="#{loginController.usuario.rol eq 'MEDICO'}" />
+					</li>
+					<li class="item">
+						<h:link value="Volver a la consulta" outcome="adminConsulta.xhtml" rendered="#{loginController.usuario.rol eq 'MEDICO'}" />
+						<h:link value="Volver a la vista general" outcome="adminPacientes.xhtml" rendered="#{loginController.usuario.rol eq 'ADMINISTRADOR'}" />
+					</li>
+					<li class="item">
+						<h:link value="Ir a la vista general" outcome="adminPacientes.xhtml" rendered="#{loginController.usuario.rol eq 'MEDICO'}" />
+					</li>
+				</ul>
+			</div>
+
+			<div id="contenedor-cuerpo" align="center">
+<!-- 				<p:commandButton update="listaPacientes" actionListener="#{antecedentesPatologicosMB.listar()}" value="Listar" /> -->
+<!-- 				<p:commandButton value="Volver" onclick="volver()"/> -->
+				<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
+
+				<p:dataTable tableStyle="width:auto" value="#{antecedentesPatologicosMB.listPato}" var="ant"  paginator="true" rows="5">
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Cedula del Paciente" />
+						</f:facet>
+						<h:outputLabel value="#{ant.cedula}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Complicaciones de Diabetes" />
+						</f:facet>
+						<h:outputLabel value="#{ant.complicacionesDiabetes}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Retinopatia Diabetica" />
+						</f:facet>
+						<h:outputLabel value="#{ant.retinopatiaDiabetica}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Nefropatia Diabetica" />
+						</f:facet>
+						<h:outputLabel value="#{ant.nefropatiaDiabetica}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Estado Nefropatia" />
+						</f:facet>
+						<h:outputLabel value="#{ant.estadoNefropatia}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Hipertension" />
+						</f:facet>
+						<h:outputLabel value="#{ant.hipertension}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Dislipidemia" />
+						</f:facet>
+						<h:outputLabel value="#{ant.dislipidemia}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Tipo Dislipidemia" />
+						</f:facet>
+						<h:outputLabel value="#{ant.tipoDislipidemia}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Otros" />
+						</f:facet>
+						<h:outputLabel value="#{ant.otros}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Fecha de Creacion" />
+						</f:facet>
+						<h:outputLabel value="#{ant.fechaCreacion}" />
+					</p:column>
+					
+				</p:dataTable>
+			</div>
+
+			<div id="piePagina">
+				<div id="linkList">
+					<ul>
+						<li>Link1</li>
+						<li>Link2</li>
+						<li>Link3</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="clear"></div>
+
+		</div>
+	</h:form>
+</body>
+</html>

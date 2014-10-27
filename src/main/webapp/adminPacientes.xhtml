@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Historia Clinica UN</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+	<f:metadata>
+        <f:event type="preRenderView" listener="#{pacienteMB.listar()}"/>
+	</f:metadata>
+	
+	<script type="text/javascript">
+		function volver(){
+			window.history.back();	
+		}
+	</script>
+		
+</h:head>
+<body>
+
+	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{loginController.verificarSesion() eq false}" />
+	<h:form id="listaPacientes" rendered="#{loginController.verificarSesion()}">
+		<div id="contenedor" class="center">
+			<div id="cabecera" align="center">
+				<img src="images/logo.png" width="25%" height="15%" />
+				<h2>Pacientes</h2>
+			</div>
+
+			<div id="lista" align="center">
+				<ul>
+					<li class="item">
+						<h:link value="Crear Paciente" outcome="registrarPaciente.xhtml" rendered="#{loginController.usuario.rol eq 'ADMINISTRADOR'}" />
+					</li>
+<!-- 					<li class="item"><a href="#">Buscar Pacientes</a></li> -->
+				</ul>
+			</div>
+
+			<div id="contenedor-cuerpo" align="center">
+				<p:commandButton action="index.xhtml" value="Terminar Consulta de Historia Clinica"/>
+				<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
+			
+				<p:dataTable tableStyle="width:auto" value="#{pacienteMB.listaPaciente}" var="paciente" filteredValue="#{pacienteMB.listaPacienteFiltrado}" paginator="true" rows="5">
+					<p:column filterBy="nombre_Paciente">
+						<f:facet name="header">
+							<h:outputLabel value="Nombre" />
+						</f:facet>
+						<h:outputLabel value="#{paciente.nombre_Paciente}" />
+					</p:column>
+					<p:column filterBy="cedula" >
+						<f:facet name="header">
+							<h:outputLabel value="Cedula" />
+						</f:facet>
+						<h:outputLabel value="#{paciente.cedula}" />
+					</p:column>
+					<p:column filterBy="edad">
+						<f:facet name="header">
+							<h:outputLabel value="Edad" />
+						</f:facet>
+						<h:outputLabel value="#{paciente.edad}" />
+					</p:column>					
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Datos Pesonales" />
+						</f:facet>
+						<center>
+							<p:commandButton action="#{pacienteMB.leer(paciente)}" icon="ui-icon-pencil" title="Administrar Datos del Paciente"/>
+						</center>						
+					</p:column>					
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Motivo de Consulta" />
+						</f:facet>
+						<center>
+						<p:commandButton action="#{pacienteMB.leerMotivoConsulta(paciente)}" icon="ui-icon-document" title="Ver Motivo de consulta del paciente" />
+						</center>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Enfermedad Actual" />
+						</f:facet>
+						<center>
+						<p:commandButton action="#{pacienteMB.leerEnfermedadActual(paciente)}" icon="ui-icon-bookmark" title="Ver Enfermedad Actual"/>
+						</center>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Antecedentes" />
+						</f:facet>
+						<center>
+							<p:commandButton action="#{pacienteMB.leerAntecedentesFamiliares(paciente)}"  icon="ui-icon-heart" title="Administrar Antecedentes Familiares"/>
+							<p:commandButton action="#{pacienteMB.leerAntecedentesFarmacologicos(paciente)}"  icon="ui-icon-closethick" title="Administrar Antecedentes Farmacologicos"  /><br/>
+							<p:commandButton action="#{pacienteMB.leerAntecedentesPatologicos(paciente)}"  icon="ui-icon-clipboard" title="Administrar Antecedentes Patologicos"/>
+							<p:commandButton action="#{pacienteMB.leerHabitos(paciente)}" icon="ui-icon-plusthick" title="Administrar Habitos"/>
+							<p:commandButton action="#{pacienteMB.leerOtrosAntecedentes(paciente)}" icon="ui-icon-lightbulb" title="Administrar Otros Antecedentes"/>											
+						</center>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Revision por Sistema" />
+						</f:facet>
+						<center>
+						<p:commandButton action="#{pacienteMB.leerRevisionSistema(paciente)}" icon="ui-icon-note" title="Administrar Revision por sistema"/>
+						</center>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Examen Fisico" />
+						</f:facet>
+						<center>
+						<p:commandButton action="#{pacienteMB.leerExamenFisco(paciente)}" icon="ui-icon-note" title="Administrar Examen fisico"/>
+						</center>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Paraclinicos" />
+						</f:facet>
+						<center>
+						<p:commandButton action="#{pacienteMB.leerParaclinicos(paciente)}" icon="ui-icon-note" title="Administrar paraclinicos"/>
+						</center>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Analisis" />
+						</f:facet>
+						<center>
+						<p:commandButton action="#{pacienteMB.leerDiagnosticos(paciente)}" icon="ui-icon-note" title="Administrar Analisis"/>
+						</center>
+					</p:column>
+					
+				</p:dataTable>
+				
+			</div>
+
+			<div id="piePagina">
+				<div id="linkList">
+					<ul>
+						<li>Link1</li>
+						<li>Link2</li>
+						<li>Link3</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="clear"></div>
+
+		</div>
+	</h:form>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Historia Clinica UN</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+	<f:metadata>
+        <f:event type="preRenderView" listener="#{listaDiagnosticosMB.listar()}"/>
+	</f:metadata>
+	<script type="text/javascript">
+		function volver(){
+			window.history.back();	
+		}
+	</script>
+	
+</h:head>
+<body>
+
+	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{loginController.verificarSesion() eq false}" />
+	<h:form id="listaDiagnosticos" rendered="#{loginController.verificarSesion()}">
+		<div id="contenedor" class="center">
+			<div id="cabecera" align="center">
+				<img src="images/logo.png" width="25%" height="15%" />
+				<h2>Lista Diagnosticos</h2>
+			</div>
+
+			<div id="lista" align="center">
+				<ul>
+					<li class="item"><a href="registrarListaDiagnosticos.xhtml">Registrar Diagnostico</a></li>
+					<li class="item"><a href="adminUsuarios.xhtml">Buscar Usuarios</a></li>
+				</ul>
+			</div>
+
+			<div id="contenedor-cuerpo" align="center">
+<!-- 				<p:commandButton value="Volver" onclick="volver()"/> -->
+				<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
+
+				<p:dataTable tableStyle="width:auto" value="#{listaDiagnosticosMB.listDiag}" var="diag" paginator="true" rows="5">
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Codigo de Diagnostico" />
+						</f:facet>
+						<h:outputLabel value="#{diag.codigo}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Diagnostico" />
+						</f:facet>
+						<h:outputLabel value="#{diag.diagnostico}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Descripcion" />
+						</f:facet>
+						<h:outputLabel value="#{diag.descripcion}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Modificar" />
+						</f:facet>
+						<h:commandButton action="#{listaDiagnosticosMB.leer(diag)}" value="Modificar" />
+					</p:column>
+					
+				</p:dataTable>
+			</div>
+
+			<div id="piePagina">
+				<div id="linkList">
+					<ul>
+						<li>Link1</li>
+						<li>Link2</li>
+						<li>Link3</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="clear"></div>
+
+		</div>
+	</h:form>
+</body>
+</html>
