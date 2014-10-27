@@ -10,7 +10,6 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
 	<f:metadata>
-        <f:event type="preRenderView" listener="#{userMB.listar}"/>
         <f:event type="preRenderView" listener="#{userMB.listar()}"/>
 	</f:metadata>
 	<script type="text/javascript">
@@ -27,8 +26,6 @@
 	<p:growl id="growl" showDetail="true" sticky="false" />
 		<div id="contenedor" class="center">
 			<div id="cabecera" align="center">
-				<a href="#"> <img src="images/logo.png" />
-				</a>
 				<img src="images/logo.png" width="25%" height="15%" />
 				<h2>Bienvenido</h2>
 			</div>
@@ -43,14 +40,8 @@
 
 			<div id="contenedor-cuerpo" align="center">
 
-				<p:commandButton action="#{loginController.cerrarSesion()}" value="Cerrar Sesión"/>
-				<p:commandButton action="index.xhtml" value="Terminar Administracion de Usuarios"/>
-				<p:commandButton value="Volver" onclick="volver()"/>
-
 				<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
 				<p:commandButton action="index.xhtml" value="Terminar Administracion de Sistema"/>
-<!-- 				<p:commandButton value="Volver" onclick="volver()"/> -->
-
 
 				<p:dataTable tableStyle="width:auto" value="#{userMB.listaUsuarios}" var="user" paginator="true" rows="5">
 					<p:column>
