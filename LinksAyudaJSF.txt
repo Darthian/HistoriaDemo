@@ -1,0 +1,5 @@
+http://www.coderanch.com/t/536596/JSF/java/JSF-PropertyNotFoundException
+
+http://stackoverflow.com/questions/9611519/jsf2-javax-el-propertynotfoundexception-not-working-with-methods
+
+http://stackoverflow.com/questions/20798696/jsf-propertynotfoundexception-the-class-does-not-have-the-property
