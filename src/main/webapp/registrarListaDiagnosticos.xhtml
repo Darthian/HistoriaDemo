@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Historia Clinica UN</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+	<script type="text/javascript">
+		function volver(){
+			window.history.back();	
+		}
+	</script>
+</h:head>
+<body>
+
+	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{loginController.verificarSesion() eq false}" />
+	<h:form id="registrarDiagnostico" rendered="#{loginController.verificarSesion()}">
+		<div id="contenedor" class="center">
+			<div id="cabecera" align="center">
+				<a href="#"> <img src="images/logo.png" />
+				</a>
+				<h2>Registrar Antecedentes Familiares</h2>
+			</div>
+			<div id="lista" align="center">
+				<ul>
+					<li class="item"><a href="adminListaDiagnosticos.xhtml">Buscar Diagnosticos</a></li>
+				</ul>
+			</div>
+
+			<div id="contenedor-cuerpo" align="center">
+				<p:commandButton value="Volver" onclick="volver()"/>
+				<p:panelGrid columns="3">
+					
+					<p>Codigo de Diagnostico:</p>
+					<p:inputText value="#{listaDiagnosticosMB.codigo}"></p:inputText>
+					
+					<p>Diagnostico:</p>
+					<p:inputText id="diagnostico" value="#{listaDiagnosticosMB.diagnostico}" required="true" label="diagnostico"/>
+					<p:message for="diagnostico"/>	
+					
+					<p>Descripcion:</p>
+					<p:inputText id="descripcion" value="#{listaDiagnosticosMB.descripcion}" required="true" label="descripcion"/>
+					<p:message for="descripcion"/>	
+					
+					</p:panelGrid>
+
+
+				<p:commandButton update="registrarDiagnostico" action="adminListaDiagnosticos.xhtml" actionListener="#{listaDiagnosticosMB.guardarListaDiagnosticos()}" value="Registrar" />
+				<p:commandButton action="adminListaDiagnosticos" immediate="true" value="Cancelar" />
+			</div>
+
+			<div class="clear"></div>
+
+			<div id="piePagina">
+				<div id="linkList">
+					<ul>
+						<li>Link1</li>
+						<li>Link2</li>
+						<li>Link3</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="clear"></div>
+
+		</div>
+	</h:form>
+</body>
+</html>

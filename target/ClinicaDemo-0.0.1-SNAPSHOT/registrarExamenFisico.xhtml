@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Historia Clinica UN</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+	<script type="text/javascript">
+		function volver(){
+			window.history.back();	
+		}
+	</script>
+	
+</h:head>
+<body>
+
+	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{loginController.verificarSesion() eq false}" />
+	<h:form id="registrarExamen" rendered="#{loginController.verificarSesion()}">
+		<div id="contenedor" class="center">
+			<div id="cabecera" align="center">
+				<a href="#"> <img src="images/logo.png" />
+				</a>
+				<h2>Registrar Examen Fisico</h2>
+			</div>
+			<div id="lista" align="center">
+				<ul>
+					<li class="item"><a href="adminExamenFisico.xhtml">Buscar Examen Fisico</a></li>
+				</ul>
+			</div>
+
+			<div id="contenedor-cuerpo" align="center">
+			<p:commandButton value="Volver" onclick="volver()"/>
+				<p:panelGrid columns="3">
+					
+					<p>Cedula del Paciente:</p>
+					<h:outputLabel id="cedula" value="#{pacienteMB.paciente.cedula}"  />
+					<p:message for="cedula"/>
+										
+					<p>Estado General:</p>
+					<p:inputText id="estadoGeneral" value="#{examenFisicoMB.estadoGeneral}" required="true" label="estadoGeneral"/>
+					<p:message for="estadoGeneral"/>	
+					
+					<p>Cabeza:</p>
+					<p:inputText id="cabeza" value="#{examenFisicoMB.cabeza}" required="true" label="Cabeza"/>
+					<p:message for="cabeza"/>	
+					
+					<p>Ojos:</p>
+					<p:inputText id="ojos" value="#{examenFisicoMB.ojos}" required="true" label="Ojos"/>
+					<p:message for="ojos"/>	
+					
+					<p>Nariz:</p>
+					<p:inputText id="nariz" value="#{examenFisicoMB.nariz}" required="true" label="Nariz"/>
+					<p:message for="nariz"/>	
+					
+					<p>Boca:</p>
+					<p:inputText id="boca" value="#{examenFisicoMB.boca}" required="true" label="boca"/>
+					<p:message for="boca"/>	
+					
+					<p>Orejas:</p>
+					<p:inputText id="orejas" value="#{examenFisicoMB.orejas}" required="true" label="orejas"/>
+					<p:message for="orejas"/>	
+					
+					<p>Cuello:</p>
+					<p:inputText id="cuello" value="#{examenFisicoMB.cuello}" required="true" label="cuello"/>
+					<p:message for="cuello"/>	
+					
+					<p>Cardiaco:</p>
+					<p:inputText id="cardiaco" value="#{examenFisicoMB.cardiaco}" required="true" label="cardiaco"/>
+					<p:message for="cardiaco"/>	
+					
+					<p>Pulmonar:</p>
+					<p:inputText id="pulmonar" value="#{examenFisicoMB.pulmonar}" required="true" label="pulmonar"/>
+					<p:message for="pulmonar"/>	
+					
+					<p>Abdomen:</p>
+					<p:inputText id="abdomen" value="#{examenFisicoMB.abdomen}" required="true" label="abdomen"/>
+					<p:message for="abdomen"/>	
+					
+					<p>Extremidades:</p>
+					<p:inputText id="extremidades" value="#{examenFisicoMB.extremidades}" required="true" label="extremidades"/>
+					<p:message for="extremidades"/>	
+					
+					<p>Neurologico:</p>
+					<p:inputText id="neurologico" value="#{examenFisicoMB.neurologico}" required="true" label="neurologico"/>
+					<p:message for="neurologico"/>	
+					</p:panelGrid>
+
+				<p:commandButton update="registrarExamen" action="adminExamenFisico.xhtml" actionListener="#{examenFisicoMB.guardarExamenFisico()}" value="Registrar" />
+				<p:commandButton action="adminExamenFisico" immediate="true" value="Cancelar" />
+			</div>
+
+			<div class="clear"></div>
+
+			<div id="piePagina">
+				<div id="linkList">
+					<ul>
+						<li>Link1</li>
+						<li>Link2</li>
+						<li>Link3</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="clear"></div>
+
+		</div>
+	</h:form>
+</body>
+</html>
