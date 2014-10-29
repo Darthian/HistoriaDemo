@@ -317,5 +317,5 @@ public class PacienteMB {
 		this.paciente = pac;
 		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
 		return "adminOtrosAntecedentes";
-	}	
+	}
 }

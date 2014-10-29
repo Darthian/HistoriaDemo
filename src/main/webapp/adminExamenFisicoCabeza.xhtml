@@ -36,6 +36,9 @@
 						<h:link value="Registrar Examen" outcome="registrarExamenFisico.xhtml" rendered="#{loginController.usuario.rol eq 'MEDICO'}" />
 					</li>
 					<li class="item">
+						<h:link value="Volver a Examen" outcome="adminExamenFisico.xhtml" />
+					</li>
+					<li class="item">
 						<h:link value="Volver a la consulta" outcome="adminConsulta.xhtml" rendered="#{loginController.usuario.rol eq 'MEDICO'}" />
 						<h:link value="Volver a la vista general" outcome="adminPacientes.xhtml" rendered="#{loginController.usuario.rol eq 'ADMINISTRADOR'}" />
 					</li>
@@ -46,6 +49,8 @@
 			</div>
 
 			<div id="contenedor-cuerpo" align="center">
+<!-- 				<p:commandButton update="listaPacientes" actionListener="#{antecedentesFamiliaresMB.listar()}" value="Listar" /> -->
+<!-- 				<p:commandButton value="Volver" onclick="volver()"/> -->
 				<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
 
 				<p:dataTable tableStyle="width:auto" value="#{examenFisicoMB.listExam}" var="exam" paginator="true" rows="5">
@@ -58,72 +63,30 @@
 					
 					<p:column>
 						<f:facet name="header">
-							<h:outputLabel value="Estado General" />
-						</f:facet>
-						<h:outputLabel value="#{exam.estadoGeneral}" />
-					</p:column>
-					
-					<p:column>
-						<f:facet name="header">
-							<h:outputLabel value="Signos Vitales" />
-						</f:facet>
-						<p:commandButton action="adminExamenFisicoSignosVitales.xhtml" icon="ui-icon-person" title="Ver Signos Vitales"/>
-					</p:column>
-					
-					<p:column>
-						<f:facet name="header">
 							<h:outputLabel value="Cabeza" />
 						</f:facet>
-						<p:commandButton action="adminExamenFisicoCabeza.xhtml" icon="ui-icon-person" title="Ver Informacion de la Cabeza"/>
+						<h:outputLabel value="#{exam.cabeza}" />
 					</p:column>
 					
 					<p:column>
 						<f:facet name="header">
-							<h:outputLabel value="Ojos" />
+							<h:outputLabel value="Nariz" />
 						</f:facet>
-						<h:outputLabel value="#{exam.ojos}" />
+						<h:outputLabel value="#{exam.nariz}" />
 					</p:column>
 					
 					<p:column>
 						<f:facet name="header">
-							<h:outputLabel value="Cuello" />
+							<h:outputLabel value="Boca" />
 						</f:facet>
-						<h:outputLabel value="#{exam.cuello}" />
+						<h:outputLabel value="#{exam.boca}" />
 					</p:column>
 					
 					<p:column>
 						<f:facet name="header">
-							<h:outputLabel value="Cardiaco" />
+							<h:outputLabel value="Orejas" />
 						</f:facet>
-						<h:outputLabel value="#{exam.cardiaco}" />
-					</p:column>
-					
-					<p:column>
-						<f:facet name="header">
-							<h:outputLabel value="Pulmonar" />
-						</f:facet>
-						<h:outputLabel value="#{exam.pulmonar}" />
-					</p:column>
-					
-					<p:column>
-						<f:facet name="header">
-							<h:outputLabel value="Abdomen" />
-						</f:facet>
-						<h:outputLabel value="#{exam.abdomen}" />
-					</p:column>
-					
-					<p:column>
-						<f:facet name="header">
-							<h:outputLabel value="Extremidades" />
-						</f:facet>
-						<h:outputLabel value="#{exam.extremidades}" />
-					</p:column>
-					
-					<p:column>
-						<f:facet name="header">
-							<h:outputLabel value="Neurologico" />
-						</f:facet>
-						<h:outputLabel value="#{exam.neurologico}" />
+						<h:outputLabel value="#{exam.orejas}" />
 					</p:column>
 					
 					<p:column>
