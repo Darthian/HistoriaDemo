@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -35,6 +36,8 @@ public class PacienteMB {
 	private Timestamp fecha_creacion;
 
 	private List<Paciente> listaPaciente;
+	private List<Paciente> listaPacienteSoloConsulta;
+	
 	private List<Paciente> listaPacienteFiltrado;
 	
 	private PacienteDAO pacienteDAO = new PacienteDAO();
@@ -44,34 +47,157 @@ public class PacienteMB {
 	
 	public static long cedulaConsulta; 
 
+	public void guardarPaciente() {
+		try{
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			System.out.println("+++++++++++++++++++++++++++++Fecha de nacimiento Capturada:" + fecha_Nacimiento);
+			Paciente paciente = new Paciente(nombre_Paciente, edad, new Timestamp(fecha_Nacimiento.getTime()), cedula, procedencia, genero, eps, estado_Financiero, ocupacion, estado_Civil, escolaridad, telefono);
+			session.save(paciente);
+			session.getTransaction().commit();
+			session.close();
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido creado correctamente","Puede seguir registrando o volver"));
+		}catch(Exception ex){
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer el registro"));
+		}
+	}
+
+	public void eliminar(Paciente emp) throws Exception {
+		pacienteDAO.Eliminar(emp);
+		this.listar();
+	}
+
+	public String leer(Paciente emp) {
+		this.paciente = emp;
+		return "editarPacientes";
+	}
+	
+	public String modificar() throws Exception {
+		pacienteDAO.Modificar(this.paciente);
+		return "adminPacientes";
+	}
+
+	public void listar() throws Exception {
+		this.listaPaciente = pacienteDAO.Listar();
+	}
+	
+	public void buscarPaciente() throws Exception {
+		System.out.println("+++++++++++++++++++++++++++++CEDULA PACIENTE CONSULTA: " + cedulaBuscadaConsulta);
+		this.listaPacienteSoloConsulta = pacienteDAO.BuscarPaciente(cedulaBuscadaConsulta);
+	}
+	
+	public String terminarConsulta() {
+		cedulaBuscadaConsulta = 0;
+		this.listaPacienteSoloConsulta = null;
+		System.out.println("+++++++++++++++++++++++++++++CEDULA PACIENTE CONSULTA AL TERMINAR: " + cedulaBuscadaConsulta);
+		return "index";
+	}
+	
+	public String leerAntecedentesFamiliares(Paciente pac){
+		cedulaConsulta = pac.getCedula();
+		this.paciente = pac;
+		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
+		return "adminAntecedentesFamiliares";
+	}
+	
+	public String leerAntecedentesFarmacologicos(Paciente pac){
+		cedulaConsulta = pac.getCedula();
+		this.paciente = pac;
+		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
+		return "adminAntecedentesFarmacologicos";
+	}
+	
+	public String leerAntecedentesPatologicos(Paciente pac){
+		cedulaConsulta = pac.getCedula();
+		this.paciente = pac;
+		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
+		return "adminAntecedentesPatologicos";
+	}
+	
+	public String leerDiagnosticos(Paciente pac){
+		cedulaConsulta = pac.getCedula();
+		this.paciente = pac;
+		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
+		return "adminDiagnosticos";
+	}
+	
+	public String leerExamenFisco(Paciente pac){
+		cedulaConsulta = pac.getCedula();
+		this.paciente = pac;
+		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
+		return "adminExamenFisico";
+	}
+	
+	public String leerHabitos(Paciente pac){
+		cedulaConsulta = pac.getCedula();
+		this.paciente = pac;
+		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
+		return "adminHabitos";		
+	}
+	
+	public String leerParaclinicos(Paciente pac){
+		cedulaConsulta = pac.getCedula();
+		this.paciente = pac;
+		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
+		return "adminParaclinicos";		
+	}
+	
+	public String leerRevisionSistema(Paciente pac){
+		cedulaConsulta = pac.getCedula();
+		this.paciente = pac;
+		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
+		return "adminRevisionSistema";
+	}
+	
+	public String leerMotivoConsulta(Paciente pac){
+		cedulaConsulta = pac.getCedula();
+		this.paciente = pac;
+		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
+		return "adminMotivoConsulta";
+	}
+	
+	public String leerEnfermedadActual(Paciente pac){
+		cedulaConsulta = pac.getCedula();
+		this.paciente = pac;
+		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
+		return "adminEnfermedadActual";
+	}
+	
+	public String leerOtrosAntecedentes(Paciente pac){
+		cedulaConsulta = pac.getCedula();
+		this.paciente = pac;
+		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
+		return "adminOtrosAntecedentes";
+	}
+	
 	public long getCedula() {
 		return cedula;
 	}
-
+	
 	public void setCedula(long cedula) {
 		this.cedula = cedula;
 	}
-
+	
 	public String getProcedencia() {
 		return procedencia;
 	}
-
+	
 	public void setProcedencia(String procedencia) {
 		this.procedencia = procedencia;
 	}
-
+	
 	public String getGenero() {
 		return genero;
 	}
-
+	
 	public void setGenero(String genero) {
 		this.genero = genero;
 	}
-
+	
 	public String getEPS() {
 		return eps;
 	}
-
+	
 	public void setEPS(String ePS) {
 		this.eps = ePS;
 	}
@@ -202,120 +328,14 @@ public class PacienteMB {
 
 	public void setCedulaBuscadaConsulta(long cedulaBuscadaConsulta) {
 		this.cedulaBuscadaConsulta = cedulaBuscadaConsulta;
-	}	
-	
-	public void guardarPaciente() {
-		try{
-			Session session = HibernateUtil.getSessionFactory().openSession();
-			session.beginTransaction();
-			System.out.println("+++++++++++++++++++++++++++++Fecha de nacimiento Capturada:" + fecha_Nacimiento);
-			Paciente paciente = new Paciente(nombre_Paciente, edad, new Timestamp(fecha_Nacimiento.getTime()), cedula, procedencia, genero, eps, estado_Financiero, ocupacion, estado_Civil, escolaridad, telefono);
-			session.save(paciente);
-			session.getTransaction().commit();
-			session.close();
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido creado correctamente","Puede seguir registrando o volver"));
-		}catch(Exception ex){
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer el registro"));
-		}
-	}
-
-	public void eliminar(Paciente emp) throws Exception {
-		pacienteDAO.Eliminar(emp);
-		this.listar();
-	}
-
-	public String leer(Paciente emp) {
-		this.paciente = emp;
-		return "editarPacientes";
 	}
 	
-	public String modificar() throws Exception {
-		pacienteDAO.Modificar(this.paciente);
-		return "adminPacientes";
-	}
-
-	public void listar() throws Exception {
-		this.listaPaciente = pacienteDAO.Listar();
+	public List<Paciente> getListaPacienteSoloConsulta() {
+		return listaPacienteSoloConsulta;
 	}
 	
-	public void buscarPaciente(long cedulaPac) throws Exception {
-		this.listaPaciente = pacienteDAO.BuscarPaciente(cedulaPac);
-	}
-	
-	public String leerAntecedentesFamiliares(Paciente pac){
-		cedulaConsulta = pac.getCedula();
-		this.paciente = pac;
-		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
-		return "adminAntecedentesFamiliares";
-	}
-	
-	public String leerAntecedentesFarmacologicos(Paciente pac){
-		cedulaConsulta = pac.getCedula();
-		this.paciente = pac;
-		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
-		return "adminAntecedentesFarmacologicos";
-	}
-	
-	public String leerAntecedentesPatologicos(Paciente pac){
-		cedulaConsulta = pac.getCedula();
-		this.paciente = pac;
-		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
-		return "adminAntecedentesPatologicos";
-	}
-	
-	public String leerDiagnosticos(Paciente pac){
-		cedulaConsulta = pac.getCedula();
-		this.paciente = pac;
-		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
-		return "adminDiagnosticos";
-	}
-	
-	public String leerExamenFisco(Paciente pac){
-		cedulaConsulta = pac.getCedula();
-		this.paciente = pac;
-		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
-		return "adminExamenFisico";
-	}
-	
-	public String leerHabitos(Paciente pac){
-		cedulaConsulta = pac.getCedula();
-		this.paciente = pac;
-		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
-		return "adminHabitos";		
-	}
-	
-	public String leerParaclinicos(Paciente pac){
-		cedulaConsulta = pac.getCedula();
-		this.paciente = pac;
-		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
-		return "adminParaclinicos";		
-	}
-	
-	public String leerRevisionSistema(Paciente pac){
-		cedulaConsulta = pac.getCedula();
-		this.paciente = pac;
-		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
-		return "adminRevisionSistema";
-	}
-	
-	public String leerMotivoConsulta(Paciente pac){
-		cedulaConsulta = pac.getCedula();
-		this.paciente = pac;
-		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
-		return "adminMotivoConsulta";
-	}
-	
-	public String leerEnfermedadActual(Paciente pac){
-		cedulaConsulta = pac.getCedula();
-		this.paciente = pac;
-		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
-		return "adminEnfermedadActual";
-	}
-	
-	public String leerOtrosAntecedentes(Paciente pac){
-		cedulaConsulta = pac.getCedula();
-		this.paciente = pac;
-		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
-		return "adminOtrosAntecedentes";
+	public void setListaPacienteSoloConsulta(
+			List<Paciente> listaPacienteSoloConsulta) {
+		this.listaPacienteSoloConsulta = listaPacienteSoloConsulta;
 	}
 }
