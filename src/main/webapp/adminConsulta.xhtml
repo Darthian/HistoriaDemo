@@ -9,9 +9,9 @@
 	<title>Historia Clinica UN</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
-	<f:metadata>
-        <f:event type="preRenderView" listener="#{pacienteMB.listar()}"/>
-	</f:metadata>
+	
+	
+	
 	<script type="text/javascript">
 		function volver(){
 			window.history.back();	
@@ -36,10 +36,17 @@
 			</div>
 
 			<div id="contenedor-cuerpo" align="center">
-				<p:commandButton action="index.xhtml" value="Terminar Consulta"/>
+				
+				<p>Cedula del paciente de la consulta</p>
+				
+				<p:inputText id="cedulaBuscadaConsulta" value="#{pacienteMB.cedulaBuscadaConsulta}" required="true" label="Cedula del paciente"/>
+				<p:commandButton update="listaPacientes" actionListener="#{pacienteMB.buscarPaciente()}" value="Buscar Paciente"/>
+<!-- 				<p:commandButton update="listaPacientes" actionListener="#{antecedentesPatologicosMB.listar()}" value="Listar" /> -->
+				
+				<p:commandButton action="#{pacienteMB.terminarConsulta()}" value="Terminar Consulta"/>
 				<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
 			
-				<p:dataTable tableStyle="width:auto" value="#{pacienteMB.listaPaciente}" var="paciente" filteredValue="#{pacienteMB.listaPacienteFiltrado}" paginator="true" rows="5">
+				<p:dataTable tableStyle="width:auto" value="#{pacienteMB.listaPacienteSoloConsulta}" var="paciente" filteredValue="#{pacienteMB.listaPacienteFiltrado}" paginator="true" rows="5">
 					<p:column filterBy="nombre_Paciente">
 						<f:facet name="header">
 							<h:outputLabel value="Nombre" />

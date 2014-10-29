@@ -42,10 +42,10 @@ public class ExamenFisicoMB {
 	private ExamenFisicoDAO examDao = new ExamenFisicoDAO();
 	private Examen_Fisico exam = new Examen_Fisico();
 	
-	@PostConstruct
-	public void init() {
-		frecuenciaRespiratoria = getFrecuenciaRespiratoria();
-	}
+//	@PostConstruct
+//	public void init() {
+//		frecuenciaRespiratoria = getFrecuenciaRespiratoria();
+//	}
 	
 	public void guardarExamenFisico() {
 		try{
