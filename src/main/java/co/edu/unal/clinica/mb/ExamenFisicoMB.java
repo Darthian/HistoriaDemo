@@ -3,6 +3,7 @@ package co.edu.unal.clinica.mb;
 import java.sql.Timestamp;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -31,11 +32,45 @@ public class ExamenFisicoMB {
 	private String abdomen;
 	private String extremidades;
 	private String neurologico;
+	private long temperatura;
+	private long frecuenciaCardiaca;
+	private long frecuenciaRespiratoria;
+	private String presionArterial;
 	private Timestamp fechaCreacion;
 	
 	private List<Examen_Fisico> listExam;
 	private ExamenFisicoDAO examDao = new ExamenFisicoDAO();
 	private Examen_Fisico exam = new Examen_Fisico();
+	
+	@PostConstruct
+	public void init() {
+		frecuenciaRespiratoria = getFrecuenciaRespiratoria();
+	}
+	
+	public void guardarExamenFisico() {
+		try{
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			Examen_Fisico ant = new Examen_Fisico(PacienteMB.cedulaConsulta,estadoGeneral,cabeza,ojos,nariz,boca,orejas,cuello,cardiaco,pulmonar,abdomen,extremidades,neurologico,
+					temperatura, frecuenciaCardiaca, frecuenciaRespiratoria, presionArterial);
+			session.save(ant);
+			session.getTransaction().commit();
+			session.close();
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido creado correctamente","Puede seguir registrando o volver"));
+		}catch(Exception ex){
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer el registro"));
+		}
+	}	
+	
+	public void listar() throws Exception {
+		this.listExam = examDao.Buscar(PacienteMB.cedulaConsulta);
+	}
+	
+	public String leerExamenFiscoCabeza(){
+		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: ");
+		return "adminExamenFisicoCabeza";
+	}
+	
 	public long getCedula() {
 		return cedula;
 	}
@@ -138,22 +173,28 @@ public class ExamenFisicoMB {
 	public void setExam(Examen_Fisico exam) {
 		this.exam = exam;
 	}
-	
-	public void guardarExamenFisico() {
-		try{
-			Session session = HibernateUtil.getSessionFactory().openSession();
-			session.beginTransaction();
-			Examen_Fisico ant = new Examen_Fisico(PacienteMB.cedulaConsulta,estadoGeneral,cabeza,ojos,nariz,boca,orejas,cuello,cardiaco,pulmonar,abdomen,extremidades,neurologico);
-			session.save(ant);
-			session.getTransaction().commit();
-			session.close();
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido creado correctamente","Puede seguir registrando o volver"));
-		}catch(Exception ex){
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer el registro"));
-		}
-	}	
-	
-	public void listar() throws Exception {
-		this.listExam = examDao.Buscar(PacienteMB.cedulaConsulta);
+	public long getTemperatura() {
+		return temperatura;
+	}
+	public void setTemperatura(long temperatura) {
+		this.temperatura = temperatura;
+	}
+	public long getFrecuenciaCardiaca() {
+		return frecuenciaCardiaca;
+	}
+	public void setFrecuenciaCardiaca(long frecuenciaCardiaca) {
+		this.frecuenciaCardiaca = frecuenciaCardiaca;
+	}
+	public long getFrecuenciaRespiratoria() {
+		return frecuenciaRespiratoria;
+	}
+	public void setFrecuenciaRespiratoria(long frecuenciaPulmonar) {
+		this.frecuenciaRespiratoria = frecuenciaPulmonar;
+	}
+	public String getPresionArterial() {
+		return presionArterial;
+	}
+	public void setPresionArterial(String presionArterial) {
+		this.presionArterial = presionArterial;
 	}
 }

@@ -25,13 +25,19 @@ public class Examen_Fisico {
 	private String abdomen;
 	private String extremidades;
 	private String neurologico;
+	private long temperatura;
+	private long frecuencia_cardiaca;
+	private long frecuencia_respiratoria;
+	private String presion_arterial;
 	private Timestamp fecha_creacion;
 	
 	public Examen_Fisico(){
 		
 	}
 	
-	public Examen_Fisico(long cedula, String estado_general, String cabeza, String ojos, String nariz, String boca, String orejas, String cuello, String cardiaco, String pulmonar, String abdomen, String extremidades, String neurologico){
+	public Examen_Fisico(long cedula, String estado_general, String cabeza, String ojos, String nariz, String boca, 
+			String orejas, String cuello, String cardiaco, String pulmonar, String abdomen, String extremidades, 
+			String neurologico, long temperatura, long frecuencia_cardiaca, long frecuencia_pulmonar, String presion_arterial){
 		this.cedula = cedula;
 		this.estado_general = estado_general;
 		this.cabeza = cabeza;
@@ -45,6 +51,10 @@ public class Examen_Fisico {
 		this.abdomen = abdomen;
 		this.extremidades = extremidades;
 		this.neurologico = neurologico;
+		this.temperatura = temperatura;
+		this.frecuencia_cardiaca = frecuencia_cardiaca;
+		this.frecuencia_respiratoria = frecuencia_pulmonar;
+		this.presion_arterial = presion_arterial;
 		this.fecha_creacion = new Timestamp(System.currentTimeMillis());
 	}
 
@@ -166,5 +176,37 @@ public class Examen_Fisico {
 
 	public void setFechaCreacion(Timestamp fecha_creacion) {
 		this.fecha_creacion = fecha_creacion;
+	}
+
+	public long getTemperatura() {
+		return temperatura;
+	}
+
+	public void setTemperatura(long temperatura) {
+		this.temperatura = temperatura;
+	}
+
+	public long getFrecuenciaCardiaca() {
+		return frecuencia_cardiaca;
+	}
+
+	public void setFrecuenciaCardiaca(long frecuenciaCardiaca) {
+		this.frecuencia_cardiaca = frecuenciaCardiaca;
+	}
+
+	public long getFrecuenciaRespiratoria() {
+		return frecuencia_respiratoria;
+	}
+
+	public void setFrecuenciaRespiratoria(long frecuenciaRespiratoria) {
+		this.frecuencia_respiratoria = frecuenciaRespiratoria;
+	}
+
+	public String getPresionArterial() {
+		return presion_arterial;
+	}
+
+	public void setPresionArterial(String presionArterial) {
+		this.presion_arterial = presionArterial;
 	}
 }
