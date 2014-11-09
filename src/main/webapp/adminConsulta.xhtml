@@ -31,35 +31,33 @@
 
 			<div id="lista" align="center">
 				<ul>
-
+					<li class="item"><h:link value="Ir a la vista general" outcome="adminPacientes.xhtml" rendered="#{loginController.usuario.rol eq 'MEDICO'}" /></li>
 				</ul>
 			</div>
 
 			<div id="contenedor-cuerpo" align="center">
 				
-				<p>Cedula del paciente de la consulta</p>
-				
-				<p:inputText id="cedulaBuscadaConsulta" value="#{pacienteMB.cedulaBuscadaConsulta}" required="true" label="Cedula del paciente"/>
-				<p:commandButton update="listaPacientes" actionListener="#{pacienteMB.buscarPaciente()}" value="Buscar Paciente"/>
-<!-- 				<p:commandButton update="listaPacientes" actionListener="#{antecedentesPatologicosMB.listar()}" value="Listar" /> -->
-				
-				<p:commandButton action="#{pacienteMB.terminarConsulta()}" value="Terminar Consulta"/>
+				<h3>Cedula del paciente de la consulta
+					<p:inputText id="cedulaBuscadaConsulta" value="#{pacienteMB.cedulaBuscadaConsulta}" required="true" label="Cedula del paciente"/>
+					<p:commandButton update="listaPacientes" actionListener="#{pacienteMB.buscarPaciente()}" value="Buscar Paciente"/>
+					<p:commandButton action="#{pacienteMB.terminarConsulta()}" value="Terminar Consulta"/>
+				</h3>
 				<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
 			
 				<p:dataTable tableStyle="width:auto" value="#{pacienteMB.listaPacienteSoloConsulta}" var="paciente" filteredValue="#{pacienteMB.listaPacienteFiltrado}" paginator="true" rows="5">
-					<p:column filterBy="nombre_Paciente">
+					<p:column>
 						<f:facet name="header">
 							<h:outputLabel value="Nombre" />
 						</f:facet>
 						<h:outputLabel value="#{paciente.nombre_Paciente}" />
 					</p:column>
-					<p:column filterBy="cedula" >
+					<p:column>
 						<f:facet name="header">
 							<h:outputLabel value="Cedula" />
 						</f:facet>
 						<h:outputLabel value="#{paciente.cedula}" />
 					</p:column>
-					<p:column filterBy="edad">
+					<p:column>
 						<f:facet name="header">
 							<h:outputLabel value="Edad" />
 						</f:facet>

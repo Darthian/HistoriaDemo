@@ -50,15 +50,11 @@
 
 			<div id="contenedor-cuerpo" align="center">
 				<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
-
+				<h2>
+					<h:outputLabel value="Cedula del Paciente: " />
+					<h:outputLabel value="#{examenFisicoMB.listExam[0].cedula}" />
+				</h2>
 				<p:dataTable tableStyle="width:auto" value="#{examenFisicoMB.listExam}" var="exam" paginator="true" rows="5">
-					<p:column>
-						<f:facet name="header">
-							<h:outputLabel value="Cedula del Paciente" />
-						</f:facet>
-						<h:outputLabel value="#{exam.cedula}" />
-					</p:column>
-					
 					<p:column>
 						<f:facet name="header">
 							<h:outputLabel value="Temperatura" />
@@ -75,7 +71,7 @@
 					
 					<p:column>
 						<f:facet name="header">
-							<h:outputLabel value="Frecuencia Cardiaca" />
+							<h:outputLabel value="Frecuencia Respiratoria" />
 						</f:facet>
 						<h:outputLabel value="#{exam.frecuenciaRespiratoria}" />
 					</p:column>
@@ -85,6 +81,34 @@
 							<h:outputLabel value="Presion Arterial" />
 						</f:facet>
 						<h:outputLabel value="#{exam.presionArterial}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Peso" />
+						</f:facet>
+						<h:outputLabel value="#{exam.peso}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Talla" />
+						</f:facet>
+						<h:outputLabel value="#{exam.talla}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Perimetro Abdominal" />
+						</f:facet>
+						<h:outputLabel value="#{exam.perimetroAbdominal}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Indice de Masa Corporal" />
+						</f:facet>
+						<h:outputLabel value="#{exam.masaCorporal}" />
 					</p:column>
 					
 					<p:column>

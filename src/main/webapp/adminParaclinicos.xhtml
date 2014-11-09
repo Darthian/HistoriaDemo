@@ -45,17 +45,12 @@
 			</div>
 
 			<div id="contenedor-cuerpo" align="center">
-<!-- 				<p:commandButton value="Volver" onclick="volver()"/> -->
 				<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
-
+				<h2>
+					<h:outputLabel value="Cedula del Paciente: " />
+					<h:outputLabel value="#{paraclinicosMB.listPara[0].cedula}" />
+				</h2>
 				<p:dataTable tableStyle="width:auto" value="#{paraclinicosMB.listPara}" var="para" paginator="true" rows="5">
-					<p:column>
-						<f:facet name="header">
-							<h:outputLabel value="Cedula del Paciente" />
-						</f:facet>
-						<h:outputLabel value="#{para.cedula}" />
-					</p:column>
-					
 					<p:column>
 						<f:facet name="header">
 							<h:outputLabel value="Glicemia Ayunas" />
@@ -114,9 +109,16 @@
 					
 					<p:column>
 						<f:facet name="header">
-							<h:outputLabel value="Bun" />
+							<h:outputLabel value="Microalbuminuria" />
 						</f:facet>
 						<h:outputLabel value="#{para.bun}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Parcial de Orina" />
+						</f:facet>
+						<h:outputLabel value="#{para.parcialOrina}" />
 					</p:column>
 					
 					<p:column>

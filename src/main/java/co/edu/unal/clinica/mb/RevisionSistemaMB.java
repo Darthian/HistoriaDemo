@@ -24,11 +24,39 @@ public class RevisionSistemaMB {
 	private String respiratorio;
 	private String gastrointestinal;
 	private String musculoEsqueletico;
+	private String cabeza;
+	private String cuello;
+	private String cardiopulmunar;
+	private String digestivo;
+	private String genitourinario;
+	private String extremidades;
+	private String psicomotor;
+	private String nervioso;
+	private String endocrino;
 	private Timestamp fechaCreacion;
 	
 	private List<Revision_Sistema> listRevi;
 	private RevisionSistemaDAO reviDao = new RevisionSistemaDAO();
 	private Revision_Sistema revi = new Revision_Sistema();
+	
+	public void guardarRevision() {
+		try{
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			Revision_Sistema ant = new Revision_Sistema(PacienteMB.cedulaConsulta, estadoGeneral, cardioVascular,respiratorio, gastrointestinal,musculoEsqueletico,
+					cabeza, cuello, cardiopulmunar, digestivo, genitourinario, extremidades, psicomotor, nervioso, endocrino);
+			session.save(ant);
+			session.getTransaction().commit();
+			session.close();
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido creado correctamente","Puede seguir registrando o volver"));
+		}catch(Exception ex){
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer el registro"));
+		}
+	}	
+	
+	public void listar() throws Exception {
+		this.listRevi = reviDao.Buscar(PacienteMB.cedulaConsulta);
+	}
 	
 	public long getCedula() {
 		return cedula;
@@ -90,22 +118,76 @@ public class RevisionSistemaMB {
 	public void setRevi(Revision_Sistema revi) {
 		this.revi = revi;
 	}
-	
-	public void guardarRevision() {
-		try{
-			Session session = HibernateUtil.getSessionFactory().openSession();
-			session.beginTransaction();
-			Revision_Sistema ant = new Revision_Sistema(PacienteMB.cedulaConsulta, estadoGeneral, cardioVascular,respiratorio, gastrointestinal,musculoEsqueletico);
-			session.save(ant);
-			session.getTransaction().commit();
-			session.close();
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido creado correctamente","Puede seguir registrando o volver"));
-		}catch(Exception ex){
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer el registro"));
-		}
-	}	
-	
-	public void listar() throws Exception {
-		this.listRevi = reviDao.Buscar(PacienteMB.cedulaConsulta);
+
+	public String getCabeza() {
+		return cabeza;
+	}
+
+	public void setCabeza(String cabeza) {
+		this.cabeza = cabeza;
+	}
+
+	public String getCuello() {
+		return cuello;
+	}
+
+	public void setCuello(String cuello) {
+		this.cuello = cuello;
+	}
+
+	public String getCardiopulmunar() {
+		return cardiopulmunar;
+	}
+
+	public void setCardiopulmunar(String cardiopulmunar) {
+		this.cardiopulmunar = cardiopulmunar;
+	}
+
+	public String getDigestivo() {
+		return digestivo;
+	}
+
+	public void setDigestivo(String digestivo) {
+		this.digestivo = digestivo;
+	}
+
+	public String getGenitourinario() {
+		return genitourinario;
+	}
+
+	public void setGenitourinario(String genitourinario) {
+		this.genitourinario = genitourinario;
+	}
+
+	public String getExtremidades() {
+		return extremidades;
+	}
+
+	public void setExtremidades(String extremidades) {
+		this.extremidades = extremidades;
+	}
+
+	public String getPsicomotor() {
+		return psicomotor;
+	}
+
+	public void setPsicomotor(String psicomotor) {
+		this.psicomotor = psicomotor;
+	}
+
+	public String getNervioso() {
+		return nervioso;
+	}
+
+	public void setNervioso(String nervioso) {
+		this.nervioso = nervioso;
+	}
+
+	public String getEndocrino() {
+		return endocrino;
+	}
+
+	public void setEndocrino(String endocrino) {
+		this.endocrino = endocrino;
 	}
 }

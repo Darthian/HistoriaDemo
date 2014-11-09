@@ -40,13 +40,13 @@
 					<h:outputLabel id="cedula" value="#{pacienteMB.paciente.cedula}"  />
 										
 					<p>Estado General:</p>
-					<p:inputText id="estadoGeneral" value="#{examenFisicoMB.estadoGeneral}" required="true" label="estadoGeneral"/>
+					<p:inputTextarea cols="25" rows="4" id="estadoGeneral" value="#{examenFisicoMB.estadoGeneral}" required="true" label="estadoGeneral"/>
 					
 					<p>Cabeza:</p>
 					<p:inputText id="cabeza" value="#{examenFisicoMB.cabeza}" required="true" label="Cabeza"/>
 					
 					<p>Ojos:</p>
-					<p:inputText id="ojos" value="#{examenFisicoMB.ojos}" required="true" label="Ojos"/>
+					<p:inputTextarea cols="25" rows="4" id="ojos" value="#{examenFisicoMB.ojos}" required="true" label="Ojos"/>
 					
 					<p>Nariz:</p>
 					<p:inputText id="nariz" value="#{examenFisicoMB.nariz}" required="true" label="Nariz"/>
@@ -58,34 +58,46 @@
 					<p:inputText id="orejas" value="#{examenFisicoMB.orejas}" required="true" label="orejas"/>
 					
 					<p>Cuello:</p>
-					<p:inputText id="cuello" value="#{examenFisicoMB.cuello}" required="true" label="cuello"/>
+					<p:inputTextarea cols="25" rows="4" id="cuello" value="#{examenFisicoMB.cuello}" required="true" label="cuello"/>
 					
 					<p>Cardiaco:</p>
-					<p:inputText id="cardiaco" value="#{examenFisicoMB.cardiaco}" required="true" label="cardiaco"/>
+					<p:inputTextarea cols="25" rows="4" id="cardiaco" value="#{examenFisicoMB.cardiaco}" required="true" label="cardiaco"/>
 					
 					<p>Pulmonar:</p>
-					<p:inputText id="pulmonar" value="#{examenFisicoMB.pulmonar}" required="true" label="pulmonar"/>
+					<p:inputTextarea cols="25" rows="4" id="pulmonar" value="#{examenFisicoMB.pulmonar}" required="true" label="pulmonar"/>
 					
 					<p>Abdomen:</p>
-					<p:inputText id="abdomen" value="#{examenFisicoMB.abdomen}" required="true" label="abdomen"/>
+					<p:inputTextarea cols="25" rows="4" id="abdomen" value="#{examenFisicoMB.abdomen}" required="true" label="abdomen"/>
 					
 					<p>Extremidades:</p>
-					<p:inputText id="extremidades" value="#{examenFisicoMB.extremidades}" required="true" label="extremidades"/>
+					<p:inputTextarea cols="25" rows="4" id="extremidades" value="#{examenFisicoMB.extremidades}" required="true" label="extremidades"/>
 					
 					<p>Neurologico:</p>
-					<p:inputText id="neurologico" value="#{examenFisicoMB.neurologico}" required="true" label="neurologico"/>
+					<p:inputTextarea cols="25" rows="4" id="neurologico" value="#{examenFisicoMB.neurologico}" required="true" label="neurologico"/>
 					
-					<p>Temperatura:</p>
+					<p>Temperatura (Grados Celcios):</p>
 					<p:inputText id="temperatura" value="#{examenFisicoMB.temperatura}" required="true" label="temperatura"/>
 					
-					<p>Frecuencia Cardiaca:</p>
+					<p>Frecuencia Cardiaca (látidos por mínuto):</p>
 					<p:inputText id="frecuenciaCardiaca" value="#{examenFisicoMB.frecuenciaCardiaca}" required="true" label="frecuenciaCardiaca"/>
 					
-					<p>Frecuencia Respiratoria:</p>
+					<p>Frecuencia Respiratoria (respiraciones por minuto):</p>
 					<p:inputText id="frecueniaRespiratoria" value="#{examenFisicoMB.frecuenciaRespiratoria}" required="true" label="frecueniaRespiratoria"/>
 					
-					<p>Presion Arterial:</p>
+					<p>Presion Arterial en milímetros de mercurio (mmHg):</p>
 					<p:inputText id="presionArterial" value="#{examenFisicoMB.presionArterial}" required="true" label="presionArterial"/>
+					
+					<p>Peso en Kilogramos (Kgms):</p>
+					<p:inputText id="peso" value="#{examenFisicoMB.peso}" required="true" label="peso"/>
+					
+					<p>Talla en Centímetros (Cms):</p>
+					<p:inputText id="talla" value="#{examenFisicoMB.talla}" required="true" label="talla"/>
+					
+					<p>Perimetro Abdominal (Cms):</p>
+					<p:inputText id="perimetroAbdominal" value="#{examenFisicoMB.perimetroAbdominal}" required="true" label="Perimetro Abdominal"/>
+					
+					<p>Indice de Masa Corporal(kg/cm2):</p>
+					<p:inputText id="masaCorporal" value="#{examenFisicoMB.masaCorporal}" required="true" label="Indice de Masa Corporal"/>
 						
 					</p:panelGrid>
 

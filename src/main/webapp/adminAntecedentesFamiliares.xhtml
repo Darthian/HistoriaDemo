@@ -46,18 +46,12 @@
 			</div>
 
 			<div id="contenedor-cuerpo" align="center">
-				
-<!-- 				<p:commandButton value="Volver" onclick="volver()"/> -->
 				<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
+				<h2>
+					<h:outputLabel value="Cedula del Paciente: " />
+					<h:outputLabel value="#{antecedentesFamiliaresMB.listaAnt[0].cedula}" />
+				</h2>
 				<p:dataTable tableStyle="width:auto" value="#{antecedentesFamiliaresMB.listaAnt}" var="ant"  paginator="true" rows="5">
-					<p:column>
-					
-						<f:facet name="header">
-							<h:outputLabel value="Cedula del Paciente" />
-						</f:facet>
-						<h:outputLabel value="#{ant.cedula}" />
-					</p:column>
-					
 					<p:column>
 						<f:facet name="header">
 							<h:outputLabel value="Historia Familiar Diabetes" />

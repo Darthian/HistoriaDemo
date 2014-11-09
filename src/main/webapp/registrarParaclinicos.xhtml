@@ -38,35 +38,38 @@
 					<p>Cedula del Paciente:</p>
 					<h:outputLabel id="cedula" value="#{pacienteMB.paciente.cedula}"  />
 					
-					<p>Glicemia en Ayunas:</p>
+					<p>Glicemia en Ayunas en miligramos/decilitro (mg/dl):</p>
 					<p:inputText id="glicemiaAyunas" value="#{paraclinicosMB.glicemiaAyunas}" required="true" label="glicemiaAyunas"/>
 					
-					<p>Glicemia Post Prandial:</p> 
+					<p>Glicemia Post Prandial (mg/dl):</p> 
  					<p:inputText id="glicemiaPostPrandial" value="#{paraclinicosMB.glicemiaPostPrandial}" required="true" label="glicemiaPostPrandial"/>
 					
-					<p>Hemoglobina Glicosilada:</p>
+					<p>Hemoglobina Glicosilada (HbA1c) en porcentaje (%):</p>
 					<p:inputText id="hemoglobinaGlicosilada" value="#{paraclinicosMB.hemoglobinaGlicosilada}" required="true" label="hemoglobinaGlicosilada"/>
 					
-					<p>Trigliceridos:</p>
+					<p>Trigliceridos (mg/dl):</p>
 					<p:inputText id="trigliceridos" value="#{paraclinicosMB.trigliceridos}" required="true" label="trigliceridos"/>
 					
-					<p>HDL:</p>
+					<p>Colesterol HDL (mg/dl):</p>
 					<p:inputText id="hdl" value="#{paraclinicosMB.hdl}" required="true" label="hdl"/>
 					
-					<p>LDL:</p>
+					<p>Colesterol LDL (mg/dl):</p>
 					<p:inputText id="ldl" value="#{paraclinicosMB.ldl}" required="true" label="ldl"/>
 					
-					<p>VLDL:</p>
+					<p>Colesterol VLDL (mg/dl):</p>
 					<p:inputText id="vldl" value="#{paraclinicosMB.vldl}" required="true" label="vldl"/>
 					
-					<p>Creatinina:</p>
+					<p>Creatinina (mg/dl):</p>
 					<p:inputText id="creatinina" value="#{paraclinicosMB.creatinina}" required="true" label="creatinina"/>
 					
-					<p>Bun:</p>
+					<p>Microalbuminuria: miligramos/litro (mg/l):</p>
 					<p:inputText id="bun" value="#{paraclinicosMB.bun}" required="true" label="bun"/>
 					
-					<p>Otros Paraclinicos:</p>
-					<p:inputText id="otrosParaclinicos" value="#{paraclinicosMB.otrosParaclinicos}" required="true" label="otrosParaclinicos"/>
+					<p>Parcial de Orina :</p>
+					<p:inputTextarea cols="25" rows="4" id="parcialOrina" value="#{paraclinicosMB.parcialOrina}" required="true" label="Parcial de Orina"/>
+					
+					<p>Otros Paraclinicos :</p>
+					<p:inputTextarea cols="25" rows="4" id="otrosParaclinicos" value="#{paraclinicosMB.otrosParaclinicos}" required="true" label="Otros Paraclinicos"/>
 					
 					</p:panelGrid>
 

@@ -46,29 +46,12 @@
 			</div>
 
 			<div id="contenedor-cuerpo" align="center">
-<!-- 				<p:commandButton update="listaPacientes" actionListener="#{antecedentesFarmacologicosMB.listar()}" value="Listar" /> -->
-<!-- 				<p:commandButton value="Volver" onclick="volver()"/> -->
 				<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
-
+				<h2>
+					<h:outputLabel value="Cedula del Paciente: " />
+					<h:outputLabel value="#{antecedentesFarmacologicosMB.listFarma[0].cedula}" />
+				</h2>
 				<p:dataTable tableStyle="width:auto" value="#{antecedentesFarmacologicosMB.listFarma}" var="ant"  paginator="true" rows="5">
-					<p:column>					
-						<f:facet name="header">
-							<h:outputLabel value="Cedula del Paciente" />
-						</f:facet>
-						<h:outputLabel value="#{ant.cedula}" />
-					</p:column>		
-					<p:column>					
-						<f:facet name="header">
-							<h:outputLabel value="Tratamiento Actual" />
-						</f:facet>
-						<h:outputLabel value="#{ant.tratamientoActual}" />
-					</p:column>				
-					<p:column>					
-						<f:facet name="header">
-							<h:outputLabel value="Dieta" />
-						</f:facet>
-						<h:outputLabel value="#{ant.dieta}" />
-					</p:column>
 					<p:column>					
 						<f:facet name="header">
 							<h:outputLabel value="Hipoglucemiantes Orales" />
