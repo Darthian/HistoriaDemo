@@ -28,12 +28,33 @@ public class ParaclinicosMB {
 	private float vldl;
 	private float creatinina;
 	private float bun;
-	private float otrosParaclinicos;
+	private String parcialOrina;
+	private String otrosParaclinicos;
 	private Timestamp fechaCreacion;
 	
 	private List<Paraclinicos> listPara;
 	private ParaclinicosDAO paraDao = new ParaclinicosDAO();
 	private Paraclinicos para = new Paraclinicos();
+	
+	public void guardarParaClinicos() {
+		try{
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			Paraclinicos ant = new Paraclinicos(PacienteMB.cedulaConsulta, glicemiaAyunas, glicemiaPostPrandial,hemoglobinaGlicosilada, trigliceridos,hdl,ldl,vldl,creatinina,
+					bun,parcialOrina,otrosParaclinicos);
+			session.save(ant);
+			session.getTransaction().commit();
+			session.close();
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido creado correctamente","Puede seguir registrando o volver"));
+		}catch(Exception ex){
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer el registro"));
+		}
+	}	
+	
+	public void listar() throws Exception {
+		this.listPara = paraDao.Buscar(PacienteMB.cedulaConsulta);
+	}
+	
 	public long getCedula() {
 		return cedula;
 	}
@@ -94,10 +115,10 @@ public class ParaclinicosMB {
 	public void setBun(float bun) {
 		this.bun = bun;
 	}
-	public float getOtrosParaclinicos() {
+	public String getOtrosParaclinicos() {
 		return otrosParaclinicos;
 	}
-	public void setOtrosParaclinicos(float otros_paraclinicos) {
+	public void setOtrosParaclinicos(String otros_paraclinicos) {
 		this.otrosParaclinicos = otros_paraclinicos;
 	}	
 	public Timestamp getFechaCreacion() {
@@ -124,21 +145,12 @@ public class ParaclinicosMB {
 	public void setPara(Paraclinicos para) {
 		this.para = para;
 	}
-	public void guardarParaClinicos() {
-		try{
-			Session session = HibernateUtil.getSessionFactory().openSession();
-			session.beginTransaction();
-			Paraclinicos ant = new Paraclinicos(PacienteMB.cedulaConsulta, glicemiaAyunas, glicemiaPostPrandial,hemoglobinaGlicosilada, trigliceridos,hdl,ldl,vldl,creatinina,bun,otrosParaclinicos);
-			session.save(ant);
-			session.getTransaction().commit();
-			session.close();
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido creado correctamente","Puede seguir registrando o volver"));
-		}catch(Exception ex){
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer el registro"));
-		}
-	}	
-	
-	public void listar() throws Exception {
-		this.listPara = paraDao.Buscar(PacienteMB.cedulaConsulta);
+
+	public String getParcialOrina() {
+		return parcialOrina;
+	}
+
+	public void setParcialOrina(String parcialOrina) {
+		this.parcialOrina = parcialOrina;
 	}
 }

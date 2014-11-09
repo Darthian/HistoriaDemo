@@ -22,14 +22,16 @@ public class Paraclinicos {
 	private float vldl;
 	private float creatinina;
 	private float bun;
-	private float otros_paraclinicos;
+	private String parcial_orina;
+	private String otros_paraclinicos;
 	private Timestamp fecha_creacion;
 	
 	public Paraclinicos(){
 		
 	}
 	
-	public Paraclinicos(long cedula, float glicemia_ayunas, float glicemia_post_prandial, float hemoglobina_glicosilada, float trigliceridos, float hdl, float ldl, float vldl, float creatinina, float bun, float otros_paraclinicos){
+	public Paraclinicos(long cedula, float glicemia_ayunas, float glicemia_post_prandial, float hemoglobina_glicosilada, float trigliceridos, float hdl, float ldl, float vldl, 
+			float creatinina, float bun, String otros_paraclinicos, String parcial_orina){
 		this.cedula = cedula;
 		this.glicemia_ayunas = glicemia_ayunas;
 		this.glicemia_post_prandial = glicemia_post_prandial;
@@ -40,6 +42,7 @@ public class Paraclinicos {
 		this.vldl = vldl;
 		this.creatinina = creatinina;
 		this.bun = bun;
+		this.parcial_orina = parcial_orina;
 		this.otros_paraclinicos = otros_paraclinicos;
 		this.fecha_creacion = new Timestamp(System.currentTimeMillis());
 	}
@@ -132,11 +135,11 @@ public class Paraclinicos {
 		this.bun = bun;
 	}
 
-	public float getOtrosParaclinicos() {
+	public String getOtrosParaclinicos() {
 		return otros_paraclinicos;
 	}
 
-	public void setOtrosParaclinicos(float otros_paraclinicos) {
+	public void setOtrosParaclinicos(String otros_paraclinicos) {
 		this.otros_paraclinicos = otros_paraclinicos;
 	}
 
@@ -146,6 +149,14 @@ public class Paraclinicos {
 
 	public void setFechaCreacion(Timestamp fecha_creacion) {
 		this.fecha_creacion = fecha_creacion;
+	}
+
+	public String getParcialOrina() {
+		return parcial_orina;
+	}
+
+	public void setParcialOrina(String parcialOrina) {
+		this.parcial_orina = parcialOrina;
 	}
 
 }

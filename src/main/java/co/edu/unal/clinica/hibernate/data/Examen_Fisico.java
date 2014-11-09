@@ -29,6 +29,10 @@ public class Examen_Fisico {
 	private long frecuencia_cardiaca;
 	private long frecuencia_respiratoria;
 	private String presion_arterial;
+	private float peso;
+	private float talla;
+	private float perimetro_abdominal;
+	private float masa_corporal;
 	private Timestamp fecha_creacion;
 	
 	public Examen_Fisico(){
@@ -37,7 +41,8 @@ public class Examen_Fisico {
 	
 	public Examen_Fisico(long cedula, String estado_general, String cabeza, String ojos, String nariz, String boca, 
 			String orejas, String cuello, String cardiaco, String pulmonar, String abdomen, String extremidades, 
-			String neurologico, long temperatura, long frecuencia_cardiaca, long frecuencia_pulmonar, String presion_arterial){
+			String neurologico, long temperatura, long frecuencia_cardiaca, long frecuencia_pulmonar, String presion_arterial,
+			float peso, float talla, float perimetro_abdominal, float masa_corporal){
 		this.cedula = cedula;
 		this.estado_general = estado_general;
 		this.cabeza = cabeza;
@@ -55,6 +60,10 @@ public class Examen_Fisico {
 		this.frecuencia_cardiaca = frecuencia_cardiaca;
 		this.frecuencia_respiratoria = frecuencia_pulmonar;
 		this.presion_arterial = presion_arterial;
+		this.peso = peso;
+		this.talla = talla;
+		this.perimetro_abdominal = perimetro_abdominal;
+		this.masa_corporal = masa_corporal;
 		this.fecha_creacion = new Timestamp(System.currentTimeMillis());
 	}
 
@@ -208,5 +217,37 @@ public class Examen_Fisico {
 
 	public void setPresionArterial(String presionArterial) {
 		this.presion_arterial = presionArterial;
+	}
+
+	public float getPeso() {
+		return peso;
+	}
+
+	public void setPeso(float peso) {
+		this.peso = peso;
+	}
+
+	public float getTalla() {
+		return talla;
+	}
+
+	public void setTalla(float talla) {
+		this.talla = talla;
+	}
+
+	public float getPerimetroAbdominal() {
+		return perimetro_abdominal;
+	}
+
+	public void setPerimetroAbdominal(float perimetro_abdominal) {
+		this.perimetro_abdominal = perimetro_abdominal;
+	}
+
+	public float getMasaCorporal() {
+		return masa_corporal;
+	}
+
+	public void setMasaCorporal(float masa_corporal) {
+		this.masa_corporal = masa_corporal;
 	}
 }

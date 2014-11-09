@@ -34,8 +34,8 @@
 				<ul>
 					<li class="item">
 						<h:link value="Crear Paciente" outcome="registrarPaciente.xhtml" rendered="#{loginController.usuario.rol eq 'ADMINISTRADOR'}" />
+						<h:link value="Ir a consulta" outcome="adminConsulta.xhtml" rendered="#{loginController.usuario.rol eq 'MEDICO'}" />
 					</li>
-<!-- 					<li class="item"><a href="#">Buscar Pacientes</a></li> -->
 				</ul>
 			</div>
 
@@ -111,7 +111,7 @@
 							<h:outputLabel value="Examen Fisico" />
 						</f:facet>
 						<center>
-						<p:commandButton action="#{pacienteMB.leerExamenFisco(paciente)}" icon="ui-icon-note" title="Administrar Examen fisico"/>
+						<p:commandButton action="#{pacienteMB.leerExamenFisico(paciente)}" icon="ui-icon-note" title="Administrar Examen fisico"/>
 						</center>
 					</p:column>
 					<p:column>

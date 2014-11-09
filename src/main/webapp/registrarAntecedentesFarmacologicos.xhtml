@@ -39,20 +39,14 @@
 					<p>Cedula del Paciente:</p>
 					<h:outputLabel id="cedula" value="#{pacienteMB.paciente.cedula}"/>
 					
-					<p>Tratamiento Actual:</p>
-					<p:inputText id="tratamientoActual" value="#{antecedentesFarmacologicosMB.tratamientoActual}" required="true" label="Tratamiento Actual"/>
-										
-					<p>Dieta:</p>
-					<p:inputText id="dieta" value="#{antecedentesFarmacologicosMB.dieta}" required="true" label="Dieta"/>
-										
 					<p>Hipoglucemiantes Orales:</p>
-					<p:inputText id="hipoglucemiantesOrales" value="#{antecedentesFarmacologicosMB.hipoglucemiantesOrales}" required="true" label="Hipoglucemiantes Orales"/>
+					<p:inputTextarea cols="25" rows="4" id="hipoglucemiantesOrales" value="#{antecedentesFarmacologicosMB.hipoglucemiantesOrales}" required="true" label="Hipoglucemiantes Orales"/>
 										
 					<p>Insulina:</p>
-					<p:inputText id="insulina" value="#{antecedentesFarmacologicosMB.insulina}" required="true" label="Insulina"/>
+					<p:inputTextarea cols="25" rows="4" id="insulina" value="#{antecedentesFarmacologicosMB.insulina}" required="true" label="Insulina"/>
 										
 					<p>Otros Medicamentos:</p>
-					<p:inputText id="otrosMedicamentos" value="#{antecedentesFarmacologicosMB.otrosMedicamentos}" required="true" label="Otros Medicamentos"/>
+					<p:inputTextarea cols="25" rows="4" id="otrosMedicamentos" value="#{antecedentesFarmacologicosMB.otrosMedicamentos}" required="true" label="Otros Medicamentos"/>
 														
 					</p:panelGrid>
 

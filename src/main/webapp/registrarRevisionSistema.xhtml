@@ -51,9 +51,36 @@
 					<p:inputText id="gastrointestinal" value="#{revisionSistemaMB.gastrointestinal}" required="true" label="gastrointestinal"/>
 					
 					<p>Musculo Esqueletico:</p>
-					<p:inputText id="musculoEsqueletico" value="#{revisionSistemaMB.musculoEsqueletico}" required="true" label="musculoEsqueletico"/>
-						
-					</p:panelGrid>
+					<p:inputText id="musculoEsqueletico" value="#{revisionSistemaMB.musculoEsqueletico}" required="true" label="musculoEsqueletico"/>	
+					
+					<p>Cabeza:</p>
+					<p:inputText id="cabeza" value="#{revisionSistemaMB.cabeza}" required="true" label="cabeza"/>
+					
+					<p>Cuello:</p>
+					<p:inputText id="cuello" value="#{revisionSistemaMB.cuello}" required="true" label="cuello"/>
+					
+					<p>Cardiopulmunar:</p>
+					<p:inputText id="cardiopulmonar" value="#{revisionSistemaMB.cardiopulmunar}" required="true" label="Cardiopulmunar"/>
+					
+					<p>Digestivo:</p>
+					<p:inputText id="digestivo" value="#{revisionSistemaMB.digestivo}" required="true" label="Digestivo"/>
+					
+					<p>Genitourinario:</p>
+					<p:inputText id="genitourinario" value="#{revisionSistemaMB.genitourinario}" required="true" label="Genitourinario"/>
+					
+					<p>Extremidades:</p>
+					<p:inputText id="extremidades" value="#{revisionSistemaMB.extremidades}" required="true" label="Extremidades"/>
+					
+					<p>Psicomotor:</p>
+					<p:inputText id="psicomotor" value="#{revisionSistemaMB.psicomotor}" required="true" label="Psicomotor"/>
+					
+					<p>Nervioso:</p>
+					<p:inputText id="nervioso" value="#{revisionSistemaMB.nervioso}" required="true" label="Nervioso"/>
+					
+					<p>Endocrino:</p>
+					<p:inputText id="endocrino" value="#{revisionSistemaMB.endocrino}" required="true" label="Endocrino"/>
+					
+				</p:panelGrid>	
 
 				<p:commandButton update="growl" actionListener="#{revisionSistemaMB.guardarRevision()}" value="Registrar" />
 				<p:commandButton action="adminRevisionSistema" immediate="true" value="Cancelar" />

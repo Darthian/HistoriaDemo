@@ -121,10 +121,10 @@ public class PacienteMB {
 		return "adminDiagnosticos";
 	}
 	
-	public String leerExamenFisco(Paciente pac){
+	public String leerExamenFisico(Paciente pac){
 		cedulaConsulta = pac.getCedula();
 		this.paciente = pac;
-		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
+		System.out.println("+++++++++++++++++++CEDULA CAPTURADA EXAMEN FISICO: " + cedulaConsulta);
 		return "adminExamenFisico";
 	}
 	

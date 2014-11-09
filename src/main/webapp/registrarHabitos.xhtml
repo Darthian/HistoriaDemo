@@ -10,9 +10,9 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
 	<script type="text/javascript">
-		function volver(){
-			window.history.back();	
-		}
+		$(document).ready(function(){
+			$(document.getElementById('registrarHabitos:fumador')).hide();
+		});
 	</script>
 </h:head>
 <body>
@@ -33,24 +33,32 @@
 
 			<div id="contenedor-cuerpo" align="center">
 				<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
-				<p:panelGrid columns="2">
+				<p:panelGrid columns="3">
 					
 					<p>Cedula del Paciente:</p>
-					<h:outputLabel id="cedula" value="#{pacienteMB.paciente.cedula}"  />
+						<h:outputLabel id="cedula" value="#{pacienteMB.paciente.cedula}"  />
+					<p></p>
 										
 					<p>Fumador:</p>
+<!-- 					<p:selectOneRadio id="siNoFumador"> -->
+<!-- 						<f:selectItem itemLabel="Si" itemValue="Si" /> -->
+<!-- 						<f:selectItem itemLabel="No" itemValue="No" /> -->
+<!-- 					</p:selectOneRadio> -->
 					<p:inputText id="fumador" value="#{habitosMB.fumador}" required="true" label="fumador"/>
 					
 					<p>Exfumador:</p>
 					<p:inputText id="exfumador" value="#{habitosMB.exfumador}" required="true" label="exfumador"/>
+					<p></p>
 					
 					<p>Consumidor de Alcohol:</p>
 					<p:inputText id="consumidorAlcohol" value="#{habitosMB.consumidorAlcohol}" required="true" label="consumidorAlcohol}}"/>
+					<p></p>
 					
 					<p>Ejercicio:</p>
 					<p:inputText id="ejercicio" value="#{habitosMB.ejercicio}" required="true" label="ejercicio"/>
+					<p></p>
 					
-					</p:panelGrid>
+				</p:panelGrid>
 
 				<p:commandButton update="growl" actionListener="#{habitosMB.guardarHabitos()}" value="Registrar" />
 				<p:commandButton action="adminHabitos" immediate="true" value="Cancelar" />

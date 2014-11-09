@@ -36,6 +36,10 @@ public class ExamenFisicoMB {
 	private long frecuenciaCardiaca;
 	private long frecuenciaRespiratoria;
 	private String presionArterial;
+	private float peso;
+	private float talla;
+	private float perimetroAbdominal;
+	private float masaCorporal;
 	private Timestamp fechaCreacion;
 	
 	private List<Examen_Fisico> listExam;
@@ -52,7 +56,7 @@ public class ExamenFisicoMB {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
 			Examen_Fisico ant = new Examen_Fisico(PacienteMB.cedulaConsulta,estadoGeneral,cabeza,ojos,nariz,boca,orejas,cuello,cardiaco,pulmonar,abdomen,extremidades,neurologico,
-					temperatura, frecuenciaCardiaca, frecuenciaRespiratoria, presionArterial);
+					temperatura, frecuenciaCardiaca, frecuenciaRespiratoria, presionArterial, peso, talla, perimetroAbdominal, masaCorporal);
 			session.save(ant);
 			session.getTransaction().commit();
 			session.close();
@@ -196,5 +200,37 @@ public class ExamenFisicoMB {
 	}
 	public void setPresionArterial(String presionArterial) {
 		this.presionArterial = presionArterial;
+	}
+
+	public float getPeso() {
+		return peso;
+	}
+
+	public void setPeso(float peso) {
+		this.peso = peso;
+	}
+
+	public float getTalla() {
+		return talla;
+	}
+
+	public void setTalla(float talla) {
+		this.talla = talla;
+	}
+
+	public float getPerimetroAbdominal() {
+		return perimetroAbdominal;
+	}
+
+	public void setPerimetroAbdominal(float perimetroAbdominal) {
+		this.perimetroAbdominal = perimetroAbdominal;
+	}
+
+	public float getMasaCorporal() {
+		return masaCorporal;
+	}
+
+	public void setMasaCorporal(float masaCorporal) {
+		this.masaCorporal = masaCorporal;
 	}
 }
