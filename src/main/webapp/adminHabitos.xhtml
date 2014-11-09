@@ -60,6 +60,13 @@
 					
 					<p:column>					
 						<f:facet name="header">
+							<h:outputLabel value="Fumador" />
+						</f:facet>
+						<h:outputLabel value="#{hab.fumadorTexto}" />
+					</p:column>
+					
+					<p:column>					
+						<f:facet name="header">
 							<h:outputLabel value="Exfumador" />
 						</f:facet>
 						<h:outputLabel value="#{hab.exfumador}" />
@@ -67,9 +74,23 @@
 					
 					<p:column>					
 						<f:facet name="header">
-							<h:outputLabel value="Consumidor de Alcohol" />
+							<h:outputLabel value="Exfumador" />
+						</f:facet>
+						<h:outputLabel value="#{hab.exfumadorTexto}" />
+					</p:column>
+					
+					<p:column>					
+						<f:facet name="header">
+							<h:outputLabel value="Consume Alcohol" />
 						</f:facet>
 						<h:outputLabel value="#{hab.consumidorAlcohol}" />
+					</p:column>
+					
+					<p:column>					
+						<f:facet name="header">
+							<h:outputLabel value="Alcohol" />
+						</f:facet>
+						<h:outputLabel value="#{hab.alcoholTexto}" />
 					</p:column>
 					
 					<p:column>					
@@ -77,6 +98,27 @@
 							<h:outputLabel value="Ejercicio" />
 						</f:facet>
 						<h:outputLabel value="#{hab.ejercicio}" />
+					</p:column>
+					
+					<p:column>					
+						<f:facet name="header">
+							<h:outputLabel value="Ejercicio" />
+						</f:facet>
+						<h:outputLabel value="#{hab.ejercicioTexto}" />
+					</p:column>
+					
+					<p:column>					
+						<f:facet name="header">
+							<h:outputLabel value="Dificultad Ejercicio" />
+						</f:facet>
+						<h:outputLabel value="#{hab.dificultadEjercicio}" />
+					</p:column>
+					
+					<p:column>					
+						<f:facet name="header">
+							<h:outputLabel value="Dificultad" />
+						</f:facet>
+						<h:outputLabel value="#{hab.dificultadTexto}" />
 					</p:column>
 					
 					<p:column>
