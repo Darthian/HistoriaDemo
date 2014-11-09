@@ -14,21 +14,34 @@ public class Habitos {
 	private long id;
 	private long cedula;
 	private String fumador;
+	private String fumador_texto;
 	private String exfumador;
+	private String exfumador_texto;
 	private String consumidor_alcohol;
+	private String alcohol_texto;
 	private String ejercicio;
+	private String ejercicio_texto;
+	private String dificultad_ejercicio;
+	private String dificultad_texto;
 	private Timestamp fecha_creacion;
 	
 	public Habitos(){
 		
 	}
 	
-	public Habitos(long cedula, String fumador, String exfumador, String consumidor_alcohol, String ejercicio){
+	public Habitos(long cedula, String fumador, String exfumador, String consumidor_alcohol, String ejercicio, String fumador_texto, String exfumador_texto,
+			String alcohol_texto, String ejercicio_texto, String dificultad_ejercicio, String dificultad_texto){
 		this.cedula = cedula;
 		this.fumador = fumador;
 		this.exfumador = exfumador;
 		this.consumidor_alcohol = consumidor_alcohol;
 		this.ejercicio = ejercicio;
+		this.fumador_texto = fumador_texto;
+		this.exfumador_texto = exfumador_texto;
+		this.alcohol_texto = alcohol_texto;
+		this.ejercicio_texto = ejercicio_texto;
+		this.dificultad_ejercicio = dificultad_ejercicio;
+		this.dificultad_texto = dificultad_texto;
 		this.fecha_creacion = new Timestamp(System.currentTimeMillis());		
 	}
 
@@ -86,5 +99,53 @@ public class Habitos {
 
 	public void setFechaCreacion(Timestamp fecha_creacion) {
 		this.fecha_creacion = fecha_creacion;
+	}
+
+	public String getFumadorTexto() {
+		return fumador_texto;
+	}
+
+	public void setFumadorTexto(String fumador_texto) {
+		this.fumador_texto = fumador_texto;
+	}
+
+	public String getExfumadorTexto() {
+		return exfumador_texto;
+	}
+
+	public void setExfumadorTexto(String exfumador_texto) {
+		this.exfumador_texto = exfumador_texto;
+	}
+
+	public String getAlcoholTexto() {
+		return alcohol_texto;
+	}
+
+	public void setAlcoholTexto(String alcohol_texto) {
+		this.alcohol_texto = alcohol_texto;
+	}
+
+	public String getEjercicioTexto() {
+		return ejercicio_texto;
+	}
+
+	public void setEjercicioTexto(String ejercicio_texto) {
+		this.ejercicio_texto = ejercicio_texto;
+	}
+
+	public String getDificultadEjercicio() {
+		return dificultad_ejercicio;
+	}
+
+	public void setDificultadEjercicio(String dificultad_ejercicio) {
+		this.dificultad_ejercicio = dificultad_ejercicio;
+	}
+
+	public String getDificultadTexto() {
+		return dificultad_texto;
+	}
+
+	public void setDificultadTexto(String dificultad_texto) {
+		this.dificultad_texto = dificultad_texto;
 	}
 }

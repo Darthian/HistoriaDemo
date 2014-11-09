@@ -20,14 +20,39 @@ public class HabitosMB {
 	
 	private long cedula;
 	private String fumador;
+	private String fumadorTexto;
 	private String exfumador;
+	private String exfumadorTexto;
 	private String consumidorAlcohol;
+	private String alcoholTexto;
 	private String ejercicio;
+	private String ejercicioTexto;
+	private String dificultadEjercicio;
+	private String dificultadTexto;
 	private Timestamp fechaCreacion;
 	
 	private List<Habitos> listHab;
 	private HabitosDAO habDao = new HabitosDAO();
 	private Habitos hab = new Habitos();
+	
+	public void guardarHabitos() {
+		try{
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			Habitos ant = new Habitos(PacienteMB.cedulaConsulta, fumador, exfumador,consumidorAlcohol, ejercicio, fumadorTexto, exfumadorTexto,
+					alcoholTexto, ejercicioTexto, dificultadEjercicio, dificultadTexto);
+			session.save(ant);
+			session.getTransaction().commit();
+			session.close();
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido creado correctamente","Puede seguir registrando o volver"));
+		}catch(Exception ex){
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer el registro"));
+		}
+	}	
+	
+	public void listar() throws Exception {
+		this.listHab = habDao.Buscar(PacienteMB.cedulaConsulta);
+	}
 	
 	public long getCedula() {
 		return cedula;
@@ -83,22 +108,53 @@ public class HabitosMB {
 	public void setHab(Habitos hab) {
 		this.hab = hab;
 	}
-	
-	public void guardarHabitos() {
-		try{
-			Session session = HibernateUtil.getSessionFactory().openSession();
-			session.beginTransaction();
-			Habitos ant = new Habitos(PacienteMB.cedulaConsulta, fumador, exfumador,consumidorAlcohol, ejercicio);
-			session.save(ant);
-			session.getTransaction().commit();
-			session.close();
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido creado correctamente","Puede seguir registrando o volver"));
-		}catch(Exception ex){
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer el registro"));
-		}
-	}	
-	
-	public void listar() throws Exception {
-		this.listHab = habDao.Buscar(PacienteMB.cedulaConsulta);
+
+	public String getFumadorTexto() {
+		return fumadorTexto;
 	}
+
+	public void setFumadorTexto(String fumadorTexto) {
+		this.fumadorTexto = fumadorTexto;
+	}
+
+	public String getExfumadorTexto() {
+		return exfumadorTexto;
+	}
+
+	public void setExfumadorTexto(String exfumadorTexto) {
+		this.exfumadorTexto = exfumadorTexto;
+	}
+
+	public String getAlcoholTexto() {
+		return alcoholTexto;
+	}
+
+	public void setAlcoholTexto(String alcoholTexto) {
+		this.alcoholTexto = alcoholTexto;
+	}
+
+	public String getEjercicioTexto() {
+		return ejercicioTexto;
+	}
+
+	public void setEjercicioTexto(String ejercicioTexto) {
+		this.ejercicioTexto = ejercicioTexto;
+	}
+
+	public String getDificultadEjercicio() {
+		return dificultadEjercicio;
+	}
+
+	public void setDificultadEjercicio(String dificultadEjercicio) {
+		this.dificultadEjercicio = dificultadEjercicio;
+	}
+
+	public String getDificultadTexto() {
+		return dificultadTexto;
+	}
+
+	public void setDificultadTexto(String dificultadTexto) {
+		this.dificultadTexto = dificultadTexto;
+	}
+	
 }
