@@ -51,63 +51,89 @@
 					<h:outputLabel value="Cedula del Paciente: " />
 					<h:outputLabel value="#{antecedentesPatologicosMB.listPato[0].cedula}" />
 				</h2>
-				<p:dataTable tableStyle="width:auto" value="#{antecedentesPatologicosMB.listPato}" var="ant"  paginator="true" rows="5">
-					<p:column>
-						<f:facet name="header">
-							<h:outputLabel value="Complicaciones de Diabetes" />
-						</f:facet>
-						<h:outputLabel value="#{ant.complicacionesDiabetes}" />
-					</p:column>
-					<p:column>
-						<f:facet name="header">
-							<h:outputLabel value="Retinopatia Diabetica" />
-						</f:facet>
-						<h:outputLabel value="#{ant.retinopatiaDiabetica}" />
-					</p:column>
-					<p:column>
-						<f:facet name="header">
-							<h:outputLabel value="Nefropatia Diabetica" />
-						</f:facet>
-						<h:outputLabel value="#{ant.nefropatiaDiabetica}" />
-					</p:column>
-					<p:column>
-						<f:facet name="header">
-							<h:outputLabel value="Estado Nefropatia" />
-						</f:facet>
-						<h:outputLabel value="#{ant.estadoNefropatia}" />
-					</p:column>
-					<p:column>
-						<f:facet name="header">
-							<h:outputLabel value="Hipertension" />
-						</f:facet>
-						<h:outputLabel value="#{ant.hipertension}" />
-					</p:column>
-					<p:column>
-						<f:facet name="header">
-							<h:outputLabel value="Dislipidemia" />
-						</f:facet>
-						<h:outputLabel value="#{ant.dislipidemia}" />
-					</p:column>
-					<p:column>
-						<f:facet name="header">
-							<h:outputLabel value="Tipo Dislipidemia" />
-						</f:facet>
-						<h:outputLabel value="#{ant.tipoDislipidemia}" />
-					</p:column>
-					<p:column>
-						<f:facet name="header">
-							<h:outputLabel value="Otros" />
-						</f:facet>
-						<h:outputLabel value="#{ant.otros}" />
-					</p:column>
-					<p:column>
-						<f:facet name="header">
-							<h:outputLabel value="Fecha de Creacion" />
-						</f:facet>
-						<h:outputLabel value="#{ant.fechaCreacion}" />
-					</p:column>
-					
-				</p:dataTable>
+				
+				<p:accordionPanel multiple="true">
+					<p:tab title="Antecedentes Patologicos I">
+						<p:dataTable tableStyle="width:auto" value="#{antecedentesPatologicosMB.listPato}" var="ant"  paginator="true" rows="5">
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="Complicaciones Cardiovasculares" />
+								</f:facet>
+								<h:outputLabel value="#{ant.compCardiovasculares}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="Complicacion Cardiovascular" />
+								</f:facet>
+								<h:outputLabel value="#{ant.complicacionCardiovascular}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="Retinopatia Diabetica" />
+								</f:facet>
+								<h:outputLabel value="#{ant.retinopatiaDiabetica}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="Nefropatia Diabetica" />
+								</f:facet>
+								<h:outputLabel value="#{ant.nefropatiaDiabetica}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="Estado Nefropatia" />
+								</f:facet>
+								<h:outputLabel value="#{ant.estadoNefropatia}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="Hipertension" />
+								</f:facet>
+								<h:outputLabel value="#{ant.hipertension}" />
+							</p:column>
+						</p:dataTable>
+					</p:tab>
+					<p:tab title="Antecedentes Patologicos II">
+						<p:dataTable tableStyle="width:auto" value="#{antecedentesPatologicosMB.listPato}" var="ant"  paginator="true" rows="5">
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="Dislipidemia" />
+								</f:facet>
+								<h:outputLabel value="#{ant.dislipidemia}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="Tipo Dislipidemia" />
+								</f:facet>
+								<h:outputLabel value="#{ant.tipoDislipidemia}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="Tasa de Filtracion Glomerular" />
+								</f:facet>
+								<h:outputLabel value="#{ant.filtracionGlomerular}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="Pie Diabetico" />
+								</f:facet>
+								<h:outputLabel value="#{ant.pieDiabetico}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="Otros" />
+								</f:facet>
+								<h:outputLabel value="#{ant.otros}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="Fecha de Creacion" />
+								</f:facet>
+								<h:outputLabel value="#{ant.fechaCreacion}" />
+							</p:column>
+						</p:dataTable>
+					</p:tab>
+				</p:accordionPanel>		
 			</div>
 
 			<div id="piePagina">

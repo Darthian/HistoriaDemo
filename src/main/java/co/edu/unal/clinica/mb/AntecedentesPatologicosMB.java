@@ -20,18 +20,42 @@ public class AntecedentesPatologicosMB {
 	
 	private long cedula;
 	private String complicacionesDiabetes;
+	private String compCardiovasculares;
+	private String complicacionCardiovascular;
 	private String retinopatiaDiabetica;
 	private String nefropatiaDiabetica;
 	private int estadoNefropatia;
 	private String hipertension;
 	private String dislipidemia;
 	private String tipoDislipidemia;
+	private String filtracionGlomerular;
+	private String pieDiabetico;
 	private String otros;
 	private Timestamp fechaCreacion;
 	
 	private List<Antecedentes_Patologicos> listPato;
 	private AntecedentesPatologicosDAO patoDao = new AntecedentesPatologicosDAO();
 	private Antecedentes_Patologicos pato = new Antecedentes_Patologicos();
+	
+	public void guardarAntecedentePatologico() {
+		try{
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			Antecedentes_Patologicos ant = new Antecedentes_Patologicos(PacienteMB.cedulaConsulta, complicacionesDiabetes, retinopatiaDiabetica,nefropatiaDiabetica, estadoNefropatia,hipertension,dislipidemia,tipoDislipidemia,otros,
+					compCardiovasculares, complicacionCardiovascular, filtracionGlomerular,pieDiabetico);
+			session.save(ant);
+			session.getTransaction().commit();
+			session.close();
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido creado correctamente","Puede seguir registrando o volver"));
+		}
+		catch(Exception ex){
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer el registro"));
+		}
+	}	
+	
+	public void listar() throws Exception {
+		this.listPato = patoDao.Buscar(PacienteMB.cedulaConsulta);
+	}
 	
 	public long getCedula() {
 		return cedula;
@@ -111,23 +135,32 @@ public class AntecedentesPatologicosMB {
 	public void setPato(Antecedentes_Patologicos pato) {
 		this.pato = pato;
 	}
-	
-	public void guardarAntecedentePatologico() {
-		try{
-			Session session = HibernateUtil.getSessionFactory().openSession();
-			session.beginTransaction();
-			Antecedentes_Patologicos ant = new Antecedentes_Patologicos(PacienteMB.cedulaConsulta, complicacionesDiabetes, retinopatiaDiabetica,nefropatiaDiabetica, estadoNefropatia,hipertension,dislipidemia,tipoDislipidemia,otros);
-			session.save(ant);
-			session.getTransaction().commit();
-			session.close();
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido creado correctamente","Puede seguir registrando o volver"));
-		}
-		catch(Exception ex){
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer el registro"));
-		}
-	}	
-	
-	public void listar() throws Exception {
-		this.listPato = patoDao.Buscar(PacienteMB.cedulaConsulta);
+	public String getCompCardiovasculares() {
+		return compCardiovasculares;
+	}
+	public void setCompCardiovasculares(String compCardiovasculares) {
+		this.compCardiovasculares = compCardiovasculares;
+	}
+	public String getComplicacionCardiovascular() {
+		return complicacionCardiovascular;
+	}
+	public void setComplicacionCardiovascular(String complicacionCardiovascular) {
+		this.complicacionCardiovascular = complicacionCardiovascular;
+	}
+
+	public String getFiltracionGlomerular() {
+		return filtracionGlomerular;
+	}
+
+	public void setFiltracionGlomerular(String filtracionGlomerular) {
+		this.filtracionGlomerular = filtracionGlomerular;
+	}
+
+	public String getPieDiabetico() {
+		return pieDiabetico;
+	}
+
+	public void setPieDiabetico(String pieDiabetico) {
+		this.pieDiabetico = pieDiabetico;
 	}
 }
