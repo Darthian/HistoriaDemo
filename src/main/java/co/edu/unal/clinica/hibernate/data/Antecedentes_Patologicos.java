@@ -13,6 +13,7 @@ public class Antecedentes_Patologicos {
 	@Id
 	private long id;
 	private long cedula;
+	private String consolidado;
 	private String complicaciones_diabetes;
 	private String comp_cardiovasculares;
 	private String complicacion_cardiovascular;
@@ -32,8 +33,9 @@ public class Antecedentes_Patologicos {
 	}
 	
 	public Antecedentes_Patologicos(long cedula, String complicaciones_diabetes, String retinopatia_diabetica, String nefropatia_diabetica, int estado_nefropatia, String hipertension, String dislipidemia, String tipo_dislipidemia, String otros, 
-			String comp_cardiovasculares, String complicacion_cardiovascular, String filtracion_glomerular, String pie_diabetico){
+			String comp_cardiovasculares, String complicacion_cardiovascular, String filtracion_glomerular, String pie_diabetico, String consolidado){
 		this.cedula = cedula;
+		this.consolidado = consolidado;
 		this.complicaciones_diabetes = complicaciones_diabetes;
 		this.comp_cardiovasculares = comp_cardiovasculares;
 		this.complicacion_cardiovascular = complicacion_cardiovascular;
@@ -146,6 +148,14 @@ public class Antecedentes_Patologicos {
 
 	public void setPieDiabetico(String pie_diabetico) {
 		this.pie_diabetico = pie_diabetico;
+	}
+
+	public String getConsolidado() {
+		return consolidado;
+	}
+
+	public void setConsolidado(String consolidado) {
+		this.consolidado = consolidado;
 	}
 	
 }

@@ -6,14 +6,18 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
+import org.hibernate.Transaction;
 
 import co.edu.unal.clinica.hibernate.data.Antecedentes_Familiares;
 import co.edu.unal.clinica.utils.HibernateUtil;
 
+
 public class AntecedentesFamiliaresDAO {
 	
 	private Session session;
+	private Transaction trans;
 	private List<Antecedentes_Familiares> lstAnt;
+	private Antecedentes_Familiares obj;
 	
 	public Antecedentes_Familiares verificarDatos(Antecedentes_Familiares ant) throws Exception {
 		Antecedentes_Familiares us = null;
@@ -61,5 +65,51 @@ public class AntecedentesFamiliaresDAO {
 			throw ex;
 		}
 		return lstAnt;
+	}
+	
+	public Antecedentes_Familiares BuscarPorId(long id) throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "FROM Antecedentes_Familiares WHERE id = " + id ;
+			Query query = session.createQuery(hql);
+
+			if (!query.list().isEmpty()) {
+				obj = (Antecedentes_Familiares) query.list().get(0);
+			}
+			else{
+				obj = null;
+			}
+		} catch (Exception ex) {
+			throw ex;
+		}
+		return obj;
+	}
+	
+	public void ConsolidarConsulta(Antecedentes_Familiares mot) throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			trans = session.beginTransaction();
+			session.update(mot);
+			trans.commit();
+		} catch (Exception ex) {
+			trans.rollback();
+			throw ex;
+		} finally {
+			session.close();
+		}
+	}
+	
+	public void Modificar(Antecedentes_Familiares emp) throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			trans = session.beginTransaction();
+			session.update(emp);
+			trans.commit();
+		} catch (Exception ex) {
+			trans.rollback();
+			throw ex;
+		} finally {
+			session.close();
+		}
 	}
 }

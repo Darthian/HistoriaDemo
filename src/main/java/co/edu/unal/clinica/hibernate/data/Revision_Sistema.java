@@ -13,6 +13,7 @@ public class Revision_Sistema {
 	@Id
 	private long id;
 	private long cedula;
+	private String consolidado;
 	private String estado_general;
 	private String cardio_vascular;
 	private String respiratorio;
@@ -34,8 +35,10 @@ public class Revision_Sistema {
 	}
 
 	public Revision_Sistema(long cedula, String estado_general, String cardio_vascular, String respiratorio, String gastrointestinal, String musculo_esqueletico,
-			String cabeza, String cuello, String cardiopulmunar, String digestivo, String genitourinario, String extremidades, String psicomotor, String nervioso, String endocrino) {
+			String cabeza, String cuello, String cardiopulmunar, String digestivo, String genitourinario, String extremidades, 
+			String psicomotor, String nervioso, String endocrino, String consolidado) {
 		this.cedula = cedula;
+		this.consolidado = consolidado;
 		this.estado_general = estado_general;
 		this.cardio_vascular = cardio_vascular;
 		this.respiratorio = respiratorio;
@@ -187,6 +190,14 @@ public class Revision_Sistema {
 
 	public void setEndocrino(String endocrino) {
 		this.endocrino = endocrino;
+	}
+
+	public String getConsolidado() {
+		return consolidado;
+	}
+
+	public void setConsolidado(String consolidado) {
+		this.consolidado = consolidado;
 	}
 
 }

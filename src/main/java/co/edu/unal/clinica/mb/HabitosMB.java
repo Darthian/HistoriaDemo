@@ -19,6 +19,7 @@ import co.edu.unal.clinica.utils.HibernateUtil;
 public class HabitosMB {
 	
 	private long cedula;
+	private String consolidado;
 	private String fumador;
 	private String fumadorTexto;
 	private String exfumador;
@@ -33,15 +34,17 @@ public class HabitosMB {
 	
 	private List<Habitos> listHab;
 	private HabitosDAO habDao = new HabitosDAO();
-	private Habitos hab = new Habitos();
+	private static Habitos hab = new Habitos();
 	
 	public void guardarHabitos() {
 		try{
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
+			consolidado = "No";
 			Habitos ant = new Habitos(PacienteMB.cedulaConsulta, fumador, exfumador,consumidorAlcohol, ejercicio, fumadorTexto, exfumadorTexto,
-					alcoholTexto, ejercicioTexto, dificultadEjercicio, dificultadTexto);
-			session.save(ant);
+					alcoholTexto, ejercicioTexto, dificultadEjercicio, dificultadTexto, consolidado);
+			long id = (long) session.save(ant);
+			hab.setId(id);
 			session.getTransaction().commit();
 			session.close();
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido creado correctamente","Puede seguir registrando o volver"));
@@ -50,8 +53,32 @@ public class HabitosMB {
 		}
 	}	
 	
+	public void consolidarConsulta(){
+		try{
+			System.out.println("++++++++++++++++++++++ ENTRA AL METODO DE CONSOLIDAR Habitos" );
+			Habitos objetoConsolidado = habDao.BuscarPorId(hab.getId());
+			System.out.println("++++++++++++++++++++++ ID de Objeto Recuperado " +objetoConsolidado.getId());
+			objetoConsolidado.setConsolidado("Si");
+			habDao.ConsolidarConsulta(objetoConsolidado);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido consolidado correctamente","Puede seguir registrando o volver"));
+		}catch(Exception ex){
+			System.out.println(ex);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer la consolidacion"));
+		}
+	}
+	
+	public String modificar() throws Exception {
+		habDao.Modificar(hab);
+		return "adminHabitos";
+	}
+	
 	public void listar() throws Exception {
 		this.listHab = habDao.Buscar(PacienteMB.cedulaConsulta);
+	}
+	
+	public String leer(Habitos emp) {
+		hab = emp;
+		return "editarHabitos";
 	}
 	
 	public long getCedula() {
@@ -105,10 +132,6 @@ public class HabitosMB {
 	public Habitos getHab() {
 		return hab;
 	}
-	public void setHab(Habitos hab) {
-		this.hab = hab;
-	}
-
 	public String getFumadorTexto() {
 		return fumadorTexto;
 	}
@@ -155,6 +178,14 @@ public class HabitosMB {
 
 	public void setDificultadTexto(String dificultadTexto) {
 		this.dificultadTexto = dificultadTexto;
+	}
+
+	public String getConsolidado() {
+		return consolidado;
+	}
+
+	public void setConsolidado(String consolidado) {
+		this.consolidado = consolidado;
 	}
 	
 }

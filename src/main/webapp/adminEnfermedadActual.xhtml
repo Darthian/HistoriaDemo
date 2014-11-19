@@ -62,6 +62,14 @@
 					
 					<p:column>
 						<f:facet name="header">
+							<h:outputLabel value="Editar" />
+						</f:facet>
+						<h:outputLabel rendered="#{enf.consolidado eq 'Si'}" value="Registro consolidado" />
+						<h:commandButton action="#{enfermedadActualMB.leer(enf)}" rendered="#{enf.consolidado eq 'No'}" value="Modificar" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
 							<h:outputLabel value="Fecha de Creacion" />
 						</f:facet>
 						<h:outputLabel value="#{enf.fechaCreacion}" />

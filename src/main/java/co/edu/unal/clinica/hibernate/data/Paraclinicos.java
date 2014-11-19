@@ -13,6 +13,7 @@ public class Paraclinicos {
 	@Id
 	private long id;
 	private long cedula;
+	private String consolidado;
 	private float glicemia_ayunas;
 	private float glicemia_post_prandial;
 	private float hemoglobina_glicosilada;
@@ -31,8 +32,9 @@ public class Paraclinicos {
 	}
 	
 	public Paraclinicos(long cedula, float glicemia_ayunas, float glicemia_post_prandial, float hemoglobina_glicosilada, float trigliceridos, float hdl, float ldl, float vldl, 
-			float creatinina, float bun, String otros_paraclinicos, String parcial_orina){
+			float creatinina, float bun, String otros_paraclinicos, String parcial_orina, String consolidado){
 		this.cedula = cedula;
+		this.consolidado = consolidado;
 		this.glicemia_ayunas = glicemia_ayunas;
 		this.glicemia_post_prandial = glicemia_post_prandial;
 		this.hemoglobina_glicosilada = hemoglobina_glicosilada;
@@ -157,6 +159,14 @@ public class Paraclinicos {
 
 	public void setParcialOrina(String parcialOrina) {
 		this.parcial_orina = parcialOrina;
+	}
+
+	public String getConsolidado() {
+		return consolidado;
+	}
+
+	public void setConsolidado(String consolidado) {
+		this.consolidado = consolidado;
 	}
 
 }

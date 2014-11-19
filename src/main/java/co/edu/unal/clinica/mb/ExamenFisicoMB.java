@@ -3,7 +3,6 @@ package co.edu.unal.clinica.mb;
 import java.sql.Timestamp;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -20,6 +19,7 @@ import co.edu.unal.clinica.utils.HibernateUtil;
 public class ExamenFisicoMB {
 	
 	private long cedula;
+	private String consolidado;
 	private String estadoGeneral;
 	private String cabeza;
 	private String ojos;
@@ -44,20 +44,17 @@ public class ExamenFisicoMB {
 	
 	private List<Examen_Fisico> listExam;
 	private ExamenFisicoDAO examDao = new ExamenFisicoDAO();
-	private Examen_Fisico exam = new Examen_Fisico();
-	
-//	@PostConstruct
-//	public void init() {
-//		frecuenciaRespiratoria = getFrecuenciaRespiratoria();
-//	}
+	private static Examen_Fisico exam = new Examen_Fisico();
 	
 	public void guardarExamenFisico() {
 		try{
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
+			consolidado = "No";
 			Examen_Fisico ant = new Examen_Fisico(PacienteMB.cedulaConsulta,estadoGeneral,cabeza,ojos,nariz,boca,orejas,cuello,cardiaco,pulmonar,abdomen,extremidades,neurologico,
-					temperatura, frecuenciaCardiaca, frecuenciaRespiratoria, presionArterial, peso, talla, perimetroAbdominal, masaCorporal);
-			session.save(ant);
+					temperatura, frecuenciaCardiaca, frecuenciaRespiratoria, presionArterial, peso, talla, perimetroAbdominal, masaCorporal, consolidado);
+			long id = (long) session.save(ant);
+			exam.setId(id);
 			session.getTransaction().commit();
 			session.close();
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido creado correctamente","Puede seguir registrando o volver"));
@@ -66,8 +63,32 @@ public class ExamenFisicoMB {
 		}
 	}	
 	
+	public void consolidarConsulta(){
+		try{
+			System.out.println("++++++++++++++++++++++ ENTRA AL METODO DE CONSOLIDAR Examen Fisico" );
+			Examen_Fisico objetoConsolidado = examDao.BuscarPorId(exam.getId());
+			System.out.println("++++++++++++++++++++++ ID de Objeto Recuperado " +objetoConsolidado.getId());
+			objetoConsolidado.setConsolidado("Si");
+			examDao.ConsolidarConsulta(objetoConsolidado);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido consolidado correctamente","Puede seguir registrando o volver"));
+		}catch(Exception ex){
+			System.out.println(ex);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer la consolidacion"));
+		}
+	}
+	
+	public String modificar() throws Exception {
+		examDao.Modificar(exam);
+		return "adminExamenFisico";
+	}
+	
 	public void listar() throws Exception {
 		this.listExam = examDao.Buscar(PacienteMB.cedulaConsulta);
+	}
+	
+	public String leer(Examen_Fisico emp) {
+		exam = emp;
+		return "editarExamenFisico";
 	}
 	
 	public String leerExamenFiscoCabeza(){
@@ -174,9 +195,6 @@ public class ExamenFisicoMB {
 	public Examen_Fisico getExam() {
 		return exam;
 	}
-	public void setExam(Examen_Fisico exam) {
-		this.exam = exam;
-	}
 	public long getTemperatura() {
 		return temperatura;
 	}
@@ -232,5 +250,13 @@ public class ExamenFisicoMB {
 
 	public void setMasaCorporal(float masaCorporal) {
 		this.masaCorporal = masaCorporal;
+	}
+
+	public String getConsolidado() {
+		return consolidado;
+	}
+
+	public void setConsolidado(String consolidado) {
+		this.consolidado = consolidado;
 	}
 }

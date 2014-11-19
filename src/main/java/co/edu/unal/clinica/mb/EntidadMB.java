@@ -26,37 +26,6 @@ public class EntidadMB {
 	private EntidadDAO entidadDao = new EntidadDAO();
 	private Entidad entidad = new Entidad();
 	
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	public String getDescripcion() {
-		return descripcion;
-	}
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-	public List<Entidad> getListEntidades() {
-		return listEntidades;
-	}
-	public void setListEntidades(List<Entidad> listEntidades) {
-		this.listEntidades = listEntidades;
-	}
-	public EntidadDAO getEntidadDao() {
-		return entidadDao;
-	}
-	public void setEntidadDao(EntidadDAO entidadDao) {
-		this.entidadDao = entidadDao;
-	}
-	public Entidad getEntidad() {
-		return entidad;
-	}
-	public void setEntidad(Entidad entidad) {
-		this.entidad = entidad;
-	}
-	
 	public void guardarEntidad() {
 		try{
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -92,5 +61,36 @@ public class EntidadMB {
 			items.add(new SelectItem(entidad.getNombre(), entidad.getNombre()));
 		}
 		return items;
+	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	public List<Entidad> getListEntidades() {
+		return listEntidades;
+	}
+	public void setListEntidades(List<Entidad> listEntidades) {
+		this.listEntidades = listEntidades;
+	}
+	public EntidadDAO getEntidadDao() {
+		return entidadDao;
+	}
+	public void setEntidadDao(EntidadDAO entidadDao) {
+		this.entidadDao = entidadDao;
+	}
+	public Entidad getEntidad() {
+		return entidad;
+	}
+	public void setEntidad(Entidad entidad) {
+		this.entidad = entidad;
 	}
 }

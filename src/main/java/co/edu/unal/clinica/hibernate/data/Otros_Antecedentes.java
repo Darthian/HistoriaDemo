@@ -13,6 +13,7 @@ public class Otros_Antecedentes {
 	@Id
 	private long id;
 	private long cedula;
+	private String consolidado;
 	private String antecedente;
 	private String observaciones;
 	private Timestamp fecha_Creacion;
@@ -21,8 +22,9 @@ public class Otros_Antecedentes {
 		
 	}
 	
-	public Otros_Antecedentes(long cedula, String antecedente, String observaciones){
+	public Otros_Antecedentes(long cedula, String antecedente, String observaciones, String consolidado){
 		this.cedula = cedula;
+		this.consolidado = consolidado;
 		this.antecedente = antecedente;
 		this.observaciones = observaciones;
 		this.fecha_Creacion = new Timestamp(System.currentTimeMillis());
@@ -66,5 +68,13 @@ public class Otros_Antecedentes {
 
 	public void setFechaCreacion(Timestamp fecha_Creacion) {
 		this.fecha_Creacion = fecha_Creacion;
+	}
+
+	public String getConsolidado() {
+		return consolidado;
+	}
+
+	public void setConsolidado(String consolidado) {
+		this.consolidado = consolidado;
 	}
 }

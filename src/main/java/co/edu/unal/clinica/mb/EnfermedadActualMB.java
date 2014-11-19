@@ -19,12 +19,58 @@ import co.edu.unal.clinica.utils.HibernateUtil;
 public class EnfermedadActualMB {
 	
 	private long cedula;
+	private String consolidado;
 	private String enfermedadActual;
 	private Timestamp fechaCreacion;
 	
 	private List<Enfermedad_Actual> listEnf;
 	private EnfermedadActualDAO enfDao = new EnfermedadActualDAO();
-	private Enfermedad_Actual enf = new Enfermedad_Actual();
+	private static Enfermedad_Actual enf = new Enfermedad_Actual();
+	
+	public void guardarEnfermedadActual() {
+		try{
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			consolidado = "No";
+			Enfermedad_Actual ant = new Enfermedad_Actual(PacienteMB.cedulaConsulta, enfermedadActual, consolidado);
+			long id = (long) session.save(ant);
+			enf.setId(id);
+			session.getTransaction().commit();
+			session.close();
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido creado correctamente","Puede seguir registrando o volver"));
+		}
+		catch(Exception ex){
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer el registro"));
+		}
+	}
+	
+	public void consolidarConsulta(){
+		try{
+			System.out.println("++++++++++++++++++++++ ENTRA AL METODO DE CONSOLIDAR Enfermedad Actual" );
+			Enfermedad_Actual objetoConsolidado = enfDao.BuscarPorId(enf.getId());
+			System.out.println("++++++++++++++++++++++ ID de Objeto Recuperado " +objetoConsolidado.getId());
+			objetoConsolidado.setConsolidado("Si");
+			enfDao.ConsolidarConsulta(objetoConsolidado);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido consolidado correctamente","Puede seguir registrando o volver"));
+		}catch(Exception ex){
+			System.out.println(ex);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer la consolidacion"));
+		}
+	}
+	
+	public String modificar() throws Exception {
+		enfDao.Modificar(enf);
+		return "adminEnfermedadActual";
+	}
+	
+	public void listar() throws Exception {
+		this.listEnf = enfDao.Buscar(PacienteMB.cedulaConsulta);
+	}
+	
+	public String leer(Enfermedad_Actual emp) {
+		enf = emp;
+		return "editarEnfermedadActual";
+	}
 	
 	public long getCedula() {
 		return cedula;
@@ -59,26 +105,10 @@ public class EnfermedadActualMB {
 	public Enfermedad_Actual getEnf() {
 		return enf;
 	}
-	public void setEnf(Enfermedad_Actual enf) {
-		this.enf = enf;
+	public String getConsolidado() {
+		return consolidado;
 	}
-	
-	public void guardarEnfermedadActual() {
-		try{
-			Session session = HibernateUtil.getSessionFactory().openSession();
-			session.beginTransaction();
-			Enfermedad_Actual ant = new Enfermedad_Actual(PacienteMB.cedulaConsulta, enfermedadActual);
-			session.save(ant);
-			session.getTransaction().commit();
-			session.close();
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido creado correctamente","Puede seguir registrando o volver"));
-		}
-		catch(Exception ex){
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer el registro"));
-		}
-	}	
-	
-	public void listar() throws Exception {
-		this.listEnf = enfDao.Buscar(PacienteMB.cedulaConsulta);
+	public void setConsolidado(String consolidado) {
+		this.consolidado = consolidado;
 	}
 }

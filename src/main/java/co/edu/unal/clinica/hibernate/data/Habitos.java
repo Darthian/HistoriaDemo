@@ -13,6 +13,7 @@ public class Habitos {
 	@Id
 	private long id;
 	private long cedula;
+	private String consolidado;
 	private String fumador;
 	private String fumador_texto;
 	private String exfumador;
@@ -30,8 +31,9 @@ public class Habitos {
 	}
 	
 	public Habitos(long cedula, String fumador, String exfumador, String consumidor_alcohol, String ejercicio, String fumador_texto, String exfumador_texto,
-			String alcohol_texto, String ejercicio_texto, String dificultad_ejercicio, String dificultad_texto){
+			String alcohol_texto, String ejercicio_texto, String dificultad_ejercicio, String dificultad_texto, String consolidado){
 		this.cedula = cedula;
+		this.consolidado = consolidado;
 		this.fumador = fumador;
 		this.exfumador = exfumador;
 		this.consumidor_alcohol = consumidor_alcohol;
@@ -147,5 +149,13 @@ public class Habitos {
 
 	public void setDificultadTexto(String dificultad_texto) {
 		this.dificultad_texto = dificultad_texto;
+	}
+
+	public String getConsolidado() {
+		return consolidado;
+	}
+
+	public void setConsolidado(String consolidado) {
+		this.consolidado = consolidado;
 	}
 }

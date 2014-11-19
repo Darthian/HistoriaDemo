@@ -19,6 +19,7 @@ import co.edu.unal.clinica.utils.HibernateUtil;
 public class AntecedentesPatologicosMB {
 	
 	private long cedula;
+	private String consolidado;
 	private String complicacionesDiabetes;
 	private String compCardiovasculares;
 	private String complicacionCardiovascular;
@@ -35,15 +36,17 @@ public class AntecedentesPatologicosMB {
 	
 	private List<Antecedentes_Patologicos> listPato;
 	private AntecedentesPatologicosDAO patoDao = new AntecedentesPatologicosDAO();
-	private Antecedentes_Patologicos pato = new Antecedentes_Patologicos();
+	private static Antecedentes_Patologicos pato = new Antecedentes_Patologicos();
 	
 	public void guardarAntecedentePatologico() {
 		try{
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
+			consolidado = "No";
 			Antecedentes_Patologicos ant = new Antecedentes_Patologicos(PacienteMB.cedulaConsulta, complicacionesDiabetes, retinopatiaDiabetica,nefropatiaDiabetica, estadoNefropatia,hipertension,dislipidemia,tipoDislipidemia,otros,
-					compCardiovasculares, complicacionCardiovascular, filtracionGlomerular,pieDiabetico);
-			session.save(ant);
+					compCardiovasculares, complicacionCardiovascular, filtracionGlomerular,pieDiabetico, consolidado);
+			long id = (long) session.save(ant);
+			pato.setId(id);
 			session.getTransaction().commit();
 			session.close();
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido creado correctamente","Puede seguir registrando o volver"));
@@ -53,8 +56,32 @@ public class AntecedentesPatologicosMB {
 		}
 	}	
 	
+	public void consolidarConsulta(){
+		try{
+			System.out.println("++++++++++++++++++++++ ENTRA AL METODO DE CONSOLIDAR ANTECEDENTES Patologicos" );
+			Antecedentes_Patologicos objetoConsolidado = patoDao.BuscarPorId(pato.getId());
+			System.out.println("++++++++++++++++++++++ ID de Objeto Recuperado " +objetoConsolidado.getId());
+			objetoConsolidado.setConsolidado("Si");
+			patoDao.ConsolidarConsulta(objetoConsolidado);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido consolidado correctamente","Puede seguir registrando o volver"));
+		}catch(Exception ex){
+			System.out.println(ex);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer la consolidacion"));
+		}
+	}
+	
+	public String modificar() throws Exception {
+		patoDao.Modificar(pato);
+		return "adminAntecedentesPatologicos";
+	}
+	
 	public void listar() throws Exception {
 		this.listPato = patoDao.Buscar(PacienteMB.cedulaConsulta);
+	}
+	
+	public String leer(Antecedentes_Patologicos emp) {
+		pato = emp;
+		return "editarAntecedentesPatologicos";
 	}
 	
 	public long getCedula() {
@@ -132,9 +159,6 @@ public class AntecedentesPatologicosMB {
 	public Antecedentes_Patologicos getPato() {
 		return pato;
 	}
-	public void setPato(Antecedentes_Patologicos pato) {
-		this.pato = pato;
-	}
 	public String getCompCardiovasculares() {
 		return compCardiovasculares;
 	}
@@ -162,5 +186,13 @@ public class AntecedentesPatologicosMB {
 
 	public void setPieDiabetico(String pieDiabetico) {
 		this.pieDiabetico = pieDiabetico;
+	}
+
+	public String getConsolidado() {
+		return consolidado;
+	}
+
+	public void setConsolidado(String consolidado) {
+		this.consolidado = consolidado;
 	}
 }

@@ -13,6 +13,7 @@ public class Examen_Fisico {
 	@Id
 	private long id;
 	private long cedula;
+	private String consolidado;
 	private String estado_general;
 	private String cabeza;
 	private String ojos;
@@ -42,8 +43,9 @@ public class Examen_Fisico {
 	public Examen_Fisico(long cedula, String estado_general, String cabeza, String ojos, String nariz, String boca, 
 			String orejas, String cuello, String cardiaco, String pulmonar, String abdomen, String extremidades, 
 			String neurologico, long temperatura, long frecuencia_cardiaca, long frecuencia_pulmonar, String presion_arterial,
-			float peso, float talla, float perimetro_abdominal, float masa_corporal){
+			float peso, float talla, float perimetro_abdominal, float masa_corporal, String consolidado){
 		this.cedula = cedula;
+		this.consolidado = consolidado;
 		this.estado_general = estado_general;
 		this.cabeza = cabeza;
 		this.ojos = ojos;
@@ -249,5 +251,13 @@ public class Examen_Fisico {
 
 	public void setMasaCorporal(float masa_corporal) {
 		this.masa_corporal = masa_corporal;
+	}
+
+	public String getConsolidado() {
+		return consolidado;
+	}
+
+	public void setConsolidado(String consolidado) {
+		this.consolidado = consolidado;
 	}
 }

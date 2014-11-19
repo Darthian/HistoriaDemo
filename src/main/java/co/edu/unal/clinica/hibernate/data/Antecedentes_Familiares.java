@@ -13,6 +13,7 @@ public class Antecedentes_Familiares {
 	@Id
 	private long id;
 	private long cedula;
+	private String consolidado;
 	private String historia_Familiar_Diabetes;
 	private String historia_Familiar_Infarto;
 	private String historia_Familiar_Dislipidemia;
@@ -23,13 +24,13 @@ public class Antecedentes_Familiares {
 		
 	}
 	
-	public Antecedentes_Familiares(long cedula, String historiaFamiliarDiabetes, String historiaFamiliarInarto, String historiaFamiliarDislipidemia, String otros){
+	public Antecedentes_Familiares(long cedula, String historiaFamiliarDiabetes, String historiaFamiliarInarto, String historiaFamiliarDislipidemia, String otros, String consolidado){
 		this.cedula = cedula;
+		this.consolidado = consolidado;
 		this.historia_Familiar_Diabetes = historiaFamiliarDiabetes;
 		this.historia_Familiar_Dislipidemia = historiaFamiliarDislipidemia;
 		this.historia_Familiar_Infarto = historiaFamiliarInarto;
 		this.otros = otros;
-//		Date date = new Date();
 		this.fecha_Creacion = new Timestamp(System.currentTimeMillis());
 	}
 	
@@ -74,6 +75,14 @@ public class Antecedentes_Familiares {
 	}
 	public void setFechaCreacion(Timestamp fechaCreacion) {
 		this.fecha_Creacion = fechaCreacion;
+	}
+
+	public String getConsolidado() {
+		return consolidado;
+	}
+
+	public void setConsolidado(String consolidado) {
+		this.consolidado = consolidado;
 	}
 	
 }

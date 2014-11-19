@@ -23,6 +23,7 @@
 
 	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{loginController.verificarSesion() eq false}" />
 	<h:form id="listaPacientes" rendered="#{loginController.verificarSesion()}">
+	<p:growl id="growl" showDetail="true" sticky="false" />
 		<div id="contenedor" class="center">
 			<div id="cabecera" align="center">
 				<img src="images/logo.png" width="25%" height="15%" />
@@ -41,6 +42,7 @@
 					<p:inputText id="cedulaBuscadaConsulta" value="#{pacienteMB.cedulaBuscadaConsulta}" required="true" label="Cedula del paciente"/>
 					<p:commandButton update="listaPacientes" actionListener="#{pacienteMB.buscarPaciente()}" value="Buscar Paciente"/>
 					<p:commandButton action="#{pacienteMB.terminarConsulta()}" value="Terminar Consulta"/>
+					<p:commandButton update="growl" actionListener="#{pacienteMB.guardarDefinitivamente()}" value="Guardar Definitivamente"/>
 				</h3>
 				<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
 			
@@ -104,7 +106,7 @@
 							<h:outputLabel value="Examen Fisico" />
 						</f:facet>
 						<center>
-						<p:commandButton action="#{pacienteMB.leerExamenFisco(paciente)}" icon="ui-icon-note" title="Registrar Examen fisico"/>
+						<p:commandButton action="#{pacienteMB.leerExamenFisico(paciente)}" icon="ui-icon-note" title="Registrar Examen fisico"/>
 						</center>
 					</p:column>
 					<p:column>

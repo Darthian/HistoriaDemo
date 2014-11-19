@@ -13,6 +13,7 @@ public class Antecedentes_Farmacologicos {
 	@Id
 	private long id;
 	private long cedula;
+	private String consolidado;
 	private String tratamiento_actual;
 	private String dieta;
 	private String hipoglucemiantes_orales;
@@ -24,8 +25,9 @@ public class Antecedentes_Farmacologicos {
 		
 	}
 	
-	public Antecedentes_Farmacologicos(long cedula, String tratamiento_actual, String dieta, String hipoglucemiantes_orales, String insulina, String otros_medicamentos){
+	public Antecedentes_Farmacologicos(long cedula, String tratamiento_actual, String dieta, String hipoglucemiantes_orales, String insulina, String otros_medicamentos, String consolidado){
 		this.cedula = cedula;
+		this.consolidado = consolidado;
 		this.tratamiento_actual = tratamiento_actual;
 		this.dieta = dieta;
 		this.hipoglucemiantes_orales = hipoglucemiantes_orales;
@@ -81,5 +83,13 @@ public class Antecedentes_Farmacologicos {
 	}
 	public void setFecha_creacion(Timestamp fecha_creacion) {
 		this.fecha_creacion = fecha_creacion;
+	}
+
+	public String getConsolidado() {
+		return consolidado;
+	}
+
+	public void setConsolidado(String consolidado) {
+		this.consolidado = consolidado;
 	}
 }

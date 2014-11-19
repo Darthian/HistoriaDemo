@@ -19,15 +19,63 @@ import co.edu.unal.clinica.utils.HibernateUtil;
 public class OtrosAntecedentesMB {
 	
 	private long cedula;
+	private String consolidado;
 	private String antecedente;
 	private String observaciones;
 	private Timestamp fechaCreacion;
 	
 	private List<Otros_Antecedentes> listaOAnt;
 	private OtrosAntecedentesDAO oantDAO = new OtrosAntecedentesDAO();
-	private Otros_Antecedentes oant = new Otros_Antecedentes();
+	private static Otros_Antecedentes oant = new Otros_Antecedentes();
 	
 	public static long cedulaPaciente;
+	
+	public void guardarOtrosAntecedentes() {
+		try{
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			consolidado = "No";
+			Otros_Antecedentes ant = new Otros_Antecedentes(PacienteMB.cedulaConsulta, antecedente, observaciones, consolidado);
+			long id = (long) session.save(ant);
+			oant.setId(id);
+			session.getTransaction().commit();
+			session.close();
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido creado correctamente","Puede seguir registrando o volver"));
+		}
+		catch(Exception ex){
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer el registro"));
+		}
+	}
+	
+	public void consolidarConsulta(){
+		try{
+			System.out.println("++++++++++++++++++++++ ENTRA AL METODO DE CONSOLIDAR Otros Antecedentes" );
+			Otros_Antecedentes objetoConsolidado = oantDAO.BuscarPorId(oant.getId());
+			System.out.println("++++++++++++++++++++++ ID de Objeto Recuperado " +objetoConsolidado.getId());
+			objetoConsolidado.setConsolidado("Si");
+			oantDAO.ConsolidarConsulta(objetoConsolidado);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido consolidado correctamente","Puede seguir registrando o volver"));
+		}catch(Exception ex){
+			System.out.println(ex);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer la consolidacion"));
+		}
+	}
+	
+	public String modificar() throws Exception {
+		oantDAO.Modificar(oant);
+		return "adminOtrosAntecedentes";
+	}
+	
+	public void listar() throws Exception {
+		cedulaPaciente = PacienteMB.cedulaConsulta;
+		System.out.println("Cedula de la historia:"+PacienteMB.cedulaConsulta);
+		this.listaOAnt = oantDAO.Buscar(PacienteMB.cedulaConsulta);
+	}
+	
+	public String leer(Otros_Antecedentes emp) {
+		oant = emp;
+		return "editarOtrosAntecedentes";
+	}
 	
 	public long getCedula() {
 		return cedula;
@@ -69,34 +117,18 @@ public class OtrosAntecedentesMB {
 	public Otros_Antecedentes getOant() {
 		return oant;
 	}
-	public void setOant(Otros_Antecedentes oant) {
-		this.oant = oant;
-	}
 	public static long getCedulaPaciente() {
 		return cedulaPaciente;
 	}
 	public static void setCedulaPaciente(long cedulaPaciente) {
 		OtrosAntecedentesMB.cedulaPaciente = cedulaPaciente;
 	}
-	
-	public void guardarOtrosAntecedentes() {
-		try{
-			Session session = HibernateUtil.getSessionFactory().openSession();
-			session.beginTransaction();
-			Otros_Antecedentes ant = new Otros_Antecedentes(PacienteMB.cedulaConsulta, antecedente, observaciones);
-			session.save(ant);
-			session.getTransaction().commit();
-			session.close();
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido creado correctamente","Puede seguir registrando o volver"));
-		}
-		catch(Exception ex){
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer el registro"));
-		}
-	}	
-	
-	public void listar() throws Exception {
-		cedulaPaciente = PacienteMB.cedulaConsulta;
-		System.out.println("Cedula de la historia:"+PacienteMB.cedulaConsulta);
-		this.listaOAnt = oantDAO.Buscar(PacienteMB.cedulaConsulta);
+
+	public String getConsolidado() {
+		return consolidado;
+	}
+
+	public void setConsolidado(String consolidado) {
+		this.consolidado = consolidado;
 	}
 }
