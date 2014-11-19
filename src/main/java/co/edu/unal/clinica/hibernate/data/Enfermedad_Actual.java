@@ -14,6 +14,7 @@ public class Enfermedad_Actual {
 	@Id
 	private long id;
 	private long cedula;
+	private String consolidado;
 	@Column(name = "enfermedad_Actual", nullable = true)
 	private String enfermedad_Actual;
 	private Timestamp fecha_Creacion;
@@ -22,8 +23,9 @@ public class Enfermedad_Actual {
 		
 	}
 	
-	public Enfermedad_Actual(long cedula, String enfermedad_Actual){
+	public Enfermedad_Actual(long cedula, String enfermedad_Actual, String consolidado){
 		this.cedula = cedula;
+		this.consolidado = consolidado;
 		this.enfermedad_Actual = enfermedad_Actual;
 		this.fecha_Creacion = new Timestamp(System.currentTimeMillis());
 	}
@@ -58,5 +60,13 @@ public class Enfermedad_Actual {
 
 	public void setFechaCreacion(Timestamp fecha_Creacion) {
 		this.fecha_Creacion = fecha_Creacion;
+	}
+
+	public String getConsolidado() {
+		return consolidado;
+	}
+
+	public void setConsolidado(String consolidado) {
+		this.consolidado = consolidado;
 	}
 }

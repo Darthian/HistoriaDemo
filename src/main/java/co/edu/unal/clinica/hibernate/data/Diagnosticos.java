@@ -13,6 +13,7 @@ public class Diagnosticos {
 	@Id
 	private long id;
 	private long cedula;
+	private String consolidado;
 	private String analisis;
 	private String diagnostico;
 	private String plan;
@@ -22,8 +23,9 @@ public class Diagnosticos {
 		
 	}
 	
-	public Diagnosticos(long cedula, String analisis, String diagnostico, String plan){
+	public Diagnosticos(long cedula, String analisis, String diagnostico, String plan, String consolidado){
 		this.cedula = cedula;
+		this.consolidado = consolidado;
 		this.analisis = analisis;
 		this.diagnostico = diagnostico;
 		this.plan = plan;
@@ -65,8 +67,13 @@ public class Diagnosticos {
 	}
 	public void setFechaCreacion(Timestamp fecha_creacion) {
 		this.fecha_creacion = fecha_creacion;
-	} 
-	
-	
+	}
 
+	public String getConsolidado() {
+		return consolidado;
+	}
+
+	public void setConsolidado(String consolidado) {
+		this.consolidado = consolidado;
+	} 
 }

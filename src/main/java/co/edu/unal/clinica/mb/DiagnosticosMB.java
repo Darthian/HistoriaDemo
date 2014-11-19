@@ -19,6 +19,7 @@ import co.edu.unal.clinica.utils.HibernateUtil;
 public class DiagnosticosMB {
 	
 	private long cedula;
+	private String consolidado;
 	private String analisis;
 	private String diagnostico;
 	private String plan;
@@ -26,7 +27,52 @@ public class DiagnosticosMB {
 	
 	private List<Diagnosticos> listDiag;
 	private DiagnosticosDAO diagnosticosDao = new DiagnosticosDAO();
-	private Diagnosticos diag = new Diagnosticos();
+	private static Diagnosticos diag = new Diagnosticos();
+	
+	public void guardarDiagnosticos() {
+		try{
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			consolidado = "No";
+			Diagnosticos ant = new Diagnosticos(PacienteMB.cedulaConsulta, analisis, diagnostico, plan, consolidado);
+			long id = (long) session.save(ant);
+			diag.setId(id);
+			session.getTransaction().commit();
+			session.close();
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido creado correctamente","Puede seguir registrando o volver"));
+		}catch(Exception ex){
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer el registro"));
+		}
+	}	
+	
+	public void consolidarConsulta(){
+		try{
+			System.out.println("++++++++++++++++++++++ ENTRA AL METODO DE CONSOLIDAR Diagnosticos" );
+			Diagnosticos objetoConsolidado = diagnosticosDao.BuscarPorId(diag.getId());
+			System.out.println("++++++++++++++++++++++ ID de Objeto Recuperado " +objetoConsolidado.getId());
+			objetoConsolidado.setConsolidado("Si");
+			diagnosticosDao.ConsolidarConsulta(objetoConsolidado);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido consolidado correctamente","Puede seguir registrando o volver"));
+		}catch(Exception ex){
+			System.out.println(ex);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer la consolidacion"));
+		}
+	}
+	
+	public String modificar() throws Exception {
+		diagnosticosDao.Modificar(diag);
+		return "adminDiagnosticos";
+	}
+	
+	public void listar() throws Exception {
+		this.listDiag = diagnosticosDao.Buscar(PacienteMB.cedulaConsulta);
+	}
+	
+	public String leer(Diagnosticos emp) {
+		diag = emp;
+		return "editarDiagnosticos";
+	}
+	
 	public long getCedula() {
 		return cedula;
 	}
@@ -72,25 +118,10 @@ public class DiagnosticosMB {
 	public Diagnosticos getDiag() {
 		return diag;
 	}
-	public void setDiag(Diagnosticos diag) {
-		this.diag = diag;
+	public String getConsolidado() {
+		return consolidado;
 	}
-	
-	public void guardarDiagnosticos() {
-		try{
-			Session session = HibernateUtil.getSessionFactory().openSession();
-			session.beginTransaction();
-			Diagnosticos ant = new Diagnosticos(PacienteMB.cedulaConsulta, analisis, diagnostico,plan);
-			session.save(ant);
-			session.getTransaction().commit();
-			session.close();
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido creado correctamente","Puede seguir registrando o volver"));
-		}catch(Exception ex){
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer el registro"));
-		}
-	}	
-	
-	public void listar() throws Exception {
-		this.listDiag = diagnosticosDao.Buscar(PacienteMB.cedulaConsulta);
+	public void setConsolidado(String consolidado) {
+		this.consolidado = consolidado;
 	}
 }

@@ -64,6 +64,15 @@
 						</f:facet>
 						<h:outputLabel value="#{ant.observaciones}" />
 					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Editar" />
+						</f:facet>
+						<h:outputLabel rendered="#{ant.consolidado eq 'Si'}" value="Registro consolidado" />
+						<h:commandButton action="#{otrosAntecedentesMB.leer(ant)}" rendered="#{ant.consolidado eq 'No'}" value="Modificar" />
+					</p:column>
+					
 					<p:column>
 						<f:facet name="header">
 							<h:outputLabel value="Fecha de Creacion" />

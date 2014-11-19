@@ -154,7 +154,15 @@
 								</f:facet>
 								<h:outputLabel value="#{revi.endocrino}" />
 							</p:column>
-	
+							
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="Editar" />
+								</f:facet>
+								<h:outputLabel rendered="#{revi.consolidado eq 'Si'}" value="Registro consolidado" />
+								<h:commandButton action="#{revisionSistemaMB.leer(revi)}" rendered="#{revi.consolidado eq 'No'}" value="Modificar" />
+							</p:column>
+							
 							<p:column>
 								<f:facet name="header">
 									<h:outputLabel value="Fecha de Creacion" />

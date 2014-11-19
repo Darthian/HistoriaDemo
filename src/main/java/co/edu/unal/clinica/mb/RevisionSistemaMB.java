@@ -19,6 +19,7 @@ import co.edu.unal.clinica.utils.HibernateUtil;
 public class RevisionSistemaMB {
 	
 	private long cedula;
+	private String consolidado;
 	private String estadoGeneral;
 	private String cardioVascular;
 	private String respiratorio;
@@ -37,15 +38,17 @@ public class RevisionSistemaMB {
 	
 	private List<Revision_Sistema> listRevi;
 	private RevisionSistemaDAO reviDao = new RevisionSistemaDAO();
-	private Revision_Sistema revi = new Revision_Sistema();
+	private static Revision_Sistema revi = new Revision_Sistema();
 	
 	public void guardarRevision() {
 		try{
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
+			consolidado = "No";
 			Revision_Sistema ant = new Revision_Sistema(PacienteMB.cedulaConsulta, estadoGeneral, cardioVascular,respiratorio, gastrointestinal,musculoEsqueletico,
-					cabeza, cuello, cardiopulmunar, digestivo, genitourinario, extremidades, psicomotor, nervioso, endocrino);
-			session.save(ant);
+					cabeza, cuello, cardiopulmunar, digestivo, genitourinario, extremidades, psicomotor, nervioso, endocrino, consolidado);
+			long id = (long) session.save(ant);
+			revi.setId(id);
 			session.getTransaction().commit();
 			session.close();
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido creado correctamente","Puede seguir registrando o volver"));
@@ -54,8 +57,32 @@ public class RevisionSistemaMB {
 		}
 	}	
 	
+	public void consolidarConsulta(){
+		try{
+			System.out.println("++++++++++++++++++++++ ENTRA AL METODO DE CONSOLIDAR Revision Sistema" );
+			Revision_Sistema objetoConsolidado = reviDao.BuscarPorId(revi.getId());
+			System.out.println("++++++++++++++++++++++ ID de Objeto Recuperado " +objetoConsolidado.getId());
+			objetoConsolidado.setConsolidado("Si");
+			reviDao.ConsolidarConsulta(objetoConsolidado);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido consolidado correctamente","Puede seguir registrando o volver"));
+		}catch(Exception ex){
+			System.out.println(ex);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer la consolidacion"));
+		}
+	}
+	
+	public String modificar() throws Exception {
+		reviDao.Modificar(revi);
+		return "adminRevisionSistema";
+	}
+	
 	public void listar() throws Exception {
 		this.listRevi = reviDao.Buscar(PacienteMB.cedulaConsulta);
+	}
+	
+	public String leer(Revision_Sistema emp) {
+		revi = emp;
+		return "editarRevisionSistema";
 	}
 	
 	public long getCedula() {
@@ -115,10 +142,6 @@ public class RevisionSistemaMB {
 	public Revision_Sistema getRevi() {
 		return revi;
 	}
-	public void setRevi(Revision_Sistema revi) {
-		this.revi = revi;
-	}
-
 	public String getCabeza() {
 		return cabeza;
 	}
@@ -189,5 +212,13 @@ public class RevisionSistemaMB {
 
 	public void setEndocrino(String endocrino) {
 		this.endocrino = endocrino;
+	}
+
+	public String getConsolidado() {
+		return consolidado;
+	}
+
+	public void setConsolidado(String consolidado) {
+		this.consolidado = consolidado;
 	}
 }

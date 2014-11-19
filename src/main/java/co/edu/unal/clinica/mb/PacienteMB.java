@@ -4,11 +4,11 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 
 import org.hibernate.Session;
 
@@ -46,6 +46,29 @@ public class PacienteMB {
 	private long cedulaBuscadaConsulta;
 	
 	public static long cedulaConsulta; 
+	
+	@Inject
+	private AntecedentesFamiliaresMB antecedentesFamiliares;
+	@Inject
+	private AntecedentesFarmacologicosMB antecedentesFarmacologicos;
+	@Inject
+	private AntecedentesPatologicosMB antecedentesPatologicos;
+	@Inject
+	private DiagnosticosMB diagnosticos;
+	@Inject
+	private EnfermedadActualMB enfermedadActual;
+	@Inject
+	private ExamenFisicoMB examenFisico;
+	@Inject
+	private HabitosMB habitos;
+	@Inject
+	private MotivoConsultaMB motivo;
+	@Inject
+	private OtrosAntecedentesMB otrosAntecedentes;
+	@Inject
+	private ParaclinicosMB paraclinicos;
+	@Inject
+	private RevisionSistemaMB revisionSistema;
 
 	public void guardarPaciente() {
 		try{
@@ -62,6 +85,63 @@ public class PacienteMB {
 		}
 	}
 
+	public void guardarDefinitivamente(){
+		if(motivo.getMot().getId() != 0){
+			System.out.println("ID MOTIVO CONSULTA: "+motivo.getMot().getId());
+			motivo.consolidarConsulta();
+		}
+		System.out.println("ID ANTECEDENTES FAMILIARES: "+antecedentesFamiliares.getAnt().getId());
+		if(antecedentesFamiliares.getAnt().getId() != 0){
+			System.out.println("ID ANTECEDENTES FAMILIARES: "+antecedentesFamiliares.getAnt().getId());
+			antecedentesFamiliares.consolidarConsulta();
+		}
+		System.out.println("ID ANTECEDENTES farmacologicos: "+antecedentesFarmacologicos.getFarma().getId());
+		if(antecedentesFarmacologicos.getFarma().getId() != 0){
+			System.out.println("ID ANTECEDENTES farmacologicos: "+antecedentesFarmacologicos.getFarma().getId());
+			antecedentesFarmacologicos.consolidarConsulta();
+		}
+		System.out.println("ID ANTECEDENTES Patologicos: "+antecedentesPatologicos.getPato().getId());
+		if(antecedentesPatologicos.getPato().getId() != 0){
+			System.out.println("ID ANTECEDENTES patologicos: "+antecedentesPatologicos.getPato().getId());
+			antecedentesPatologicos.consolidarConsulta();
+		}
+		System.out.println("ID Diagnosticos: "+diagnosticos.getDiag().getId());
+		if(diagnosticos.getDiag().getId() != 0){
+			System.out.println("ID Diagnosticos: "+diagnosticos.getDiag().getId());
+			diagnosticos.consolidarConsulta();
+		}
+		System.out.println("ID Enfermedad Actual: "+enfermedadActual.getEnf().getId());
+		if(enfermedadActual.getEnf().getId() != 0){
+			System.out.println("ID Enfermedad Actual: "+enfermedadActual.getEnf().getId());
+			enfermedadActual.consolidarConsulta();
+		}
+		System.out.println("ID Examen Fisico: "+examenFisico.getExam().getId());
+		if(examenFisico.getExam().getId() != 0){
+			System.out.println("ID Examen Fisico: "+examenFisico.getExam().getId());
+			examenFisico.consolidarConsulta();
+		}
+		System.out.println("ID Habitos: "+habitos.getHab().getId());
+		if(habitos.getHab().getId() != 0){
+			System.out.println("ID Habitos: "+habitos.getHab().getId());
+			habitos.consolidarConsulta();
+		}
+		System.out.println("ID Otros Antecedentes: "+otrosAntecedentes.getOant().getId());
+		if(otrosAntecedentes.getOant().getId() != 0){
+			System.out.println("ID Otros Antecedentes: "+otrosAntecedentes.getOant().getId());
+			otrosAntecedentes.consolidarConsulta();
+		}
+		System.out.println("ID Paraclinicos: "+paraclinicos.getPara().getId());
+		if(paraclinicos.getPara().getId() != 0){
+			System.out.println("ID Paraclinicos: "+paraclinicos.getPara().getId());
+			paraclinicos.consolidarConsulta();
+		}
+		System.out.println("ID Revision Sistema: "+revisionSistema.getRevi().getId());
+		if(revisionSistema.getRevi().getId() != 0){
+			System.out.println("ID Revision Sistema: "+revisionSistema.getRevi().getId());
+			revisionSistema.consolidarConsulta();
+		}
+	}
+	
 	public void eliminar(Paciente emp) throws Exception {
 		pacienteDAO.Eliminar(emp);
 		this.listar();

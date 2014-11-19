@@ -130,6 +130,14 @@
 					
 					<p:column>
 						<f:facet name="header">
+							<h:outputLabel value="Editar" />
+						</f:facet>
+						<h:outputLabel rendered="#{para.consolidado eq 'Si'}" value="Registro consolidado" />
+						<h:commandButton action="#{paraclinicosMB.leer(para)}" rendered="#{para.consolidado eq 'No'}" value="Modificar" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
 							<h:outputLabel value="Fecha de Creacion" />
 						</f:facet>
 						<h:outputLabel value="#{para.fechaCreacion}" />

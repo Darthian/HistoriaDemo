@@ -13,6 +13,7 @@ public class Motivo_Consulta {
 	@Id
 	private long id;
 	private long cedula;
+	private String consolidado;
 	private String motivo_Consulta;
 	private Timestamp fecha_Creacion;
 	
@@ -20,8 +21,9 @@ public class Motivo_Consulta {
 		
 	}
 	
-	public Motivo_Consulta(long cedula, String motivo_Consulta){
+	public Motivo_Consulta(long cedula, String motivo_Consulta, String consolidado){
 		this.cedula = cedula;
+		this.consolidado = consolidado;
 		this.motivo_Consulta = motivo_Consulta;
 		this.fecha_Creacion = new Timestamp(System.currentTimeMillis());
 	}
@@ -56,5 +58,13 @@ public class Motivo_Consulta {
 
 	public void setFechaCreacion(Timestamp fecha_Creacion) {
 		this.fecha_Creacion = fecha_Creacion;
+	}
+
+	public String getConsolidado() {
+		return consolidado;
+	}
+
+	public void setConsolidado(String consolidado) {
+		this.consolidado = consolidado;
 	}
 }

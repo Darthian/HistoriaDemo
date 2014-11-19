@@ -19,6 +19,7 @@ import co.edu.unal.clinica.utils.HibernateUtil;
 public class ParaclinicosMB {
 	
 	private long cedula;
+	private String consolidado;
 	private float glicemiaAyunas;
 	private float glicemiaPostPrandial;
 	private float hemoglobinaGlicosilada;
@@ -34,15 +35,17 @@ public class ParaclinicosMB {
 	
 	private List<Paraclinicos> listPara;
 	private ParaclinicosDAO paraDao = new ParaclinicosDAO();
-	private Paraclinicos para = new Paraclinicos();
+	private static Paraclinicos para = new Paraclinicos();
 	
 	public void guardarParaClinicos() {
 		try{
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
+			consolidado = "No";
 			Paraclinicos ant = new Paraclinicos(PacienteMB.cedulaConsulta, glicemiaAyunas, glicemiaPostPrandial,hemoglobinaGlicosilada, trigliceridos,hdl,ldl,vldl,creatinina,
-					bun,parcialOrina,otrosParaclinicos);
-			session.save(ant);
+					bun,parcialOrina,otrosParaclinicos, consolidado);
+			long id = (long) session.save(ant);
+			para.setId(id);
 			session.getTransaction().commit();
 			session.close();
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido creado correctamente","Puede seguir registrando o volver"));
@@ -51,8 +54,32 @@ public class ParaclinicosMB {
 		}
 	}	
 	
+	public void consolidarConsulta(){
+		try{
+			System.out.println("++++++++++++++++++++++ ENTRA AL METODO DE CONSOLIDAR Paraclinicos" );
+			Paraclinicos objetoConsolidado = paraDao.BuscarPorId(para.getId());
+			System.out.println("++++++++++++++++++++++ ID de Objeto Recuperado " +objetoConsolidado.getId());
+			objetoConsolidado.setConsolidado("Si");
+			paraDao.ConsolidarConsulta(objetoConsolidado);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido consolidado correctamente","Puede seguir registrando o volver"));
+		}catch(Exception ex){
+			System.out.println(ex);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer la consolidacion"));
+		}
+	}
+	
+	public String modificar() throws Exception {
+		paraDao.Modificar(para);
+		return "adminParaclinicos";
+	}
+	
 	public void listar() throws Exception {
 		this.listPara = paraDao.Buscar(PacienteMB.cedulaConsulta);
+	}
+	
+	public String leer(Paraclinicos emp) {
+		para = emp;
+		return "editarParaclinicos";
 	}
 	
 	public long getCedula() {
@@ -142,10 +169,6 @@ public class ParaclinicosMB {
 	public Paraclinicos getPara() {
 		return para;
 	}
-	public void setPara(Paraclinicos para) {
-		this.para = para;
-	}
-
 	public String getParcialOrina() {
 		return parcialOrina;
 	}
