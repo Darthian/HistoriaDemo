@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Historia Clinica UN</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />	
+</h:head>
+<body>
+
+	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{loginController.verificarSesion() eq false}" />
+	<h:form id="registrarAntecedentes" rendered="#{loginController.verificarSesion()}">
+	<p:growl id="growl" showDetail="true" sticky="false" />
+		<div id="contenedor" class="center">
+			<div id="cabecera" align="center">
+				<img src="images/logo.png" width="25%" height="15%" />
+				<h2>Registrar Antecedentes Transfusionales</h2>
+			</div>
+			<div id="lista" align="center">
+				<ul>
+					<li class="item"><a href="adminAntecedentes.xhtml">Buscar Antecedentes</a></li>
+				</ul>
+			</div>
+
+			<div id="contenedor-cuerpo" align="center">
+				<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
+				<p:panelGrid columns="2">
+					
+					<p>Cedula del Paciente:</p>
+					<h:outputLabel id="cedula" value="#{pacienteMB.paciente.cedula}"  />
+										
+					<p>Antecedente:</p>
+					<p:inputTextarea cols="25" rows="4" id="antecedente" value="#{antecedentesTransfusionalesMB.antecedente}" required="true" label="Antecedente"/>
+					
+				</p:panelGrid>
+
+				<p:commandButton update="growl" actionListener="#{antecedentesTransfusionalesMB.guardarAntecedenteTransfusional()}" value="Registrar" />
+				<p:commandButton action="adminAntecedentes" immediate="true" value="Cancelar" />
+			</div>
+
+			<div class="clear"></div>
+
+			<div id="piePagina">
+				<div id="linkList">
+					<ul>
+						<li>Link1</li>
+						<li>Link2</li>
+						<li>Link3</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="clear"></div>
+
+		</div>
+	</h:form>
+</body>
+</html>

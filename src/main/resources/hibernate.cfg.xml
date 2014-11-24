@@ -27,5 +27,12 @@
         <mapping class="co.edu.unal.clinica.hibernate.data.Lista_Diagnosticos"/>
         <mapping class="co.edu.unal.clinica.hibernate.data.Entidad"/>
         <mapping class="co.edu.unal.clinica.hibernate.data.Otros_Antecedentes"/>
+        <mapping class="co.edu.unal.clinica.hibernate.data.Antecedentes_Alergicos"/>
+        <mapping class="co.edu.unal.clinica.hibernate.data.Antecedentes_Ginecobstetricos"/>
+        <mapping class="co.edu.unal.clinica.hibernate.data.Antecedentes_Quirurgicos"/>
+        <mapping class="co.edu.unal.clinica.hibernate.data.Antecedentes_Traumatologicos"/>
+        <mapping class="co.edu.unal.clinica.hibernate.data.Antecedentes_Transfusionales"/>
+        <mapping class="co.edu.unal.clinica.hibernate.data.Antecedentes_Sociales"/>
+        
     </session-factory>
 </hibernate-configuration>

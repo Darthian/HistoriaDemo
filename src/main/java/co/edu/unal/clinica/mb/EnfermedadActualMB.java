@@ -58,8 +58,14 @@ public class EnfermedadActualMB {
 		}
 	}
 	
-	public String modificar() throws Exception {
+	public String modificar() {
+		try{
 		enfDao.Modificar(enf);
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido modificado correctamente","Puede seguir modificando o volver"));
+		}catch(Exception ex){
+			System.out.println(ex);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar modificar la informacion"));
+		}
 		return "adminEnfermedadActual";
 	}
 	

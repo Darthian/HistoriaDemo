@@ -38,6 +38,11 @@
 			<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
 				<p:panelGrid columns="2">
 					
+					<p>Cedula del Paciente:</p>
+					<h:outputLabel id="cedula" value="#{pacienteMB.paciente.cedula}"  />
+					
+					<p>Motivo de Consulta:</p>
+					<p:inputTextarea cols="25" rows="4" value="#{motivoConsultaMB.mot.motivoConsulta}" required="true" label="Motivo de Consulta"/>
 					
 
 					<p:commandButton update="growl" actionListener="#{motivoConsultaMB.modificar()}" value="Modificar" />

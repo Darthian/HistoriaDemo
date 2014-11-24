@@ -10,8 +10,50 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
 	<script type="text/javascript">
-		function volver(){
-			window.history.back();	
+		$(document).ready(function(){
+			$(document.getElementById('registrarAntecedentes:complicacionCardiovascular')).hide();
+			$(document.getElementById('registrarAntecedentes:relleno')).hide();
+			$(document.getElementById('registrarAntecedentes:relleno2')).hide();
+			$(document.getElementById('registrarAntecedentes:relleno3')).hide();
+			$(document.getElementById('registrarAntecedentes:relleno4')).hide();
+			$(document.getElementById('registrarAntecedentes:estadoNefropatia')).hide();
+			$(document.getElementById('registrarAntecedentes:tipoDislipidemia')).hide();				
+		});
+		function checkVisibility(){
+			var optionIndex = PF('compCardiovasculares').getSelectedValue();
+			var optionIndex2 = PF('nefropatiaDiabetica').getSelectedValue();
+			var optionIndex3 = PF('dislipidemia').getSelectedValue();
+			
+			console.log("EL SELECT ESTA EN "+ optionIndex2 + " PERRA!!!");
+			
+			if(optionIndex == "Si"){
+				$(document.getElementById('registrarAntecedentes:complicacionCardiovascular')).show();
+				console.log("Escogio SI PERRA");
+			}else{
+				if(optionIndex == "No"){
+					$(document.getElementById('registrarAntecedentes:complicacionCardiovascular')).hide();
+					console.log("Escogio NO PERRA");
+				}
+			}
+			if(optionIndex2 == "Si"){
+				$(document.getElementById('registrarAntecedentes:estadoNefropatia')).show();
+				console.log("Escogio SI PERRA");
+			}else{
+				if(optionIndex2 == "No"){
+					$(document.getElementById('registrarAntecedentes:estadoNefropatia')).hide();
+					console.log("Escogio NO PERRA");
+				}
+			}
+			if(optionIndex3 == "Si"){
+				$(document.getElementById('registrarAntecedentes:tipoDislipidemia')).show();
+				console.log("Escogio SI PERRA");
+			}else{
+				if(optionIndex3 == "No"){
+					$(document.getElementById('registrarAntecedentes:tipoDislipidemia')).hide();
+					console.log("Escogio NO PERRA");
+				}
+			}
+			
 		}
 	</script>
 
@@ -36,9 +78,62 @@
 
 			<div id="contenedor-cuerpo" align="center">
 			<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
-				<p:panelGrid columns="2">
+				<p:panelGrid columns="3">
 					
+					<p>Complicaciones cardiovasculares:</p>
+					<p:selectOneMenu id="compCardiovasculares" widgetVar="compCardiovasculares" value="#{antecedentesPatologicosMB.pato.compCardiovasculares}" onchange="checkVisibility()">
+						<f:selectItem itemLabel="No" itemValue="No" />
+						<f:selectItem itemLabel="Si" itemValue="Si" />
+					</p:selectOneMenu>
+					<p:inputTextarea cols="30" rows="4" id="complicacionCardiovascular" value="#{antecedentesPatologicosMB.pato.complicacionCardiovascular}" label="fumador"/>
 					
+					<p>Retinopatia Diabetica:</p>
+					<p:selectOneMenu id="retinopatiaDiabetica" value="#{antecedentesPatologicosMB.pato.retinopatiaDiabetica}" label="Retinopatia Diabetica">
+						<f:selectItem itemLabel="No" itemValue="No" />
+						<f:selectItem itemLabel="Si" itemValue="Si" />
+					</p:selectOneMenu>
+					<p:inputText id="relleno"></p:inputText>
+					
+					<p>Nefropatia Diabetica:</p>
+					<p:selectOneMenu id="nefropatiaDiabetica" widgetVar="nefropatiaDiabetica" value="#{antecedentesPatologicosMB.pato.nefropatiaDiabetica}" label="Nefropatia Diabetica" onchange="checkVisibility()">
+						<f:selectItem itemLabel="No" itemValue="No" />
+						<f:selectItem itemLabel="Si" itemValue="Si" />
+					</p:selectOneMenu>
+					<p:selectOneMenu id="estadoNefropatia" style="width:20%;" value="#{antecedentesPatologicosMB.pato.estadoNefropatia}" label="Estado Nefropatia">
+						<f:selectItem itemLabel="1" itemValue="1"/>
+						<f:selectItem itemLabel="2" itemValue="2"/>
+						<f:selectItem itemLabel="3" itemValue="3"/>
+						<f:selectItem itemLabel="4" itemValue="4"/>
+						<f:selectItem itemLabel="5" itemValue="5"/>
+					</p:selectOneMenu>
+					
+					<p>Dislipidemia:</p>
+					<p:selectOneMenu id="dislipidemia" widgetVar="dislipidemia" value="#{antecedentesPatologicosMB.pato.dislipidemia}" label="Dislipidemia" onchange="checkVisibility()">
+						<f:selectItem itemLabel="No" itemValue="No" />
+						<f:selectItem itemLabel="Si" itemValue="Si" />
+					</p:selectOneMenu>
+					<p:inputTextarea cols="30" rows="4" id="tipoDislipidemia" value="#{antecedentesPatologicosMB.pato.tipoDislipidemia}" label="Tipo Dislipidemia"/>
+					
+					<p>Hipertension:</p>
+					<p:selectOneMenu id="hipertension" value="#{antecedentesPatologicosMB.pato.hipertension}" label="Hipertension">
+						<f:selectItem itemLabel="No" itemValue="No" />
+						<f:selectItem itemLabel="Si" itemValue="Si" />
+					</p:selectOneMenu>
+					<p:inputText id="relleno2"></p:inputText>
+					
+					<p>Tasa de Filtracion Glomerular:</p>
+					<p:inputText id="filtracionGlomerular" value="#{antecedentesPatologicosMB.pato.filtracionGlomerular}" label="Filtracion Glomerular"/>
+					<p:inputText id="relleno4"></p:inputText>
+					
+					<p>Pie Diabetico:</p>
+					<p:selectOneMenu id="pieDiabetico" value="#{antecedentesPatologicosMB.pato.pieDiabetico}" label="Pie Diabetico">
+						<f:selectItem itemLabel="No" itemValue="No" />
+						<f:selectItem itemLabel="Si" itemValue="Si" />
+					</p:selectOneMenu>
+					<p:inputText id="relleno3"></p:inputText>
+					
+					<p>Otros Antecedentes Patologicos:</p>
+					<p:inputTextarea cols="30" rows="4" id="otros" value="#{antecedentesPatologicosMB.pato.otros}" label="Otros"/>
 
 					<p:commandButton update="growl" actionListener="#{antecedentesPatologicosMB.modificar()}" value="Modificar" />
 					<p:commandButton action="adminAntecedentesPatologicos" immediate="true" value="Cancelar" />

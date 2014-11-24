@@ -38,7 +38,41 @@
 			<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
 				<p:panelGrid columns="2">
 					
+					<p>Cedula del Paciente:</p>
+					<h:outputLabel id="cedula" value="#{pacienteMB.paciente.cedula}"  />
 					
+					<p>Glicemia en Ayunas en miligramos/decilitro (mg/dl):</p>
+					<p:inputText id="glicemiaAyunas" value="#{paraclinicosMB.para.glicemiaAyunas}" required="true" label="glicemiaAyunas"/>
+					
+					<p>Glicemia Post Prandial (mg/dl):</p> 
+ 					<p:inputText id="glicemiaPostPrandial" value="#{paraclinicosMB.para.glicemiaPostPrandial}" required="true" label="glicemiaPostPrandial"/>
+					
+					<p>Hemoglobina Glicosilada (HbA1c) en porcentaje (%):</p>
+					<p:inputText id="hemoglobinaGlicosilada" value="#{paraclinicosMB.para.hemoglobinaGlicosilada}" required="true" label="hemoglobinaGlicosilada"/>
+					
+					<p>Trigliceridos (mg/dl):</p>
+					<p:inputText id="trigliceridos" value="#{paraclinicosMB.para.trigliceridos}" required="true" label="trigliceridos"/>
+					
+					<p>Colesterol HDL (mg/dl):</p>
+					<p:inputText id="hdl" value="#{paraclinicosMB.para.hdl}" required="true" label="hdl"/>
+					
+					<p>Colesterol LDL (mg/dl):</p>
+					<p:inputText id="ldl" value="#{paraclinicosMB.para.ldl}" required="true" label="ldl"/>
+					
+					<p>Colesterol VLDL (mg/dl):</p>
+					<p:inputText id="vldl" value="#{paraclinicosMB.para.vldl}" required="true" label="vldl"/>
+					
+					<p>Creatinina (mg/dl):</p>
+					<p:inputText id="creatinina" value="#{paraclinicosMB.para.creatinina}" required="true" label="creatinina"/>
+					
+					<p>Microalbuminuria: miligramos/litro (mg/l):</p>
+					<p:inputText id="bun" value="#{paraclinicosMB.para.bun}" required="true" label="bun"/>
+					
+					<p>Parcial de Orina :</p>
+					<p:inputTextarea cols="25" rows="4" id="parcialOrina" value="#{paraclinicosMB.para.parcialOrina}" required="true" label="Parcial de Orina"/>
+					
+					<p>Otros Paraclinicos :</p>
+					<p:inputTextarea cols="25" rows="4" id="otrosParaclinicos" value="#{paraclinicosMB.para.otrosParaclinicos}" required="true" label="Otros Paraclinicos"/>
 
 					<p:commandButton update="growl" actionListener="#{paraclinicosMB.modificar()}" value="Modificar" />
 					<p:commandButton action="adminParaclinicos" immediate="true" value="Cancelar" />

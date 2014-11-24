@@ -194,6 +194,50 @@ public class PacienteMB {
 		return "adminAntecedentesPatologicos";
 	}
 	
+	public String leerAntecedentesAlergicos(Paciente pac){
+		cedulaConsulta = pac.getCedula();
+		this.paciente = pac;
+		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
+		return "adminAntecedentesAlergicos";
+	}
+	public String leerAntecedentesGinecobstetricos(Paciente pac){
+		cedulaConsulta = pac.getCedula();
+		this.paciente = pac;
+		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
+		return "adminAntecedentesGinecobstetricos";
+	}
+	public String leerAntecedentesQuirurgicos(Paciente pac){
+		cedulaConsulta = pac.getCedula();
+		this.paciente = pac;
+		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
+		return "adminAntecedentesQuirurgicos";
+	}
+	public String leerAntecedentesTraumatologicos(Paciente pac){
+		cedulaConsulta = pac.getCedula();
+		this.paciente = pac;
+		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
+		return "adminAntecedentesTraumatologicos";
+	}
+	public String leerAntecedentesTransfusionales(Paciente pac){
+		cedulaConsulta = pac.getCedula();
+		this.paciente = pac;
+		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
+		return "adminAntecedentesTransfusionales";
+	}
+	public String leerAntecedentesSociales(Paciente pac){
+		cedulaConsulta = pac.getCedula();
+		this.paciente = pac;
+		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
+		return "adminAntecedentesSociales";
+	}
+	
+	public String leerAntecedentesClinicos(Paciente pac){
+		cedulaConsulta = pac.getCedula();
+		this.paciente = pac;
+		System.out.println("+++++++++++++++++++CEDULA CAPTURADA ANTECEDENTES CLINICOS: " + cedulaConsulta);
+		return "adminAntecedentesClinicos";
+	}
+	
 	public String leerDiagnosticos(Paciente pac){
 		cedulaConsulta = pac.getCedula();
 		this.paciente = pac;

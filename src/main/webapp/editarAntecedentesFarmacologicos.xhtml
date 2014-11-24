@@ -38,6 +38,17 @@
 			<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
 				<p:panelGrid columns="2">
 					
+					<p>Cedula del Paciente:</p>
+					<h:outputLabel id="cedula" value="#{pacienteMB.paciente.cedula}"/>
+					
+					<p>Hipoglucemiantes Orales:</p>
+					<p:inputTextarea cols="25" rows="4" id="hipoglucemiantesOrales" value="#{antecedentesFarmacologicosMB.farma.hipoglucemiantesOrales}" required="true" label="Hipoglucemiantes Orales"/>
+										
+					<p>Insulina:</p>
+					<p:inputTextarea cols="25" rows="4" id="insulina" value="#{antecedentesFarmacologicosMB.farma.insulina}" required="true" label="Insulina"/>
+										
+					<p>Otros Medicamentos:</p>
+					<p:inputTextarea cols="25" rows="4" id="otrosMedicamentos" value="#{antecedentesFarmacologicosMB.farma.otrosMedicamentos}" required="true" label="Otros Medicamentos"/>
 					
 
 					<p:commandButton update="growl" actionListener="#{antecedentesFarmacologicosMB.modificar()}" value="Modificar" />

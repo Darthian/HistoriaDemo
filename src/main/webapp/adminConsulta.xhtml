@@ -10,14 +10,6 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
 	
-	
-	
-	<script type="text/javascript">
-		function volver(){
-			window.history.back();	
-		}
-	</script>
-	
 </h:head>
 <body>
 
@@ -87,8 +79,9 @@
 						</f:facet>
 						<center>
 						<p:commandButton action="#{pacienteMB.leerAntecedentesFamiliares(paciente)}"  icon="ui-icon-heart" title="Registrar Antecedentes Familiares"/>
-						<p:commandButton action="#{pacienteMB.leerAntecedentesFarmacologicos(paciente)}"  icon="ui-icon-closethick" title="Registrar Antecedentes Farmacologicos"/>
-						<p:commandButton action="#{pacienteMB.leerHabitos(paciente)}" icon="ui-icon-plusthick" title="Registrar Habitos" /><br/>
+						<p:commandButton action="#{pacienteMB.leerAntecedentesFarmacologicos(paciente)}"  icon="ui-icon-closethick" title="Registrar Antecedentes Farmacologicos"/><br/>
+						<p:commandButton action="#{pacienteMB.leerHabitos(paciente)}" icon="ui-icon-plusthick" title="Registrar Habitos" />
+						<p:commandButton action="#{pacienteMB.leerAntecedentesClinicos(paciente)}" icon="ui-icon-plusthick" title="Registrar Antecedentes Clinicos" /><br/>
 						<p:commandButton action="#{pacienteMB.leerAntecedentesPatologicos(paciente)}"  icon="ui-icon-clipboard" title="Registrar Antecedentes Patologicos" />
 						<p:commandButton action="#{pacienteMB.leerOtrosAntecedentes(paciente)}" icon="ui-icon-lightbulb" title="Administrar Otros Antecedentes"/>
 						</center>

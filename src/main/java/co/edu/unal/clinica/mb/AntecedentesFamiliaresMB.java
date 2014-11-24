@@ -63,10 +63,8 @@ public class AntecedentesFamiliaresMB {
 		}
 	}
 	
-	public String modificar() throws Exception {
+	public String modificar() {
 		try{
-			System.out.println("+++++++++++++++Entra a modificar"+ant.getCedula()+" "+ant.getConsolidado()+" "+ant.getHistoriaFamiliarDiabetes()+" "+ant.getHistoriaFamiliarInfarto()+
-					" "+ant.getHistoriaFamiliarDislipidemia()+" "+ant.getOtros());
 			antDAO.Modificar(ant);
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido modificado correctamente","Puede seguir modificando o volver"));
 		}catch(Exception ex){
@@ -123,7 +121,6 @@ public class AntecedentesFamiliaresMB {
 	public void setFechaCreacion(Timestamp fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
-	
 	public List<Antecedentes_Familiares> getListaAnt() {
 		return listaAnt;
 	}

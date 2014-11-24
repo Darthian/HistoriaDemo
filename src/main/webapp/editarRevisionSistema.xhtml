@@ -38,7 +38,50 @@
 			<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
 				<p:panelGrid columns="2">
 					
+					<p>Cedula del Paciente:</p>
+					<h:outputLabel id="cedula" value="#{pacienteMB.paciente.cedula}"  />
 					
+					<p>Estado General:</p>
+					<p:inputText id="estadoGeneral" value="#{revisionSistemaMB.revi.estadoGeneral}" required="true" label="estadoGeneral"/>
+					
+					<p>Cardiovascular:</p>
+					<p:inputText id="cardioVascular" value="#{revisionSistemaMB.revi.cardioVascular}" required="true" label="cardioVascular"/>
+					
+					<p>Respiratorio:</p>
+					<p:inputText id="respiratorio" value="#{revisionSistemaMB.revi.respiratorio}" required="true" label="respiratorio"/>
+					
+					<p>Gastrointestinal:</p>
+					<p:inputText id="gastrointestinal" value="#{revisionSistemaMB.revi.gastrointestinal}" required="true" label="gastrointestinal"/>
+					
+					<p>Musculo Esqueletico:</p>
+					<p:inputText id="musculoEsqueletico" value="#{revisionSistemaMB.revi.musculoEsqueletico}" required="true" label="musculoEsqueletico"/>	
+					
+					<p>Cabeza:</p>
+					<p:inputText id="cabeza" value="#{revisionSistemaMB.revi.cabeza}" required="true" label="cabeza"/>
+					
+					<p>Cuello:</p>
+					<p:inputText id="cuello" value="#{revisionSistemaMB.revi.cuello}" required="true" label="cuello"/>
+					
+					<p>Cardiopulmunar:</p>
+					<p:inputText id="cardiopulmonar" value="#{revisionSistemaMB.revi.cardiopulmunar}" required="true" label="Cardiopulmunar"/>
+					
+					<p>Digestivo:</p>
+					<p:inputText id="digestivo" value="#{revisionSistemaMB.revi.digestivo}" required="true" label="Digestivo"/>
+					
+					<p>Genitourinario:</p>
+					<p:inputText id="genitourinario" value="#{revisionSistemaMB.revi.genitourinario}" required="true" label="Genitourinario"/>
+					
+					<p>Extremidades:</p>
+					<p:inputText id="extremidades" value="#{revisionSistemaMB.revi.extremidades}" required="true" label="Extremidades"/>
+					
+					<p>Psicomotor:</p>
+					<p:inputText id="psicomotor" value="#{revisionSistemaMB.revi.psicomotor}" required="true" label="Psicomotor"/>
+					
+					<p>Nervioso:</p>
+					<p:inputText id="nervioso" value="#{revisionSistemaMB.revi.nervioso}" required="true" label="Nervioso"/>
+					
+					<p>Endocrino:</p>
+					<p:inputText id="endocrino" value="#{revisionSistemaMB.revi.endocrino}" required="true" label="Endocrino"/>
 
 					<p:commandButton update="growl" actionListener="#{revisionSistemaMB.modificar()}" value="Modificar" />
 					<p:commandButton action="adminRevisionSistema" immediate="true" value="Cancelar" />
