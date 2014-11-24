@@ -59,8 +59,14 @@ public class DiagnosticosMB {
 		}
 	}
 	
-	public String modificar() throws Exception {
+	public String modificar() {
+		try{
 		diagnosticosDao.Modificar(diag);
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido modificado correctamente","Puede seguir modificando o volver"));
+		}catch(Exception ex){
+			System.out.println(ex);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar modificar la informacion"));
+		}
 		return "adminDiagnosticos";
 	}
 	

@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Historia Clinica UN</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+	
+</h:head>
+<body>
+
+	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{loginController.verificarSesion() eq false}" />
+	<h:form id="listaPacientes" rendered="#{loginController.verificarSesion()}">
+	<p:growl id="growl" showDetail="true" sticky="false" />
+		<div id="contenedor" class="center">
+			<div id="cabecera" align="center">
+				<img src="images/logo.png" width="25%" height="15%" />
+				<h2>Pacientes</h2>
+			</div>
+
+			<div id="lista" align="center">
+				<ul>
+					<li class="item"><h:link value="Ir a la vista general" outcome="adminPacientes.xhtml" rendered="#{loginController.usuario.rol eq 'MEDICO'}" /></li>
+					<li class="item"><h:link value="Volver a la consulta" outcome="adminConsulta.xhtml" rendered="#{loginController.usuario.rol eq 'MEDICO'}" /></li>
+					
+				</ul>
+			</div>
+
+			<div id="contenedor-cuerpo" align="center">
+				
+				<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
+			
+				<p:dataTable tableStyle="width:auto" value="#{pacienteMB.listaPaciente}" var="paciente" rows="5">
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Antecedentes Alergicos" />
+						</f:facet>
+						<center>
+						<p:commandButton action="#{pacienteMB.leerAntecedentesAlergicos(paciente)}" icon="ui-icon-bookmark" title="Registrar Antecedente Alergico" />
+						</center>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Antecedentes Ginecobstétricos" />
+						</f:facet>
+						<center>
+						<p:commandButton action="#{pacienteMB.leerAntecedentesGinecobstetricos(paciente)}" icon="ui-icon-bookmark" title="Registrar Antecedente Ginecobstetrico" />
+						</center>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Antecedentes Quirúrgicos" />
+						</f:facet>
+						<center>
+						<p:commandButton action="#{pacienteMB.leerAntecedentesQuirurgicos(paciente)}" icon="ui-icon-bookmark" title="Registrar Antecedente Quirurgico" />
+						</center>
+					</p:column>							
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Antecedentes Traumatológicos" />
+						</f:facet>
+						<center>
+						<p:commandButton action="#{pacienteMB.leerAntecedentesTraumatologicos(paciente)}" icon="ui-icon-bookmark" title="Registrar Antecedente Traumatologico" />
+						</center>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="AntecedentesTransfusionales" />
+						</f:facet>
+						<center>
+						<p:commandButton action="#{pacienteMB.leerAntecedentesTransfusionales(paciente)}" icon="ui-icon-bookmark" title="Registrar Antecedente Transfusional"/>
+						</center>
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Antecedentes Sociales" />
+						</f:facet>
+						<center>
+						<p:commandButton action="#{pacienteMB.leerAntecedentesSociales(paciente)}" icon="ui-icon-note" title="Registrar Antecedente Social"/>
+						</center>
+					</p:column>
+				</p:dataTable>
+				
+			</div>
+
+			<div id="piePagina">
+				<div id="linkList">
+					<ul>
+						<li>Link1</li>
+						<li>Link2</li>
+						<li>Link3</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="clear"></div>
+
+		</div>
+	</h:form>
+</body>
+</html>

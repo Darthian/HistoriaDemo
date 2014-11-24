@@ -76,13 +76,10 @@ public class Antecedentes_Familiares {
 	public void setFechaCreacion(Timestamp fechaCreacion) {
 		this.fecha_Creacion = fechaCreacion;
 	}
-
 	public String getConsolidado() {
 		return consolidado;
 	}
-
 	public void setConsolidado(String consolidado) {
 		this.consolidado = consolidado;
 	}
-	
 }

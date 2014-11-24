@@ -61,8 +61,14 @@ public class AntecedentesFarmacologicosMB {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer la consolidacion"));
 		}
 	}
-	public String modificar() throws Exception {
+	public String modificar() {
+		try{
 		farmaDao.Modificar(farma);
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido modificado correctamente","Puede seguir modificando o volver"));
+		}catch(Exception ex){
+			System.out.println(ex);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar modificar la informacion"));
+		}
 		return "adminAntecedentesFarmacologicos";
 	}
 		

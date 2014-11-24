@@ -38,7 +38,11 @@
 			<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
 				<p:panelGrid columns="2">
 					
+					<p>Cedula del Paciente:</p>
+					<h:outputLabel id="cedula" value="#{pacienteMB.paciente.cedula}"  />
 					
+					<p>Enfermedad Actual:</p>
+					<p:inputTextarea cols="25" rows="4" id="enfermedadActual" value="#{enfermedadActualMB.enf.enfermedadActual}" required="true" label="Enfermedad Actual"/>
 
 					<p:commandButton update="growl" actionListener="#{enfermedadActualMB.modificar()}" value="Modificar" />
 					<p:commandButton action="adminEnfermedadActual" immediate="true" value="Cancelar" />

@@ -37,8 +37,69 @@
 			<div id="contenedor-cuerpo" align="center">
 			<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
 				<p:panelGrid columns="2">
+				
+					<p>Cedula del Paciente:</p>
+					<h:outputLabel id="cedula" value="#{pacienteMB.paciente.cedula}"  />
+										
+					<p>Estado General:</p>
+					<p:inputTextarea cols="25" rows="4" id="estadoGeneral" value="#{examenFisicoMB.exam.estadoGeneral}" required="true" label="estadoGeneral"/>
 					
+					<p>Cabeza:</p>
+					<p:inputText id="cabeza" value="#{examenFisicoMB.exam.cabeza}" required="true" label="Cabeza"/>
 					
+					<p>Ojos:</p>
+					<p:inputTextarea cols="25" rows="4" id="ojos" value="#{examenFisicoMB.exam.ojos}" required="true" label="Ojos"/>
+					
+					<p>Nariz:</p>
+					<p:inputText id="nariz" value="#{examenFisicoMB.exam.nariz}" required="true" label="Nariz"/>
+					
+					<p>Boca:</p>
+					<p:inputText id="boca" value="#{examenFisicoMB.exam.boca}" required="true" label="boca"/>
+					
+					<p>Orejas:</p>
+					<p:inputText id="orejas" value="#{examenFisicoMB.exam.orejas}" required="true" label="orejas"/>
+					
+					<p>Cuello:</p>
+					<p:inputTextarea cols="25" rows="4" id="cuello" value="#{examenFisicoMB.exam.cuello}" required="true" label="cuello"/>
+					
+					<p>Cardiaco:</p>
+					<p:inputTextarea cols="25" rows="4" id="cardiaco" value="#{examenFisicoMB.exam.cardiaco}" required="true" label="cardiaco"/>
+					
+					<p>Pulmonar:</p>
+					<p:inputTextarea cols="25" rows="4" id="pulmonar" value="#{examenFisicoMB.exam.pulmonar}" required="true" label="pulmonar"/>
+					
+					<p>Abdomen:</p>
+					<p:inputTextarea cols="25" rows="4" id="abdomen" value="#{examenFisicoMB.exam.abdomen}" required="true" label="abdomen"/>
+					
+					<p>Extremidades:</p>
+					<p:inputTextarea cols="25" rows="4" id="extremidades" value="#{examenFisicoMB.exam.extremidades}" required="true" label="extremidades"/>
+					
+					<p>Neurologico:</p>
+					<p:inputTextarea cols="25" rows="4" id="neurologico" value="#{examenFisicoMB.exam.neurologico}" required="true" label="neurologico"/>
+					
+					<p>Temperatura (Grados Celcios):</p>
+					<p:inputText id="temperatura" value="#{examenFisicoMB.exam.temperatura}" required="true" label="temperatura"/>
+					
+					<p>Frecuencia Cardiaca (látidos por mínuto):</p>
+					<p:inputText id="frecuenciaCardiaca" value="#{examenFisicoMB.exam.frecuenciaCardiaca}" required="true" label="frecuenciaCardiaca"/>
+					
+					<p>Frecuencia Respiratoria (respiraciones por minuto):</p>
+					<p:inputText id="frecueniaRespiratoria" value="#{examenFisicoMB.exam.frecuenciaRespiratoria}" required="true" label="frecueniaRespiratoria"/>
+					
+					<p>Presion Arterial en milímetros de mercurio (mmHg):</p>
+					<p:inputText id="presionArterial" value="#{examenFisicoMB.exam.presionArterial}" required="true" label="presionArterial"/>
+					
+					<p>Peso en Kilogramos (Kgms):</p>
+					<p:inputText id="peso" value="#{examenFisicoMB.exam.peso}" required="true" label="peso"/>
+					
+					<p>Talla en Centímetros (Cms):</p>
+					<p:inputText id="talla" value="#{examenFisicoMB.exam.talla}" required="true" label="talla"/>
+					
+					<p>Perimetro Abdominal (Cms):</p>
+					<p:inputText id="perimetroAbdominal" value="#{examenFisicoMB.exam.perimetroAbdominal}" required="true" label="Perimetro Abdominal"/>
+					
+					<p>Indice de Masa Corporal(kg/cm2):</p>
+					<p:inputText id="masaCorporal" value="#{examenFisicoMB.exam.masaCorporal}" required="true" label="Indice de Masa Corporal"/>
 
 					<p:commandButton update="growl" actionListener="#{examenFisicoMB.modificar()}" value="Modificar" />
 					<p:commandButton action="adminExamenFisico" immediate="true" value="Cancelar" />

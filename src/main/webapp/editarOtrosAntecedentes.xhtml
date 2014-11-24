@@ -38,7 +38,14 @@
 			<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
 				<p:panelGrid columns="2">
 					
+					<p>Cedula del Paciente:</p>
+					<h:outputLabel id="cedula" value="#{pacienteMB.paciente.cedula}"  />
+										
+					<p>Antecedente:</p>
+					<p:inputTextarea id="historiaFamiliarDiabetes" cols="25" rows="4" value="#{otrosAntecedentesMB.oant.antecedente}" required="true" label="Antecedente"/>
 					
+					<p>Observaciones:</p>
+					<p:inputTextarea id="historiaFamiliarInfarto" cols="25" rows="4" value="#{otrosAntecedentesMB.oant.observaciones}" required="true" label="Observaciones"/>
 
 					<p:commandButton update="growl" actionListener="#{otrosAntecedentesMB.modificar()}" value="Modificar" />
 					<p:commandButton action="adminOtrosAntecedentes" immediate="true" value="Cancelar" />

@@ -10,8 +10,72 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
 	<script type="text/javascript">
-		function volver(){
-			window.history.back();	
+		$(document).ready(function(){
+			$(document.getElementById('registrarHabitos:fumador')).hide();
+			console.log("Se oculta el primer campo");
+			$(document.getElementById('registrarHabitos:exfumador')).hide();
+			console.log("Se oculta el segundo campo");
+			$(document.getElementById('registrarHabitos:consumidorAlcohol')).hide();
+			console.log("Se oculta el tercer campo");
+			$(document.getElementById('registrarHabitos:ejercicio')).hide();
+			console.log("Se oculta el cuarto campo");		
+			$(document.getElementById('registrarHabitos:dificultadTexto')).hide();
+							
+		});
+		function checkVisibility(){
+			var optionIndexFumador = PF('siNoFumador').getSelectedValue();
+			var optionIndexExFumador = PF('siNoexFumador').getSelectedValue();
+			var optionIndexAlcohol = PF('siNoconsumidorAlcohol').getSelectedValue();
+			var optionIndexEjercicio = PF('siNoejercicio').getSelectedValue();
+			var optionIndexDificultad = PF('dificultad').getSelectedValue();
+			
+			console.log("EL SELECT ESTA EN "+ optionIndexFumador + " PERRA!!!");
+			
+			if(optionIndexFumador == "Si"){
+				$(document.getElementById('registrarHabitos:fumador')).show();
+				console.log("Escogio SI PERRA");
+			}else{
+				if(optionIndexFumador == "No"){
+					$(document.getElementById('registrarHabitos:fumador')).hide();
+					console.log("Escogio NO PERRA");
+				}
+			}
+			if(optionIndexExFumador == "Si"){
+				$(document.getElementById('registrarHabitos:exfumador')).show();
+				console.log("Escogio SI PERRA");
+			}else{
+				if(optionIndexExFumador == "No"){
+					$(document.getElementById('registrarHabitos:exfumador')).hide();
+					console.log("Escogio NO PERRA");
+				}
+			}
+			if(optionIndexAlcohol == "Si"){
+				$(document.getElementById('registrarHabitos:consumidorAlcohol')).show();
+				console.log("Escogio SI PERRA");
+			}else{
+				if(optionIndexAlcohol == "No"){
+					$(document.getElementById('registrarHabitos:consumidorAlcohol')).hide();
+					console.log("Escogio NO PERRA");
+				}
+			}
+			if(optionIndexEjercicio == "Si"){
+				$(document.getElementById('registrarHabitos:ejercicio')).show();
+				console.log("Escogio SI PERRA");
+			}else{
+				if(optionIndexEjercicio == "No"){
+					$(document.getElementById('registrarHabitos:ejercicio')).hide();
+					console.log("Escogio NO PERRA");
+				}
+			}
+			if(optionIndexDificultad == "Si"){
+				$(document.getElementById('registrarHabitos:dificultadTexto')).show();
+				console.log("Escogio SI PERRA");
+			}else{
+				if(optionIndexDificultad == "No"){
+					$(document.getElementById('registrarHabitos:dificultadTexto')).hide();
+					console.log("Escogio NO PERRA");
+				}
+			}
 		}
 	</script>
 
@@ -36,9 +100,42 @@
 
 			<div id="contenedor-cuerpo" align="center">
 			<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
-				<p:panelGrid columns="2">
+				<p:panelGrid columns="3">
 					
+					<p>Fumador:</p>
+					<p:selectOneMenu id="siNoFumador" widgetVar="siNoFumador" value="#{habitosMB.hab.fumador}" onchange="checkVisibility()">
+						<f:selectItem itemLabel="No" itemValue="No" />
+						<f:selectItem itemLabel="Si" itemValue="Si" />
+					</p:selectOneMenu>
+					<p:inputTextarea cols="30" rows="4" id="fumador" value="#{habitosMB.hab.fumadorTexto}" required="false" label="fumador"/>
 					
+					<p>Exfumador:</p>
+					<p:selectOneMenu id="siNoexFumador" widgetVar="siNoexFumador" value="#{habitosMB.hab.exfumador}" onchange="checkVisibility()"> 
+						<f:selectItem itemLabel="No" itemValue="No" />
+						<f:selectItem itemLabel="Si" itemValue="Si" />
+					</p:selectOneMenu>
+					<p:inputTextarea cols="30" rows="4" id="exfumador" value="#{habitosMB.hab.exfumadorTexto}" required="false" label="exfumador"/>
+					
+					<p>Consumidor de Alcohol:</p>
+					<p:selectOneMenu id="siNoconsumidorAlcohol" widgetVar="siNoconsumidorAlcohol" value="#{habitosMB.hab.consumidorAlcohol}" onchange="checkVisibility()"> 
+						<f:selectItem itemLabel="No" itemValue="No" />
+						<f:selectItem itemLabel="Si" itemValue="Si" />
+					</p:selectOneMenu>
+					<p:inputTextarea cols="30" rows="4" id="consumidorAlcohol" value="#{habitosMB.hab.alcoholTexto}" required="false" label="consumidorAlcohol}}"/>
+					
+					<p>Ejercicio:</p>
+					<p:selectOneMenu id="siNoejercicio" widgetVar="siNoejercicio" value="#{habitosMB.hab.ejercicio}" onchange="checkVisibility()"> 
+						<f:selectItem itemLabel="No" itemValue="No" />
+						<f:selectItem itemLabel="Si" itemValue="Si" />
+					</p:selectOneMenu>
+					<p:inputTextarea cols="30" rows="4" id="ejercicio" value="#{habitosMB.hab.ejercicioTexto}" required="false" label="ejercicio"/>
+					
+					<p>Dificultad para hacer ejercicio:</p>
+					<p:selectOneMenu id="dificultad" widgetVar="dificultad" value="#{habitosMB.hab.dificultadEjercicio}" onchange="checkVisibility()"> 
+						<f:selectItem itemLabel="No" itemValue="No" />
+						<f:selectItem itemLabel="Si" itemValue="Si" />
+					</p:selectOneMenu>
+					<p:inputTextarea cols="30" rows="4" id="dificultadTexto" value="#{habitosMB.hab.dificultadTexto}" required="false" label="dificultad ejercicio"/>
 
 					<p:commandButton update="growl" actionListener="#{habitosMB.modificar()}" value="Modificar" />
 					<p:commandButton action="adminHabitos" immediate="true" value="Cancelar" />
