@@ -33,58 +33,13 @@
 			<div id="contenedor-cuerpo" align="center">
 				
 				<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
-			
-				<p:dataTable tableStyle="width:auto" value="#{pacienteMB.listaPaciente}" var="paciente" rows="5">
-					<p:column>
-						<f:facet name="header">
-							<h:outputLabel value="Antecedentes Alergicos" />
-						</f:facet>
-						<center>
-						<p:commandButton action="#{pacienteMB.leerAntecedentesAlergicos(paciente)}" icon="ui-icon-bookmark" title="Registrar Antecedente Alergico" />
-						</center>
-					</p:column>
-					<p:column>
-						<f:facet name="header">
-							<h:outputLabel value="Antecedentes Ginecobstétricos" />
-						</f:facet>
-						<center>
-						<p:commandButton action="#{pacienteMB.leerAntecedentesGinecobstetricos(paciente)}" icon="ui-icon-bookmark" title="Registrar Antecedente Ginecobstetrico" />
-						</center>
-					</p:column>
-					<p:column>
-						<f:facet name="header">
-							<h:outputLabel value="Antecedentes Quirúrgicos" />
-						</f:facet>
-						<center>
-						<p:commandButton action="#{pacienteMB.leerAntecedentesQuirurgicos(paciente)}" icon="ui-icon-bookmark" title="Registrar Antecedente Quirurgico" />
-						</center>
-					</p:column>							
-					<p:column>
-						<f:facet name="header">
-							<h:outputLabel value="Antecedentes Traumatológicos" />
-						</f:facet>
-						<center>
-						<p:commandButton action="#{pacienteMB.leerAntecedentesTraumatologicos(paciente)}" icon="ui-icon-bookmark" title="Registrar Antecedente Traumatologico" />
-						</center>
-					</p:column>
-					<p:column>
-						<f:facet name="header">
-							<h:outputLabel value="AntecedentesTransfusionales" />
-						</f:facet>
-						<center>
-						<p:commandButton action="#{pacienteMB.leerAntecedentesTransfusionales(paciente)}" icon="ui-icon-bookmark" title="Registrar Antecedente Transfusional"/>
-						</center>
-					</p:column>
-					
-					<p:column>
-						<f:facet name="header">
-							<h:outputLabel value="Antecedentes Sociales" />
-						</f:facet>
-						<center>
-						<p:commandButton action="#{pacienteMB.leerAntecedentesSociales(paciente)}" icon="ui-icon-note" title="Registrar Antecedente Social"/>
-						</center>
-					</p:column>
-				</p:dataTable>
+				
+				<p:commandButton action="adminAntecedentesAlergicos" value="Antecedentes Alergicos" title="Registrar Antecedente Alergico" />
+				<p:commandButton action="adminAntecedentesGinecobstetricos" value="Antecedentes Ginecobstétricos"  title="Registrar Antecedente Ginecobstetrico" />
+				<p:commandButton action="adminAntecedentesQuirurgicos" value="Antecedentes Quirúrgicos" title="Registrar Antecedente Quirurgico" />
+				<p:commandButton action="adminAntecedentesTraumatologicos" value="Antecedentes Traumatológicos" title="Registrar Antecedente Traumatologico" />
+				<p:commandButton action="adminAntecedentesTransfusionales" value="AntecedentesTransfusionales" title="Registrar Antecedente Transfusional"/>
+				<p:commandButton action="adminAntecedentesSociales" value="Antecedentes Sociales" title="Registrar Antecedente Social"/>
 				
 			</div>
 
