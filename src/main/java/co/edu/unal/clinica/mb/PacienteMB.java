@@ -69,6 +69,19 @@ public class PacienteMB {
 	private ParaclinicosMB paraclinicos;
 	@Inject
 	private RevisionSistemaMB revisionSistema;
+	@Inject
+	private AntecedentesAlergicosMB antecedentesAlergicos;
+	@Inject
+	private AntecedentesGinecobstetricosMB antecedentesGinecobstetricos;
+	@Inject
+	private AntecedentesQuirurgicosMB antecedentesQuirurgicos;
+	@Inject
+	private AntecedentesSocialesMB antecedentesSociales;
+	@Inject
+	private AntecedentesTransfusionalesMB antecedentesTransfusionales;
+	@Inject
+	private AntecedentesTraumatologicosMB antecedentesTraumatologicos;
+	
 
 	public void guardarPaciente() {
 		try{
@@ -139,6 +152,37 @@ public class PacienteMB {
 		if(revisionSistema.getRevi().getId() != 0){
 			System.out.println("ID Revision Sistema: "+revisionSistema.getRevi().getId());
 			revisionSistema.consolidarConsulta();
+		}
+		
+		System.out.println("ID Antecedente Alergico: "+antecedentesAlergicos.getAnt().getId());
+		if(antecedentesAlergicos.getAnt().getId() != 0){
+			System.out.println("ID Antecedente Alergico: "+antecedentesAlergicos.getAnt().getId());
+			antecedentesAlergicos.consolidarConsulta();
+		}
+		System.out.println("ID Antecedente Gineco: "+antecedentesGinecobstetricos.getAnt().getId());
+		if(antecedentesGinecobstetricos.getAnt().getId() != 0){
+			System.out.println("ID Antecedente Gineco: "+antecedentesGinecobstetricos.getAnt().getId());
+			antecedentesGinecobstetricos.consolidarConsulta();
+		}
+		System.out.println("ID Antecedente Quiru: "+antecedentesQuirurgicos.getAnt().getId());
+		if(antecedentesQuirurgicos.getAnt().getId() != 0){
+			System.out.println("ID Antecedente Quiru: "+antecedentesQuirurgicos.getAnt().getId());
+			antecedentesQuirurgicos.consolidarConsulta();
+		}
+		System.out.println("ID Antecedente Sociales: "+antecedentesSociales.getAnt().getId());
+		if(antecedentesSociales.getAnt().getId() != 0){
+			System.out.println("ID Antecedente Sociales: "+antecedentesSociales.getAnt().getId());
+			antecedentesSociales.consolidarConsulta();
+		}
+		System.out.println("ID Antecedente Trans: "+antecedentesTransfusionales.getAnt().getId());
+		if(antecedentesTransfusionales.getAnt().getId() != 0){
+			System.out.println("ID Antecedente Trans: "+antecedentesTransfusionales.getAnt().getId());
+			antecedentesTransfusionales.consolidarConsulta();
+		}
+		System.out.println("ID Antecedente Trau: "+antecedentesTraumatologicos.getAnt().getId());
+		if(antecedentesTraumatologicos.getAnt().getId() != 0){
+			System.out.println("ID Antecedente Trau: "+antecedentesTraumatologicos.getAnt().getId());
+			antecedentesTraumatologicos.consolidarConsulta();
 		}
 	}
 	

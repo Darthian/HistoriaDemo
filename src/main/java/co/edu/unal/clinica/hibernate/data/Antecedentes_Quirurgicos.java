@@ -52,7 +52,7 @@ public class Antecedentes_Quirurgicos {
 	public void setAntecedente(String antecedente) {
 		this.antecedente = antecedente;
 	}
-	public Timestamp getFecha_Creacion() {
+	public Timestamp getFechaCreacion() {
 		return fecha_Creacion;
 	}
 	public void setFechaCreacion(Timestamp fecha_Creacion) {

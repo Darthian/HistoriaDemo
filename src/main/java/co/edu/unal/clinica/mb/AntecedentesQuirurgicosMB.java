@@ -1,5 +1,6 @@
 package co.edu.unal.clinica.mb;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -20,6 +21,7 @@ public class AntecedentesQuirurgicosMB {
 	private long cedula;
 	private String consolidado;
 	private String antecedente;
+	private Timestamp fechaCreacion;
 	
 	private List<Antecedentes_Quirurgicos> listaAnt;
 	private AntecedentesQuirurgicosDAO antDAO = new AntecedentesQuirurgicosDAO();
@@ -134,6 +136,14 @@ public class AntecedentesQuirurgicosMB {
 
 	public static void setCedulaPaciente(long cedulaPaciente) {
 		AntecedentesQuirurgicosMB.cedulaPaciente = cedulaPaciente;
+	}
+
+	public Timestamp getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	public void setFechaCreacion(Timestamp fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
 	}
 
 }
