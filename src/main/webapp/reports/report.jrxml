@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version last-->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3e51ea12-cfc6-46b5-b60e-f5d86bb3773a">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Historia Clinica"/>
+	<field name="id_Paciente" class="java.lang.Integer"/>
+	<field name="cedula" class="java.lang.Long"/>
+	<field name="nombre_Paciente" class="java.lang.String"/>
+	<field name="edad" class="java.lang.Integer"/>
+	<field name="fecha_Nacimiento" class="java.sql.Date"/>
+	<field name="procedencia" class="java.lang.String"/>
+	<field name="genero" class="java.lang.String"/>
+	<field name="eps" class="java.lang.String"/>
+	<field name="estado_Financiero" class="java.lang.String"/>
+	<field name="ocupacion" class="java.lang.String"/>
+	<field name="estado_Civil" class="java.lang.String"/>
+	<field name="escolaridad" class="java.lang.String"/>
+	<field name="telefono" class="java.lang.String"/>
+	<field name="fecha_creacion" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="109" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="91740199-d4cf-4214-82cf-a8e777f512ed" x="10" y="0" width="530" height="70"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="6f4bd94b-93d4-42ab-8acf-669af5ec314f" x="167" y="0" width="124" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FACULTAD DE MEDICINA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e2bf3740-c501-4377-ba14-a16010ae73f8" x="149" y="20" width="160" height="14"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIVISIÓN DE LIPIDOS Y DIABETES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e1d70ebe-8fd4-4033-9178-8594067d8e8c" x="130" y="34" width="212" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DEPARTAMENTO DE CIENCIAS FISIOLÓGICAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="48ec4acb-949a-4081-9593-ec831f5ddb87" x="150" y="50" width="160" height="16"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#010101"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#010101"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#010101"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#010101"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ HISTORIA CLÍNICA CONTROL]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement uuid="a207d19f-6ef0-4daa-bac1-ced492aa8dca" x="10" y="0" width="110" height="70"/>
+			</rectangle>
+			<image>
+				<reportElement uuid="b7cdf322-d3ab-4647-9a5b-836ce35c6261" x="10" y="0" width="109" height="70"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1"/>
+				<imageExpression><![CDATA["/Users/ian/Documents/workspaceLuna/ClinicaDemo/src/main/webapp/images/logo.png"]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement uuid="12faba09-a2f2-4635-ab79-6ad335295ece" x="332" y="0" width="108" height="70"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="ed80c6af-b628-4686-81ef-d979752fa058" x="340" y="40" width="70" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[VERSION:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement uuid="a11f8a5b-bd28-47af-b264-e5c523b27f13" x="332" y="0" width="108" height="34"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="115d4856-a13b-4562-a259-97f9e393ed22" x="340" y="10" width="70" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CODIGO:]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="80" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="f2ccd18e-5155-4190-80f1-24b66b046da8" x="0" y="0" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Datos Personales]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="996a8297-a4c4-4cb2-955d-11019417543f" x="240" y="20" width="210" height="20"/>
+				<textElement/>
+				<text><![CDATA[Historia clinica N. Cedula de ciudadania:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="f4c2b7a2-a5f8-4a35-8e0a-4b445eca5a89" x="454" y="20" width="100" height="19"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cedula}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="58e51109-d16b-4abb-bb83-8d40f0e8cb27" x="0" y="45" width="110" height="20"/>
+				<textElement/>
+				<text><![CDATA[Nombres y Apellidos:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="26694aba-af94-466f-92c0-ed8d6bc42d53" x="120" y="45" width="170" height="19"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nombre_Paciente}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="72" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="e6312157-61b4-4f88-a047-db660bd5ab71" x="0" y="20" width="554" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Carrera 30 No. 45 03 FACULTAD DE MEDICINA, Edificio 471, 4o piso Oficina 418]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="093b03ae-3075-4eab-bf22-90048e1ffb65" x="0" y="30" width="554" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Teléfono: Conmutador: 57 (1) 3165000 extensión 15054]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8b359819-af05-4ea1-b6e7-5e78697bd81d" x="0" y="40" width="554" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Bogotá, Colombia, Sur América]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="bae6a942-4943-48c9-a4ea-0c842af0c4a8" x="140" y="20" width="280" height="2"/>
+			</line>
+			<staticText>
+				<reportElement uuid="438d5383-6707-4d00-948e-0e3fbb0eabbd" x="10" y="5" width="554" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[ciencia y tecnologia para el pais]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="45" splitType="Stretch"/>
+	</summary>
+</jasperReport>

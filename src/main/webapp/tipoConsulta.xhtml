@@ -24,7 +24,7 @@
 			<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
 			<div id="cabecera" align="center">
 				<img src="images/logo.png" width="25%" height="15%" />
-				<h2>Sistema de Gestión de pacientes con Diabetes</h2>
+				<h2>Elija el tipo de consulta que va a realizar por favor</h2>
 				<h3>
 					<h:outputLabel value="Bienvenido #{loginController.usuario.nickName} tu rol es #{loginController.usuario.rol}" rendered="#{loginController.usuario.rol eq 'MEDICO'}" />
 					<h:outputLabel value="Bienvenido #{loginController.usuario.nickName} tu rol es #{loginController.usuario.rol}" rendered="#{loginController.usuario.rol eq 'ADMINISTRADOR'}" />
@@ -41,25 +41,23 @@
 
 			<div id="contenedor-cuerpo">
 				<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
+				
 				<div id="contenedor-formulario">
 					<div id="formulario-enunciado">
-						<h:commandLink action="adminUsuarios.xhtml" rendered="#{loginController.usuario.rol eq 'ADMINISTRADOR'}">
-							<img src="images/nurse-icon.png" width="460" height="300" />
-						</h:commandLink>
-						
-						<h:commandLink action="tipoConsulta.xhtml" rendered="#{loginController.usuario.rol eq 'MEDICO'}">
-							<img src="images/doctor-icon.png" width="460" height="300" />
+						<h:commandLink action="adminConsulta.xhtml" rendered="#{loginController.usuario.rol eq 'MEDICO'}">
+							<img src="images/stethoscope-256.png" width="460" height="300" />
 						</h:commandLink>
 					</div>
 				</div>
 
 				<div id="contenedor-imagen2">
 					<div id="formulario-leyendas">
-						<a href="adminPacientes.xhtml">
-							<img src="images/medical-book.png" width="460" height="300" />
-						</a>
+						<h:commandLink action="adminConsultaPrimeraVez.xhtml" rendered="#{loginController.usuario.rol eq 'MEDICO'}">
+							<img src="images/Health-care-shield-icon.png" width="460" height="300" />
+						</h:commandLink>
 					</div>
 				</div>
+				
 			</div>
 		</div>
 

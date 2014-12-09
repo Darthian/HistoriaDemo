@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version last-->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="HistoriaClinica" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7dbad4eb-e7f1-4cac-ab26-aea4a3eb0631">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Historia Clinica"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<field name="NOMBRE_PACIENTE" class="java.lang.String"/>
+	<field name="CEDULA" class="java.lang.Long"/>
+	<field name="EDAD" class="java.lang.Integer"/>
+	<field name="GENERO" class="java.lang.String"/>
+	<field name="OCUPACION" class="java.lang.String"/>
+	<field name="DIAGNOSTICO" class="java.lang.String"/>
+	<field name="COMPLICACIONES_DIABETES" class="java.lang.String"/>
+	<field name="NEFROPATIA_DIABETICA" class="java.lang.String"/>
+	<field name="ESTADO_NEFROPATIA" class="java.lang.Integer"/>
+	<field name="PRESION_ARTERIAL" class="java.lang.String"/>
+	<field name="FRECUENCIA_CARDIACA" class="java.lang.Integer"/>
+	<field name="FRECUENCIA_RESPIRATORIA" class="java.lang.Integer"/>
+	<field name="TEMPERATURA" class="java.lang.Integer"/>
+	<field name="PESO" class="java.lang.Float"/>
+	<field name="TALLA" class="java.lang.Float"/>
+	<field name="MASA_CORPORAL" class="java.lang.Float"/>
+	<field name="PERIMETRO_ABDOMINAL" class="java.lang.Float"/>
+	<field name="cardiopulmunar" class="java.lang.String"/>
+	<field name="ABDOMEN" class="java.lang.String"/>
+	<field name="EXTREMIDADES" class="java.lang.String"/>
+	<field name="NEUROLOGICO" class="java.lang.String"/>
+	<field name="PIE_DIABETICO" class="java.lang.String"/>
+	<field name="BUN" class="java.lang.Float"/>
+	<field name="CREATININA" class="java.lang.Float"/>
+	<field name="GLICEMIA_AYUNAS" class="java.lang.Float"/>
+	<field name="GLICEMIA_POST_PRANDIAL" class="java.lang.Float"/>
+	<field name="HDL" class="java.lang.Float"/>
+	<field name="HEMOGLOBINA_GLICOSILADA" class="java.lang.Float"/>
+	<field name="LDL" class="java.lang.Float"/>
+	<field name="PARCIAL_ORINA" class="java.lang.String"/>
+	<field name="TRIGLICERIDOS" class="java.lang.Float"/>
+	<field name="VLDL" class="java.lang.Float"/>
+	<field name="OTROS_PARACLINICOS" class="java.lang.String"/>
+	<field name="ANALISIS" class="java.lang.String"/>
+	<field name="PLAN" class="java.lang.String"/>
+	<field name="FECHA_CREACION" class="java.sql.Timestamp"/>
+	<group name="CEDULA">
+		<groupExpression><![CDATA[$F{CEDULA}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="85" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="d5964a05-c283-4977-8a15-cc14033676d5" x="149" y="20" width="160" height="14"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIVISIÓN DE LIPIDOS Y DIABETES]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement uuid="43a6fe44-7a39-4c2f-917e-5d018527aa0a" x="10" y="0" width="530" height="70"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="cf4f6e9a-fd7d-4b7d-b799-22850df969b7" x="124" y="34" width="212" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DEPARTAMENTO DE CIENCIAS FISIOLÓGICAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4ee5fc58-7032-49d0-8322-c6b5ab9055f2" x="340" y="40" width="70" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[VERSION:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement uuid="d9b04a29-e033-41c5-9f0e-605c98cc02be" x="332" y="0" width="108" height="70"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="5d5d940e-9657-4fbc-85db-afca311a90df" x="332" y="0" width="108" height="34"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="e5a34c3d-005d-4fb4-ae44-6fd5bd184362" x="150" y="50" width="160" height="16"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#010101"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#010101"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#010101"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#010101"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ HISTORIA CLÍNICA CONTROL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0300cf30-7355-40c2-8b15-bc481cbf9462" x="340" y="10" width="70" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CODIGO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="18ca5752-acd8-40e8-b083-59147c203570" x="167" y="0" width="124" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FACULTAD DE MEDICINA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f8fe8825-ac02-49e2-8d47-f4eb5ac7ada4" x="149" y="20" width="160" height="14"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIVISIÓN DE LIPIDOS Y DIABETES]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement uuid="45232733-de80-4696-8634-a99ede973eac" x="9" y="0" width="110" height="70"/>
+			</rectangle>
+			<image>
+				<reportElement uuid="68de45f0-42fa-4090-a97d-5bdaf079a44b" x="10" y="0" width="109" height="70"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1"/>
+				<imageExpression><![CDATA["/Users/ian/Documents/workspaceLuna/ClinicaDemo/src/main/webapp/images/logo.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="e81ff476-04f6-47f1-bae0-0f6657045156" x="340" y="40" width="70" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[VERSION:]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="72" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="97e1c7af-1b3f-4d78-ad54-029746ec7bb4" x="0" y="0" width="140" height="20"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[DATOS PERSONALES]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="9d7ffd11-3a34-4844-afee-a70852a5f9a3" x="490" y="0" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CEDULA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c590fc16-b42c-4064-83e1-ae67e4a4b644" x="0" y="18" width="145" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{NOMBRE_PACIENTE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="34c66cdd-c1c9-457f-9494-ff6ef4d41a7f" x="149" y="18" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{EDAD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="bf2246da-1924-4c33-aa8a-66e2006b53a9" x="230" y="15" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{GENERO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="76f51688-199d-440b-8916-29d72c90b4d4" x="300" y="15" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{OCUPACION}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="250" splitType="Stretch">
+			<textField>
+				<reportElement uuid="5970b14c-5096-4005-adc2-e1dbe048c389" x="20" y="20" width="550" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{DIAGNOSTICO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0fd9bb34-ca84-4e30-b380-308d3e50777f" x="9" y="100" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{COMPLICACIONES_DIABETES}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5ef9983f-604d-43b4-a7fe-d37d287d82ab" x="90" y="70" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{NEFROPATIA_DIABETICA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7dfcd200-a8df-4734-9b01-a7ef102757fc" x="167" y="70" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ESTADO_NEFROPATIA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1e4e7a48-8397-4019-a763-d5a3f2a4ff0c" x="90" y="100" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{PRESION_ARTERIAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="96394b16-ede6-41f2-83d4-e600aa903cd1" x="170" y="100" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{FRECUENCIA_CARDIACA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3652108d-f610-40b5-a002-b963d84ce438" x="245" y="70" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{FRECUENCIA_RESPIRATORIA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6b46116e-e18b-4dc8-87a9-38e578590b29" x="245" y="100" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{TEMPERATURA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f8a31958-8503-4991-a014-79b553e3d93f" x="320" y="70" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{PESO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="43b35ebf-605b-42a9-b738-ad8ea0ca6696" x="320" y="100" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{TALLA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ba4a8f9c-4f65-4dc0-b885-7f5b929f1f85" x="390" y="70" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{MASA_CORPORAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0b876e49-85cb-41ea-b4a3-1b4991734984" x="390" y="100" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{PERIMETRO_ABDOMINAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="dc71ea21-e089-4816-ad42-8d8c70289d67" x="10" y="130" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cardiopulmunar}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d65c7214-f96d-4129-b55f-9596295ff81f" x="90" y="130" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ABDOMEN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e9d6f8b9-7701-40ed-a15a-296c9200e54c" x="170" y="130" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{EXTREMIDADES}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5ed39d31-4629-4178-97c0-2ef88b4167ab" x="245" y="130" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{NEUROLOGICO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2bdd5bf5-8b48-4c91-9c8d-06c2e5bb7c3f" x="320" y="130" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{PIE_DIABETICO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="32d9e1c5-612e-44f6-9f52-7ca0a3099fb9" x="390" y="130" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{BUN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="468a1b87-5cdc-466b-b63e-74c883a5dbc0" x="9" y="160" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CREATININA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8ff4f096-bafa-4f85-ac0a-c0bb69a72065" x="90" y="160" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{GLICEMIA_AYUNAS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="25b9033c-fd00-4063-b033-326df5e25d4c" x="170" y="160" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{GLICEMIA_POST_PRANDIAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b5674773-ea8c-4cb9-b8c7-988adf054cb9" x="245" y="160" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{HDL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e9db1ad1-2baa-4993-9092-0a0108ff5d26" x="320" y="160" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{HEMOGLOBINA_GLICOSILADA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0c603236-5696-44b6-b608-281170e4cf90" x="390" y="160" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{LDL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="51d7ac49-359f-440e-83bb-9e1f48e343e0" x="10" y="190" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{PARCIAL_ORINA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2adf21f8-6b8e-4ad7-bbf8-5be126876743" x="90" y="190" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{TRIGLICERIDOS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e0f81b37-c1a5-4691-9c2d-7bea73c7c718" x="170" y="190" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{VLDL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1b6ca439-7425-46bd-8813-4323077de339" x="245" y="190" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{OTROS_PARACLINICOS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3bae1ab3-2e19-409b-b277-0dd4389ce2d3" x="320" y="190" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ANALISIS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d070c523-7c1e-4158-a436-0311b72ec838" x="390" y="190" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{PLAN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="344c8dc2-a0cc-48d6-ae60-bb1a4b73f1ff" x="170" y="220" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{FECHA_CREACION}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="2de2698b-1de9-4464-ba3b-a10c655735d0" x="0" y="0" width="110" height="20"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[DIAGNOSTICOS]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="55" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="8e2cfaa1-958e-4583-b154-9ca3efca1416" x="0" y="20" width="554" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Carrera 30 No. 45 03 FACULTAD DE MEDICINA, Edificio 471, 4o piso Oficina 418]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f7c19721-31ec-4f9a-8119-add075f0cfcf" x="0" y="40" width="554" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Bogotá, Colombia, Sur América]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="a48caa6f-6025-4394-91fe-94a7649d8225" x="140" y="20" width="280" height="2"/>
+			</line>
+			<staticText>
+				<reportElement uuid="0657e897-96a5-4561-bb74-460a47a0997c" x="0" y="30" width="554" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Teléfono: Conmutador: 57 (1) 3165000 extensión 15054]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fd9b383d-2225-490a-9ced-58d3487d3345" x="10" y="5" width="554" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[ciencia y tecnologia para el pais]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
