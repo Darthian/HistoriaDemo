@@ -26,7 +26,7 @@ public class Vista_total_historia {
 	private float TALLA;				
 	private float MASA_CORPORAL;		
 	private float PERIMETRO_ABDOMINAL;	
-	private	String cardiopulmunar;	
+	private	String CARDIOPULMONAR;	
 	private	String ABDOMEN;		
 	private	String EXTREMIDADES;	
 	private	String NEUROLOGICO;		
@@ -44,6 +44,7 @@ public class Vista_total_historia {
 	private	String OTROS_PARACLINICOS;	
 	private	String ANALISIS;		
 	private	String PLAN;	
+	private String TRATAMIENTO_ACTUAL;
 	private Timestamp FECHA_CREACION;
 	
 	public Vista_total_historia(){}
@@ -184,12 +185,12 @@ public class Vista_total_historia {
 		PERIMETRO_ABDOMINAL = pERIMETRO_ABDOMINAL;
 	}
 
-	public String getCardiopulmunar() {
-		return cardiopulmunar;
+	public String getCARDIOPULMONAR() {
+		return CARDIOPULMONAR;
 	}
 
-	public void setCardiopulmunar(String cardiopulmunar) {
-		this.cardiopulmunar = cardiopulmunar;
+	public void setCARDIOPULMONAR(String cardiopulmunar) {
+		this.CARDIOPULMONAR = cardiopulmunar;
 	}
 
 	public String getABDOMEN() {
@@ -334,5 +335,13 @@ public class Vista_total_historia {
 
 	public void setFECHA_CREACION(Timestamp fECHA_CREACION) {
 		FECHA_CREACION = fECHA_CREACION;
+	}
+
+	public String getTRATAMIENTO_ACTUAL() {
+		return TRATAMIENTO_ACTUAL;
+	}
+
+	public void setTRATAMIENTO_ACTUAL(String tRATAMIENTO_ACTUAL) {
+		TRATAMIENTO_ACTUAL = tRATAMIENTO_ACTUAL;
 	}
 }

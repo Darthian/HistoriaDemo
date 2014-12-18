@@ -34,6 +34,7 @@
         <mapping class="co.edu.unal.clinica.hibernate.data.Antecedentes_Transfusionales"/>
         <mapping class="co.edu.unal.clinica.hibernate.data.Antecedentes_Sociales"/>
         <mapping class="co.edu.unal.clinica.hibernate.data.Vista_total_historia"/>
+        <mapping class="co.edu.unal.clinica.hibernate.data.Consulta"/>
         
     </session-factory>
 </hibernate-configuration>

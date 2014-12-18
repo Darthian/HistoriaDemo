@@ -81,6 +81,8 @@ public class PacienteMB {
 	private AntecedentesTransfusionalesMB antecedentesTransfusionales;
 	@Inject
 	private AntecedentesTraumatologicosMB antecedentesTraumatologicos;
+	@Inject
+	private ConsultaMB consulta;
 	
 
 	public void guardarPaciente() {
@@ -101,88 +103,87 @@ public class PacienteMB {
 	public void guardarDefinitivamente(){
 		if(motivo.getMot().getId() != 0){
 			System.out.println("ID MOTIVO CONSULTA: "+motivo.getMot().getId());
-			motivo.consolidarConsulta();
+			motivo.consolidarMotivoConsulta();
 		}
 		System.out.println("ID ANTECEDENTES FAMILIARES: "+antecedentesFamiliares.getAnt().getId());
 		if(antecedentesFamiliares.getAnt().getId() != 0){
 			System.out.println("ID ANTECEDENTES FAMILIARES: "+antecedentesFamiliares.getAnt().getId());
-			antecedentesFamiliares.consolidarConsulta();
+			antecedentesFamiliares.consolidarAntecedenteFamiliar();
 		}
 		System.out.println("ID ANTECEDENTES farmacologicos: "+antecedentesFarmacologicos.getFarma().getId());
 		if(antecedentesFarmacologicos.getFarma().getId() != 0){
 			System.out.println("ID ANTECEDENTES farmacologicos: "+antecedentesFarmacologicos.getFarma().getId());
-			antecedentesFarmacologicos.consolidarConsulta();
+			antecedentesFarmacologicos.consolidarAntecedenteFarmacologico();
 		}
 		System.out.println("ID ANTECEDENTES Patologicos: "+antecedentesPatologicos.getPato().getId());
 		if(antecedentesPatologicos.getPato().getId() != 0){
 			System.out.println("ID ANTECEDENTES patologicos: "+antecedentesPatologicos.getPato().getId());
-			antecedentesPatologicos.consolidarConsulta();
+			antecedentesPatologicos.consolidarAntecedentePatologico();
 		}
 		System.out.println("ID Diagnosticos: "+diagnosticos.getDiag().getId());
 		if(diagnosticos.getDiag().getId() != 0){
 			System.out.println("ID Diagnosticos: "+diagnosticos.getDiag().getId());
-			diagnosticos.consolidarConsulta();
+			diagnosticos.consolidarDiagnostico();
 		}
 		System.out.println("ID Enfermedad Actual: "+enfermedadActual.getEnf().getId());
 		if(enfermedadActual.getEnf().getId() != 0){
 			System.out.println("ID Enfermedad Actual: "+enfermedadActual.getEnf().getId());
-			enfermedadActual.consolidarConsulta();
+			enfermedadActual.consolidarEnfermedadActual();
 		}
 		System.out.println("ID Examen Fisico: "+examenFisico.getExam().getId());
 		if(examenFisico.getExam().getId() != 0){
 			System.out.println("ID Examen Fisico: "+examenFisico.getExam().getId());
-			examenFisico.consolidarConsulta();
+			examenFisico.consolidarExamenFisico();
 		}
 		System.out.println("ID Habitos: "+habitos.getHab().getId());
 		if(habitos.getHab().getId() != 0){
 			System.out.println("ID Habitos: "+habitos.getHab().getId());
-			habitos.consolidarConsulta();
+			habitos.consolidarHabitos();
 		}
 		System.out.println("ID Otros Antecedentes: "+otrosAntecedentes.getOant().getId());
 		if(otrosAntecedentes.getOant().getId() != 0){
 			System.out.println("ID Otros Antecedentes: "+otrosAntecedentes.getOant().getId());
-			otrosAntecedentes.consolidarConsulta();
+			otrosAntecedentes.consolidarOtrosAntecedentes();
 		}
 		System.out.println("ID Paraclinicos: "+paraclinicos.getPara().getId());
 		if(paraclinicos.getPara().getId() != 0){
 			System.out.println("ID Paraclinicos: "+paraclinicos.getPara().getId());
-			paraclinicos.consolidarConsulta();
+			paraclinicos.consolidarParaClinicos();
 		}
 		System.out.println("ID Revision Sistema: "+revisionSistema.getRevi().getId());
 		if(revisionSistema.getRevi().getId() != 0){
 			System.out.println("ID Revision Sistema: "+revisionSistema.getRevi().getId());
-			revisionSistema.consolidarConsulta();
+			revisionSistema.consolidarRevision();
 		}
-		
 		System.out.println("ID Antecedente Alergico: "+antecedentesAlergicos.getAnt().getId());
 		if(antecedentesAlergicos.getAnt().getId() != 0){
 			System.out.println("ID Antecedente Alergico: "+antecedentesAlergicos.getAnt().getId());
-			antecedentesAlergicos.consolidarConsulta();
+			antecedentesAlergicos.consolidarAntecedenteAlergico();
 		}
 		System.out.println("ID Antecedente Gineco: "+antecedentesGinecobstetricos.getAnt().getId());
 		if(antecedentesGinecobstetricos.getAnt().getId() != 0){
 			System.out.println("ID Antecedente Gineco: "+antecedentesGinecobstetricos.getAnt().getId());
-			antecedentesGinecobstetricos.consolidarConsulta();
+			antecedentesGinecobstetricos.consolidarAntecedenteGinecobstetrico();
 		}
 		System.out.println("ID Antecedente Quiru: "+antecedentesQuirurgicos.getAnt().getId());
 		if(antecedentesQuirurgicos.getAnt().getId() != 0){
 			System.out.println("ID Antecedente Quiru: "+antecedentesQuirurgicos.getAnt().getId());
-			antecedentesQuirurgicos.consolidarConsulta();
+			antecedentesQuirurgicos.consolidarAntecedenteQuirurgico();
 		}
 		System.out.println("ID Antecedente Sociales: "+antecedentesSociales.getAnt().getId());
 		if(antecedentesSociales.getAnt().getId() != 0){
 			System.out.println("ID Antecedente Sociales: "+antecedentesSociales.getAnt().getId());
-			antecedentesSociales.consolidarConsulta();
+			antecedentesSociales.consolidarAntecedenteSocial();
 		}
 		System.out.println("ID Antecedente Trans: "+antecedentesTransfusionales.getAnt().getId());
 		if(antecedentesTransfusionales.getAnt().getId() != 0){
 			System.out.println("ID Antecedente Trans: "+antecedentesTransfusionales.getAnt().getId());
-			antecedentesTransfusionales.consolidarConsulta();
+			antecedentesTransfusionales.consolidarAntecedenteTransfusional();
 		}
 		System.out.println("ID Antecedente Trau: "+antecedentesTraumatologicos.getAnt().getId());
 		if(antecedentesTraumatologicos.getAnt().getId() != 0){
 			System.out.println("ID Antecedente Trau: "+antecedentesTraumatologicos.getAnt().getId());
-			antecedentesTraumatologicos.consolidarConsulta();
+			antecedentesTraumatologicos.consolidarAntecedenteTraumatologico();
 		}
 	}
 	
@@ -208,10 +209,84 @@ public class PacienteMB {
 	public void buscarPaciente() throws Exception {
 		System.out.println("+++++++++++++++++++++++++++++CEDULA PACIENTE CONSULTA: " + cedulaBuscadaConsulta);
 		this.listaPacienteSoloConsulta = pacienteDAO.BuscarPaciente(cedulaBuscadaConsulta);
+		cedulaConsulta=cedulaBuscadaConsulta;
 	}
 	
 	public String terminarConsulta() {
+		
+		consulta.guardarConsulta();
+		
+		if(motivo.getMot().getId() != 0 && consulta.getConsu().getId() != 0){
+			System.out.println("ID MOTIVO CONSULTA: "+motivo.getMot().getId());
+			motivo.consolidarMotivoConsulta(consulta.getConsu().getId());
+		}
+		if(antecedentesFamiliares.getAnt().getId() != 0 && consulta.getConsu().getId() != 0){
+			System.out.println("ID ANTECEDENTES FAMILIARES: "+antecedentesFamiliares.getAnt().getId());
+			antecedentesFamiliares.consolidarAntecedenteFamiliar(consulta.getConsu().getId());
+		}
+		if(antecedentesFarmacologicos.getFarma().getId() != 0 && consulta.getConsu().getId() != 0){
+			System.out.println("ID ANTECEDENTES farmacologicos: "+antecedentesFarmacologicos.getFarma().getId());
+			antecedentesFarmacologicos.consolidarAntecedenteFarmacologico(consulta.getConsu().getId());
+		}
+		if(antecedentesPatologicos.getPato().getId() != 0 && consulta.getConsu().getId() != 0){
+			System.out.println("ID ANTECEDENTES patologicos: "+antecedentesPatologicos.getPato().getId());
+			antecedentesPatologicos.consolidarAntecedentePatologico(consulta.getConsu().getId());
+		}
+		if(diagnosticos.getDiag().getId() != 0 && consulta.getConsu().getId() != 0){
+			System.out.println("ID Diagnosticos: "+diagnosticos.getDiag().getId());
+			diagnosticos.consolidarDiagnostico(consulta.getConsu().getId());
+		}
+		if(enfermedadActual.getEnf().getId() != 0 && consulta.getConsu().getId() != 0){
+			System.out.println("ID Enfermedad Actual: "+enfermedadActual.getEnf().getId());
+			enfermedadActual.consolidarEnfermedadActual(consulta.getConsu().getId());
+		}
+		if(examenFisico.getExam().getId() != 0 && consulta.getConsu().getId() != 0){
+			System.out.println("ID Examen Fisico: "+examenFisico.getExam().getId());
+			examenFisico.consolidarExamenFisico(consulta.getConsu().getId());
+		}
+		if(habitos.getHab().getId() != 0 && consulta.getConsu().getId() != 0){
+			System.out.println("ID Habitos: "+habitos.getHab().getId());
+			habitos.consolidarHabitos(consulta.getConsu().getId());
+		}
+		if(otrosAntecedentes.getOant().getId() != 0 && consulta.getConsu().getId() != 0){
+			System.out.println("ID Otros Antecedentes: "+otrosAntecedentes.getOant().getId());
+			otrosAntecedentes.consolidarOtrosAntecedentes(consulta.getConsu().getId());
+		}
+		if(paraclinicos.getPara().getId() != 0 && consulta.getConsu().getId() != 0){
+			System.out.println("ID Paraclinicos: "+paraclinicos.getPara().getId());
+			paraclinicos.consolidarParaClinicos(consulta.getConsu().getId());
+		}
+		if(revisionSistema.getRevi().getId() != 0 && consulta.getConsu().getId() != 0){
+			System.out.println("ID Revision Sistema: "+revisionSistema.getRevi().getId());
+			revisionSistema.consolidarRevision(consulta.getConsu().getId());
+		}
+		if(antecedentesAlergicos.getAnt().getId() != 0 && consulta.getConsu().getId() != 0){
+			System.out.println("ID Antecedente Alergico: "+antecedentesAlergicos.getAnt().getId());
+			antecedentesAlergicos.consolidarAntecedenteAlergico(consulta.getConsu().getId());
+		}
+		if(antecedentesGinecobstetricos.getAnt().getId() != 0 && consulta.getConsu().getId() != 0){
+			System.out.println("ID Antecedente Gineco: "+antecedentesGinecobstetricos.getAnt().getId());
+			antecedentesGinecobstetricos.consolidarAntecedenteGinecobstetrico(consulta.getConsu().getId());
+		}
+		if(antecedentesQuirurgicos.getAnt().getId() != 0 && consulta.getConsu().getId() != 0){
+			System.out.println("ID Antecedente Quiru: "+antecedentesQuirurgicos.getAnt().getId());
+			antecedentesQuirurgicos.consolidarAntecedenteQuirurgico(consulta.getConsu().getId());
+		}
+		if(antecedentesSociales.getAnt().getId() != 0 && consulta.getConsu().getId() != 0){
+			System.out.println("ID Antecedente Sociales: "+antecedentesSociales.getAnt().getId());
+			antecedentesSociales.consolidarAntecedenteSocial(consulta.getConsu().getId());
+		}
+		if(antecedentesTransfusionales.getAnt().getId() != 0 && consulta.getConsu().getId() != 0){
+			System.out.println("ID Antecedente Trans: "+antecedentesTransfusionales.getAnt().getId());
+			antecedentesTransfusionales.consolidarAntecedenteTransfusional(consulta.getConsu().getId());
+		}
+		if(antecedentesTraumatologicos.getAnt().getId() != 0 && consulta.getConsu().getId() != 0){
+			System.out.println("ID Antecedente Trau: "+antecedentesTraumatologicos.getAnt().getId());
+			antecedentesTraumatologicos.consolidarAntecedenteTraumatologico(consulta.getConsu().getId());
+		}
+		
 		cedulaBuscadaConsulta = 0;
+		cedulaConsulta = 0;
 		this.listaPacienteSoloConsulta = null;
 		System.out.println("+++++++++++++++++++++++++++++CEDULA PACIENTE CONSULTA AL TERMINAR: " + cedulaBuscadaConsulta);
 		return "index";

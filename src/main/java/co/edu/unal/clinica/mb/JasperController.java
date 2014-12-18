@@ -57,8 +57,8 @@ public class JasperController {
 	
 	public void initHistoria() throws JRException{
 		try{
-			this.listaVistaHistoria = vistaHistoriaDao.Listar();
-			System.out.println("Se cargo la lista"+this.listaVistaHistoria);
+			this.listaVistaHistoria = vistaHistoriaDao.BuscarPorCedula(PacienteMB.cedulaConsulta);
+			System.out.println("Se cargo la lista "+this.listaVistaHistoria+" con cedula "+PacienteMB.cedulaConsulta);
 		}catch(Exception e){
 			System.out.println("Ha fallado el llamado al reporte");
 			e.printStackTrace();

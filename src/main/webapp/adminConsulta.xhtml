@@ -35,8 +35,7 @@
 					<p:commandButton update="listaPacientes" actionListener="#{pacienteMB.buscarPaciente()}" value="Buscar Paciente"/>
 					<p:commandButton action="#{pacienteMB.terminarConsulta()}" value="Terminar Consulta"/>
 					<p:commandButton update="growl" actionListener="#{pacienteMB.guardarDefinitivamente()}" value="Guardar Definitivamente"/>
-					<h:commandButton action="#{jasperController.PDF()}" value="Exportar a PDF"/>
-					<h:commandButton action="#{jasperController.vistaHistoriaPDF()}" value="Descargar resumen consulta"/>
+					<h:commandButton action="#{jasperController.vistaHistoriaPDF()}" style="background-color: blue;height:20px; font-size: 12px;"  value="Descargar resumen de consulta"/>
 				</h3>
 				<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
 			

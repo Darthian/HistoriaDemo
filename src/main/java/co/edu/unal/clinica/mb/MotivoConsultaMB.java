@@ -18,6 +18,7 @@ import co.edu.unal.clinica.utils.HibernateUtil;
 @SessionScoped
 public class MotivoConsultaMB {
 	
+	private long fkConsulta;
 	private long cedula;
 	private String consolidado;
 	private String motivoConsulta;
@@ -45,12 +46,27 @@ public class MotivoConsultaMB {
 		}
 	}	
 	
-	public void consolidarConsulta(){
+	public void consolidarMotivoConsulta(){
 		try{
 			System.out.println("++++++++++++++++++++++ ENTRA AL METODO DE CONSOLIDAR MOTIVO CONSULTA " );
 			Motivo_Consulta motConsolidado = motDao.BuscarPorId(mot.getId());
 			System.out.println("++++++++++++++++++++++ ID de Objeto Recuperado " +motConsolidado.getId());
 			motConsolidado.setConsolidado("Si");
+			motDao.ConsolidarConsulta(motConsolidado);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido consolidado correctamente","Puede seguir registrando o volver"));
+		}catch(Exception ex){
+			System.out.println(ex);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer la consolidacion"));
+		}
+	}
+	
+	public void consolidarMotivoConsulta(long idConsulta){
+		try{
+			System.out.println("++++++++++++++++++++++ ENTRA AL METODO DE CONSOLIDAR MOTIVO CONSULTA " );
+			Motivo_Consulta motConsolidado = motDao.BuscarPorId(mot.getId());
+			System.out.println("++++++++++++++++++++++ ID de Objeto Recuperado " +motConsolidado.getId());
+			motConsolidado.setConsolidado("Si");
+			motConsolidado.setFkConsulta(idConsulta);
 			motDao.ConsolidarConsulta(motConsolidado);
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido consolidado correctamente","Puede seguir registrando o volver"));
 		}catch(Exception ex){
@@ -117,5 +133,13 @@ public class MotivoConsultaMB {
 	}
 	public void setConsolidado(String consolidado) {
 		this.consolidado = consolidado;
+	}
+
+	public long getFkConsulta() {
+		return fkConsulta;
+	}
+
+	public void setFkConsulta(long fkConsulta) {
+		this.fkConsulta = fkConsulta;
 	}
 }

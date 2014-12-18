@@ -29,7 +29,7 @@ public class VistaHistoriaClinicaDAO {
 	public List<Vista_total_historia> BuscarPorCedula(long cedula) throws Exception {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
-			String hql = "FROM Vista_total_historia WHERE cedula = " + cedula;
+			String hql = "FROM Vista_total_historia WHERE CEDULA = " + cedula;
 			Query query = session.createQuery(hql);
 
 			if (!query.list().isEmpty()) {
