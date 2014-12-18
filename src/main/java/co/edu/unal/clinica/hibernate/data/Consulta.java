@@ -7,25 +7,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Antecedentes_Alergicos {
+public class Consulta {
 	
 	@GeneratedValue
 	@Id
 	private long id;
-	private long fk_consulta;
 	private long cedula;
-	private String consolidado;
-	private String antecedente;
 	private Timestamp fecha_Creacion;
 	
-	public Antecedentes_Alergicos(){
-		
-	}
+	public Consulta(){}
 	
-	public Antecedentes_Alergicos(long cedula, String consolidado, String antecedente){
+	public Consulta(long cedula){
 		this.cedula = cedula;
-		this.consolidado = consolidado;
-		this.antecedente = antecedente;
 		this.fecha_Creacion = new Timestamp(System.currentTimeMillis());
 	}
 	
@@ -41,18 +34,6 @@ public class Antecedentes_Alergicos {
 	public void setCedula(long cedula) {
 		this.cedula = cedula;
 	}
-	public String getConsolidado() {
-		return consolidado;
-	}
-	public void setConsolidado(String consolidado) {
-		this.consolidado = consolidado;
-	}
-	public String getAntecedente() {
-		return antecedente;
-	}
-	public void setAntecedente(String antecedente) {
-		this.antecedente = antecedente;
-	}
 	public Timestamp getFechaCreacion() {
 		return fecha_Creacion;
 	}
@@ -60,11 +41,4 @@ public class Antecedentes_Alergicos {
 		this.fecha_Creacion = fecha_Creacion;
 	}
 
-	public long getFkConsulta() {
-		return fk_consulta;
-	}
-
-	public void setFkConsulta(long fk_consulta) {
-		this.fk_consulta = fk_consulta;
-	}
 }

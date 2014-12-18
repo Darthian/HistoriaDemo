@@ -27,7 +27,7 @@
 		<div id="contenedor" class="center">
 			<div id="cabecera" align="center">
 				<img src="images/logo.png" width="25%" height="15%" />
-				<h2>Pacientes</h2>
+				<h2>Historias Clinicas</h2>
 			</div>
 
 			<div id="lista" align="center">
@@ -41,7 +41,6 @@
 
 			<div id="contenedor-cuerpo" align="center">
 				<p:commandButton action="index.xhtml" value="Terminar Consulta de Historia Clinica"/>
-				<h:commandButton action="#{jasperController.PDF()}" value="Exportar a PDF"/>
 				<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
 			
 				<p:dataTable tableStyle="width:auto" value="#{pacienteMB.listaPaciente}" var="paciente" filteredValue="#{pacienteMB.listaPacienteFiltrado}" paginator="true" rows="5">

@@ -18,6 +18,7 @@ import co.edu.unal.clinica.utils.HibernateUtil;
 @SessionScoped
 public class EnfermedadActualMB {
 	
+	private long fkConsulta;
 	private long cedula;
 	private String consolidado;
 	private String enfermedadActual;
@@ -44,12 +45,27 @@ public class EnfermedadActualMB {
 		}
 	}
 	
-	public void consolidarConsulta(){
+	public void consolidarEnfermedadActual(){
 		try{
 			System.out.println("++++++++++++++++++++++ ENTRA AL METODO DE CONSOLIDAR Enfermedad Actual" );
 			Enfermedad_Actual objetoConsolidado = enfDao.BuscarPorId(enf.getId());
 			System.out.println("++++++++++++++++++++++ ID de Objeto Recuperado " +objetoConsolidado.getId());
 			objetoConsolidado.setConsolidado("Si");
+			enfDao.ConsolidarConsulta(objetoConsolidado);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido consolidado correctamente","Puede seguir registrando o volver"));
+		}catch(Exception ex){
+			System.out.println(ex);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer la consolidacion"));
+		}
+	}
+	
+	public void consolidarEnfermedadActual(long idConsulta){
+		try{
+			System.out.println("++++++++++++++++++++++ ENTRA AL METODO DE CONSOLIDAR Enfermedad Actual" );
+			Enfermedad_Actual objetoConsolidado = enfDao.BuscarPorId(enf.getId());
+			System.out.println("++++++++++++++++++++++ ID de Objeto Recuperado " +objetoConsolidado.getId());
+			objetoConsolidado.setConsolidado("Si");
+			objetoConsolidado.setFkConsulta(idConsulta);
 			enfDao.ConsolidarConsulta(objetoConsolidado);
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido consolidado correctamente","Puede seguir registrando o volver"));
 		}catch(Exception ex){
@@ -116,5 +132,13 @@ public class EnfermedadActualMB {
 	}
 	public void setConsolidado(String consolidado) {
 		this.consolidado = consolidado;
+	}
+
+	public long getFkConsulta() {
+		return fkConsulta;
+	}
+
+	public void setFkConsulta(long fkConsulta) {
+		this.fkConsulta = fkConsulta;
 	}
 }

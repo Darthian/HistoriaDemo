@@ -18,6 +18,7 @@ import co.edu.unal.clinica.utils.HibernateUtil;
 @SessionScoped
 public class AntecedentesPatologicosMB {
 	
+	private long fkConsulta;
 	private long cedula;
 	private String consolidado;
 	private String complicacionesDiabetes;
@@ -56,12 +57,27 @@ public class AntecedentesPatologicosMB {
 		}
 	}	
 	
-	public void consolidarConsulta(){
+	public void consolidarAntecedentePatologico(){
 		try{
 			System.out.println("++++++++++++++++++++++ ENTRA AL METODO DE CONSOLIDAR ANTECEDENTES Patologicos" );
 			Antecedentes_Patologicos objetoConsolidado = patoDao.BuscarPorId(pato.getId());
 			System.out.println("++++++++++++++++++++++ ID de Objeto Recuperado " +objetoConsolidado.getId());
 			objetoConsolidado.setConsolidado("Si");
+			patoDao.ConsolidarConsulta(objetoConsolidado);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido consolidado correctamente","Puede seguir registrando o volver"));
+		}catch(Exception ex){
+			System.out.println(ex);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer la consolidacion"));
+		}
+	}
+	
+	public void consolidarAntecedentePatologico(long idConsulta){
+		try{
+			System.out.println("++++++++++++++++++++++ ENTRA AL METODO DE CONSOLIDAR ANTECEDENTES Patologicos" );
+			Antecedentes_Patologicos objetoConsolidado = patoDao.BuscarPorId(pato.getId());
+			System.out.println("++++++++++++++++++++++ ID de Objeto Recuperado " +objetoConsolidado.getId());
+			objetoConsolidado.setConsolidado("Si");
+			objetoConsolidado.setFkConsulta(idConsulta);
 			patoDao.ConsolidarConsulta(objetoConsolidado);
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido consolidado correctamente","Puede seguir registrando o volver"));
 		}catch(Exception ex){
@@ -201,5 +217,13 @@ public class AntecedentesPatologicosMB {
 
 	public void setConsolidado(String consolidado) {
 		this.consolidado = consolidado;
+	}
+
+	public long getFkConsulta() {
+		return fkConsulta;
+	}
+
+	public void setFkConsulta(long fkConsulta) {
+		this.fkConsulta = fkConsulta;
 	}
 }

@@ -1,17 +1,12 @@
 package co.edu.unal.clinica.daos;
 
-import java.sql.Timestamp;
 import java.util.List;
-
-import javax.xml.bind.ParseConversionEvent;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Order;
 
-import antlr.Parser;
 import co.edu.unal.clinica.hibernate.data.Paciente;
 import co.edu.unal.clinica.utils.HibernateUtil;
 

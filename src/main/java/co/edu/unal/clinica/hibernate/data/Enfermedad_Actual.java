@@ -13,6 +13,7 @@ public class Enfermedad_Actual {
 	@GeneratedValue
 	@Id
 	private long id;
+	private long fk_consulta;
 	private long cedula;
 	private String consolidado;
 	@Column(name = "enfermedad_Actual", nullable = true)
@@ -68,5 +69,13 @@ public class Enfermedad_Actual {
 
 	public void setConsolidado(String consolidado) {
 		this.consolidado = consolidado;
+	}
+
+	public long getFkConsulta() {
+		return fk_consulta;
+	}
+
+	public void setFkConsulta(long fk_consulta) {
+		this.fk_consulta = fk_consulta;
 	}
 }

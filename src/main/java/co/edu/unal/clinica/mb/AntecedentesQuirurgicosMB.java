@@ -18,6 +18,7 @@ import co.edu.unal.clinica.utils.HibernateUtil;
 @SessionScoped
 public class AntecedentesQuirurgicosMB {
 	
+	private long fkConsulta;
 	private long cedula;
 	private String consolidado;
 	private String antecedente;
@@ -46,12 +47,27 @@ public class AntecedentesQuirurgicosMB {
 		}
 	}	
 	
-	public void consolidarConsulta(){
+	public void consolidarAntecedenteQuirurgico(){
 		try{
 			System.out.println("++++++++++++++++++++++ ENTRA AL METODO DE CONSOLIDAR ANTECEDENTES FAMILIARES" );
 			Antecedentes_Quirurgicos objetoConsolidado = antDAO.BuscarPorId(ant.getId());
 			System.out.println("++++++++++++++++++++++ ID de Objeto Recuperado " +objetoConsolidado.getId());
 			objetoConsolidado.setConsolidado("Si");
+			antDAO.ConsolidarConsulta(objetoConsolidado);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido consolidado correctamente","Puede seguir registrando o volver"));
+		}catch(Exception ex){
+			System.out.println(ex);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer la consolidacion"));
+		}
+	}
+	
+	public void consolidarAntecedenteQuirurgico(long idConsulta){
+		try{
+			System.out.println("++++++++++++++++++++++ ENTRA AL METODO DE CONSOLIDAR ANTECEDENTES FAMILIARES" );
+			Antecedentes_Quirurgicos objetoConsolidado = antDAO.BuscarPorId(ant.getId());
+			System.out.println("++++++++++++++++++++++ ID de Objeto Recuperado " +objetoConsolidado.getId());
+			objetoConsolidado.setConsolidado("Si");
+			objetoConsolidado.setFkConsulta(idConsulta);
 			antDAO.ConsolidarConsulta(objetoConsolidado);
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido consolidado correctamente","Puede seguir registrando o volver"));
 		}catch(Exception ex){
@@ -144,6 +160,14 @@ public class AntecedentesQuirurgicosMB {
 
 	public void setFechaCreacion(Timestamp fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
+	}
+
+	public long getFkConsulta() {
+		return fkConsulta;
+	}
+
+	public void setFkConsulta(long fkConsulta) {
+		this.fkConsulta = fkConsulta;
 	}
 
 }

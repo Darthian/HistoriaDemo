@@ -12,6 +12,7 @@ public class Antecedentes_Ginecobstetricos {
 	@GeneratedValue
 	@Id
 	private long id;
+	private long fk_consulta;
 	private long cedula;
 	private String consolidado;
 	private String antecedente;
@@ -57,6 +58,14 @@ public class Antecedentes_Ginecobstetricos {
 	}
 	public void setFechaCreacion(Timestamp fecha_Creacion) {
 		this.fecha_Creacion = fecha_Creacion;
+	}
+
+	public long getFkConsulta() {
+		return fk_consulta;
+	}
+
+	public void setFkConsulta(long fk_consulta) {
+		this.fk_consulta = fk_consulta;
 	}
 
 }

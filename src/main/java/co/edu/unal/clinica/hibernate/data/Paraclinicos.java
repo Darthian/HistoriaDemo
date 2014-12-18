@@ -12,6 +12,7 @@ public class Paraclinicos {
 	@GeneratedValue
 	@Id
 	private long id;
+	private long fk_consulta;
 	private long cedula;
 	private String consolidado;
 	private float glicemia_ayunas;
@@ -167,6 +168,14 @@ public class Paraclinicos {
 
 	public void setConsolidado(String consolidado) {
 		this.consolidado = consolidado;
+	}
+
+	public long getFkConsulta() {
+		return fk_consulta;
+	}
+
+	public void setFkConsulta(long fk_consulta) {
+		this.fk_consulta = fk_consulta;
 	}
 
 }

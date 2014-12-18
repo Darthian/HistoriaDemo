@@ -116,8 +116,4 @@ public class ValidationView {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-	
-	
-	
-
 }
