@@ -7,19 +7,18 @@
 
 <h:head>
 	<title>Historia Clinica UN</title>
+	<meta name="description" content="Historia Clinica consultorio de Lipidos y Diabetes Facultad de Medicina Universidad Nacional" />
+	<meta name="keywords" content="medical, health" />
+	<meta name="author" content="Ian Sarasty Medina" />
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="stylesheet" type="text/css" href="css/style1.css" media="screen" />
 	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
-	<script type="text/javascript">
-		function volver(){
-			window.history.back();	
-		}
-	</script>
 </h:head>
 <body>
-	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{loginController.verificarSesion() eq false}" />
+	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{loginController.verificarSesion() eq false}" />					
 	
 	<h:form id="listaUsuarios" rendered="#{loginController.verificarSesion()}">
-	 
+	
 		<div id="contenedor" class="center">
 			<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
 			<div id="cabecera" align="center">
@@ -37,27 +36,51 @@
 					<li class="item"><a href="acercaConsultorio.xhtml">Elconsultorio</a></li>
 					<li class="item"><a href="acercaAplicacion.xhtml">La aplicacion</a></li>
 				</ul>
-				</div>
+			</div>
 
 			<div id="contenedor-cuerpo">
-				<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
 				<div id="contenedor-formulario">
 					<div id="formulario-enunciado">
-						<h:commandLink action="adminUsuarios.xhtml" rendered="#{loginController.usuario.rol eq 'ADMINISTRADOR'}">
-							<img src="images/nurse-icon.png" width="460" height="300" />
-						</h:commandLink>
 						
+						<h:commandLink action="adminUsuarios.xhtml" rendered="#{loginController.usuario.rol eq 'ADMINISTRADOR'}">
+							<div id="mainwrapper">
+								<div id="box-6" class="box">
+									<img id="image-6" src="images/nurse-icon.png" width="100%"/>
+									<span class="caption full-caption">
+										<h3>Administracion del sistema</h3>
+										<p>En esta pantalla se crean los pacientes, usuarios y entidades del sistema.</p>
+									</span>
+								</div>
+							</div>
+						</h:commandLink>
+
 						<h:commandLink action="tipoConsulta.xhtml" rendered="#{loginController.usuario.rol eq 'MEDICO'}">
-							<img src="images/doctor-icon.png" width="460" height="300" />
+							<div id="mainwrapper">
+								<div id="box-6" class="box">
+									<img id="image-6" src="images/doctor-icon.png" width="100%"/>
+									<span class="caption full-caption">
+										<h3>Consultas</h3>
+										<p>En esta pantalla se hacen las consultas de primera vez y de evolucion de los pacientes.</p>
+									</span>
+								</div>
+							</div>
 						</h:commandLink>
 					</div>
 				</div>
 
 				<div id="contenedor-imagen2">
 					<div id="formulario-leyendas">
-						<a href="adminPacientes.xhtml">
-							<img src="images/medical-book.png" width="460" height="300" />
-						</a>
+						<h:commandLink action="adminPacientes.xhtml">
+							<div id="mainwrapper">
+								<div id="box-6" class="box">
+									<img id="image-6" src="images/medical-book.png" width="90%"/>
+									<span class="caption full-caption">
+										<h3>Consulta de historias clinicas</h3>
+										<p>En esta pantalla se hacen las consultas de historira clinica de todos los pacientes.</p>
+									</span>
+								</div>
+							</div>
+						</h:commandLink>
 					</div>
 				</div>
 			</div>
