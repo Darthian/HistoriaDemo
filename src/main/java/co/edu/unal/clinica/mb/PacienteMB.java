@@ -101,9 +101,12 @@ public class PacienteMB {
 	}
 
 	public void guardarDefinitivamente(){
-		if(motivo.getMot().getId() != 0){
+		
+		consulta.guardarConsulta();
+		
+		if(motivo.getMot().getId() != 0 && consulta.getConsu().getId() != 0){
 			System.out.println("ID MOTIVO CONSULTA: "+motivo.getMot().getId());
-			motivo.consolidarMotivoConsulta();
+			motivo.consolidarMotivoConsulta(consulta.getConsu().getId());
 		}
 		System.out.println("ID ANTECEDENTES FAMILIARES: "+antecedentesFamiliares.getAnt().getId());
 		if(antecedentesFamiliares.getAnt().getId() != 0){

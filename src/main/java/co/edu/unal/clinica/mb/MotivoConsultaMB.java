@@ -49,11 +49,19 @@ public class MotivoConsultaMB {
 	public void consolidarMotivoConsulta(){
 		try{
 			System.out.println("++++++++++++++++++++++ ENTRA AL METODO DE CONSOLIDAR MOTIVO CONSULTA " );
-			Motivo_Consulta motConsolidado = motDao.BuscarPorId(mot.getId());
-			System.out.println("++++++++++++++++++++++ ID de Objeto Recuperado " +motConsolidado.getId());
-			motConsolidado.setConsolidado("Si");
-			motDao.ConsolidarConsulta(motConsolidado);
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido consolidado correctamente","Puede seguir registrando o volver"));
+			//Motivo_Consulta motConsolidado = motDao.BuscarPorId(mot.getId());
+			List<Motivo_Consulta> listMotConsolidado = motDao.BuscarNoConsolidados();
+			if(listMotConsolidado!= null && listMotConsolidado.size() > 0){
+				for(Motivo_Consulta iterator : listMotConsolidado){
+					System.out.println("++++++++++++++++++++++ ID de Objeto Recuperado " +iterator.getId());
+					iterator.setConsolidado("Si");
+				}
+				motDao.ConsolidarConsulta(listMotConsolidado);
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido consolidado correctamente","Puede seguir registrando o volver"));
+			}else{
+				System.out.println("++++++++++++++++++++++ No hay regitros sin consolidar");
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "No hay regitros sin consolidar","No hay motivos de consulta sin guardar definitivamente"));
+			}
 		}catch(Exception ex){
 			System.out.println(ex);
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer la consolidacion"));
@@ -63,12 +71,20 @@ public class MotivoConsultaMB {
 	public void consolidarMotivoConsulta(long idConsulta){
 		try{
 			System.out.println("++++++++++++++++++++++ ENTRA AL METODO DE CONSOLIDAR MOTIVO CONSULTA " );
-			Motivo_Consulta motConsolidado = motDao.BuscarPorId(mot.getId());
-			System.out.println("++++++++++++++++++++++ ID de Objeto Recuperado " +motConsolidado.getId());
-			motConsolidado.setConsolidado("Si");
-			motConsolidado.setFkConsulta(idConsulta);
-			motDao.ConsolidarConsulta(motConsolidado);
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido consolidado correctamente","Puede seguir registrando o volver"));
+			//Motivo_Consulta motConsolidado = motDao.BuscarPorId(mot.getId());
+			List<Motivo_Consulta> listMotConsolidado = motDao.BuscarNoConsolidados();
+			if(listMotConsolidado!= null && listMotConsolidado.size() > 0){
+				for(Motivo_Consulta iterator : listMotConsolidado){
+					System.out.println("++++++++++++++++++++++ ID de Objeto Recuperado " +iterator.getId());
+					iterator.setConsolidado("Si");
+					iterator.setFkConsulta(idConsulta);
+				}
+				motDao.ConsolidarConsulta(listMotConsolidado);
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido consolidado correctamente","Puede seguir registrando o volver"));
+			}else{
+				System.out.println("++++++++++++++++++++++ No hay regitros sin consolidar");
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "No hay regitros sin consolidar","No hay motivos de consulta sin guardar definitivamente"));
+			}
 		}catch(Exception ex){
 			System.out.println(ex);
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer la consolidacion"));

@@ -48,6 +48,24 @@ public class MotivoConsultaDAO {
 		return listMot;
 	}
 	
+	public List<Motivo_Consulta> BuscarNoConsolidados() throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "FROM Motivo_Consulta WHERE CONSOLIDADO = 'No'";
+			Query query = session.createQuery(hql);
+
+			if (!query.list().isEmpty()) {
+				listMot = (List<Motivo_Consulta>) query.list();
+			}
+			else{
+				listMot = null;
+			}
+		} catch (Exception ex) {
+			throw ex;
+		}
+		return listMot;
+	}
+	
 	public Motivo_Consulta BuscarPorId(long id) throws Exception {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
@@ -79,6 +97,23 @@ public class MotivoConsultaDAO {
 			session.close();
 		}
 	}
+	
+	public void ConsolidarConsulta(List<Motivo_Consulta> listMot) throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			trans = session.beginTransaction();
+			for(Motivo_Consulta iterator: listMot){
+				session.update(iterator);
+			}
+			trans.commit();
+		} catch (Exception ex) {
+			trans.rollback();
+			throw ex;
+		} finally {
+			session.close();
+		}
+	}
+	
 	public void Modificar(Motivo_Consulta emp) throws Exception {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
