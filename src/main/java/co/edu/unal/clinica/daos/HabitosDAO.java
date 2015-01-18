@@ -66,6 +66,40 @@ public class HabitosDAO {
 		return objetoRetornado;
 	}
 	
+	public List<Habitos> BuscarNoConsolidados() throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "FROM Habitos WHERE CONSOLIDADO = 'No'";
+			Query query = session.createQuery(hql);
+
+			if (!query.list().isEmpty()) {
+				listHab = (List<Habitos>) query.list();
+			}
+			else{
+				listHab = null;
+			}
+		} catch (Exception ex) {
+			throw ex;
+		}
+		return listHab;
+	}
+	
+	public void ConsolidarConsulta(List<Habitos> list) throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			trans = session.beginTransaction();
+			for(Habitos iterator: list){
+				session.update(iterator);
+			}
+			trans.commit();
+		} catch (Exception ex) {
+			trans.rollback();
+			throw ex;
+		} finally {
+			session.close();
+		}
+	}
+	
 	public void ConsolidarConsulta(Habitos objetoActualizado) throws Exception {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();

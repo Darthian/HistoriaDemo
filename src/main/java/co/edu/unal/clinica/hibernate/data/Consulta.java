@@ -13,6 +13,7 @@ public class Consulta {
 	@Id
 	private long id;
 	private long cedula;
+	private String tipo_consulta;
 	private Timestamp fecha_Creacion;
 	
 	public Consulta(){}
@@ -39,6 +40,14 @@ public class Consulta {
 	}
 	public void setFechaCreacion(Timestamp fecha_Creacion) {
 		this.fecha_Creacion = fecha_Creacion;
+	}
+
+	public String getTipoConsulta() {
+		return tipo_consulta;
+	}
+
+	public void setTipoConsulta(String tipo_consulta) {
+		this.tipo_consulta = tipo_consulta;
 	}
 
 }

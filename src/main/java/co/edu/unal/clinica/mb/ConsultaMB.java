@@ -17,15 +17,17 @@ import co.edu.unal.clinica.utils.HibernateUtil;
 public class ConsultaMB {
 	
 	private long cedula;
+	private String tipoConsulta;
 	private Timestamp fechaCreacion;
 	
 	private static Consulta consu = new Consulta();
 	
-	public void guardarConsulta() {
+	public void guardarConsulta(String tipoConsultaNueva) {
 		try{
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
 			Consulta obj = new Consulta(PacienteMB.cedulaConsulta);
+			obj.setTipoConsulta(tipoConsultaNueva);
 			long id = (long) session.save(obj);
 			consu.setId(id); 
 			session.getTransaction().commit();
@@ -49,8 +51,14 @@ public class ConsultaMB {
 	public void setFechaCreacion(Timestamp fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
-
 	public Consulta getConsu() {
 		return consu;
+	}
+	public String getTipoConsulta() {
+		return tipoConsulta;
+	}
+
+	public void setTipoConsulta(String tipoConsulta) {
+		this.tipoConsulta = tipoConsulta;
 	}
 }

@@ -8,6 +8,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 
+import co.edu.unal.clinica.hibernate.data.Otros_Antecedentes;
+import co.edu.unal.clinica.hibernate.data.Paraclinicos;
 import co.edu.unal.clinica.hibernate.data.Revision_Sistema;
 import co.edu.unal.clinica.utils.HibernateUtil;
 
@@ -64,6 +66,40 @@ public class RevisionSistemaDAO {
 			throw ex;
 		}
 		return objetoRetornado;
+	}
+	
+	public List<Revision_Sistema> BuscarNoConsolidados() throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "FROM Revision_Sistema WHERE CONSOLIDADO = 'No'";
+			Query query = session.createQuery(hql);
+
+			if (!query.list().isEmpty()) {
+				listRevi = (List<Revision_Sistema>) query.list();
+			}
+			else{
+				listRevi = null;
+			}
+		} catch (Exception ex) {
+			throw ex;
+		}
+		return listRevi;
+	}
+	
+	public void ConsolidarConsulta(List<Revision_Sistema> list) throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			trans = session.beginTransaction();
+			for(Revision_Sistema iterator: list){
+				session.update(iterator);
+			}
+			trans.commit();
+		} catch (Exception ex) {
+			trans.rollback();
+			throw ex;
+		} finally {
+			session.close();
+		}
 	}
 	
 	public void ConsolidarConsulta(Revision_Sistema objetoActualizado) throws Exception {

@@ -66,6 +66,40 @@ public class EnfermedadActualDAO {
 		return objetoRetornado;
 	}
 	
+	public List<Enfermedad_Actual> BuscarNoConsolidados() throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "FROM Enfermedad_Actual WHERE CONSOLIDADO = 'No'";
+			Query query = session.createQuery(hql);
+
+			if (!query.list().isEmpty()) {
+				listEnf = (List<Enfermedad_Actual>) query.list();
+			}
+			else{
+				listEnf = null;
+			}
+		} catch (Exception ex) {
+			throw ex;
+		}
+		return listEnf;
+	}
+	
+	public void ConsolidarConsulta(List<Enfermedad_Actual> list) throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			trans = session.beginTransaction();
+			for(Enfermedad_Actual iterator: list){
+				session.update(iterator);
+			}
+			trans.commit();
+		} catch (Exception ex) {
+			trans.rollback();
+			throw ex;
+		} finally {
+			session.close();
+		}
+	}
+	
 	public void ConsolidarConsulta(Enfermedad_Actual objetoActualizado) throws Exception {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();

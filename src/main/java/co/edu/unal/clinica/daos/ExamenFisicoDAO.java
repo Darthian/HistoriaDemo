@@ -66,6 +66,40 @@ public class ExamenFisicoDAO {
 		return objetoRetornado;
 	}
 	
+	public List<Examen_Fisico> BuscarNoConsolidados() throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "FROM Examen_Fisico WHERE CONSOLIDADO = 'No'";
+			Query query = session.createQuery(hql);
+
+			if (!query.list().isEmpty()) {
+				listExa = (List<Examen_Fisico>) query.list();
+			}
+			else{
+				listExa = null;
+			}
+		} catch (Exception ex) {
+			throw ex;
+		}
+		return listExa;
+	}
+	
+	public void ConsolidarConsulta(List<Examen_Fisico> list) throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			trans = session.beginTransaction();
+			for(Examen_Fisico iterator: list){
+				session.update(iterator);
+			}
+			trans.commit();
+		} catch (Exception ex) {
+			trans.rollback();
+			throw ex;
+		} finally {
+			session.close();
+		}
+	}
+	
 	public void ConsolidarConsulta(Examen_Fisico objetoActualizado) throws Exception {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();

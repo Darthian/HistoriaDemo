@@ -47,29 +47,36 @@ public class AntecedentesQuirurgicosMB {
 		}
 	}	
 	
-	public void consolidarAntecedenteQuirurgico(){
-		try{
-			System.out.println("++++++++++++++++++++++ ENTRA AL METODO DE CONSOLIDAR ANTECEDENTES FAMILIARES" );
-			Antecedentes_Quirurgicos objetoConsolidado = antDAO.BuscarPorId(ant.getId());
-			System.out.println("++++++++++++++++++++++ ID de Objeto Recuperado " +objetoConsolidado.getId());
-			objetoConsolidado.setConsolidado("Si");
-			antDAO.ConsolidarConsulta(objetoConsolidado);
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido consolidado correctamente","Puede seguir registrando o volver"));
-		}catch(Exception ex){
-			System.out.println(ex);
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer la consolidacion"));
-		}
-	}
+//	public void consolidarAntecedenteQuirurgico(){
+//		try{
+//			System.out.println("++++++++++++++++++++++ ENTRA AL METODO DE CONSOLIDAR ANTECEDENTES Quirurgico" );
+//			Antecedentes_Quirurgicos objetoConsolidado = antDAO.BuscarPorId(ant.getId());
+//			System.out.println("++++++++++++++++++++++ ID de Objeto Recuperado " +objetoConsolidado.getId());
+//			objetoConsolidado.setConsolidado("Si");
+//			antDAO.ConsolidarConsulta(objetoConsolidado);
+//			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido consolidado correctamente","Puede seguir registrando o volver"));
+//		}catch(Exception ex){
+//			System.out.println(ex);
+//			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer la consolidacion"));
+//		}
+//	}
 	
 	public void consolidarAntecedenteQuirurgico(long idConsulta){
 		try{
-			System.out.println("++++++++++++++++++++++ ENTRA AL METODO DE CONSOLIDAR ANTECEDENTES FAMILIARES" );
-			Antecedentes_Quirurgicos objetoConsolidado = antDAO.BuscarPorId(ant.getId());
-			System.out.println("++++++++++++++++++++++ ID de Objeto Recuperado " +objetoConsolidado.getId());
-			objetoConsolidado.setConsolidado("Si");
-			objetoConsolidado.setFkConsulta(idConsulta);
-			antDAO.ConsolidarConsulta(objetoConsolidado);
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido consolidado correctamente","Puede seguir registrando o volver"));
+			System.out.println("++++++++++++++++++++++ ENTRA AL METODO DE CONSOLIDAR ANTECEDENTES Quirurgico" );
+			List<Antecedentes_Quirurgicos> listobjetoConsolidado = antDAO.BuscarNoConsolidados();
+			if(listobjetoConsolidado!= null && listobjetoConsolidado.size() > 0){
+				for(Antecedentes_Quirurgicos iterator : listobjetoConsolidado){
+					System.out.println("++++++++++++++++++++++ ID de Objeto Recuperado " +iterator.getId());
+					iterator.setConsolidado("Si");
+					iterator.setFkConsulta(idConsulta);
+				}
+				antDAO.ConsolidarConsulta(listobjetoConsolidado);
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido consolidado correctamente","Puede seguir registrando o volver"));
+			}else{
+				System.out.println("++++++++++++++++++++++ No hay regitros sin consolidar");
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "No hay regitros sin consolidar","No hay motivos de consulta sin guardar definitivamente"));
+			}
 		}catch(Exception ex){
 			System.out.println(ex);
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer la consolidacion"));

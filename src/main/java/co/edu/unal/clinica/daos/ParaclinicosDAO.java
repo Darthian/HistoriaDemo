@@ -66,6 +66,40 @@ public class ParaclinicosDAO {
 		return objetoRetornado;
 	}
 	
+	public List<Paraclinicos> BuscarNoConsolidados() throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "FROM Paraclinicos WHERE CONSOLIDADO = 'No'";
+			Query query = session.createQuery(hql);
+
+			if (!query.list().isEmpty()) {
+				listPara = (List<Paraclinicos>) query.list();
+			}
+			else{
+				listPara = null;
+			}
+		} catch (Exception ex) {
+			throw ex;
+		}
+		return listPara;
+	}
+	
+	public void ConsolidarConsulta(List<Paraclinicos> list) throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			trans = session.beginTransaction();
+			for(Paraclinicos iterator: list){
+				session.update(iterator);
+			}
+			trans.commit();
+		} catch (Exception ex) {
+			trans.rollback();
+			throw ex;
+		} finally {
+			session.close();
+		}
+	}
+	
 	public void ConsolidarConsulta(Paraclinicos objetoActualizado) throws Exception {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();

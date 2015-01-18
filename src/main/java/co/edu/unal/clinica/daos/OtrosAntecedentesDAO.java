@@ -84,6 +84,40 @@ public class OtrosAntecedentesDAO {
 		return objetoRetornado;
 	}
 	
+	public List<Otros_Antecedentes> BuscarNoConsolidados() throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "FROM Otros_Antecedentes WHERE CONSOLIDADO = 'No'";
+			Query query = session.createQuery(hql);
+
+			if (!query.list().isEmpty()) {
+				lstOAnt = (List<Otros_Antecedentes>) query.list();
+			}
+			else{
+				lstOAnt = null;
+			}
+		} catch (Exception ex) {
+			throw ex;
+		}
+		return lstOAnt;
+	}
+	
+	public void ConsolidarConsulta(List<Otros_Antecedentes> list) throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			trans = session.beginTransaction();
+			for(Otros_Antecedentes iterator: list){
+				session.update(iterator);
+			}
+			trans.commit();
+		} catch (Exception ex) {
+			trans.rollback();
+			throw ex;
+		} finally {
+			session.close();
+		}
+	}
+	
 	public void ConsolidarConsulta(Otros_Antecedentes objetoActualizado) throws Exception {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();

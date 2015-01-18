@@ -15,7 +15,7 @@ public class AntecedentesSocialesDAO {
 	
 	private Session session;
 	private Transaction trans;
-	private List<Antecedentes_Sociales> lstAnt;
+	private List<Antecedentes_Sociales> lstSoc;
 	private Antecedentes_Sociales obj;
 	
 	public Antecedentes_Sociales verificarDatos(Antecedentes_Sociales ant) throws Exception {
@@ -41,11 +41,11 @@ public class AntecedentesSocialesDAO {
 			session = HibernateUtil.getSessionFactory().openSession();
 			Criteria cri = session.createCriteria(Antecedentes_Sociales.class);
 			cri.addOrder(Order.asc("cedula"));
-			lstAnt = cri.list();
+			lstSoc = cri.list();
 		} catch (Exception ex) {
 			throw ex;
 		}
-		return lstAnt;
+		return lstSoc;
 	}
 	
 	public List<Antecedentes_Sociales> Buscar(long cedula) throws Exception {
@@ -55,15 +55,15 @@ public class AntecedentesSocialesDAO {
 			Query query = session.createQuery(hql);
 
 			if (!query.list().isEmpty()) {
-				lstAnt = (List<Antecedentes_Sociales>) query.list();
+				lstSoc = (List<Antecedentes_Sociales>) query.list();
 			}
 			else{
-				lstAnt = null;
+				lstSoc = null;
 			}
 		} catch (Exception ex) {
 			throw ex;
 		}
-		return lstAnt;
+		return lstSoc;
 	}
 	
 	public Antecedentes_Sociales BuscarPorId(long id) throws Exception {
@@ -82,6 +82,40 @@ public class AntecedentesSocialesDAO {
 			throw ex;
 		}
 		return obj;
+	}
+	
+	public List<Antecedentes_Sociales> BuscarNoConsolidados() throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "FROM Antecedentes_Sociales WHERE CONSOLIDADO = 'No'";
+			Query query = session.createQuery(hql);
+
+			if (!query.list().isEmpty()) {
+				lstSoc = (List<Antecedentes_Sociales>) query.list();
+			}
+			else{
+				lstSoc = null;
+			}
+		} catch (Exception ex) {
+			throw ex;
+		}
+		return lstSoc;
+	}
+	
+	public void ConsolidarConsulta(List<Antecedentes_Sociales> list) throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			trans = session.beginTransaction();
+			for(Antecedentes_Sociales iterator: list){
+				session.update(iterator);
+			}
+			trans.commit();
+		} catch (Exception ex) {
+			trans.rollback();
+			throw ex;
+		} finally {
+			session.close();
+		}
 	}
 	
 	public void ConsolidarConsulta(Antecedentes_Sociales mot) throws Exception {

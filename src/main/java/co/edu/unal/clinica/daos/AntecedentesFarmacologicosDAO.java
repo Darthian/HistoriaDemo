@@ -66,6 +66,40 @@ public class AntecedentesFarmacologicosDAO {
 		return objetoRetornado;
 	}
 	
+	public List<Antecedentes_Farmacologicos> BuscarNoConsolidados() throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "FROM Antecedentes_Farmacologicos WHERE CONSOLIDADO = 'No'";
+			Query query = session.createQuery(hql);
+
+			if (!query.list().isEmpty()) {
+				listFarma = (List<Antecedentes_Farmacologicos>) query.list();
+			}
+			else{
+				listFarma = null;
+			}
+		} catch (Exception ex) {
+			throw ex;
+		}
+		return listFarma;
+	}
+	
+	public void ConsolidarConsulta(List<Antecedentes_Farmacologicos> list) throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			trans = session.beginTransaction();
+			for(Antecedentes_Farmacologicos iterator: list){
+				session.update(iterator);
+			}
+			trans.commit();
+		} catch (Exception ex) {
+			trans.rollback();
+			throw ex;
+		} finally {
+			session.close();
+		}
+	}
+	
 	public void ConsolidarConsulta(Antecedentes_Farmacologicos mot) throws Exception {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();

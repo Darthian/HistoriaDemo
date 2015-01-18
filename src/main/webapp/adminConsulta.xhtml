@@ -19,7 +19,7 @@
 		<div id="contenedor" class="center">
 			<div id="cabecera" align="center">
 				<img src="images/logo.png" width="25%" height="15%" />
-				<h2>Pacientes</h2>
+				<h2>Adminstración de consulta de evolución</h2>
 			</div>
 
 			<div id="lista" align="center">
@@ -33,8 +33,8 @@
 				<h3>Cedula del paciente de la consulta
 					<p:inputText id="cedulaBuscadaConsulta" value="#{pacienteMB.cedulaBuscadaConsulta}" required="true" label="Cedula del paciente"/>
 					<p:commandButton update="listaPacientes" actionListener="#{pacienteMB.buscarPaciente()}" value="Buscar Paciente"/>
-					<p:commandButton action="#{pacienteMB.terminarConsulta()}" value="Terminar Consulta"/>
-					<p:commandButton update="growl" actionListener="#{pacienteMB.guardarDefinitivamente()}" value="Guardar Definitivamente"/>
+					<p:commandButton action="#{pacienteMB.terminarConsulta('EVOLUCION')}" value="Terminar Consulta"/>
+					<p:commandButton update="growl" actionListener="#{pacienteMB.guardarDefinitivamente('EVOLUCION')}" value="Guardar Definitivamente"/>
 					<h:commandButton action="#{jasperController.vistaHistoriaPDF()}" style="background-color: blue;height:20px; font-size: 12px;"  value="Descargar resumen de consulta"/>
 				</h3>
 				<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
@@ -68,7 +68,7 @@
 					</p:column>
 					<p:column>
 						<f:facet name="header">
-							<h:outputLabel value="Enfermedad Actual" />
+							<h:outputLabel value="Enfermedad Actual(Subjetivo)" />
 						</f:facet>
 						<center>
 						<p:commandButton action="#{pacienteMB.leerEnfermedadActual(paciente)}" icon="ui-icon-bookmark" title="Registrar Enfermedad Actual"/>
