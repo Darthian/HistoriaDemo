@@ -84,6 +84,40 @@ public class AntecedentesGinecobstetricosDAO {
 		return obj;
 	}
 	
+	public List<Antecedentes_Ginecobstetricos> BuscarNoConsolidados() throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "FROM Antecedentes_Ginecobstetricos WHERE CONSOLIDADO = 'No'";
+			Query query = session.createQuery(hql);
+
+			if (!query.list().isEmpty()) {
+				lstAnt = (List<Antecedentes_Ginecobstetricos>) query.list();
+			}
+			else{
+				lstAnt = null;
+			}
+		} catch (Exception ex) {
+			throw ex;
+		}
+		return lstAnt;
+	}
+	
+	public void ConsolidarConsulta(List<Antecedentes_Ginecobstetricos> list) throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			trans = session.beginTransaction();
+			for(Antecedentes_Ginecobstetricos iterator: list){
+				session.update(iterator);
+			}
+			trans.commit();
+		} catch (Exception ex) {
+			trans.rollback();
+			throw ex;
+		} finally {
+			session.close();
+		}
+	}
+	
 	public void ConsolidarConsulta(Antecedentes_Ginecobstetricos mot) throws Exception {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();

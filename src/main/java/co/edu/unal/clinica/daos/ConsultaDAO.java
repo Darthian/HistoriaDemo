@@ -67,6 +67,24 @@ public class ConsultaDAO {
 		return lstAnt;
 	}
 	
+	public List<Consulta> BuscarPorTipoConsulta(String tipoConsulta) throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "FROM Consulta WHERE TIPO_CONSULTA = " + tipoConsulta;
+			Query query = session.createQuery(hql);
+
+			if (!query.list().isEmpty()) {
+				lstAnt = (List<Consulta>) query.list();
+			}
+			else{
+				lstAnt = null;
+			}
+		} catch (Exception ex) {
+			throw ex;
+		}
+		return lstAnt;
+	}
+	
 	public Consulta BuscarPorId(long id) throws Exception {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();

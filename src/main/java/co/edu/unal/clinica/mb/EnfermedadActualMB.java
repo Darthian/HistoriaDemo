@@ -45,29 +45,36 @@ public class EnfermedadActualMB {
 		}
 	}
 	
-	public void consolidarEnfermedadActual(){
-		try{
-			System.out.println("++++++++++++++++++++++ ENTRA AL METODO DE CONSOLIDAR Enfermedad Actual" );
-			Enfermedad_Actual objetoConsolidado = enfDao.BuscarPorId(enf.getId());
-			System.out.println("++++++++++++++++++++++ ID de Objeto Recuperado " +objetoConsolidado.getId());
-			objetoConsolidado.setConsolidado("Si");
-			enfDao.ConsolidarConsulta(objetoConsolidado);
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido consolidado correctamente","Puede seguir registrando o volver"));
-		}catch(Exception ex){
-			System.out.println(ex);
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer la consolidacion"));
-		}
-	}
+//	public void consolidarEnfermedadActual(){
+//		try{
+//			System.out.println("++++++++++++++++++++++ ENTRA AL METODO DE CONSOLIDAR Enfermedad Actual" );
+//			Enfermedad_Actual objetoConsolidado = enfDao.BuscarPorId(enf.getId());
+//			System.out.println("++++++++++++++++++++++ ID de Objeto Recuperado " +objetoConsolidado.getId());
+//			objetoConsolidado.setConsolidado("Si");
+//			enfDao.ConsolidarConsulta(objetoConsolidado);
+//			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido consolidado correctamente","Puede seguir registrando o volver"));
+//		}catch(Exception ex){
+//			System.out.println(ex);
+//			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer la consolidacion"));
+//		}
+//	}
 	
 	public void consolidarEnfermedadActual(long idConsulta){
 		try{
-			System.out.println("++++++++++++++++++++++ ENTRA AL METODO DE CONSOLIDAR Enfermedad Actual" );
-			Enfermedad_Actual objetoConsolidado = enfDao.BuscarPorId(enf.getId());
-			System.out.println("++++++++++++++++++++++ ID de Objeto Recuperado " +objetoConsolidado.getId());
-			objetoConsolidado.setConsolidado("Si");
-			objetoConsolidado.setFkConsulta(idConsulta);
-			enfDao.ConsolidarConsulta(objetoConsolidado);
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido consolidado correctamente","Puede seguir registrando o volver"));
+			System.out.println("++++++++++++++++++++++ ENTRA AL METODO DE CONSOLIDAR ANTECEDENTES Diagnosticos" );
+			List<Enfermedad_Actual> listobjetoConsolidado = enfDao.BuscarNoConsolidados();
+			if(listobjetoConsolidado!= null && listobjetoConsolidado.size() > 0){
+				for(Enfermedad_Actual iterator : listobjetoConsolidado){
+					System.out.println("++++++++++++++++++++++ ID de Objeto Recuperado " +iterator.getId());
+					iterator.setConsolidado("Si");
+					iterator.setFkConsulta(idConsulta);
+				}
+				enfDao.ConsolidarConsulta(listobjetoConsolidado);
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro ha sido consolidado correctamente","Puede seguir registrando o volver"));
+			}else{
+				System.out.println("++++++++++++++++++++++ No hay regitros sin consolidar");
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "No hay regitros sin consolidar","No hay motivos de consulta sin guardar definitivamente"));
+			}
 		}catch(Exception ex){
 			System.out.println(ex);
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer la consolidacion"));

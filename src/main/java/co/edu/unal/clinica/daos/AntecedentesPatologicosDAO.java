@@ -66,6 +66,40 @@ public class AntecedentesPatologicosDAO {
 		return objetoRetornado;
 	}
 	
+	public List<Antecedentes_Patologicos> BuscarNoConsolidados() throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "FROM Antecedentes_Patologicos WHERE CONSOLIDADO = 'No'";
+			Query query = session.createQuery(hql);
+
+			if (!query.list().isEmpty()) {
+				listPato = (List<Antecedentes_Patologicos>) query.list();
+			}
+			else{
+				listPato = null;
+			}
+		} catch (Exception ex) {
+			throw ex;
+		}
+		return listPato;
+	}
+	
+	public void ConsolidarConsulta(List<Antecedentes_Patologicos> list) throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			trans = session.beginTransaction();
+			for(Antecedentes_Patologicos iterator: list){
+				session.update(iterator);
+			}
+			trans.commit();
+		} catch (Exception ex) {
+			trans.rollback();
+			throw ex;
+		} finally {
+			session.close();
+		}
+	}
+	
 	public void ConsolidarConsulta(Antecedentes_Patologicos objetoActualizado) throws Exception {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
@@ -79,6 +113,7 @@ public class AntecedentesPatologicosDAO {
 			session.close();
 		}
 	}
+	
 	public void Modificar(Antecedentes_Patologicos emp) throws Exception {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();

@@ -84,6 +84,40 @@ public class AntecedentesQuirurgicosDAO {
 		return obj;
 	}
 	
+	public List<Antecedentes_Quirurgicos> BuscarNoConsolidados() throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "FROM Antecedentes_Quirurgicos WHERE CONSOLIDADO = 'No'";
+			Query query = session.createQuery(hql);
+
+			if (!query.list().isEmpty()) {
+				lstAnt = (List<Antecedentes_Quirurgicos>) query.list();
+			}
+			else{
+				lstAnt = null;
+			}
+		} catch (Exception ex) {
+			throw ex;
+		}
+		return lstAnt;
+	}
+	
+	public void ConsolidarConsulta(List<Antecedentes_Quirurgicos> list) throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			trans = session.beginTransaction();
+			for(Antecedentes_Quirurgicos iterator: list){
+				session.update(iterator);
+			}
+			trans.commit();
+		} catch (Exception ex) {
+			trans.rollback();
+			throw ex;
+		} finally {
+			session.close();
+		}
+	}
+	
 	public void ConsolidarConsulta(Antecedentes_Quirurgicos mot) throws Exception {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();

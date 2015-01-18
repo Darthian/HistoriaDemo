@@ -9,81 +9,69 @@
 	<title>Historia Clinica UN</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
-	<f:metadata>
-        <f:event type="preRenderView" listener="#{pacienteMB.listar()}"/>
-	</f:metadata>
 	
-	<script type="text/javascript">
-		function volver(){
-			window.history.back();	
-		}
-	</script>
-		
 </h:head>
 <body>
 
 	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{loginController.verificarSesion() eq false}" />
 	<h:form id="listaPacientes" rendered="#{loginController.verificarSesion()}">
+	<p:growl id="growl" showDetail="true" sticky="false" />
 		<div id="contenedor" class="center">
 			<div id="cabecera" align="center">
 				<img src="images/logo.png" width="25%" height="15%" />
-				<h2>Historias Clinicas</h2>
+				<h2>Administración de consulta primera vez</h2>
 			</div>
 
 			<div id="lista" align="center">
 				<ul>
-					<li class="item">
-						<h:link value="Crear Paciente" outcome="registrarPaciente.xhtml" rendered="#{loginController.usuario.rol eq 'ADMINISTRADOR'}" />
-						<h:link value="Ir a consulta" outcome="adminConsulta.xhtml" rendered="#{loginController.usuario.rol eq 'MEDICO'}" />
-					</li>
+					<li class="item"><h:link value="Ir a la vista general" outcome="adminPacientes.xhtml" rendered="#{loginController.usuario.rol eq 'MEDICO'}" /></li>
 				</ul>
 			</div>
 
 			<div id="contenedor-cuerpo" align="center">
-				<p:commandButton action="index.xhtml" value="Terminar Consulta de Historia Clinica"/>
+				
+				<h3>Cedula del paciente de la consulta
+					<p:inputText id="cedulaBuscadaConsulta" value="#{pacienteMB.cedulaBuscadaConsulta}" required="true" label="Cedula del paciente"/>
+					<p:commandButton update="listaPacientes" actionListener="#{pacienteMB.buscarPaciente()}" value="Buscar Paciente"/>
+					<p:commandButton action="#{pacienteMB.terminarConsulta('PRIMERA')}" value="Terminar Consulta"/>
+					<p:commandButton update="growl" actionListener="#{pacienteMB.guardarDefinitivamente('PRIMERA')}" value="Guardar Definitivamente"/>
+					<h:commandButton action="#{jasperController.vistaHistoriaPDF()}" style="background-color: blue;height:20px; font-size: 12px;"  value="Descargar resumen de historia"/>
+				</h3>
 				<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
 			
-				<p:dataTable tableStyle="width:auto" value="#{pacienteMB.listaPaciente}" var="paciente" filteredValue="#{pacienteMB.listaPacienteFiltrado}" paginator="true" rows="5">
-					<p:column filterBy="nombre_Paciente">
+				<p:dataTable tableStyle="width:auto" value="#{pacienteMB.listaPacienteSoloConsulta}" var="paciente" filteredValue="#{pacienteMB.listaPacienteFiltrado}" paginator="true" rows="5">
+					<p:column>
 						<f:facet name="header">
 							<h:outputLabel value="Nombre" />
 						</f:facet>
 						<h:outputLabel value="#{paciente.nombre_Paciente}" />
 					</p:column>
-					<p:column filterBy="cedula" >
+					<p:column>
 						<f:facet name="header">
 							<h:outputLabel value="Cedula" />
 						</f:facet>
 						<h:outputLabel value="#{paciente.cedula}" />
 					</p:column>
-					<p:column filterBy="edad">
+					<p:column>
 						<f:facet name="header">
 							<h:outputLabel value="Edad" />
 						</f:facet>
 						<h:outputLabel value="#{paciente.edad}" />
-					</p:column>					
-					<p:column>
-						<f:facet name="header">
-							<h:outputLabel value="Datos Pesonales" />
-						</f:facet>
-						<center>
-							<p:commandButton action="#{pacienteMB.leer(paciente)}" icon="ui-icon-pencil" title="Administrar Datos del Paciente"/>
-						</center>						
-					</p:column>					
+					</p:column>							
 					<p:column>
 						<f:facet name="header">
 							<h:outputLabel value="Motivo de Consulta" />
 						</f:facet>
 						<center>
-						<p:commandButton action="#{pacienteMB.leerMotivoConsulta(paciente)}" icon="ui-icon-document" title="Ver Motivo de consulta del paciente" />
+						<p:commandButton action="#{pacienteMB.leerMotivoConsulta(paciente)}" icon="ui-icon-bookmark" title="Registrar Motivo de consulta del paciente" />
 						</center>
 					</p:column>
 					<p:column>
 						<f:facet name="header">
-							<h:outputLabel value="Enfermedad Actual" />
+							<h:outputLabel value="Enfermedad Actual(Subjetivo)" />
 						</f:facet>
 						<center>
-						<p:commandButton action="#{pacienteMB.leerEnfermedadActual(paciente)}" icon="ui-icon-bookmark" title="Ver Enfermedad Actual"/>
+						<p:commandButton action="#{pacienteMB.leerEnfermedadActual(paciente)}" icon="ui-icon-bookmark" title="Registrar Enfermedad Actual"/>
 						</center>
 					</p:column>
 					<p:column>
@@ -91,12 +79,12 @@
 							<h:outputLabel value="Antecedentes" />
 						</f:facet>
 						<center>
-							<p:commandButton action="#{pacienteMB.leerAntecedentesFamiliares(paciente)}"  icon="ui-icon-heart" title="Administrar Antecedentes Familiares"/>
-							<p:commandButton action="#{pacienteMB.leerAntecedentesFarmacologicos(paciente)}"  icon="ui-icon-closethick" title="Administrar Antecedentes Farmacologicos"  /><br/>
-							<p:commandButton action="#{pacienteMB.leerAntecedentesPatologicos(paciente)}"  icon="ui-icon-clipboard" title="Administrar Antecedentes Patologicos"/>
-							<p:commandButton action="#{pacienteMB.leerHabitos(paciente)}" icon="ui-icon-plusthick" title="Administrar Habitos"/><br/>
-							<p:commandButton action="#{pacienteMB.leerAntecedentesClinicos(paciente)}" icon="ui-icon-plusthick" title="Registrar Antecedentes Clinicos" />
-							<p:commandButton action="#{pacienteMB.leerOtrosAntecedentes(paciente)}" icon="ui-icon-lightbulb" title="Administrar Otros Antecedentes"/>											
+						<p:commandButton action="#{pacienteMB.leerAntecedentesFamiliares(paciente)}"  icon="ui-icon-heart" title="Registrar Antecedentes Familiares"/>
+						<p:commandButton action="#{pacienteMB.leerAntecedentesFarmacologicos(paciente)}"  icon="ui-icon-closethick" title="Registrar Antecedentes Farmacologicos"/><br/>
+						<p:commandButton action="#{pacienteMB.leerHabitos(paciente)}" icon="ui-icon-plusthick" title="Registrar Habitos" />
+						<p:commandButton action="#{pacienteMB.leerAntecedentesClinicos(paciente)}" icon="ui-icon-plusthick" title="Registrar Antecedentes Clinicos" /><br/>
+						<p:commandButton action="#{pacienteMB.leerAntecedentesPatologicos(paciente)}"  icon="ui-icon-clipboard" title="Registrar Antecedentes Patologicos" />
+						<p:commandButton action="#{pacienteMB.leerOtrosAntecedentes(paciente)}" icon="ui-icon-lightbulb" title="Administrar Otros Antecedentes"/>
 						</center>
 					</p:column>
 					<p:column>
@@ -104,7 +92,7 @@
 							<h:outputLabel value="Revision por Sistema" />
 						</f:facet>
 						<center>
-						<p:commandButton action="#{pacienteMB.leerRevisionSistema(paciente)}" icon="ui-icon-note" title="Administrar Revision por sistema"/>
+						<p:commandButton action="#{pacienteMB.leerRevisionSistema(paciente)}" icon="ui-icon-note" title="Registrar Revision por sistema"/>
 						</center>
 					</p:column>
 					<p:column>
@@ -112,7 +100,7 @@
 							<h:outputLabel value="Examen Fisico" />
 						</f:facet>
 						<center>
-						<p:commandButton action="#{pacienteMB.leerExamenFisico(paciente)}" icon="ui-icon-note" title="Administrar Examen fisico"/>
+						<p:commandButton action="#{pacienteMB.leerExamenFisico(paciente)}" icon="ui-icon-note" title="Registrar Examen fisico"/>
 						</center>
 					</p:column>
 					<p:column>
@@ -120,7 +108,7 @@
 							<h:outputLabel value="Paraclinicos" />
 						</f:facet>
 						<center>
-						<p:commandButton action="#{pacienteMB.leerParaclinicos(paciente)}" icon="ui-icon-note" title="Administrar paraclinicos"/>
+						<p:commandButton action="#{pacienteMB.leerParaclinicos(paciente)}" icon="ui-icon-note" title="Registrar paraclinicos"/>
 						</center>
 					</p:column>
 					<p:column>
@@ -128,7 +116,7 @@
 							<h:outputLabel value="Analisis" />
 						</f:facet>
 						<center>
-						<p:commandButton action="#{pacienteMB.leerDiagnosticos(paciente)}" icon="ui-icon-note" title="Administrar Analisis"/>
+						<p:commandButton action="#{pacienteMB.leerDiagnosticos(paciente)}" icon="ui-icon-note" title="Registrar Analisis"/>
 						</center>
 					</p:column>
 					

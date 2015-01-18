@@ -66,6 +66,40 @@ public class DiagnosticosDAO {
 		return objetoRetornado;
 	}
 	
+	public List<Diagnosticos> BuscarNoConsolidados() throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "FROM Diagnosticos WHERE CONSOLIDADO = 'No'";
+			Query query = session.createQuery(hql);
+
+			if (!query.list().isEmpty()) {
+				listDiag = (List<Diagnosticos>) query.list();
+			}
+			else{
+				listDiag = null;
+			}
+		} catch (Exception ex) {
+			throw ex;
+		}
+		return listDiag;
+	}
+	
+	public void ConsolidarConsulta(List<Diagnosticos> list) throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			trans = session.beginTransaction();
+			for(Diagnosticos iterator: list){
+				session.update(iterator);
+			}
+			trans.commit();
+		} catch (Exception ex) {
+			trans.rollback();
+			throw ex;
+		} finally {
+			session.close();
+		}
+	}
+	
 	public void ConsolidarConsulta(Diagnosticos objetoActualizado) throws Exception {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
