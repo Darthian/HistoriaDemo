@@ -25,6 +25,7 @@ public class MotivoConsultaMB {
 	private Timestamp fechaCreacion;
 	
 	private List<Motivo_Consulta> listMot;
+	private List<Motivo_Consulta> listMotHC;
 	private MotivoConsultaDAO motDao = new MotivoConsultaDAO();
 	private static Motivo_Consulta mot = new Motivo_Consulta();
 	
@@ -106,6 +107,10 @@ public class MotivoConsultaMB {
 		this.listMot = motDao.Buscar(PacienteMB.cedulaConsulta);
 	}
 	
+	public void listarHC() throws Exception {
+		this.listMotHC = motDao.BuscarPorConsulta(ConsultaMB.idConsultaConstante);
+	}
+	
 	public String leer(Motivo_Consulta emp) {
 		mot = emp;
 		return "editarMotivo";
@@ -157,5 +162,13 @@ public class MotivoConsultaMB {
 
 	public void setFkConsulta(long fkConsulta) {
 		this.fkConsulta = fkConsulta;
+	}
+
+	public List<Motivo_Consulta> getListMotHC() {
+		return listMotHC;
+	}
+
+	public void setListMotHC(List<Motivo_Consulta> listMotHC) {
+		this.listMotHC = listMotHC;
 	}
 }

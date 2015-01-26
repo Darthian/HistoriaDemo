@@ -43,4 +43,22 @@ public class VistaHistoriaClinicaDAO {
 		}
 		return lstVistaTotalHistoria;
 	}
+	
+	public List<Vista_total_historia> BuscarIdConsulta(long idConsulta) throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "FROM Vista_total_historia WHERE ID_CONSULTA = " + idConsulta;
+			Query query = session.createQuery(hql);
+
+			if (!query.list().isEmpty()) {
+				lstVistaTotalHistoria = (List<Vista_total_historia>) query.list();
+			}
+			else{
+				lstVistaTotalHistoria = null;
+			}
+		} catch (Exception ex) {
+			throw ex;
+		}
+		return lstVistaTotalHistoria;
+	}
 }

@@ -48,6 +48,24 @@ public class HabitosDAO {
 		return listHab;
 	}
 	
+	public List<Habitos> BuscarPorConsulta(long idConsulta) throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "FROM Habitos WHERE FK_CONSULTA = " + idConsulta ;
+			Query query = session.createQuery(hql);
+
+			if (!query.list().isEmpty()) {
+				listHab = (List<Habitos>) query.list();
+			}
+			else{
+				listHab = null;
+			}
+		} catch (Exception ex) {
+			throw ex;
+		}
+		return listHab;
+	}
+	
 	public Habitos BuscarPorId(long id) throws Exception {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();

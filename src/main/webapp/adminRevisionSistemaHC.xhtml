@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Historia Clinica UN</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+	<f:metadata>
+		<f:event type="preRenderView" listener="#{revisionSistemaMB.listarHC()}" />
+	</f:metadata>
+</h:head>
+<body>
+
+	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{loginController.verificarSesion() eq false}" />
+	<h:form id="listaRevisiones" rendered="#{loginController.verificarSesion()}">
+		<div id="contenedor" class="center">
+			<div id="cabecera" align="center">
+				<img src="images/logo.png" width="25%" height="15%" />
+				<h2>Revision de Sistema de <h:outputLabel value="#{pacienteMB.paciente.nombre_Paciente}" /></h2>
+			</div>
+
+			<div id="lista" align="center">
+				<ul>
+					<li class="item">
+						<h:link value="Volver" outcome="adminHistoriaClinicaDetalle.xhtml"/> 
+					</li>
+				</ul>
+			</div>
+
+			<div id="contenedor-cuerpo" align="center">
+
+				<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
+
+				<p:accordionPanel multiple="true">
+					<p:tab title="Revision de sistema I">
+						<p:dataTable tableStyle="width:auto" value="#{revisionSistemaMB.listReviHC}" var="revi" paginator="true" rows="5">
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="Revision General" />
+								</f:facet>
+								<h:outputLabel value="#{revi.estadoGeneral}" />
+							</p:column>
+
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="CardioVascular" />
+								</f:facet>
+								<h:outputLabel value="#{revi.cardioVascular}" />
+							</p:column>
+
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="Respiratorio" />
+								</f:facet>
+								<h:outputLabel value="#{revi.respiratorio}" />
+							</p:column>
+
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="Gastrointestinal" />
+								</f:facet>
+								<h:outputLabel value="#{revi.gastrointestinal}" />
+							</p:column>
+							
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="Cabeza" />
+								</f:facet>
+								<h:outputLabel value="#{revi.cabeza}" />
+							</p:column>
+							
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="Cuello" />
+								</f:facet>
+								<h:outputLabel value="#{revi.cuello}" />
+							</p:column>
+							
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="Cardiopulmunar" />
+								</f:facet>
+								<h:outputLabel value="#{revi.cardiopulmunar}" />
+							</p:column>
+							
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="Digestivo" />
+								</f:facet>
+								<h:outputLabel value="#{revi.digestivo}" />
+							</p:column>
+						</p:dataTable>
+					</p:tab>
+					<p:tab title="Revision de sistema II">
+						<p:dataTable tableStyle="width:auto" value="#{revisionSistemaMB.listReviHC}" var="revi" paginator="true" rows="5">
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="Musculo Esqueltico" />
+								</f:facet>
+								<h:outputLabel value="#{revi.musculoEsqueletico}" />
+							</p:column>
+							
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="Genitourinario" />
+								</f:facet>
+								<h:outputLabel value="#{revi.genitourinario}" />
+							</p:column>
+							
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="Extremidades" />
+								</f:facet>
+								<h:outputLabel value="#{revi.extremidades}" />
+							</p:column>
+							
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="Psicomotor" />
+								</f:facet>
+								<h:outputLabel value="#{revi.psicomotor}" />
+							</p:column>
+							
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="Nervioso" />
+								</f:facet>
+								<h:outputLabel value="#{revi.nervioso}" />
+							</p:column>
+							
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="Endocrino" />
+								</f:facet>
+								<h:outputLabel value="#{revi.endocrino}" />
+							</p:column>
+							
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="Editar" />
+								</f:facet>
+								<h:outputLabel rendered="#{revi.consolidado eq 'Si'}" value="Registro consolidado" />
+								<h:commandButton action="#{revisionSistemaMB.leer(revi)}" rendered="#{revi.consolidado eq 'No'}" value="Modificar" />
+							</p:column>
+							
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="Fecha de Creacion" />
+								</f:facet>
+								<h:outputLabel value="#{revi.fechaCreacion}" />
+							</p:column>
+						</p:dataTable>
+					</p:tab>
+
+				</p:accordionPanel>
+			</div>
+
+			<div id="piePagina">
+				<div id="linkList">
+					<ul>
+						<li>Link1</li>
+						<li>Link2</li>
+						<li>Link3</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="clear"></div>
+
+		</div>
+	</h:form>
+</body>
+</html>

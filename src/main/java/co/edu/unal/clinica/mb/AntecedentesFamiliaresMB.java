@@ -28,6 +28,7 @@ public class AntecedentesFamiliaresMB {
 	private Timestamp fechaCreacion;
 	
 	private List<Antecedentes_Familiares> listaAnt;
+	private List<Antecedentes_Familiares> listaAntHC;
 	private AntecedentesFamiliaresDAO antDAO = new AntecedentesFamiliaresDAO();
 	private static Antecedentes_Familiares ant = new Antecedentes_Familiares();
 
@@ -103,6 +104,10 @@ public class AntecedentesFamiliaresMB {
 		this.listaAnt = antDAO.Buscar(PacienteMB.cedulaConsulta);
 	}
 	
+	public void listarHC() throws Exception {
+		this.listaAntHC = antDAO.BuscarPorConsulta(ConsultaMB.idConsultaConstante);
+	}
+	
 	public String leer(Antecedentes_Familiares emp) {
 		ant = emp;
 		return "editarAntecedentesFamiliares";
@@ -172,6 +177,14 @@ public class AntecedentesFamiliaresMB {
 
 	public void setFkConsulta(long fkConsulta) {
 		this.fkConsulta = fkConsulta;
+	}
+
+	public List<Antecedentes_Familiares> getListaAntHC() {
+		return listaAntHC;
+	}
+
+	public void setListaAntHC(List<Antecedentes_Familiares> listaAntHC) {
+		this.listaAntHC = listaAntHC;
 	}
 
 }

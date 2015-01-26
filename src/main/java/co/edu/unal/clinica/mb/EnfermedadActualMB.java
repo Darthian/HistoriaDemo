@@ -25,6 +25,7 @@ public class EnfermedadActualMB {
 	private Timestamp fechaCreacion;
 	
 	private List<Enfermedad_Actual> listEnf;
+	private List<Enfermedad_Actual> listEnfHC;
 	private EnfermedadActualDAO enfDao = new EnfermedadActualDAO();
 	private static Enfermedad_Actual enf = new Enfermedad_Actual();
 	
@@ -96,6 +97,10 @@ public class EnfermedadActualMB {
 		this.listEnf = enfDao.Buscar(PacienteMB.cedulaConsulta);
 	}
 	
+	public void listarHC() throws Exception {
+		this.listEnfHC = enfDao.BuscarPorConsulta(ConsultaMB.idConsultaConstante);
+	}
+	
 	public String leer(Enfermedad_Actual emp) {
 		enf = emp;
 		return "editarEnfermedadActual";
@@ -147,5 +152,13 @@ public class EnfermedadActualMB {
 
 	public void setFkConsulta(long fkConsulta) {
 		this.fkConsulta = fkConsulta;
+	}
+
+	public List<Enfermedad_Actual> getListEnfHC() {
+		return listEnfHC;
+	}
+
+	public void setListEnfHC(List<Enfermedad_Actual> listEnfHC) {
+		this.listEnfHC = listEnfHC;
 	}
 }

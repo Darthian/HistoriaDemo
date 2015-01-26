@@ -96,5 +96,4 @@ public class PacienteDAO {
 		}
 		return lstPacientes;
 	}
-
 }

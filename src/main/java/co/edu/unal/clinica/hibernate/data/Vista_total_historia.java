@@ -9,45 +9,66 @@ import javax.persistence.Id;
 public class Vista_total_historia {
 	
 	@Id
+	private long ID_CONSULTA;
+	private String TIPO_CONSULTA;
+	private String NOMBRE_PACIENTE;
 	private	long CEDULA;
-	private String NOMBRE_PACIENTE;		
-	private	int EDAD;			
+	private	Integer EDAD;			
 	private	String GENERO;		
-	private	String OCUPACION;	
+	private	String OCUPACION;
+	private String ENFERMEDAD_ACTUAL;
+	private String EJERCICIO_TEXTO;
 	private	String DIAGNOSTICO;	
 	private	String COMPLICACIONES_DIABETES;	
 	private	String NEFROPATIA_DIABETICA;		
-	private int	ESTADO_NEFROPATIA;				
+	private Integer	ESTADO_NEFROPATIA;				
 	private	String PRESION_ARTERIAL;		
-	private int FRECUENCIA_CARDIACA;			
-	private int FRECUENCIA_RESPIRATORIA;		
-	private int	TEMPERATURA;			
-	private float PESO;				
-	private float TALLA;				
-	private float MASA_CORPORAL;		
-	private float PERIMETRO_ABDOMINAL;	
+	private Integer FRECUENCIA_CARDIACA;			
+	private Integer FRECUENCIA_RESPIRATORIA;		
+	private Integer	TEMPERATURA;			
+	private Float PESO;				
+	private Float TALLA;				
+	private Float MASA_CORPORAL;		
+	private Float PERIMETRO_ABDOMINAL;	
 	private	String CARDIOPULMONAR;	
 	private	String ABDOMEN;		
 	private	String EXTREMIDADES;	
 	private	String NEUROLOGICO;		
 	private	String PIE_DIABETICO;		
-	private float BUN;				
-	private float CREATININA;		
-	private float GLICEMIA_AYUNAS;	
-	private float GLICEMIA_POST_PRANDIAL;		
-	private float HDL;		
-	private float HEMOGLOBINA_GLICOSILADA;	
-	private float LDL;				
+	private Float BUN;				
+	private Float CREATININA;		
+	private Float GLICEMIA_AYUNAS;	
+	private Float GLICEMIA_POST_PRANDIAL;		
+	private Float HDL;		
+	private Float HEMOGLOBINA_GLICOSILADA;	
+	private Float LDL;				
 	private	String PARCIAL_ORINA;	
-	private float TRIGLICERIDOS;			
-	private float VLDL;			
+	private Float TRIGLICERIDOS;			
+	private Float VLDL;			
 	private	String OTROS_PARACLINICOS;	
 	private	String ANALISIS;		
 	private	String PLAN;	
 	private String TRATAMIENTO_ACTUAL;
+	private String DESCRIPCION_DIAGNOSTICO;
 	private Timestamp FECHA_CREACION;
 	
 	public Vista_total_historia(){}
+
+	public long getID_CONSULTA() {
+		return ID_CONSULTA;
+	}
+
+	public void setID_CONSULTA(long iD_CONSULTA) {
+		ID_CONSULTA = iD_CONSULTA;
+	}
+
+	public String getTIPO_CONSULTA() {
+		return TIPO_CONSULTA;
+	}
+
+	public void setTIPO_CONSULTA(String tIPO_CONSULTA) {
+		TIPO_CONSULTA = tIPO_CONSULTA;
+	}
 
 	public String getNOMBRE_PACIENTE() {
 		return NOMBRE_PACIENTE;
@@ -65,11 +86,11 @@ public class Vista_total_historia {
 		CEDULA = cEDULA;
 	}
 
-	public int getEDAD() {
+	public Integer getEDAD() {
 		return EDAD;
 	}
 
-	public void setEDAD(int eDAD) {
+	public void setEDAD(Integer eDAD) {
 		EDAD = eDAD;
 	}
 
@@ -87,6 +108,22 @@ public class Vista_total_historia {
 
 	public void setOCUPACION(String oCUPACION) {
 		OCUPACION = oCUPACION;
+	}
+
+	public String getENFERMEDAD_ACTUAL() {
+		return ENFERMEDAD_ACTUAL;
+	}
+
+	public void setENFERMEDAD_ACTUAL(String eNFERMEDAD_ACTUAL) {
+		ENFERMEDAD_ACTUAL = eNFERMEDAD_ACTUAL;
+	}
+
+	public String getEJERCICIO_TEXTO() {
+		return EJERCICIO_TEXTO;
+	}
+
+	public void setEJERCICIO_TEXTO(String eJERCICIO_TEXTO) {
+		EJERCICIO_TEXTO = eJERCICIO_TEXTO;
 	}
 
 	public String getDIAGNOSTICO() {
@@ -113,11 +150,11 @@ public class Vista_total_historia {
 		NEFROPATIA_DIABETICA = nEFROPATIA_DIABETICA;
 	}
 
-	public int getESTADO_NEFROPATIA() {
+	public Integer getESTADO_NEFROPATIA() {
 		return ESTADO_NEFROPATIA;
 	}
 
-	public void setESTADO_NEFROPATIA(int eSTADO_NEFROPATIA) {
+	public void setESTADO_NEFROPATIA(Integer eSTADO_NEFROPATIA) {
 		ESTADO_NEFROPATIA = eSTADO_NEFROPATIA;
 	}
 
@@ -129,59 +166,59 @@ public class Vista_total_historia {
 		PRESION_ARTERIAL = pRESION_ARTERIAL;
 	}
 
-	public int getFRECUENCIA_CARDIACA() {
+	public Integer getFRECUENCIA_CARDIACA() {
 		return FRECUENCIA_CARDIACA;
 	}
 
-	public void setFRECUENCIA_CARDIACA(int fRECUENCIA_CARDIACA) {
+	public void setFRECUENCIA_CARDIACA(Integer fRECUENCIA_CARDIACA) {
 		FRECUENCIA_CARDIACA = fRECUENCIA_CARDIACA;
 	}
 
-	public int getFRECUENCIA_RESPIRATORIA() {
+	public Integer getFRECUENCIA_RESPIRATORIA() {
 		return FRECUENCIA_RESPIRATORIA;
 	}
 
-	public void setFRECUENCIA_RESPIRATORIA(int fRECUENCIA_RESPIRATORIA) {
+	public void setFRECUENCIA_RESPIRATORIA(Integer fRECUENCIA_RESPIRATORIA) {
 		FRECUENCIA_RESPIRATORIA = fRECUENCIA_RESPIRATORIA;
 	}
 
-	public int getTEMPERATURA() {
+	public Integer getTEMPERATURA() {
 		return TEMPERATURA;
 	}
 
-	public void setTEMPERATURA(int tEMPERATURA) {
+	public void setTEMPERATURA(Integer tEMPERATURA) {
 		TEMPERATURA = tEMPERATURA;
 	}
 
-	public float getPESO() {
+	public Float getPESO() {
 		return PESO;
 	}
 
-	public void setPESO(float pESO) {
+	public void setPESO(Float pESO) {
 		PESO = pESO;
 	}
 
-	public float getTALLA() {
+	public Float getTALLA() {
 		return TALLA;
 	}
 
-	public void setTALLA(float tALLA) {
+	public void setTALLA(Float tALLA) {
 		TALLA = tALLA;
 	}
 
-	public float getMASA_CORPORAL() {
+	public Float getMASA_CORPORAL() {
 		return MASA_CORPORAL;
 	}
 
-	public void setMASA_CORPORAL(float mASA_CORPORAL) {
+	public void setMASA_CORPORAL(Float mASA_CORPORAL) {
 		MASA_CORPORAL = mASA_CORPORAL;
 	}
 
-	public float getPERIMETRO_ABDOMINAL() {
+	public Float getPERIMETRO_ABDOMINAL() {
 		return PERIMETRO_ABDOMINAL;
 	}
 
-	public void setPERIMETRO_ABDOMINAL(float pERIMETRO_ABDOMINAL) {
+	public void setPERIMETRO_ABDOMINAL(Float pERIMETRO_ABDOMINAL) {
 		PERIMETRO_ABDOMINAL = pERIMETRO_ABDOMINAL;
 	}
 
@@ -189,8 +226,8 @@ public class Vista_total_historia {
 		return CARDIOPULMONAR;
 	}
 
-	public void setCARDIOPULMONAR(String cardiopulmunar) {
-		this.CARDIOPULMONAR = cardiopulmunar;
+	public void setCARDIOPULMONAR(String cARDIOPULMONAR) {
+		CARDIOPULMONAR = cARDIOPULMONAR;
 	}
 
 	public String getABDOMEN() {
@@ -225,59 +262,59 @@ public class Vista_total_historia {
 		PIE_DIABETICO = pIE_DIABETICO;
 	}
 
-	public float getBUN() {
+	public Float getBUN() {
 		return BUN;
 	}
 
-	public void setBUN(float bUN) {
+	public void setBUN(Float bUN) {
 		BUN = bUN;
 	}
 
-	public float getCREATININA() {
+	public Float getCREATININA() {
 		return CREATININA;
 	}
 
-	public void setCREATININA(float cREATININA) {
+	public void setCREATININA(Float cREATININA) {
 		CREATININA = cREATININA;
 	}
 
-	public float getGLICEMIA_AYUNAS() {
+	public Float getGLICEMIA_AYUNAS() {
 		return GLICEMIA_AYUNAS;
 	}
 
-	public void setGLICEMIA_AYUNAS(float gLICEMIA_AYUNAS) {
+	public void setGLICEMIA_AYUNAS(Float gLICEMIA_AYUNAS) {
 		GLICEMIA_AYUNAS = gLICEMIA_AYUNAS;
 	}
 
-	public float getGLICEMIA_POST_PRANDIAL() {
+	public Float getGLICEMIA_POST_PRANDIAL() {
 		return GLICEMIA_POST_PRANDIAL;
 	}
 
-	public void setGLICEMIA_POST_PRANDIAL(float gLICEMIA_POST_PRANDIAL) {
+	public void setGLICEMIA_POST_PRANDIAL(Float gLICEMIA_POST_PRANDIAL) {
 		GLICEMIA_POST_PRANDIAL = gLICEMIA_POST_PRANDIAL;
 	}
 
-	public float getHDL() {
+	public Float getHDL() {
 		return HDL;
 	}
 
-	public void setHDL(float hDL) {
+	public void setHDL(Float hDL) {
 		HDL = hDL;
 	}
 
-	public float getHEMOGLOBINA_GLICOSILADA() {
+	public Float getHEMOGLOBINA_GLICOSILADA() {
 		return HEMOGLOBINA_GLICOSILADA;
 	}
 
-	public void setHEMOGLOBINA_GLICOSILADA(float hEMOGLOBINA_GLICOSILADA) {
+	public void setHEMOGLOBINA_GLICOSILADA(Float hEMOGLOBINA_GLICOSILADA) {
 		HEMOGLOBINA_GLICOSILADA = hEMOGLOBINA_GLICOSILADA;
 	}
 
-	public float getLDL() {
+	public Float getLDL() {
 		return LDL;
 	}
 
-	public void setLDL(float lDL) {
+	public void setLDL(Float lDL) {
 		LDL = lDL;
 	}
 
@@ -289,19 +326,19 @@ public class Vista_total_historia {
 		PARCIAL_ORINA = pARCIAL_ORINA;
 	}
 
-	public float getTRIGLICERIDOS() {
+	public Float getTRIGLICERIDOS() {
 		return TRIGLICERIDOS;
 	}
 
-	public void setTRIGLICERIDOS(float tRIGLICERIDOS) {
+	public void setTRIGLICERIDOS(Float tRIGLICERIDOS) {
 		TRIGLICERIDOS = tRIGLICERIDOS;
 	}
 
-	public float getVLDL() {
+	public Float getVLDL() {
 		return VLDL;
 	}
 
-	public void setVLDL(float vLDL) {
+	public void setVLDL(Float vLDL) {
 		VLDL = vLDL;
 	}
 
@@ -329,6 +366,22 @@ public class Vista_total_historia {
 		PLAN = pLAN;
 	}
 
+	public String getTRATAMIENTO_ACTUAL() {
+		return TRATAMIENTO_ACTUAL;
+	}
+
+	public void setTRATAMIENTO_ACTUAL(String tRATAMIENTO_ACTUAL) {
+		TRATAMIENTO_ACTUAL = tRATAMIENTO_ACTUAL;
+	}
+
+	public String getDESCRIPCION_DIAGNOSTICO() {
+		return DESCRIPCION_DIAGNOSTICO;
+	}
+
+	public void setDESCRIPCION_DIAGNOSTICO(String dESCRIPCION_DIAGNOSTICO) {
+		DESCRIPCION_DIAGNOSTICO = dESCRIPCION_DIAGNOSTICO;
+	}
+
 	public Timestamp getFECHA_CREACION() {
 		return FECHA_CREACION;
 	}
@@ -337,11 +390,5 @@ public class Vista_total_historia {
 		FECHA_CREACION = fECHA_CREACION;
 	}
 
-	public String getTRATAMIENTO_ACTUAL() {
-		return TRATAMIENTO_ACTUAL;
-	}
-
-	public void setTRATAMIENTO_ACTUAL(String tRATAMIENTO_ACTUAL) {
-		TRATAMIENTO_ACTUAL = tRATAMIENTO_ACTUAL;
-	}
+	
 }

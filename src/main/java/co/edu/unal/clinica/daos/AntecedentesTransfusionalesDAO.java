@@ -66,6 +66,24 @@ public class AntecedentesTransfusionalesDAO {
 		return lstAnt;
 	}
 	
+	public List<Antecedentes_Transfusionales> BuscarPorConsulta(long idConsulta) throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "FROM Antecedentes_Transfusionales WHERE FK_CONSULTA = " + idConsulta;
+			Query query = session.createQuery(hql);
+
+			if (!query.list().isEmpty()) {
+				lstAnt = (List<Antecedentes_Transfusionales>) query.list();
+			}
+			else{
+				lstAnt = null;
+			}
+		} catch (Exception ex) {
+			throw ex;
+		}
+		return lstAnt;
+	}
+	
 	public Antecedentes_Transfusionales BuscarPorId(long id) throws Exception {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();

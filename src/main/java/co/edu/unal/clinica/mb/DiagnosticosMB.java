@@ -27,6 +27,7 @@ public class DiagnosticosMB {
 	private Timestamp fechaCreacion;
 	
 	private List<Diagnosticos> listDiag;
+	private List<Diagnosticos> listDiagHC;
 	private DiagnosticosDAO diagnosticosDao = new DiagnosticosDAO();
 	private static Diagnosticos diag = new Diagnosticos();
 	
@@ -97,6 +98,10 @@ public class DiagnosticosMB {
 		this.listDiag = diagnosticosDao.Buscar(PacienteMB.cedulaConsulta);
 	}
 	
+	public void listarHC() throws Exception {
+		this.listDiagHC = diagnosticosDao.BuscarPorConsulta(ConsultaMB.idConsultaConstante);
+	}
+	
 	public String leer(Diagnosticos emp) {
 		diag = emp;
 		return "editarDiagnosticos";
@@ -160,5 +165,13 @@ public class DiagnosticosMB {
 
 	public void setFkConsulta(long fkConsulta) {
 		this.fkConsulta = fkConsulta;
+	}
+
+	public List<Diagnosticos> getListDiagHC() {
+		return listDiagHC;
+	}
+
+	public void setListDiagHC(List<Diagnosticos> listDiagHC) {
+		this.listDiagHC = listDiagHC;
 	}
 }

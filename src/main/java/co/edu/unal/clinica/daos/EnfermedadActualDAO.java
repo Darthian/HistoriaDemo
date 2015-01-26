@@ -48,6 +48,24 @@ public class EnfermedadActualDAO {
 		return listEnf;
 	}
 	
+	public List<Enfermedad_Actual> BuscarPorConsulta(long idConsulta) throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "FROM Enfermedad_Actual WHERE FK_CONSULTA = " + idConsulta;
+			Query query = session.createQuery(hql);
+
+			if (!query.list().isEmpty()) {
+				listEnf = (List<Enfermedad_Actual>) query.list();
+			}
+			else{
+				listEnf = null;
+			}
+		} catch (Exception ex) {
+			throw ex;
+		}
+		return listEnf;
+	}
+	
 	public Enfermedad_Actual BuscarPorId(long id) throws Exception {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();

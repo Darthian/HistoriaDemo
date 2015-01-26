@@ -66,6 +66,24 @@ public class AntecedentesGinecobstetricosDAO {
 		return lstAnt;
 	}
 	
+	public List<Antecedentes_Ginecobstetricos> BuscarPorConsulta(long idConsulta) throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "FROM Antecedentes_Ginecobstetricos WHERE FK_CONSULTA = " + idConsulta;
+			Query query = session.createQuery(hql);
+
+			if (!query.list().isEmpty()) {
+				lstAnt = (List<Antecedentes_Ginecobstetricos>) query.list();
+			}
+			else{
+				lstAnt = null;
+			}
+		} catch (Exception ex) {
+			throw ex;
+		}
+		return lstAnt;
+	}
+	
 	public Antecedentes_Ginecobstetricos BuscarPorId(long id) throws Exception {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();

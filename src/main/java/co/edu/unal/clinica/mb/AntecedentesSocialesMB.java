@@ -25,6 +25,7 @@ public class AntecedentesSocialesMB {
 	private Timestamp fechaCreacion;
 	
 	private List<Antecedentes_Sociales> listaAnt;
+	private List<Antecedentes_Sociales> listaAntHC;
 	private AntecedentesSocialesDAO antDAO = new AntecedentesSocialesDAO();
 	private static Antecedentes_Sociales ant = new Antecedentes_Sociales();
 
@@ -98,6 +99,10 @@ public class AntecedentesSocialesMB {
 		cedulaPaciente = PacienteMB.cedulaConsulta;
 		System.out.println("Cedula de la historia:"+PacienteMB.cedulaConsulta);
 		this.listaAnt = antDAO.Buscar(PacienteMB.cedulaConsulta);
+	}
+	
+	public void listarHC() throws Exception {
+		this.listaAntHC = antDAO.BuscarPorConsulta(ConsultaMB.idConsultaConstante);
 	}
 	
 	public String leer(Antecedentes_Sociales emp) {
@@ -175,6 +180,14 @@ public class AntecedentesSocialesMB {
 
 	public void setFkConsulta(long fkConsulta) {
 		this.fkConsulta = fkConsulta;
+	}
+
+	public List<Antecedentes_Sociales> getListaAntHC() {
+		return listaAntHC;
+	}
+
+	public void setListaAntHC(List<Antecedentes_Sociales> listaAntHC) {
+		this.listaAntHC = listaAntHC;
 	}
 
 }

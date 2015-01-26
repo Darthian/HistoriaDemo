@@ -28,18 +28,14 @@ public class JasperController {
 	private List<Paciente> listaPaciente;
 	
 	private VistaHistoriaClinicaDAO vistaHistoriaDao = new VistaHistoriaClinicaDAO();
-	private List<Vista_total_historia> listaVistaHistoria;
+	
+	private List<Vista_total_historia> listaVistaHistoriaPrimeraVez;
 	
 	private JasperPrint jasperPrint;
 
 	public List<Paciente> getListaPaciente() throws Exception {
 		this.listaPaciente = pacienteDAO.Listar();
 		return listaPaciente;
-	}
-
-	public List<Vista_total_historia> getListaVistaHistoria() throws Exception {
-		this.listaVistaHistoria = vistaHistoriaDao.Listar();
-		return listaVistaHistoria;
 	}
 	
 	public void init() throws JRException{
@@ -55,15 +51,15 @@ public class JasperController {
 		jasperPrint = JasperFillManager.fillReport(reportPath, new HashMap(), beanCollectionDataSource);
 	}
 	
-	public void initHistoria() throws JRException{
+	public void initHistoria(long idConsulta) throws JRException{
 		try{
-			this.listaVistaHistoria = vistaHistoriaDao.BuscarPorCedula(PacienteMB.cedulaConsulta);
-			System.out.println("Se cargo la lista "+this.listaVistaHistoria+" con cedula "+PacienteMB.cedulaConsulta);
+			this.listaVistaHistoriaPrimeraVez = vistaHistoriaDao.BuscarIdConsulta(idConsulta);
+			System.out.println("Se cargo la lista "+this.listaVistaHistoriaPrimeraVez+" de la consulta con id "+idConsulta);
 		}catch(Exception e){
 			System.out.println("Ha fallado el llamado al reporte");
 			e.printStackTrace();
 		}
-		JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(this.listaVistaHistoria);
+		JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(this.listaVistaHistoriaPrimeraVez);
 		String reportPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("reports/HistoriaClinica.jasper");
 		jasperPrint = JasperFillManager.fillReport(reportPath, new HashMap(), beanCollectionDataSource);
 	}
@@ -77,8 +73,8 @@ public class JasperController {
 		FacesContext.getCurrentInstance().responseComplete();
 	}
 	
-	public void vistaHistoriaPDF() throws JRException, IOException{
-		initHistoria();
+	public void vistaHistoriaPDF(long idConsulta) throws JRException, IOException{
+		initHistoria(idConsulta);
 		HttpServletResponse httpServletResponse = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
 		httpServletResponse.addHeader("Content-disposition", "attachment; filename=HistoriaClinica.pdf");
 		ServletOutputStream servletOutputStream = httpServletResponse.getOutputStream();

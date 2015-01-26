@@ -48,6 +48,24 @@ public class MotivoConsultaDAO {
 		return listMot;
 	}
 	
+	public List<Motivo_Consulta> BuscarPorConsulta(long idConsulta) throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "FROM Motivo_Consulta WHERE FK_CONSULTA = " + idConsulta ;
+			Query query = session.createQuery(hql);
+
+			if (!query.list().isEmpty()) {
+				listMot = (List<Motivo_Consulta>) query.list();
+			}
+			else{
+				listMot = null;
+			}
+		} catch (Exception ex) {
+			throw ex;
+		}
+		return listMot;
+	}
+	
 	public List<Motivo_Consulta> BuscarNoConsolidados() throws Exception {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();

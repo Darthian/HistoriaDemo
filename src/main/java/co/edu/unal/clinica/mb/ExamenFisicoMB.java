@@ -44,6 +44,7 @@ public class ExamenFisicoMB {
 	private Timestamp fechaCreacion;
 	
 	private List<Examen_Fisico> listExam;
+	private List<Examen_Fisico> listExamHC;
 	private ExamenFisicoDAO examDao = new ExamenFisicoDAO();
 	private static Examen_Fisico exam = new Examen_Fisico();
 	
@@ -113,6 +114,10 @@ public class ExamenFisicoMB {
 	
 	public void listar() throws Exception {
 		this.listExam = examDao.Buscar(PacienteMB.cedulaConsulta);
+	}
+	
+	public void listarHC() throws Exception {
+		this.listExamHC = examDao.BuscarPorConsulta(ConsultaMB.idConsultaConstante);
 	}
 	
 	public String leer(Examen_Fisico emp) {
@@ -295,5 +300,13 @@ public class ExamenFisicoMB {
 
 	public void setFkConsulta(long fkConsulta) {
 		this.fkConsulta = fkConsulta;
+	}
+
+	public List<Examen_Fisico> getListExamHC() {
+		return listExamHC;
+	}
+
+	public void setListExamHC(List<Examen_Fisico> listExamHC) {
+		this.listExamHC = listExamHC;
 	}
 }

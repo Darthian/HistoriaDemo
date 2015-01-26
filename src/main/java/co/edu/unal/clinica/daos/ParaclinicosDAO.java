@@ -48,6 +48,24 @@ public class ParaclinicosDAO {
 		return listPara;
 	}
 	
+	public List<Paraclinicos> BuscarPorConsulta(long idConsulta) throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "FROM Paraclinicos WHERE FK_CONSULTA = " + idConsulta;
+			Query query = session.createQuery(hql);
+
+			if (!query.list().isEmpty()) {
+				listPara = (List<Paraclinicos>) query.list();
+			}
+			else{
+				listPara = null;
+			}
+		} catch (Exception ex) {
+			throw ex;
+		}
+		return listPara;
+	}
+	
 	public Paraclinicos BuscarPorId(long id) throws Exception {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();

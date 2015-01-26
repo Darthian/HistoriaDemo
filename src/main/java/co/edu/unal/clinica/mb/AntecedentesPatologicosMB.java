@@ -36,6 +36,7 @@ public class AntecedentesPatologicosMB {
 	private Timestamp fechaCreacion;
 	
 	private List<Antecedentes_Patologicos> listPato;
+	private List<Antecedentes_Patologicos> listPatoHC;
 	private AntecedentesPatologicosDAO patoDao = new AntecedentesPatologicosDAO();
 	private static Antecedentes_Patologicos pato = new Antecedentes_Patologicos();
 	
@@ -107,6 +108,10 @@ public class AntecedentesPatologicosMB {
 	
 	public void listar() throws Exception {
 		this.listPato = patoDao.Buscar(PacienteMB.cedulaConsulta);
+	}
+	
+	public void listarHC() throws Exception {
+		this.listPatoHC = patoDao.BuscarPorConsulta(ConsultaMB.idConsultaConstante);
 	}
 	
 	public String leer(Antecedentes_Patologicos emp) {
@@ -232,5 +237,13 @@ public class AntecedentesPatologicosMB {
 
 	public void setFkConsulta(long fkConsulta) {
 		this.fkConsulta = fkConsulta;
+	}
+
+	public List<Antecedentes_Patologicos> getListPatoHC() {
+		return listPatoHC;
+	}
+
+	public void setListPatoHC(List<Antecedentes_Patologicos> listPatoHC) {
+		this.listPatoHC = listPatoHC;
 	}
 }

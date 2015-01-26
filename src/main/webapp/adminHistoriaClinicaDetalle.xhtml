@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Historia Clinica UN</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+	<f:metadata>
+        <f:event type="preRenderView" listener="#{pacienteMB.buscarPacienteHistoriaDetalle()}"/>
+	</f:metadata>
+</h:head>
+<body>
+
+	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{loginController.verificarSesion() eq false}" />
+	<h:form id="listaPacientes" rendered="#{loginController.verificarSesion()}">
+		<div id="contenedor" class="center">
+			<div id="cabecera" align="center">
+				<img src="images/logo.png" width="25%" height="15%" />
+				<h2>Paciente: <h:outputLabel value="#{pacienteMB.paciente.nombre_Paciente}" /></h2>
+			</div>
+
+			<div id="lista" align="center">
+				<ul>
+					<li class="item">
+						<h:link value="Volver" outcome="adminHistoriaClinica.xhtml" />
+					</li>
+				</ul>
+			</div>
+
+			<div id="contenedor-cuerpo" align="center">
+				<p:commandButton action="index.xhtml" value="Terminar Consulta de Historia Clinica"/>
+				<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
+			
+				<p:dataTable tableStyle="width:auto" value="#{pacienteMB.listaPacienteHistoriaDetalle}" var="paciente" paginator="true" rows="5">
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Antecedentes" />
+						</f:facet>
+						<center>
+							<p:commandButton action="adminHabitosHC.xhtml" icon="ui-icon-plusthick" value="Habitos" title="Administrar Habitos"/><br/>
+							<p:commandButton action="adminAntecedentesFamiliaresHC.xhtml" icon="ui-icon-heart" value="Antecedentes Familiares" title="Administrar Antecedentes Familiares"/><br/>
+							<p:commandButton action="adminAntecedentesFarmacologicosHC.xhtml" icon="ui-icon-closethick" value="Antecedentes Farmacologicos" title="Administrar Antecedentes Farmacologicos" /><br/>
+							<p:commandButton action="adminAntecedentesPatologicosHC.xhtml" icon="ui-icon-clipboard" value="Antecedentes Patologicos" title="Administrar Antecedentes Patologicos"/><br/>
+							<p:commandButton action="adminAntecedentesAlergicosHC.xhtml" value="Antecedentes Alergicos" title="Registrar Antecedente Alergico" /><br/>
+							<p:commandButton action="adminAntecedentesGinecobstetricosHC.xhtml" value="Antecedentes Ginecobstétricos" title="Registrar Antecedente Ginecobstetrico" /><br/>
+							<p:commandButton action="adminAntecedentesQuirurgicosHC.xhtml" value="Antecedentes Quirúrgicos" title="Registrar Antecedente Quirurgico" /><br/>
+							<p:commandButton action="adminAntecedentesTraumatologicosHC.xhtml" value="Antecedentes Traumatológicos" title="Registrar Antecedente Traumatologico" /><br/>
+							<p:commandButton action="adminAntecedentesTransfusionalesHC.xhtml" value="AntecedentesTransfusionales" title="Registrar Antecedente Transfusional"/><br/>
+							<p:commandButton action="adminAntecedentesSocialesHC.xhtml" value="Antecedentes Sociales" title="Registrar Antecedente Social"/><br/>
+							<p:commandButton action="adminOtrosAntecedentesHC.xhtml" icon="ui-icon-lightbulb" value="Otros Antecedentes" title="Administrar Otros Antecedentes"/><br/>
+						</center>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Revision por Sistema" />
+						</f:facet>
+						<center>
+						<p:commandButton action="adminRevisionSistemaHC.xhtml" icon="ui-icon-note" value="Revision por sistema" title="Administrar Revision por sistema"/>
+						</center>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Examen Fisico" />
+						</f:facet>
+						<center>
+						<p:commandButton action="adminExamenFisicoHC.xhtml" icon="ui-icon-note" value="Examen fisico" title="Administrar Examen fisico"/>
+						</center>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Paraclinicos" />
+						</f:facet>
+						<center>
+						<p:commandButton action="adminParaclinicosHC.xhtml" icon="ui-icon-note" value="paraclinicos" title="Administrar paraclinicos"/>
+						</center>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Analisis" />
+						</f:facet>
+						<center>
+						<p:commandButton action="adminDiagnosticosHC.xhtml" icon="ui-icon-note" value="Analisis" title="Administrar Analisis"/>
+						</center>
+					</p:column>
+					
+				</p:dataTable>
+				
+			</div>
+
+			<div id="piePagina">
+				<div id="linkList">
+					<ul>
+						<li>Link1</li>
+						<li>Link2</li>
+						<li>Link3</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="clear"></div>
+
+		</div>
+	</h:form>
+</body>
+</html>

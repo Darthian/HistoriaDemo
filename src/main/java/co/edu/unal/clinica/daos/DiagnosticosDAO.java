@@ -48,6 +48,24 @@ public class DiagnosticosDAO {
 		return listDiag;
 	}
 	
+	public List<Diagnosticos> BuscarPorConsulta(long idConsulta) throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "FROM Diagnosticos WHERE FK_CONSULTA = " + idConsulta;
+			Query query = session.createQuery(hql);
+
+			if (!query.list().isEmpty()) {
+				listDiag = (List<Diagnosticos>) query.list();
+			}
+			else{
+				listDiag = null;
+			}
+		} catch (Exception ex) {
+			throw ex;
+		}
+		return listDiag;
+	}
+	
 	public Diagnosticos BuscarPorId(long id) throws Exception {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();

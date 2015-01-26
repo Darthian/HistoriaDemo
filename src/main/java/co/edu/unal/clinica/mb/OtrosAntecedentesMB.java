@@ -26,6 +26,7 @@ public class OtrosAntecedentesMB {
 	private Timestamp fechaCreacion;
 	
 	private List<Otros_Antecedentes> listaOAnt;
+	private List<Otros_Antecedentes> listaOAntHC;
 	private OtrosAntecedentesDAO oantDAO = new OtrosAntecedentesDAO();
 	private static Otros_Antecedentes oant = new Otros_Antecedentes();
 	
@@ -101,6 +102,10 @@ public class OtrosAntecedentesMB {
 		this.listaOAnt = oantDAO.Buscar(PacienteMB.cedulaConsulta);
 	}
 	
+	public void listarHC() throws Exception {
+		this.listaOAntHC = oantDAO.BuscarPorConsulta(ConsultaMB.idConsultaConstante);
+	}
+	
 	public String leer(Otros_Antecedentes emp) {
 		oant = emp;
 		return "editarOtrosAntecedentes";
@@ -167,5 +172,13 @@ public class OtrosAntecedentesMB {
 
 	public void setFkConsulta(long fkConsulta) {
 		this.fkConsulta = fkConsulta;
+	}
+
+	public List<Otros_Antecedentes> getListaOAntHC() {
+		return listaOAntHC;
+	}
+
+	public void setListaOAntHC(List<Otros_Antecedentes> listaOAntHC) {
+		this.listaOAntHC = listaOAntHC;
 	}
 }

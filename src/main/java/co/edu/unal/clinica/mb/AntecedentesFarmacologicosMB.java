@@ -29,6 +29,7 @@ public class AntecedentesFarmacologicosMB {
 	private Timestamp fechaCreacion;
 	
 	private List<Antecedentes_Farmacologicos> listFarma;
+	private List<Antecedentes_Farmacologicos> listFarmaHC;
 	private AntecedentesFarmacologicosDAO farmaDao = new AntecedentesFarmacologicosDAO();
 	private static Antecedentes_Farmacologicos farma = new Antecedentes_Farmacologicos();
 	
@@ -98,6 +99,10 @@ public class AntecedentesFarmacologicosMB {
 		
 	public void listar() throws Exception {
 		this.listFarma = farmaDao.Buscar(PacienteMB.cedulaConsulta);
+	}
+	
+	public void listarHC() throws Exception {
+		this.listFarmaHC = farmaDao.BuscarPorConsulta(ConsultaMB.idConsultaConstante);
 	}
 	
 	public String leer(Antecedentes_Farmacologicos emp) {
@@ -175,5 +180,13 @@ public class AntecedentesFarmacologicosMB {
 
 	public void setFkConsulta(long fkConsulta) {
 		this.fkConsulta = fkConsulta;
+	}
+
+	public List<Antecedentes_Farmacologicos> getListFarmaHC() {
+		return listFarmaHC;
+	}
+
+	public void setListFarmaHC(List<Antecedentes_Farmacologicos> listFarmaHC) {
+		this.listFarmaHC = listFarmaHC;
 	}
 }

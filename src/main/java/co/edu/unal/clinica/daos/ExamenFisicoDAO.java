@@ -48,6 +48,24 @@ public class ExamenFisicoDAO {
 		return listExa;
 	}
 	
+	public List<Examen_Fisico> BuscarPorConsulta(long idConsulta) throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "FROM Examen_Fisico WHERE FK_CONSULTA = " + idConsulta;
+			Query query = session.createQuery(hql);
+
+			if (!query.list().isEmpty()) {
+				listExa = (List<Examen_Fisico>) query.list();
+			}
+			else{
+				listExa = null;
+			}
+		} catch (Exception ex) {
+			throw ex;
+		}
+		return listExa;
+	}
+	
 	public Examen_Fisico BuscarPorId(long id) throws Exception {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
