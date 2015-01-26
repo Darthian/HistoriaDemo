@@ -5,17 +5,13 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.criterion.Order;
 
-import co.edu.unal.clinica.hibernate.data.Antecedentes_Familiares;
 import co.edu.unal.clinica.hibernate.data.Consulta;
 import co.edu.unal.clinica.utils.HibernateUtil;
 
 public class ConsultaDAO {
 	
 	private Session session;
-	private Transaction trans;
 	private List<Consulta> lstAnt;
 	private Consulta obj;
 	
@@ -41,7 +37,7 @@ public class ConsultaDAO {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			Criteria cri = session.createCriteria(Consulta.class);
-			cri.addOrder(Order.asc("cedula"));
+//			cri.addOrder(Order.asc("cedula"));
 			lstAnt = cri.list();
 		} catch (Exception ex) {
 			throw ex;

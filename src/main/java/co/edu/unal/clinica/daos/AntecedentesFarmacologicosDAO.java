@@ -48,6 +48,24 @@ public class AntecedentesFarmacologicosDAO {
 		return listFarma;
 	}
 	
+	public List<Antecedentes_Farmacologicos> BuscarPorConsulta(long idConsulta) throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "FROM Antecedentes_Farmacologicos WHERE FK_CONSULTA = " + idConsulta;
+			Query query = session.createQuery(hql);
+
+			if (!query.list().isEmpty()) {
+				listFarma = (List<Antecedentes_Farmacologicos>) query.list();
+			}
+			else{
+				listFarma = null;
+			}
+		} catch (Exception ex) {
+			throw ex;
+		}
+		return listFarma;
+	}
+	
 	public Antecedentes_Farmacologicos BuscarPorId(long id) throws Exception {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();

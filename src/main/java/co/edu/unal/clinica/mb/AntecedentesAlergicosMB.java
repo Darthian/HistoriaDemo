@@ -25,6 +25,7 @@ public class AntecedentesAlergicosMB {
 	private Timestamp fechaCreacion;
 	
 	private List<Antecedentes_Alergicos> listaAnt;
+	private List<Antecedentes_Alergicos> listaAntHC;
 	private AntecedentesAlergicosDAO antDAO = new AntecedentesAlergicosDAO();
 	private static Antecedentes_Alergicos ant = new Antecedentes_Alergicos();
 
@@ -98,6 +99,10 @@ public class AntecedentesAlergicosMB {
 		cedulaPaciente = PacienteMB.cedulaConsulta;
 		System.out.println("Cedula de la historia:"+PacienteMB.cedulaConsulta);
 		this.listaAnt = antDAO.Buscar(PacienteMB.cedulaConsulta);
+	}
+	
+	public void listarHC() throws Exception {
+		this.listaAntHC = antDAO.BuscarPorConsulta(ConsultaMB.idConsultaConstante);
 	}
 	
 	public String leer(Antecedentes_Alergicos emp) {
@@ -175,5 +180,13 @@ public class AntecedentesAlergicosMB {
 
 	public void setFkConsulta(long fkConsulta) {
 		this.fkConsulta = fkConsulta;
+	}
+
+	public List<Antecedentes_Alergicos> getListaAntHC() {
+		return listaAntHC;
+	}
+
+	public void setListaAntHC(List<Antecedentes_Alergicos> listaAntHC) {
+		this.listaAntHC = listaAntHC;
 	}
 }

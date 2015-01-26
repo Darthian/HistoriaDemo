@@ -38,6 +38,7 @@ public class RevisionSistemaMB {
 	private Timestamp fechaCreacion;
 	
 	private List<Revision_Sistema> listRevi;
+	private List<Revision_Sistema> listReviHC;
 	private RevisionSistemaDAO reviDao = new RevisionSistemaDAO();
 	private static Revision_Sistema revi = new Revision_Sistema();
 	
@@ -107,6 +108,10 @@ public class RevisionSistemaMB {
 	
 	public void listar() throws Exception {
 		this.listRevi = reviDao.Buscar(PacienteMB.cedulaConsulta);
+	}
+	
+	public void listarHC() throws Exception {
+		this.listReviHC = reviDao.BuscarPorConsulta(ConsultaMB.idConsultaConstante);
 	}
 	
 	public String leer(Revision_Sistema emp) {
@@ -257,5 +262,13 @@ public class RevisionSistemaMB {
 
 	public void setFkConsulta(long fkConsulta) {
 		this.fkConsulta = fkConsulta;
+	}
+
+	public List<Revision_Sistema> getListReviHC() {
+		return listReviHC;
+	}
+
+	public void setListReviHC(List<Revision_Sistema> listReviHC) {
+		this.listReviHC = listReviHC;
 	}
 }

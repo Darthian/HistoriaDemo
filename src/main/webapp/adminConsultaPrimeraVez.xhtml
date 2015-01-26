@@ -24,7 +24,7 @@
 
 			<div id="lista" align="center">
 				<ul>
-					<li class="item"><h:link value="Ir a la vista general" outcome="adminPacientes.xhtml" rendered="#{loginController.usuario.rol eq 'MEDICO'}" /></li>
+					<li class="item"></li>
 				</ul>
 			</div>
 
@@ -34,8 +34,7 @@
 					<p:inputText id="cedulaBuscadaConsulta" value="#{pacienteMB.cedulaBuscadaConsulta}" required="true" label="Cedula del paciente"/>
 					<p:commandButton update="listaPacientes" actionListener="#{pacienteMB.buscarPaciente()}" value="Buscar Paciente"/>
 					<p:commandButton action="#{pacienteMB.terminarConsulta('PRIMERA')}" value="Terminar Consulta"/>
-					<p:commandButton update="growl" actionListener="#{pacienteMB.guardarDefinitivamente('PRIMERA')}" value="Guardar Definitivamente"/>
-					<h:commandButton action="#{jasperController.vistaHistoriaPDF()}" style="background-color: blue;height:20px; font-size: 12px;"  value="Descargar resumen de historia"/>
+					<p:commandButton update=":listaPacientes" actionListener="#{pacienteMB.guardarDefinitivamente('PRIMERA')}" value="Guardar Definitivamente"/>
 				</h3>
 				<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
 			
@@ -119,9 +118,9 @@
 						<p:commandButton action="#{pacienteMB.leerDiagnosticos(paciente)}" icon="ui-icon-note" title="Registrar Analisis"/>
 						</center>
 					</p:column>
-					
 				</p:dataTable>
-				
+				<br></br>
+				<h:commandButton styleClass="botonLikePrime" rendered="#{pacienteMB.mostrarBotonDescarga eq 'Si'}" actionListener="#{jasperController.vistaHistoriaPDF()}" value="Descargar cita control"/>
 			</div>
 
 			<div id="piePagina">

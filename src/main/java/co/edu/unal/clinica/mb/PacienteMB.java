@@ -16,7 +16,6 @@ import co.edu.unal.clinica.daos.PacienteDAO;
 import co.edu.unal.clinica.hibernate.data.Paciente;
 import co.edu.unal.clinica.utils.HibernateUtil;
 
-
 @ManagedBean(name="pacienteMB")
 @SessionScoped
 public class PacienteMB {
@@ -34,10 +33,11 @@ public class PacienteMB {
 	private String escolaridad;
 	private String telefono;
 	private Timestamp fecha_creacion;
+	private String mostrarBotonDescarga = "No";
 
 	private List<Paciente> listaPaciente;
 	private List<Paciente> listaPacienteSoloConsulta;
-	
+	private List<Paciente> listaPacienteHistoriaDetalle;
 	private List<Paciente> listaPacienteFiltrado;
 	
 	private PacienteDAO pacienteDAO = new PacienteDAO();
@@ -45,7 +45,9 @@ public class PacienteMB {
 	
 	private long cedulaBuscadaConsulta;
 	
-	public static long cedulaConsulta; 
+	public static long cedulaConsulta;
+	public long idConsulta;
+	public static Paciente pacienteHistoriaClinica;
 	
 	@Inject
 	private AntecedentesFamiliaresMB antecedentesFamiliares;
@@ -104,82 +106,102 @@ public class PacienteMB {
 		if(motivo.getMot().getId() != 0 && consulta.getConsu().getId() != 0){
 			System.out.println("ID MOTIVO CONSULTA: "+motivo.getMot().getId());
 			motivo.consolidarMotivoConsulta(consulta.getConsu().getId());
+			idConsulta = consulta.getConsu().getId();
 		}
 		if(motivo.getMot().getId() != 0 && consulta.getConsu().getId() != 0){
 			System.out.println("ID MOTIVO CONSULTA: "+motivo.getMot().getId());
 			motivo.consolidarMotivoConsulta(consulta.getConsu().getId());
+			idConsulta = consulta.getConsu().getId();
 		}
 		if(antecedentesFamiliares.getAnt().getId() != 0 && consulta.getConsu().getId() != 0){
 			System.out.println("ID ANTECEDENTES FAMILIARES: "+antecedentesFamiliares.getAnt().getId());
 			antecedentesFamiliares.consolidarAntecedenteFamiliar(consulta.getConsu().getId());
+			idConsulta = consulta.getConsu().getId();
 		}
 		if(antecedentesFarmacologicos.getFarma().getId() != 0 && consulta.getConsu().getId() != 0){
 			System.out.println("ID ANTECEDENTES farmacologicos: "+antecedentesFarmacologicos.getFarma().getId());
 			antecedentesFarmacologicos.consolidarAntecedenteFarmacologico(consulta.getConsu().getId());
+			idConsulta = consulta.getConsu().getId();
 		}
 		if(antecedentesPatologicos.getPato().getId() != 0 && consulta.getConsu().getId() != 0){
 			System.out.println("ID ANTECEDENTES patologicos: "+antecedentesPatologicos.getPato().getId());
 			antecedentesPatologicos.consolidarAntecedentePatologico(consulta.getConsu().getId());
+			idConsulta = consulta.getConsu().getId();
 		}
 		if(diagnosticos.getDiag().getId() != 0 && consulta.getConsu().getId() != 0){
 			System.out.println("ID Diagnosticos: "+diagnosticos.getDiag().getId());
 			diagnosticos.consolidarDiagnostico(consulta.getConsu().getId());
+			idConsulta = consulta.getConsu().getId();
 		}
 		if(enfermedadActual.getEnf().getId() != 0 && consulta.getConsu().getId() != 0){
 			System.out.println("ID Enfermedad Actual: "+enfermedadActual.getEnf().getId());
 			enfermedadActual.consolidarEnfermedadActual(consulta.getConsu().getId());
+			idConsulta = consulta.getConsu().getId();
 		}
 		if(examenFisico.getExam().getId() != 0 && consulta.getConsu().getId() != 0){
 			System.out.println("ID Examen Fisico: "+examenFisico.getExam().getId());
 			examenFisico.consolidarExamenFisico(consulta.getConsu().getId());
+			idConsulta = consulta.getConsu().getId();
 		}
 		if(habitos.getHab().getId() != 0 && consulta.getConsu().getId() != 0){
 			System.out.println("ID Habitos: "+habitos.getHab().getId());
 			habitos.consolidarHabitos(consulta.getConsu().getId());
+			idConsulta = consulta.getConsu().getId();
 		}
 		if(otrosAntecedentes.getOant().getId() != 0 && consulta.getConsu().getId() != 0){
 			System.out.println("ID Otros Antecedentes: "+otrosAntecedentes.getOant().getId());
 			otrosAntecedentes.consolidarOtrosAntecedentes(consulta.getConsu().getId());
+			idConsulta = consulta.getConsu().getId();
 		}
 		if(paraclinicos.getPara().getId() != 0 && consulta.getConsu().getId() != 0){
 			System.out.println("ID Paraclinicos: "+paraclinicos.getPara().getId());
 			paraclinicos.consolidarParaClinicos(consulta.getConsu().getId());
+			idConsulta = consulta.getConsu().getId();
 		}
 		if(revisionSistema.getRevi().getId() != 0 && consulta.getConsu().getId() != 0){
 			System.out.println("ID Revision Sistema: "+revisionSistema.getRevi().getId());
 			revisionSistema.consolidarRevision(consulta.getConsu().getId());
+			idConsulta = consulta.getConsu().getId();
 		}
 		if(antecedentesAlergicos.getAnt().getId() != 0 && consulta.getConsu().getId() != 0){
 			System.out.println("ID Antecedente Alergico: "+antecedentesAlergicos.getAnt().getId());
 			antecedentesAlergicos.consolidarAntecedenteAlergico(consulta.getConsu().getId());
+			idConsulta = consulta.getConsu().getId();
 		}
 		if(antecedentesGinecobstetricos.getAnt().getId() != 0 && consulta.getConsu().getId() != 0){
 			System.out.println("ID Antecedente Gineco: "+antecedentesGinecobstetricos.getAnt().getId());
 			antecedentesGinecobstetricos.consolidarAntecedenteGinecobstetrico(consulta.getConsu().getId());
+			idConsulta = consulta.getConsu().getId();
 		}
 		if(antecedentesQuirurgicos.getAnt().getId() != 0 && consulta.getConsu().getId() != 0){
 			System.out.println("ID Antecedente Quiru: "+antecedentesQuirurgicos.getAnt().getId());
 			antecedentesQuirurgicos.consolidarAntecedenteQuirurgico(consulta.getConsu().getId());
+			idConsulta = consulta.getConsu().getId();
 		}
 		if(antecedentesSociales.getAnt().getId() != 0 && consulta.getConsu().getId() != 0){
 			System.out.println("ID Antecedente Sociales: "+antecedentesSociales.getAnt().getId());
 			antecedentesSociales.consolidarAntecedenteSocial(consulta.getConsu().getId());
+			idConsulta = consulta.getConsu().getId();
 		}
 		if(antecedentesTransfusionales.getAnt().getId() != 0 && consulta.getConsu().getId() != 0){
 			System.out.println("ID Antecedente Trans: "+antecedentesTransfusionales.getAnt().getId());
 			antecedentesTransfusionales.consolidarAntecedenteTransfusional(consulta.getConsu().getId());
+			idConsulta = consulta.getConsu().getId();
 		}
 		if(antecedentesTraumatologicos.getAnt().getId() != 0 && consulta.getConsu().getId() != 0){
 			System.out.println("ID Antecedente Trau: "+antecedentesTraumatologicos.getAnt().getId());
 			antecedentesTraumatologicos.consolidarAntecedenteTraumatologico(consulta.getConsu().getId());
+			idConsulta = consulta.getConsu().getId();
 		}
 	}
 
 	public void guardarDefinitivamente(String tipoConsultaNueva){
-		
-		consulta.guardarConsulta(tipoConsultaNueva);
-		
-		consolidarConsultaGeneral();
+		if(cedulaBuscadaConsulta != 0){
+			consulta.guardarConsulta(tipoConsultaNueva);
+			consolidarConsultaGeneral();
+			mostrarBotonDescarga = "Si";
+			System.out.println("++++++++++" + mostrarBotonDescarga);
+		}
 	}
 	
 	public void eliminar(Paciente emp) throws Exception {
@@ -207,20 +229,31 @@ public class PacienteMB {
 		cedulaConsulta=cedulaBuscadaConsulta;
 	}
 	
+	public void buscarPacienteHistoriaDetalle() throws Exception {
+		System.out.println("+++++++++++++++++++++++++++++CEDULA PACIENTE CONSULTA: " + cedulaConsulta);
+		this.listaPacienteHistoriaDetalle = pacienteDAO.BuscarPaciente(cedulaConsulta);
+	}
+	
 	public String terminarConsulta(String tipoConsultaNueva) {
-		
-		consulta.guardarConsulta(tipoConsultaNueva);
-		
-		consolidarConsultaGeneral();
-		
+		//consulta.guardarConsulta(tipoConsultaNueva);
+		//consolidarConsultaGeneral();
 		cedulaBuscadaConsulta = 0;
 		cedulaConsulta = 0;
 		this.listaPacienteSoloConsulta = null;
+		mostrarBotonDescarga = "No";
 		System.out.println("+++++++++++++++++++++++++++++CEDULA PACIENTE CONSULTA AL TERMINAR: " + cedulaBuscadaConsulta);
 		return "index";
 	}
 	
-	public String leerAntecedentesFamiliares(Paciente pac){
+	public String leerHistoriaClinica(Paciente pac){
+		pacienteHistoriaClinica = pac;
+		cedulaConsulta = pac.getCedula();
+		this.paciente = pac;
+		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + pacienteHistoriaClinica.getCedula());
+		return "adminHistoriaClinica";
+	}
+	
+	public String leerAntecedentesFamiliares(Paciente pac) throws Exception{
 		cedulaConsulta = pac.getCedula();
 		this.paciente = pac;
 		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
@@ -493,6 +526,21 @@ public class PacienteMB {
 		PacienteMB.cedulaConsulta = cedulaConsulta;
 	}
 	
+	public long getIdConsulta() {
+		return idConsulta;
+	}
+
+	public void setIdConsulta(long id) {
+		this.idConsulta = id;
+	}
+	
+	public static Paciente getPacienteHistoriaClinica(){
+		return pacienteHistoriaClinica;
+	}
+	public static void setPacienteHistoriaClinica(Paciente pac){
+		PacienteMB.pacienteHistoriaClinica = pac;
+	}
+	
 	public long getCedulaBuscadaConsulta() {
 		return cedulaBuscadaConsulta;
 	}
@@ -508,5 +556,22 @@ public class PacienteMB {
 	public void setListaPacienteSoloConsulta(
 			List<Paciente> listaPacienteSoloConsulta) {
 		this.listaPacienteSoloConsulta = listaPacienteSoloConsulta;
+	}
+
+	public String getMostrarBotonDescarga() {
+		return mostrarBotonDescarga;
+	}
+
+	public void setMostrarBotonDescarga(String mostrarBotonDescarga) {
+		this.mostrarBotonDescarga = mostrarBotonDescarga;
+	}
+
+	public List<Paciente> getListaPacienteHistoriaDetalle() {
+		return listaPacienteHistoriaDetalle;
+	}
+
+	public void setListaPacienteHistoriaDetalle(
+			List<Paciente> listaPacienteHistoriaDetalle) {
+		this.listaPacienteHistoriaDetalle = listaPacienteHistoriaDetalle;
 	}
 }

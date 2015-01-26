@@ -48,6 +48,24 @@ public class AntecedentesPatologicosDAO {
 		return listPato;
 	}
 	
+	public List<Antecedentes_Patologicos> BuscarPorConsulta(long idConsulta) throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "FROM Antecedentes_Patologicos WHERE FK_CONSULTA = " + idConsulta ;
+			Query query = session.createQuery(hql);
+
+			if (!query.list().isEmpty()) {
+				listPato = (List<Antecedentes_Patologicos>) query.list();
+			}
+			else{
+				listPato = null;
+			}
+		} catch (Exception ex) {
+			throw ex;
+		}
+		return listPato;
+	}
+	
 	public Antecedentes_Patologicos BuscarPorId(long id) throws Exception {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();

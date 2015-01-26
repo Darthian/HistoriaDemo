@@ -66,6 +66,24 @@ public class AntecedentesAlergicosDAO {
 		return lstAnt;
 	}
 	
+	public List<Antecedentes_Alergicos> BuscarPorConsulta(long idConsulta) throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "FROM Antecedentes_Alergicos WHERE FK_CONSULTA = " + idConsulta ;
+			Query query = session.createQuery(hql);
+
+			if (!query.list().isEmpty()) {
+				lstAnt = (List<Antecedentes_Alergicos>) query.list();
+			}
+			else{
+				lstAnt = null;
+			}
+		} catch (Exception ex) {
+			throw ex;
+		}
+		return lstAnt;
+	}
+	
 	public Antecedentes_Alergicos BuscarPorId(long id) throws Exception {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();

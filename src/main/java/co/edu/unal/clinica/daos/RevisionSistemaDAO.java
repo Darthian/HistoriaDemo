@@ -50,6 +50,24 @@ public class RevisionSistemaDAO {
 		return listRevi;
 	}
 	
+	public List<Revision_Sistema> BuscarPorConsulta(long idConsulta) throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "FROM Revision_Sistema WHERE FK_CONSULTA = " + idConsulta;
+			Query query = session.createQuery(hql);
+
+			if (!query.list().isEmpty()) {
+				listRevi = (List<Revision_Sistema>) query.list();
+			}
+			else{
+				listRevi = null;
+			}
+		} catch (Exception ex) {
+			throw ex;
+		}
+		return listRevi;
+	}
+	
 	public Revision_Sistema BuscarPorId(long id) throws Exception {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();

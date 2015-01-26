@@ -66,6 +66,24 @@ public class OtrosAntecedentesDAO {
 		return lstOAnt;
 	}
 	
+	public List<Otros_Antecedentes> BuscarPorConsulta(long idConsulta) throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "FROM Otros_Antecedentes WHERE FK_CONSULTA = " + idConsulta;
+			Query query = session.createQuery(hql);
+
+			if (!query.list().isEmpty()) {
+				lstOAnt = (List<Otros_Antecedentes>) query.list();
+			}
+			else{
+				lstOAnt = null;
+			}
+		} catch (Exception ex) {
+			throw ex;
+		}
+		return lstOAnt;
+	}
+	
 	public Otros_Antecedentes BuscarPorId(long id) throws Exception {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();

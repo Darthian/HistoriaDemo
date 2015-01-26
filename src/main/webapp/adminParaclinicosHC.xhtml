@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Historia Clinica UN</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+	<f:metadata>
+        <f:event type="preRenderView" listener="#{paraclinicosMB.listarHC()}"/>
+	</f:metadata>
+</h:head>
+<body>
+
+	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{loginController.verificarSesion() eq false}" />
+	<h:form id="listaParaclinicos" rendered="#{loginController.verificarSesion()}">
+		<div id="contenedor" class="center">
+			<div id="cabecera" align="center">
+				<img src="images/logo.png" width="25%" height="15%" />
+				<h2>Paraclinicos de <h:outputLabel value="#{pacienteMB.paciente.nombre_Paciente}" /></h2>
+			</div>
+
+			<div id="lista" align="center">
+				<ul>
+					<li class="item">
+						<h:link value="Volver" outcome="adminHistoriaClinicaDetalle.xhtml"/>
+					</li>
+				</ul>
+			</div>
+
+			<div id="contenedor-cuerpo" align="center">
+				<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
+				
+				<p:dataTable tableStyle="width:auto" value="#{paraclinicosMB.listParaHC}" var="para" paginator="true" rows="5">
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Glicemia Ayunas" />
+						</f:facet>
+						<h:outputLabel value="#{para.glicemiaAyunas}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Glicemia Post Prandial" />
+						</f:facet>
+						<h:outputLabel value="#{para.glicemiaPostPrandial}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Hemoglobina Glicosilada" />
+						</f:facet>
+						<h:outputLabel value="#{para.hemoglobinaGlicosilada}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Trigliceridos" />
+						</f:facet>
+						<h:outputLabel value="#{para.trigliceridos}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="HDL" />
+						</f:facet>
+						<h:outputLabel value="#{para.hdl}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="LDL" />
+						</f:facet>
+						<h:outputLabel value="#{para.ldl}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="VLDL" />
+						</f:facet>
+						<h:outputLabel value="#{para.vldl}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Creatinina" />
+						</f:facet>
+						<h:outputLabel value="#{para.creatinina}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Microalbuminuria" />
+						</f:facet>
+						<h:outputLabel value="#{para.bun}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Parcial de Orina" />
+						</f:facet>
+						<h:outputLabel value="#{para.parcialOrina}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Otros Paraclinicos" />
+						</f:facet>
+						<h:outputLabel value="#{para.otrosParaclinicos}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Editar" />
+						</f:facet>
+						<h:outputLabel rendered="#{para.consolidado eq 'Si'}" value="Registro consolidado" />
+						<h:commandButton action="#{paraclinicosMB.leer(para)}" rendered="#{para.consolidado eq 'No'}" value="Modificar" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Fecha de Creacion" />
+						</f:facet>
+						<h:outputLabel value="#{para.fechaCreacion}" />
+					</p:column>
+				</p:dataTable>
+			</div>
+
+			<div id="piePagina">
+				<div id="linkList">
+					<ul>
+						<li>Link1</li>
+						<li>Link2</li>
+						<li>Link3</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="clear"></div>
+
+		</div>
+	</h:form>
+</body>
+</html>

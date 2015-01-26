@@ -35,6 +35,7 @@ public class ParaclinicosMB {
 	private Timestamp fechaCreacion;
 	
 	private List<Paraclinicos> listPara;
+	private List<Paraclinicos> listParaHC;
 	private ParaclinicosDAO paraDao = new ParaclinicosDAO();
 	private static Paraclinicos para = new Paraclinicos();
 	
@@ -104,6 +105,10 @@ public class ParaclinicosMB {
 	
 	public void listar() throws Exception {
 		this.listPara = paraDao.Buscar(PacienteMB.cedulaConsulta);
+	}
+	
+	public void listarHC() throws Exception {
+		this.listParaHC = paraDao.BuscarPorConsulta(ConsultaMB.idConsultaConstante);
 	}
 	
 	public String leer(Paraclinicos emp) {
@@ -212,5 +217,13 @@ public class ParaclinicosMB {
 
 	public void setFkConsulta(long fkConsulta) {
 		this.fkConsulta = fkConsulta;
+	}
+
+	public List<Paraclinicos> getListParaHC() {
+		return listParaHC;
+	}
+
+	public void setListParaHC(List<Paraclinicos> listParaHC) {
+		this.listParaHC = listParaHC;
 	}
 }

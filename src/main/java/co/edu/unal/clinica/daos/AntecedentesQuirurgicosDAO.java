@@ -66,6 +66,24 @@ public class AntecedentesQuirurgicosDAO {
 		return lstAnt;
 	}
 	
+	public List<Antecedentes_Quirurgicos> BuscarPorConsulta(long idConsulta) throws Exception {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "FROM Antecedentes_Quirurgicos WHERE FK_CONSULTA = " + idConsulta;
+			Query query = session.createQuery(hql);
+
+			if (!query.list().isEmpty()) {
+				lstAnt = (List<Antecedentes_Quirurgicos>) query.list();
+			}
+			else{
+				lstAnt = null;
+			}
+		} catch (Exception ex) {
+			throw ex;
+		}
+		return lstAnt;
+	}
+	
 	public Antecedentes_Quirurgicos BuscarPorId(long id) throws Exception {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();

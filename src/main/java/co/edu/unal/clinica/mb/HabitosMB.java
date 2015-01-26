@@ -34,6 +34,7 @@ public class HabitosMB {
 	private Timestamp fechaCreacion;
 	
 	private List<Habitos> listHab;
+	private List<Habitos> listHabHC;
 	private HabitosDAO habDao = new HabitosDAO();
 	private static Habitos hab = new Habitos();
 	
@@ -103,6 +104,11 @@ public class HabitosMB {
 	
 	public void listar() throws Exception {
 		this.listHab = habDao.Buscar(PacienteMB.cedulaConsulta);
+	}
+	
+	public void listarHC() throws Exception {
+		System.out.println("+++++++ID CONSULTA EN MB HABITOS: "+ConsultaMB.idConsultaConstante);
+		this.listHabHC = habDao.BuscarPorConsulta(ConsultaMB.idConsultaConstante);
 	}
 	
 	public String leer(Habitos emp) {
@@ -223,6 +229,14 @@ public class HabitosMB {
 
 	public void setFkConsulta(long fkConsulta) {
 		this.fkConsulta = fkConsulta;
+	}
+
+	public List<Habitos> getListHabHC() {
+		return listHabHC;
+	}
+
+	public void setListHabHC(List<Habitos> listHabHC) {
+		this.listHabHC = listHabHC;
 	}
 	
 }

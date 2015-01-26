@@ -85,3 +85,10 @@ p{
 	top:3%;
 	left:85%;
 }
+
+.botonLikePrime{
+	background-color: #E6F2FC; 
+	font-size: 21px; 
+	border-radius: 7px; 
+	color: #245A8C
+}

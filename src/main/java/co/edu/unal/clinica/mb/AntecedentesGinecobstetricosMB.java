@@ -25,6 +25,7 @@ public class AntecedentesGinecobstetricosMB {
 	private Timestamp fechaCreacion;
 	
 	private List<Antecedentes_Ginecobstetricos> listaAnt;
+	private List<Antecedentes_Ginecobstetricos> listaAntHC;
 	private AntecedentesGinecobstetricosDAO antDAO = new AntecedentesGinecobstetricosDAO();
 	private static Antecedentes_Ginecobstetricos ant = new Antecedentes_Ginecobstetricos();
 
@@ -98,6 +99,10 @@ public class AntecedentesGinecobstetricosMB {
 		cedulaPaciente = PacienteMB.cedulaConsulta;
 		System.out.println("Cedula de la historia:"+PacienteMB.cedulaConsulta);
 		this.listaAnt = antDAO.Buscar(PacienteMB.cedulaConsulta);
+	}
+	
+	public void listarHC() throws Exception {
+		this.listaAntHC = antDAO.BuscarPorConsulta(ConsultaMB.idConsultaConstante);
 	}
 	
 	public String leer(Antecedentes_Ginecobstetricos emp) {
@@ -175,6 +180,14 @@ public class AntecedentesGinecobstetricosMB {
 
 	public void setFkConsulta(long fkConsulta) {
 		this.fkConsulta = fkConsulta;
+	}
+
+	public List<Antecedentes_Ginecobstetricos> getListaAntHC() {
+		return listaAntHC;
+	}
+
+	public void setListaAntHC(List<Antecedentes_Ginecobstetricos> listaAntHC) {
+		this.listaAntHC = listaAntHC;
 	}
 
 }
