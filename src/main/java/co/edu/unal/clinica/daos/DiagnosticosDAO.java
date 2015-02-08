@@ -26,6 +26,8 @@ public class DiagnosticosDAO {
 			listDiag = cri.list();
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listDiag;
 	}
@@ -44,6 +46,8 @@ public class DiagnosticosDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listDiag;
 	}
@@ -62,6 +66,8 @@ public class DiagnosticosDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listDiag;
 	}
@@ -80,6 +86,8 @@ public class DiagnosticosDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return objetoRetornado;
 	}
@@ -98,6 +106,8 @@ public class DiagnosticosDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listDiag;
 	}

@@ -15,15 +15,15 @@
 	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
 </h:head>
 <body>
-	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{loginController.verificarSesion() eq false}" />					
+	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{loginController.verificarSesion() eq false}" />
 	
 	<h:form id="listaUsuarios" rendered="#{loginController.verificarSesion()}">
-	
+	 
 		<div id="contenedor" class="center">
 			<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
 			<div id="cabecera" align="center">
 				<img src="images/logo.png" width="25%" height="15%" />
-				<h2>Sistema de Gestión de pacientes con Diabetes</h2>
+				<h2>Elija el tipo de consulta que va a realizar por favor</h2>
 				<h3>
 					<h:outputLabel value="Bienvenido #{loginController.usuario.nickName} tu rol es #{loginController.usuario.rol}" rendered="#{loginController.usuario.rol eq 'MEDICO'}" />
 					<h:outputLabel value="Bienvenido #{loginController.usuario.nickName} tu rol es #{loginController.usuario.rol}" rendered="#{loginController.usuario.rol eq 'ADMINISTRADOR'}" />
@@ -31,36 +31,21 @@
 			</div>
 
 			<div id="lista" align="center">
-				<ul>
-					<li class="item"><a href="#">El sistema</a></li>
-					<li class="item"><a href="#">Elconsultorio</a></li>
-					<li class="item"><a href="#">La aplicacion</a></li>
+				<ul>	
+					<li class="item"><a href="index.xhtml">Volver</a></li>
 				</ul>
 			</div>
 
 			<div id="contenedor-cuerpo">
 				<div id="contenedor-formulario">
 					<div id="formulario-enunciado">
-						
-						<h:commandLink action="adminUsuarios.xhtml" rendered="#{loginController.usuario.rol eq 'ADMINISTRADOR'}">
+						<h:commandLink action="adminPacientes.xhtml">
 							<div id="mainwrapper">
 								<div id="box-6" class="box">
-									<img id="image-6" src="images/nurse-icon.png" width="100%"/>
+									<img id="image-6" src="images/medical_pot_pills-256.png" width="90%"/>
 									<span class="caption full-caption">
-										<h3>Administracion del sistema</h3>
-										<p>En esta pantalla se crean los pacientes, usuarios y entidades del sistema.</p>
-									</span>
-								</div>
-							</div>
-						</h:commandLink>
-
-						<h:commandLink action="tipoConsulta.xhtml" rendered="#{loginController.usuario.rol eq 'MEDICO'}">
-							<div id="mainwrapper">
-								<div id="box-6" class="box">
-									<img id="image-6" src="images/doctor-icon.png" width="100%"/>
-									<span class="caption full-caption">
-										<h3>Consultas</h3>
-										<p>En esta pantalla se hacen las consultas de primera vez y de evolucion de los pacientes.</p>
+										<h3>Administracion de Historias por filtradas por consulta</h3>
+										<p>Se filtran las historias clinicas por las consultas que ha tenido cada paciente.</p>
 									</span>
 								</div>
 							</div>
@@ -70,19 +55,20 @@
 
 				<div id="contenedor-imagen2">
 					<div id="formulario-leyendas">
-						<h:commandLink action="tipoHistoria.xhtml">
+						<h:commandLink action="adminHistoriaFiltros.xhtml">
 							<div id="mainwrapper">
 								<div id="box-6" class="box">
-									<img id="image-6" src="images/medical-book.png" width="90%"/>
+									<img id="image-6" src="images/medical_case-256.png" width="90%"/>
 									<span class="caption full-caption">
-										<h3>Consulta de historias clinicas</h3>
-										<p>En esta pantalla se hacen las consultas de historira clinica de todos los pacientes.</p>
+										<h3>Administracion de Historias general</h3>
+										<p>Se visualizan las historias clinicas de cada paciente en general.</p>
 									</span>
 								</div>
 							</div>
 						</h:commandLink>
 					</div>
 				</div>
+				
 			</div>
 		</div>
 
@@ -97,8 +83,6 @@
 				</ul>
 			</div>
 		</div>
-
-
 	</h:form>
 </body>
 </html>

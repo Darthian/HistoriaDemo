@@ -26,6 +26,8 @@ public class AntecedentesFarmacologicosDAO {
 			listFarma = cri.list();
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listFarma;
 	}
@@ -44,6 +46,8 @@ public class AntecedentesFarmacologicosDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listFarma;
 	}
@@ -62,6 +66,8 @@ public class AntecedentesFarmacologicosDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listFarma;
 	}
@@ -80,6 +86,8 @@ public class AntecedentesFarmacologicosDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return objetoRetornado;
 	}
@@ -98,6 +106,8 @@ public class AntecedentesFarmacologicosDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listFarma;
 	}

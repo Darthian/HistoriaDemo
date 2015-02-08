@@ -33,6 +33,8 @@ public class AntecedentesFamiliaresDAO {
 
 		} catch (Exception e) {
 			throw e;
+		} finally {
+			session.close();
 		}
 		return us;
 	}
@@ -45,6 +47,8 @@ public class AntecedentesFamiliaresDAO {
 			lstAnt = cri.list();
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return lstAnt;
 	}
@@ -63,6 +67,8 @@ public class AntecedentesFamiliaresDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return lstAnt;
 	}
@@ -81,6 +87,8 @@ public class AntecedentesFamiliaresDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return lstAnt;
 	}
@@ -99,6 +107,8 @@ public class AntecedentesFamiliaresDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return obj;
 	}
@@ -117,6 +127,8 @@ public class AntecedentesFamiliaresDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return lstAnt;
 	}

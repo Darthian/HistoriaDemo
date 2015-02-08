@@ -25,6 +25,8 @@ public class EntidadDAO {
 			listEntidades = cri.list();
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listEntidades;
 	}
@@ -40,9 +42,11 @@ public class EntidadDAO {
 			}
 			else{
 				listEntidades = null;
-			}
+			} 
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listEntidades;
 	}

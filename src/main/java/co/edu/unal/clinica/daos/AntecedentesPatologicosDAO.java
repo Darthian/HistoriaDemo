@@ -26,6 +26,8 @@ public class AntecedentesPatologicosDAO {
 			listPato = cri.list();
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listPato;
 	}
@@ -44,6 +46,8 @@ public class AntecedentesPatologicosDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listPato;
 	}
@@ -62,6 +66,8 @@ public class AntecedentesPatologicosDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listPato;
 	}
@@ -80,6 +86,8 @@ public class AntecedentesPatologicosDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return objetoRetornado;
 	}
@@ -98,6 +106,8 @@ public class AntecedentesPatologicosDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listPato;
 	}

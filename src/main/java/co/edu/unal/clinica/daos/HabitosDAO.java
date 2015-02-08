@@ -26,6 +26,8 @@ public class HabitosDAO {
 			listHab = cri.list();
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listHab;
 	}
@@ -44,6 +46,8 @@ public class HabitosDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listHab;
 	}
@@ -62,6 +66,8 @@ public class HabitosDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listHab;
 	}
@@ -80,6 +86,8 @@ public class HabitosDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return objetoRetornado;
 	}
@@ -98,6 +106,8 @@ public class HabitosDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listHab;
 	}

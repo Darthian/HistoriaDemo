@@ -32,6 +32,8 @@ public class AntecedentesGinecobstetricosDAO {
 
 		} catch (Exception e) {
 			throw e;
+		} finally {
+			session.close();
 		}
 		return us;
 	}
@@ -44,6 +46,8 @@ public class AntecedentesGinecobstetricosDAO {
 			lstAnt = cri.list();
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return lstAnt;
 	}
@@ -62,6 +66,8 @@ public class AntecedentesGinecobstetricosDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return lstAnt;
 	}
@@ -80,6 +86,8 @@ public class AntecedentesGinecobstetricosDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return lstAnt;
 	}
@@ -98,6 +106,8 @@ public class AntecedentesGinecobstetricosDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return obj;
 	}
@@ -116,6 +126,8 @@ public class AntecedentesGinecobstetricosDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return lstAnt;
 	}

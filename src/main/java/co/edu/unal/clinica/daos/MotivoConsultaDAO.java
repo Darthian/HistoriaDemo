@@ -26,6 +26,8 @@ public class MotivoConsultaDAO {
 			listMot = cri.list();
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listMot;
 	}
@@ -44,6 +46,8 @@ public class MotivoConsultaDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listMot;
 	}
@@ -62,6 +66,8 @@ public class MotivoConsultaDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listMot;
 	}
@@ -80,6 +86,8 @@ public class MotivoConsultaDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listMot;
 	}
@@ -98,6 +106,8 @@ public class MotivoConsultaDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return mot;
 	}

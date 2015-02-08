@@ -9,7 +9,7 @@
 	<title>Historia Clinica UN</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
-	
+
 </h:head>
 <body>
 	<div id="contenedor" class="center">
@@ -19,45 +19,61 @@
 		</div>
 
 		<div id="lista" align="center">
-			<ul >				
-				<li class="item"><a href="acercaSistema.xhtml">El sistema</a></li>
-				<li class="item"><a href="acercaConsultorio.xhtml">El consultorio</a></li>				
+			<ul>
+				<li class="item"><a href="#">El sistema</a></li>
+				<li class="item"><a href="#">El consultorio</a></li>
 				<li class="item"><a href="#">La aplicacion</a></li>
 			</ul>
 		</div>
 
 		<div id="contenedor-cuerpo">
-
 			<div id="contenedor-formulario">
-			
-				<div id="formulario-enunciado">
-					<p:panelGrid columns="1">
-						<p>Ingresar la informacion de usuario para iniciar sesión</p>
-					</p:panelGrid>
-				</div>
 				<div id="formulario-leyendas">
 					<h:form>
-						<p:panelGrid columns="2">
-							<p>Nombre de Usuario:</p>
-							<p:inputText value="#{loginController.nickName}"></p:inputText>
-							<p>Clave:</p>
-							<p:password value="#{loginController.password}"></p:password>
+					<br/><br/><br/>
+					<br/><br/><br/>
+						<p:panelGrid>
+							<f:facet name="header">
+								<p:row>
+									<p:column colspan="2">
+										Ingresar la informacion de usuario para iniciar sesión
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column>
+										Nombre de Usuario:
+									</p:column>
+									<p:column>
+										<p:inputText value="#{loginController.nickName}"></p:inputText>
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column>
+										Clave:
+									</p:column>
+									<p:column>
+										<p:password value="#{loginController.password}"></p:password>
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column colspan="2">
+										<p:commandButton action="#{loginController.verificarDatos}" value="Iniciar Sesion"></p:commandButton>
+									</p:column>
+								</p:row>
+							</f:facet>
 						</p:panelGrid>
 					</h:form>
 				</div>
-				<div class="clear"></div>
-				<div id="contenedor-boton">
-					<p:commandButton action="#{loginController.verificarDatos}" value="Iniciar Sesion"></p:commandButton>
-				</div>
-
 			</div>
 
 			<div id="contenedor-imagen">
 
 				<p:imageSwitch effect="fade" id="fadeEffect">
-					<ui:repeat value="#{imagesView.images}" var="image" id="fadeEffectImages">
-        				<p:graphicImage value="/images/#{image}" width="650" height="400" id="image" />
-    				</ui:repeat>
+					<ui:repeat value="#{imagesView.images}" var="image"
+						id="fadeEffectImages">
+						<p:graphicImage value="/images/#{image}" width="650" height="400"
+							id="image" />
+					</ui:repeat>
 				</p:imageSwitch>
 
 			</div>

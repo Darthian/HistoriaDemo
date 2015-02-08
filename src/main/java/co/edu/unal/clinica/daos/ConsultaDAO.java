@@ -29,6 +29,8 @@ public class ConsultaDAO {
 
 		} catch (Exception e) {
 			throw e;
+		} finally {
+			session.close();
 		}
 		return us;
 	}
@@ -41,6 +43,8 @@ public class ConsultaDAO {
 			lstAnt = cri.list();
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return lstAnt;
 	}
@@ -59,6 +63,8 @@ public class ConsultaDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return lstAnt;
 	}
@@ -77,6 +83,8 @@ public class ConsultaDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return lstAnt;
 	}
@@ -95,6 +103,8 @@ public class ConsultaDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return obj;
 	}

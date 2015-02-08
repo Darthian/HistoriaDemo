@@ -26,6 +26,8 @@ public class ListaDiagnosticosDAO {
 			listEnf = cri.list();
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listEnf;
 	}
@@ -44,6 +46,8 @@ public class ListaDiagnosticosDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listEnf;
 	}

@@ -42,7 +42,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>4.0.1.Final</version>
+			<version>4.3.8.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
@@ -62,8 +62,8 @@
 			<artifactId>javax.inject</artifactId>
 			<version>1</version>
 		</dependency>
-		
-		<!-- 		REPORTES -->
+
+		<!-- REPORTES -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>

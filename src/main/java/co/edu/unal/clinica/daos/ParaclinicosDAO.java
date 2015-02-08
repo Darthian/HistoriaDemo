@@ -26,6 +26,8 @@ public class ParaclinicosDAO {
 			listPara = cri.list();
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listPara;
 	}
@@ -44,6 +46,8 @@ public class ParaclinicosDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listPara;
 	}
@@ -62,6 +66,8 @@ public class ParaclinicosDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listPara;
 	}
@@ -80,6 +86,8 @@ public class ParaclinicosDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return objetoRetornado;
 	}
@@ -98,6 +106,8 @@ public class ParaclinicosDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listPara;
 	}

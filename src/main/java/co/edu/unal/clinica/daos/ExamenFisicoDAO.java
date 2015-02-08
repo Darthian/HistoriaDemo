@@ -26,6 +26,8 @@ public class ExamenFisicoDAO {
 			listExa = cri.list();
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listExa;
 	}
@@ -44,6 +46,8 @@ public class ExamenFisicoDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listExa;
 	}
@@ -62,6 +66,8 @@ public class ExamenFisicoDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listExa;
 	}
@@ -80,6 +86,8 @@ public class ExamenFisicoDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return objetoRetornado;
 	}
@@ -98,6 +106,8 @@ public class ExamenFisicoDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listExa;
 	}

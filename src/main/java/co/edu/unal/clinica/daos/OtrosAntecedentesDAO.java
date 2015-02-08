@@ -32,6 +32,8 @@ public class OtrosAntecedentesDAO {
 
 		} catch (Exception e) {
 			throw e;
+		} finally {
+			session.close();
 		}
 		return us;
 	}
@@ -44,6 +46,8 @@ public class OtrosAntecedentesDAO {
 			lstOAnt = cri.list();
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return lstOAnt;
 	}
@@ -62,6 +66,8 @@ public class OtrosAntecedentesDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return lstOAnt;
 	}
@@ -80,6 +86,8 @@ public class OtrosAntecedentesDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return lstOAnt;
 	}
@@ -98,6 +106,8 @@ public class OtrosAntecedentesDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return objetoRetornado;
 	}
@@ -116,6 +126,8 @@ public class OtrosAntecedentesDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return lstOAnt;
 	}
