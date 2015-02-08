@@ -21,8 +21,7 @@ public class PacienteDAO {
 
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
-			String hql = "FROM Paciente WHERE cedula = "
-					+ paciente.getCedula() ;
+			String hql = "FROM Paciente WHERE cedula = " + paciente.getCedula() ;
 			Query query = session.createQuery(hql);
 
 			if (!query.list().isEmpty()) {
@@ -31,8 +30,9 @@ public class PacienteDAO {
 
 		} catch (Exception e) {
 			throw e;
+		} finally {
+			session.close();
 		}
-
 		return us;
 	}
 
@@ -42,6 +42,7 @@ public class PacienteDAO {
 			trans = session.beginTransaction();
 			session.delete(paciente);
 			trans.commit();
+			session.close();
 		} catch (Exception ex) {
 			trans.rollback();
 			throw ex;
@@ -75,6 +76,8 @@ public class PacienteDAO {
 			lstPacientes = cri.list();
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return lstPacientes;
 	}
@@ -93,6 +96,33 @@ public class PacienteDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
+		}
+		return lstPacientes;
+	}
+	
+	public List<Paciente> BuscarPorFiltro(String tablaFiltro, String campoFiltro, String valorFiltro) throws Exception {
+		System.out.println("LLEGA A CREAR EL QUERY");
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "FROM PACIENTE paciente INNER JOIN " + tablaFiltro + " filtro WHERE paciente.cedula = filtro.CEDULA AND filtro." + campoFiltro + " = '"+valorFiltro+"'";
+			System.out.println("++++++++++++++++++++++"+hql);
+			Query query = session.createQuery(hql);
+			System.out.println("++++++++++++++++++++++"+hql);
+			System.out.println("++++++++++++++++++++++"+query);
+			
+			if (!query.list().isEmpty()) {
+				lstPacientes = (List<Paciente>) query.list();
+				System.out.println("++++++++++++++++++++++"+lstPacientes);
+			}
+			else{
+				lstPacientes = null;
+			}
+		} catch (Exception ex) {
+			throw ex;
+		} finally {
+			session.close();
 		}
 		return lstPacientes;
 	}

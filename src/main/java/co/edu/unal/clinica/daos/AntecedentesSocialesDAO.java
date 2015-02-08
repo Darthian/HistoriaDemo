@@ -32,6 +32,8 @@ public class AntecedentesSocialesDAO {
 
 		} catch (Exception e) {
 			throw e;
+		} finally {
+			session.close();
 		}
 		return us;
 	}
@@ -44,6 +46,8 @@ public class AntecedentesSocialesDAO {
 			lstSoc = cri.list();
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return lstSoc;
 	}
@@ -62,6 +66,8 @@ public class AntecedentesSocialesDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return lstSoc;
 	}
@@ -80,6 +86,8 @@ public class AntecedentesSocialesDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return lstSoc;
 	}
@@ -98,6 +106,8 @@ public class AntecedentesSocialesDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return obj;
 	}
@@ -116,6 +126,8 @@ public class AntecedentesSocialesDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return lstSoc;
 	}

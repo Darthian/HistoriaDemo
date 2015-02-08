@@ -34,6 +34,10 @@ public class PacienteMB {
 	private String telefono;
 	private Timestamp fecha_creacion;
 	private String mostrarBotonDescarga = "No";
+	
+	private String tablaFiltro;
+	private String campoFiltro;
+	private String valorFiltro;
 
 	private List<Paciente> listaPaciente;
 	private List<Paciente> listaPacienteSoloConsulta;
@@ -48,6 +52,7 @@ public class PacienteMB {
 	public static long cedulaConsulta;
 	public long idConsulta;
 	public static Paciente pacienteHistoriaClinica;
+	private static String consultaActiva;
 	
 	@Inject
 	private AntecedentesFamiliaresMB antecedentesFamiliares;
@@ -208,6 +213,19 @@ public class PacienteMB {
 		pacienteDAO.Eliminar(emp);
 		this.listar();
 	}
+	
+	public void buscarPacientesFiltro(){
+		try{
+			this.listaPaciente = pacienteDAO.BuscarPorFiltro(tablaFiltro, campoFiltro, valorFiltro);
+			if(this.listaPaciente != null && this.listaPaciente.size() > 0){
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Se ha efectuado la busqueda","Puede ver los resultados a continuacion"));
+			}else{
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "La busqueda no genero resultados","Revise los parametros de la busqueda"));
+			}
+		}catch(Exception ex){
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer la busqueda"));
+		}
+	}
 
 	public String leer(Paciente emp) {
 		this.paciente = emp;
@@ -226,6 +244,7 @@ public class PacienteMB {
 	public void buscarPaciente() throws Exception {
 		System.out.println("+++++++++++++++++++++++++++++CEDULA PACIENTE CONSULTA: " + cedulaBuscadaConsulta);
 		this.listaPacienteSoloConsulta = pacienteDAO.BuscarPaciente(cedulaBuscadaConsulta);
+		consultaActiva = "ACTIVA";
 		cedulaConsulta=cedulaBuscadaConsulta;
 	}
 	
@@ -237,6 +256,7 @@ public class PacienteMB {
 	public String terminarConsulta(String tipoConsultaNueva) {
 		//consulta.guardarConsulta(tipoConsultaNueva);
 		//consolidarConsultaGeneral();
+		consultaActiva = "INACTIVA";
 		cedulaBuscadaConsulta = 0;
 		cedulaConsulta = 0;
 		this.listaPacienteSoloConsulta = null;
@@ -573,5 +593,37 @@ public class PacienteMB {
 	public void setListaPacienteHistoriaDetalle(
 			List<Paciente> listaPacienteHistoriaDetalle) {
 		this.listaPacienteHistoriaDetalle = listaPacienteHistoriaDetalle;
+	}
+
+	public String getConsultaActiva() {
+		return consultaActiva;
+	}
+
+	public void setConsultaActiva(String consultaActiva) {
+		PacienteMB.consultaActiva = consultaActiva;
+	}
+
+	public String getTablaFiltro() {
+		return tablaFiltro;
+	}
+
+	public void setTablaFiltro(String tablaFiltro) {
+		this.tablaFiltro = tablaFiltro;
+	}
+
+	public String getCampoFiltro() {
+		return campoFiltro;
+	}
+
+	public void setCampoFiltro(String campoFiltro) {
+		this.campoFiltro = campoFiltro;
+	}
+
+	public String getValorFiltro() {
+		return valorFiltro;
+	}
+
+	public void setValorFiltro(String valorFiltro) {
+		this.valorFiltro = valorFiltro;
 	}
 }

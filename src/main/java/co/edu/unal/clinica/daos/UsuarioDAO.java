@@ -33,6 +33,8 @@ public class UsuarioDAO {
 
 		} catch (Exception e) {
 			throw e;
+		} finally {
+			session.close();
 		}
 
 		return us;
@@ -55,6 +57,8 @@ public class UsuarioDAO {
 
 		} catch (Exception e) {
 			throw e;
+		} finally {
+			session.close();
 		}
 
 		return existe;
@@ -97,6 +101,8 @@ public class UsuarioDAO {
 			lstUsuarios = cri.list();
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return lstUsuarios;
 	}

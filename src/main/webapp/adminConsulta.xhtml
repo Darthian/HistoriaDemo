@@ -30,12 +30,15 @@
 
 			<div id="contenedor-cuerpo" align="center">
 				
-				<h3>Cedula del paciente de la consulta
+				<h3>
+					Cedula del paciente de la consulta
 					<p:inputText id="cedulaBuscadaConsulta" value="#{pacienteMB.cedulaBuscadaConsulta}" required="true" label="Cedula del paciente"/>
-					<p:commandButton update="listaPacientes" actionListener="#{pacienteMB.buscarPaciente()}" value="Buscar Paciente"/>
-					<p:commandButton action="#{pacienteMB.terminarConsulta('EVOLUCION')}" value="Terminar Consulta"/>
-					<p:commandButton update=":listaPacientes" actionListener="#{pacienteMB.guardarDefinitivamente('EVOLUCION')}" value="Guardar Definitivamente"/>
 				</h3>
+				
+				<p:commandButton update="listaPacientes" actionListener="#{pacienteMB.buscarPaciente()}" value="Buscar Paciente"/>
+				<p:commandButton action="#{pacienteMB.terminarConsulta('EVOLUCION')}" value="Terminar Consulta"/>
+				<p:commandButton update=":listaPacientes" actionListener="#{pacienteMB.guardarDefinitivamente('EVOLUCION')}" value="Guardar Definitivamente"/>
+				
 				<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
 			
 				<p:dataTable tableStyle="width:auto" value="#{pacienteMB.listaPacienteSoloConsulta}" var="paciente" filteredValue="#{pacienteMB.listaPacienteFiltrado}" paginator="true" rows="5">
@@ -120,7 +123,7 @@
 					</p:column>
 				</p:dataTable>
 				<br></br>
-				<h:commandButton styleClass="botonLikePrime" rendered="#{pacienteMB.mostrarBotonDescarga eq 'Si'}" actionListener="#{jasperController.vistaHistoriaPDF(pacienteMB.idConsulta)}" value="Descargar resumen cita"/>
+				<p:commandButton ajax="false" rendered="#{pacienteMB.mostrarBotonDescarga eq 'Si'}" actionListener="#{jasperController.vistaHistoriaPDF(pacienteMB.idConsulta)}" value="Descargar resumen cita"/>
 			</div>
 
 			<div id="piePagina">

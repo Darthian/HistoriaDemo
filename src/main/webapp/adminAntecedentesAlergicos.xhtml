@@ -27,14 +27,14 @@
 			<div id="lista" align="center">
 				<ul>
 					<li class="item">
-						<h:link value="Registrar Antecedente" outcome="registrarAntecedentesAlergicos.xhtml" rendered="#{loginController.usuario.rol eq 'MEDICO'}" />
+						<h:link value="Registrar Antecedente" outcome="registrarAntecedentesAlergicos.xhtml" rendered="#{pacienteMB.consultaActiva eq 'ACTIVA'}" />
 					</li>
 					<li class="item">
-						<h:link value="Volver a la consulta" outcome="adminConsulta.xhtml" rendered="#{loginController.usuario.rol eq 'MEDICO'}" />
+						<h:link value="Volver a la consulta" outcome="adminConsulta.xhtml" rendered="#{pacienteMB.consultaActiva eq 'ACTIVA'}" />
 						<h:link value="Volver a la vista general" outcome="adminPacientes.xhtml" rendered="#{loginController.usuario.rol eq 'ADMINISTRADOR'}" />
 					</li>
 					<li class="item">
-						<h:link value="Ir a la vista general" outcome="adminPacientes.xhtml" rendered="#{loginController.usuario.rol eq 'MEDICO'}" />
+						<h:link value="Volver" outcome="adminHistoriaFiltros.xhtml"/>
 					</li>
 					<li class="item">
 						<h:link value="Volver a Antecedentes Clinicos" outcome="adminAntecedentesClinicos.xhtml"  />

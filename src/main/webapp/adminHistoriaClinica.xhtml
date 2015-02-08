@@ -70,7 +70,7 @@
 							<h:outputLabel value="Resumen de la consulta" />
 						</f:facet>
 						<center>
-							<h:commandButton styleClass="botonLikePrime" actionListener="#{jasperController.vistaHistoriaPDF(consulta.id)}" value="Descargar"/>
+							<p:commandButton ajax="false" actionListener="#{jasperController.vistaHistoriaPDF(consulta.id)}" value="Descargar"/>
 						</center>
 					</p:column>
 					

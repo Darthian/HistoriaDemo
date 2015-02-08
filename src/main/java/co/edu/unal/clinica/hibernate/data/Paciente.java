@@ -15,6 +15,7 @@ public class Paciente {
 	private String nombre_Paciente;
 	private int edad;
 	private Timestamp fecha_Nacimiento;
+	
 	private long cedula;
 	private String procedencia;
 	private String genero;

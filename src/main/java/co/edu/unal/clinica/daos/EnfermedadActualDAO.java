@@ -26,6 +26,8 @@ public class EnfermedadActualDAO {
 			listEnf = cri.list();
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listEnf;
 	}
@@ -44,6 +46,8 @@ public class EnfermedadActualDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listEnf;
 	}
@@ -62,6 +66,8 @@ public class EnfermedadActualDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listEnf;
 	}
@@ -80,6 +86,8 @@ public class EnfermedadActualDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return objetoRetornado;
 	}
@@ -98,6 +106,8 @@ public class EnfermedadActualDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listEnf;
 	}

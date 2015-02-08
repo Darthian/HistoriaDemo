@@ -22,6 +22,8 @@ public class VistaHistoriaClinicaDAO {
 			lstVistaTotalHistoria = cri.list();
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return lstVistaTotalHistoria;
 	}
@@ -40,6 +42,8 @@ public class VistaHistoriaClinicaDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return lstVistaTotalHistoria;
 	}
@@ -58,6 +62,8 @@ public class VistaHistoriaClinicaDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return lstVistaTotalHistoria;
 	}

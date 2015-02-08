@@ -28,6 +28,8 @@ public class RevisionSistemaDAO {
 			listRevi = cri.list();
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listRevi;
 	}
@@ -46,6 +48,8 @@ public class RevisionSistemaDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listRevi;
 	}
@@ -64,6 +68,8 @@ public class RevisionSistemaDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listRevi;
 	}
@@ -82,6 +88,8 @@ public class RevisionSistemaDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return objetoRetornado;
 	}
@@ -100,6 +108,8 @@ public class RevisionSistemaDAO {
 			}
 		} catch (Exception ex) {
 			throw ex;
+		} finally {
+			session.close();
 		}
 		return listRevi;
 	}
