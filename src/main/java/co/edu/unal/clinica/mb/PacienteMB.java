@@ -53,6 +53,7 @@ public class PacienteMB {
 	public long idConsulta;
 	public static Paciente pacienteHistoriaClinica;
 	private static String consultaActiva;
+	private static String tipoConsulta;
 	
 	@Inject
 	private AntecedentesFamiliaresMB antecedentesFamiliares;
@@ -90,6 +91,10 @@ public class PacienteMB {
 	private AntecedentesTraumatologicosMB antecedentesTraumatologicos;
 	@Inject
 	private ConsultaMB consulta;
+	@Inject
+	private ValoracionNutricionalMB valoracionNutricional;
+	@Inject
+	private ValoracionFisioterapiaMB valoracionFisioterapia;
 	
 
 	public void guardarPaciente() {
@@ -198,6 +203,16 @@ public class PacienteMB {
 			antecedentesTraumatologicos.consolidarAntecedenteTraumatologico(consulta.getConsu().getId());
 			idConsulta = consulta.getConsu().getId();
 		}
+		if(valoracionNutricional.getVal().getId() != 0 && consulta.getConsu().getId() != 0){
+			System.out.println("ID Antecedente Trau: "+valoracionNutricional.getVal().getId());
+			valoracionNutricional.consolidarValoracionNutricional(consulta.getConsu().getId());
+			idConsulta = consulta.getConsu().getId();
+		}
+		if(valoracionFisioterapia.getVal().getId() != 0 && consulta.getConsu().getId() != 0){
+			System.out.println("ID Antecedente Trau: "+valoracionFisioterapia.getVal().getId());
+			valoracionFisioterapia.consolidarValoracionFisioterapia(consulta.getConsu().getId());
+			idConsulta = consulta.getConsu().getId();
+		}
 	}
 
 	public void guardarDefinitivamente(String tipoConsultaNueva){
@@ -241,10 +256,19 @@ public class PacienteMB {
 		this.listaPaciente = pacienteDAO.Listar();
 	}
 	
-	public void buscarPaciente() throws Exception {
+	public void buscarPacienteEvolucion() throws Exception {
 		System.out.println("+++++++++++++++++++++++++++++CEDULA PACIENTE CONSULTA: " + cedulaBuscadaConsulta);
 		this.listaPacienteSoloConsulta = pacienteDAO.BuscarPaciente(cedulaBuscadaConsulta);
 		consultaActiva = "ACTIVA";
+		tipoConsulta = "EVOLUCION";
+		cedulaConsulta=cedulaBuscadaConsulta;
+	}
+	
+	public void buscarPacientePrimera() throws Exception {
+		System.out.println("+++++++++++++++++++++++++++++CEDULA PACIENTE CONSULTA: " + cedulaBuscadaConsulta);
+		this.listaPacienteSoloConsulta = pacienteDAO.BuscarPaciente(cedulaBuscadaConsulta);
+		consultaActiva = "ACTIVA";
+		tipoConsulta = "PRIMERA";
 		cedulaConsulta=cedulaBuscadaConsulta;
 	}
 	
@@ -364,6 +388,20 @@ public class PacienteMB {
 		this.paciente = pac;
 		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
 		return "adminParaclinicos";		
+	}
+	
+	public String leerValoracionNutricional(Paciente pac){
+		cedulaConsulta = pac.getCedula();
+		this.paciente = pac;
+		System.out.println("+++++++++++++++++++CEDULA CAPTURADA: " + cedulaConsulta);
+		return "adminValoracionNutricional";
+	}
+	
+	public String leerValoracionFisioterapia(Paciente pac){
+		cedulaConsulta = pac.getCedula();
+		this.paciente = pac;
+		System.out.println("+++++++++++++++++++FISIOTERAPIA CEDULA CAPTURADA: " + cedulaConsulta);
+		return "adminValoracionFisioterapia";
 	}
 	
 	public String leerRevisionSistema(Paciente pac){
@@ -601,6 +639,14 @@ public class PacienteMB {
 
 	public void setConsultaActiva(String consultaActiva) {
 		PacienteMB.consultaActiva = consultaActiva;
+	}
+	
+	public String getTipoConsulta() {
+		return tipoConsulta;
+	}
+
+	public void setTipoConsulta(String tipoConsulta) {
+		PacienteMB.tipoConsulta = tipoConsulta;
 	}
 
 	public String getTablaFiltro() {

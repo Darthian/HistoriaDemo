@@ -12,11 +12,6 @@
 	<f:metadata>
         <f:event type="preRenderView" listener="#{entidadMB.listar()}"/>
 	</f:metadata>
-	<script type="text/javascript">
-		function volver(){
-			window.history.back();	
-		}
-	</script>
 	
 </h:head>
 <body>
@@ -37,7 +32,6 @@
 			</div>
 
 			<div id="contenedor-cuerpo" align="center">
-<!-- 				<p:commandButton value="Volver" onclick="volver()"/> -->
 				<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
 
 				<p:dataTable tableStyle="width:auto" value="#{entidadMB.listEntidades}" var="entidad" paginator="true" rows="5">

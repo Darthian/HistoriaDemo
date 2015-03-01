@@ -13,12 +13,6 @@
         <f:event type="preRenderView" listener="#{examenFisicoMB.listar()}"/>
 	</f:metadata>
 	
-	<script type="text/javascript">
-		function volver(){
-			window.history.back();	
-		}
-	</script>
-	
 </h:head>
 <body>
 
@@ -33,17 +27,18 @@
 			<div id="lista" align="center">
 				<ul>
 					<li class="item">
-						<h:link value="Registrar Examen" outcome="registrarExamenFisico.xhtml" rendered="#{loginController.usuario.rol eq 'MEDICO'}" />
+						<h:link value="Registrar Examen" outcome="registrarExamenFisico.xhtml" rendered="#{loginController.usuario.rol eq 'MEDICO' and pacienteMB.consultaActiva eq 'ACTIVA'}" />
 					</li>
 					<li class="item">
 						<h:link value="Volver a Examen" outcome="adminExamenFisico.xhtml" />
 					</li>
 					<li class="item">
-						<h:link value="Volver a la consulta" outcome="adminConsulta.xhtml" rendered="#{loginController.usuario.rol eq 'MEDICO'}" />
+						<h:link value="Volver a la consulta" outcome="adminConsulta.xhtml" rendered="#{pacienteMB.tipoConsulta eq 'EVOLUCION' and pacienteMB.consultaActiva eq 'ACTIVA'}" />
+						<h:link value="Volver a la consulta" outcome="adminConsultaPrimeraVez.xhtml" rendered="#{pacienteMB.tipoConsulta eq 'PRIMERA' and pacienteMB.consultaActiva eq 'ACTIVA'}" />
 						<h:link value="Volver a la vista general" outcome="adminPacientes.xhtml" rendered="#{loginController.usuario.rol eq 'ADMINISTRADOR'}" />
 					</li>
 					<li class="item">
-						<h:link value="Ir a la vista general" outcome="adminPacientes.xhtml" rendered="#{loginController.usuario.rol eq 'MEDICO'}" />
+						<h:link value="Volver" outcome="adminHistoriaFiltros.xhtml" rendered="#{pacienteMB.consultaActiva ne 'ACTIVA'}" />
 					</li>
 				</ul>
 			</div>
