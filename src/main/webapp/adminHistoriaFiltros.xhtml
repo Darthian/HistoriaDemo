@@ -97,11 +97,27 @@
 						</f:facet>
 						<center>
 							<p:commandButton action="#{pacienteMB.leerAntecedentesFamiliares(paciente)}"  icon="ui-icon-heart" title="Administrar Antecedentes Familiares"/>
-							<p:commandButton action="#{pacienteMB.leerAntecedentesFarmacologicos(paciente)}"  icon="ui-icon-pencil" title="Administrar Antecedentes Farmacologicos"  />
-							<p:commandButton action="#{pacienteMB.leerAntecedentesPatologicos(paciente)}"  icon="ui-icon-clipboard" title="Administrar Antecedentes Patologicos"/><br/>
-							<p:commandButton action="#{pacienteMB.leerHabitos(paciente)}" icon="ui-icon-zoomin" title="Administrar Habitos"/>
+							<p:commandButton action="#{pacienteMB.leerAntecedentesFarmacologicos(paciente)}"  icon="ui-icon-pencil" title="Administrar Antecedentes Farmacologicos"  /><br/>
+							<p:commandButton action="#{pacienteMB.leerAntecedentesPatologicos(paciente)}"  icon="ui-icon-clipboard" title="Administrar Antecedentes Patologicos"/>
+							<p:commandButton action="#{pacienteMB.leerHabitos(paciente)}" icon="ui-icon-zoomin" title="Administrar Habitos"/><br/>
 							<p:commandButton action="#{pacienteMB.leerAntecedentesClinicos(paciente)}" icon="ui-icon-plusthick" title="Registrar Antecedentes Clinicos" />
-							<p:commandButton action="#{pacienteMB.leerOtrosAntecedentes(paciente)}" icon="ui-icon-lightbulb" title="Administrar Otros Antecedentes"/><br/>									
+							<p:commandButton action="#{pacienteMB.leerOtrosAntecedentes(paciente)}" icon="ui-icon-lightbulb" title="Administrar Otros Antecedentes"/>									
+						</center>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Valoracion Nutircional" />
+						</f:facet>
+						<center>
+						<p:commandButton action="#{pacienteMB.leerValoracionNutricional(paciente)}" icon="ui-icon-note" title="Administrar Valoracion Nutiriconal"/>
+						</center>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Valoracion Fisioterapia" />
+						</f:facet>
+						<center>
+						<p:commandButton action="#{pacienteMB.leerValoracionFisioterapia(paciente)}" icon="ui-icon-note" title="Registrar Valoracion Nutiriconal"/>
 						</center>
 					</p:column>
 					<p:column>

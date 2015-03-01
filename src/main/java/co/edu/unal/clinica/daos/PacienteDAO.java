@@ -1,5 +1,6 @@
 package co.edu.unal.clinica.daos;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -108,7 +109,9 @@ public class PacienteDAO {
 			session = HibernateUtil.getSessionFactory().openSession();
 			String hql = "FROM PACIENTE paciente INNER JOIN " + tablaFiltro + " filtro WHERE paciente.cedula = filtro.CEDULA AND filtro." + campoFiltro + " = '"+valorFiltro+"'";
 			System.out.println("++++++++++++++++++++++"+hql);
-			Query query = session.createQuery(hql);
+			HashMap<String, Object> parametros = new HashMap<String, Object>();
+			parametros.put("campoFiltro", campoFiltro);
+			Query query = session.createFilter(parametros, hql);
 			System.out.println("++++++++++++++++++++++"+hql);
 			System.out.println("++++++++++++++++++++++"+query);
 			

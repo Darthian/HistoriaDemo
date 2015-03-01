@@ -29,7 +29,8 @@
 						<h:link value="Registrar Antecedente" outcome="registrarOtrosAntecedentes.xhtml" rendered="#{pacienteMB.consultaActiva eq 'ACTIVA'}" />
 					</li>
 					<li class="item">
-						<h:link value="Volver a la consulta" outcome="adminConsulta.xhtml" rendered="#{pacienteMB.consultaActiva eq 'ACTIVA'}" />
+						<h:link value="Volver a la consulta" outcome="adminConsulta.xhtml" rendered="#{pacienteMB.tipoConsulta eq 'EVOLUCION' and pacienteMB.consultaActiva eq 'ACTIVA'}" />
+						<h:link value="Volver a la consulta" outcome="adminConsultaPrimeraVez.xhtml" rendered="#{pacienteMB.tipoConsulta eq 'PRIMERA' and pacienteMB.consultaActiva eq 'ACTIVA'}" />
 					</li>
 					<li class="item">
 						<h:link value="Volver" outcome="adminHistoriaFiltros.xhtml" />

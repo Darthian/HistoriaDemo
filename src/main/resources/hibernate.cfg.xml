@@ -35,6 +35,8 @@
         <mapping class="co.edu.unal.clinica.hibernate.data.Antecedentes_Sociales"/>
         <mapping class="co.edu.unal.clinica.hibernate.data.Vista_total_historia"/>
         <mapping class="co.edu.unal.clinica.hibernate.data.Consulta"/>
+        <mapping class="co.edu.unal.clinica.hibernate.data.Valoracion_Nutricional"/>
+        <mapping class="co.edu.unal.clinica.hibernate.data.Valoracion_Fisioterapia"/>
         
     </session-factory>
 </hibernate-configuration>

@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Historia Clinica UN</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+
+</h:head>
+<body>
+
+	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{loginController.verificarSesion() eq false}" />
+	<h:form id="editarAntecedente" rendered="#{loginController.verificarSesion()}">
+		<p:growl id="growl" showDetail="true" sticky="false" />
+		<div id="contenedor" class="center">
+			<div id="cabecera" align="center">
+				<img src="images/logo.png" width="25%" height="15%" />
+				<h2>Edicion de Valoracion Nutricional</h2>
+			</div>
+
+			<div id="lista" align="center">
+				<ul>
+					<li class="item"><a href="registrarValoracionNutricional.xhtml">Crear Valoracion</a></li>
+					<li class="item"><a href="adminValoracionNutricional.xhtml">Buscar Valoracion</a></li>
+				</ul>
+			</div>
+
+			<div id="contenedor-cuerpo" align="center">
+				<p:commandButton value="Cerrar Sesión"
+					action="#{loginController.cerrarSesion()}" styleClass="controles" />
+				<p:panelGrid columns="2">
+					<p>Cedula del Paciente:</p>
+					<h:outputLabel id="cedula" value="#{pacienteMB.paciente.cedula}" />
+					<p>Basales:</p>
+					<p:inputText id="basales" size="50" value="#{valoracionNutricionalMB.val.basales}" required="true" label="Basales" />
+					<p>Factor:</p>
+					<p:inputText id="Factor" size="50" value="#{valoracionNutricionalMB.val.factor}" required="true" label="Factor" />
+					<p>Cal/Kg:</p>
+					<p:inputText id="Cal-Kg" size="50" value="#{valoracionNutricionalMB.val.cal_kg}" required="true" label="Cal/Kg" />
+					<p>Cal totales:</p>
+					<p:inputText id="Cal-Totales" size="50" value="#{valoracionNutricionalMB.val.cal_totales}" required="true" label="Cal/Totales" />
+				</p:panelGrid>
+				<p:panelGrid>
+					<p:row>
+						<p:column><h6>NUTRIENTES</h6></p:column>
+						<p:column>gr/día</p:column>
+						<p:column>gr/Kg</p:column>
+						<p:column>% VCT</p:column>
+					</p:row>
+					<p:row>
+						<p:column><h6>Proteína</h6></p:column>
+						<p:column><p:inputText id="proteinaSatGrDia" size="14" value="#{valoracionNutricionalMB.val.proteinaGrDia}" required="true" label="proteinaSatGrDia" /></p:column>
+						<p:column><p:inputText id="proteinaSatGrKg" size="14" value="#{valoracionNutricionalMB.val.proteinaGrKg}" required="true" label="proteinaSatGrKg" /></p:column>
+						<p:column><p:inputText id="proteinaSatVct" size="13" value="#{valoracionNutricionalMB.val.proteinaVct}" required="true" label="proteinaSatVct" /></p:column>
+					</p:row>
+					<p:row>
+						<p:column><h6>Grasa</h6></p:column>
+						<p:column><p:inputText id="grasaGrDia" size="14" value="#{valoracionNutricionalMB.val.grasaGrDia}" required="true" label="grasaGrDia" /></p:column>
+						<p:column><p:inputText id="grasaGrKg" size="14" value="#{valoracionNutricionalMB.val.grasaGrKg}" required="true" label="grasaGrKg" /></p:column>
+						<p:column><p:inputText id="grasaVct" size="13" value="#{valoracionNutricionalMB.grasaVct}" required="true" label="grasaVct" /></p:column>
+					</p:row>
+					<p:row>
+						<p:column><h6>CHO</h6></p:column>
+						<p:column><p:inputText id="choGrDia" size="14" value="#{valoracionNutricionalMB.val.choGrDia}" required="true" label="choGrDia" /></p:column>
+						<p:column><p:inputText id="choGrKg" size="14" value="#{valoracionNutricionalMB.val.choGrKg}" required="true" label="choGrKg" /></p:column>
+						<p:column><p:inputText id="choVct" size="13" value="#{valoracionNutricionalMB.val.choVct}" required="true" label="choVct" /></p:column>
+					</p:row>
+					<p:row>
+						<p:column><h6>Grasa saturada</h6></p:column>
+						<p:column><p:inputText id="grasaSatGrDia" size="14" value="#{valoracionNutricionalMB.val.grasaSatGrDia}" required="true" label="grasaSatGrDia" /></p:column>
+						<p:column><p:inputText id="grasaSatGrKg" size="14" value="#{valoracionNutricionalMB.val.grasaSatGrKg}" required="true" label="grasaSatGrKg" /></p:column>
+						<p:column><p:inputText id="grasaSatVct" size="13" value="#{valoracionNutricionalMB.val.grasaSatVct}" required="true" label="grasaSatVct" /></p:column>
+					</p:row>
+					<p:row>
+						<p:column><h6>Grasa monosaturada</h6></p:column>
+						<p:column><p:inputText id="grasaMonoGrDia" size="14" value="#{valoracionNutricionalMB.val.grasaMonoGrDia}" required="true" label="grasaMonoGrDia" /></p:column>
+						<p:column><p:inputText id="grasaMonoGrKg" size="14" value="#{valoracionNutricionalMB.val.grasaMonoGrKg}" required="true" label="grasaMonoGrKg" /></p:column>
+						<p:column><p:inputText id="grasaMonoVct" size="13" value="#{valoracionNutricionalMB.val.grasaMonoVct}" required="true" label="grasaMonoVct" /></p:column>
+					</p:row>
+					<p:row>
+						<p:column><h6>Grasa poliinsaturada</h6></p:column>
+						<p:column><p:inputText id="grasaPoliGrDia" size="14" value="#{valoracionNutricionalMB.val.grasaPoliGrDia}" required="true" label="grasaPoliGrDia" /></p:column>
+						<p:column><p:inputText id="grasaPoliGrKg" size="14" value="#{valoracionNutricionalMB.val.grasaPoliGrKg}" required="true" label="grasaPoliGrKg" /></p:column>
+						<p:column><p:inputText id="grasaPoliVct" size="13" value="#{valoracionNutricionalMB.val.grasaPoliVct}" required="true" label="grasaPoliVct" /></p:column>
+					</p:row>
+				</p:panelGrid>
+					
+				<p:panelGrid columns="2">	
+					<p>Prescripción dietaria:</p>
+					<p:inputText id="prescripcion" value="#{valoracionNutricionalMB.val.prescripcion}" required="true" label="prescripcion" />
+					<p>Metas:</p>
+					<p:inputText id="metas" value="#{valoracionNutricionalMB.val.metas}" required="true" label="metas" />
+					<p>Observaciones, con respecto a la adherencia al plan nutricional:</p>
+					<p:inputText id="observaciones" value="#{valoracionNutricionalMB.val.observaciones}" required="true" label="observaciones" />
+					<p:commandButton update="growl" actionListener="#{valoracionNutricionalMB.modificar()}" value="Modificar" />
+					<p:commandButton action="adminValoracionNutricional" immediate="true" value="Cancelar" />
+				</p:panelGrid>
+			</div>
+
+			<div class="clear"></div>
+
+			<div id="piePagina">
+				<div id="linkList">
+					<ul>
+						<li>Link1</li>
+						<li>Link2</li>
+						<li>Link3</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="clear"></div>
+
+		</div>
+	</h:form>
+</body>
+</html>

@@ -10,92 +10,58 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
 	<f:metadata>
-        <f:event type="preRenderView" listener="#{examenFisicoMB.listar()}"/>
+        <f:event type="preRenderView" listener="#{antecedentesFamiliaresMB.listar()}"/>
 	</f:metadata>
-	
-	<script type="text/javascript">
-		function volver(){
-			window.history.back();	
-		}
-	</script>
-	
 </h:head>
 <body>
 
 	<h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{loginController.verificarSesion() eq false}" />
-	<h:form id="listaExamenes" rendered="#{loginController.verificarSesion()}">
+	<h:form id="listaPacientes" rendered="#{loginController.verificarSesion()}">
 		<div id="contenedor" class="center">
 			<div id="cabecera" align="center">
 				<img src="images/logo.png" width="25%" height="15%" />
-				<h2>Examen Fisico</h2>
+				<h2>Valoracion Nutricional Detalle Proteina</h2>
 			</div>
 
 			<div id="lista" align="center">
 				<ul>
 					<li class="item">
-						<h:link value="Registrar Examen" outcome="registrarExamenFisico.xhtml" rendered="#{loginController.usuario.rol eq 'MEDICO'}" />
-					</li>
-					<li class="item">
-						<h:link value="Volver a Examen" outcome="adminExamenFisico.xhtml" />
+						<h:link value="Registrar Antecedente" outcome="registrarAntecedentesFamiliares.xhtml" rendered="#{pacienteMB.consultaActiva eq 'ACTIVA'}" />
 					</li>
 					<li class="item">
 						<h:link value="Volver a la consulta" outcome="adminConsulta.xhtml" rendered="#{pacienteMB.tipoConsulta eq 'EVOLUCION' and pacienteMB.consultaActiva eq 'ACTIVA'}" />
 						<h:link value="Volver a la consulta" outcome="adminConsultaPrimeraVez.xhtml" rendered="#{pacienteMB.tipoConsulta eq 'PRIMERA' and pacienteMB.consultaActiva eq 'ACTIVA'}" />
-						<h:link value="Volver a la vista general" outcome="adminPacientes.xhtml" rendered="#{loginController.usuario.rol eq 'ADMINISTRADOR'}" />
 					</li>
 					<li class="item">
-						<h:link value="Volver" outcome="adminHistoriaFiltros.xhtml" rendered="#{pacienteMB.consultaActiva ne 'ACTIVA'}" />
+						<h:link value="Volver" outcome="adminValoracionNutricional.xhtml"/>
 					</li>
 				</ul>
 			</div>
 
 			<div id="contenedor-cuerpo" align="center">
-				
 				<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
 				<h2>
 					<h:outputLabel value="Cedula del Paciente: " />
-					<h:outputLabel value="#{examenFisicoMB.listExam[0].cedula}" />
+					<h:outputLabel value="#{valoracionNutricionalMB.listaVal[0].cedula}" />
 				</h2>
-				<p:dataTable tableStyle="width:auto" value="#{examenFisicoMB.listExam}" var="exam" paginator="true" rows="5">
+				<p:dataTable tableStyle="width:auto" value="#{valoracionNutricionalMB.listaVal}" var="val"  paginator="true" rows="5">
 					<p:column>
 						<f:facet name="header">
-							<h:outputLabel value="Cabeza" />
+							<h:outputLabel value="gr/día" />
 						</f:facet>
-						<h:outputLabel value="#{exam.cabeza}" />
-					</p:column>
-					
-					<p:column>
-						<f:facet name="header">
-							<h:outputLabel value="Nariz" />
-						</f:facet>
-						<h:outputLabel value="#{exam.nariz}" />
-					</p:column>
-					
-					<p:column>
-						<f:facet name="header">
-							<h:outputLabel value="Boca" />
-						</f:facet>
-						<h:outputLabel value="#{exam.boca}" />
-					</p:column>
-					
-					<p:column>
-						<f:facet name="header">
-							<h:outputLabel value="Orejas" />
-						</f:facet>
-						<h:outputLabel value="#{exam.orejas}" />
+						<h:outputLabel value="#{val.proteinaGrDia}" />
 					</p:column>
 					<p:column>
 						<f:facet name="header">
-							<h:outputLabel value="Editar" />
+							<h:outputLabel value="gr/Kg" />
 						</f:facet>
-						<h:outputLabel rendered="#{exam.consolidado eq 'Si'}" value="Registro consolidado" />
-						<h:commandButton action="#{examenFisicoMB.leer(exam)}" rendered="#{exam.consolidado eq 'No'}" value="Modificar" />
+						<h:outputLabel value="#{val.proteinaGrKg}" />
 					</p:column>
 					<p:column>
 						<f:facet name="header">
-							<h:outputLabel value="Fecha de Creacion" />
+							<h:outputLabel value="VCT" />
 						</f:facet>
-						<h:outputLabel value="#{exam.fechaCreacion}" />
+						<h:outputLabel value="#{val.proteinaVct}" />
 					</p:column>
 				</p:dataTable>
 			</div>
