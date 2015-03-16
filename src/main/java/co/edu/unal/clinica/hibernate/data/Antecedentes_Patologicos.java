@@ -33,8 +33,9 @@ public class Antecedentes_Patologicos {
 		
 	}
 	
-	public Antecedentes_Patologicos(long cedula, String complicaciones_diabetes, String retinopatia_diabetica, String nefropatia_diabetica, int estado_nefropatia, String hipertension, String dislipidemia, String tipo_dislipidemia, String otros, 
-			String comp_cardiovasculares, String complicacion_cardiovascular, String filtracion_glomerular, String pie_diabetico, String consolidado){
+	public Antecedentes_Patologicos(long cedula, String complicaciones_diabetes, String retinopatia_diabetica, String nefropatia_diabetica, int estado_nefropatia, 
+			String hipertension, String dislipidemia, String tipo_dislipidemia, String otros, String comp_cardiovasculares, String complicacion_cardiovascular, 
+			String filtracion_glomerular, String pie_diabetico, String consolidado){
 		this.cedula = cedula;
 		this.consolidado = consolidado;
 		this.complicaciones_diabetes = complicaciones_diabetes;

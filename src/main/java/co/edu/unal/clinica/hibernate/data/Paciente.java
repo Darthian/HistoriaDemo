@@ -1,10 +1,15 @@
 package co.edu.unal.clinica.hibernate.data;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Paciente {
@@ -26,6 +31,10 @@ public class Paciente {
 	private String escolaridad;
 	private String telefono;
 	private Timestamp fecha_creacion;
+	
+	@OneToMany(cascade= CascadeType.ALL)
+    @JoinColumn(name="cedula")
+	private Collection<Antecedentes_Patologicos> antecedentes_Patologicos = new ArrayList<Antecedentes_Patologicos>();  
 	
 	public Paciente(){
 		
@@ -165,5 +174,13 @@ public class Paciente {
 
 	public void setFecha_creacion(Timestamp fecha_creacion) {
 		this.fecha_creacion = fecha_creacion;
+	}
+
+	public Collection<Antecedentes_Patologicos> getAntecedentesPatologicos() {
+		return antecedentes_Patologicos;
+	}
+
+	public void setAntecedentesPatologicos(Collection<Antecedentes_Patologicos> antecedentesPatologicos) {
+		this.antecedentes_Patologicos = antecedentesPatologicos;
 	}
 }

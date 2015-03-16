@@ -36,31 +36,7 @@
 			
 				<p:commandButton action="index.xhtml" value="Terminar Consulta de Historia Clinica"/>
 				
-				<p:panelGrid>
-					<p:row>
-						<p:column>
-							Tipo de filtro:
-						</p:column>
-						<p:column>
-							<p:inputText value="#{pacienteMB.tablaFiltro}" required="REQUIRED"></p:inputText>
-						</p:column>
-						<p:column>
-							Informacion a buscar:
-						</p:column>
-						<p:column>
-							<p:inputText value="#{pacienteMB.campoFiltro}" required="REQUIRED"></p:inputText>
-						</p:column>
-						<p:column>
-							Valor a buscar:
-						</p:column>
-						<p:column>
-							<p:inputText value="#{pacienteMB.valorFiltro}" required="REQUIRED"></p:inputText>
-						</p:column>
-						<p:column>
-							<p:commandButton action="#{pacienteMB.buscarPacientesFiltro()}" update="listaPacientes" value="Buscar"></p:commandButton>
-						</p:column>
-					</p:row>
-				</p:panelGrid>
+				
 				
 				<p:commandButton value="Cerrar Sesión" action="#{loginController.cerrarSesion()}" styleClass="controles" />
 			

@@ -18,38 +18,6 @@ public class LoginController {
 
 	private Usuario usuario = new Usuario();
 	
-	public String getNickName() {
-		return nickName;
-	}
-
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public UsuarioDAO getUsuarioDAO() {
-		return usuarioDAO;
-	}
-
-	public void setUsuarioDAO(UsuarioDAO usuarioDAO) {
-		this.usuarioDAO = usuarioDAO;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-	
 	public String verificarDatos() throws Exception {
 		UsuarioDAO usuDAO = new UsuarioDAO();
 		Usuario us;
@@ -95,4 +63,38 @@ public class LoginController {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		return "login?faces-redirect=true";
 	}
+	
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public UsuarioDAO getUsuarioDAO() {
+		return usuarioDAO;
+	}
+
+	public void setUsuarioDAO(UsuarioDAO usuarioDAO) {
+		this.usuarioDAO = usuarioDAO;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	
+	
 }

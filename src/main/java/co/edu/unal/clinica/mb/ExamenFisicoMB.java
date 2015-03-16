@@ -53,8 +53,9 @@ public class ExamenFisicoMB {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
 			consolidado = "No";
-			Examen_Fisico ant = new Examen_Fisico(PacienteMB.cedulaConsulta,estadoGeneral,cabeza,ojos,nariz,boca,orejas,cuello,cardiaco,pulmonar,abdomen,extremidades,neurologico,
-					temperatura, frecuenciaCardiaca, frecuenciaRespiratoria, presionArterial, peso, talla, perimetroAbdominal, masaCorporal, consolidado);
+			Examen_Fisico ant = new Examen_Fisico(PacienteMB.cedulaConsulta,estadoGeneral,cabeza,ojos,exam.getNariz(),boca,orejas,cuello,cardiaco,pulmonar,exam.getAbdomen(),
+					exam.getExtremidades(),exam.getNeurologico(),temperatura, frecuenciaCardiaca, frecuenciaRespiratoria, presionArterial, peso, talla, perimetroAbdominal, 
+					masaCorporal, consolidado);
 			long id = (long) session.save(ant);
 			exam.setId(id);
 			session.getTransaction().commit();
@@ -114,6 +115,10 @@ public class ExamenFisicoMB {
 	
 	public void listar() throws Exception {
 		this.listExam = examDao.Buscar(PacienteMB.cedulaConsulta);
+		exam.setNariz("ESCLERAS ANICTERICAS, MUCOSAS ROSADAS HUMEDAS, NO INGURGITACION YUGULAR, TIROIDES NO PALPABLE");
+		exam.setAbdomen("RUIDOS INTESTINALES PRESENTES, BLANDO DEPRESIBLE, NO DOLOR A LA PALPACION, SIN SIGNOS DE IRRITACION PERITONEAL, NO SE PALPAN MASAS NI MEGALIAS PUNO PERCUSION BILATERAL NEGATIVA");
+		exam.setExtremidades("NO EDEMAS, PULSOS PERIFERICOS PRESENTES Y SIMETRICOS, LLENADO CAPILAR MENOR DE 2 SEGUNDOS");
+		exam.setNeurologico("ALERTA, ORIENTADO EN 3 ESFERAS, PUPILAS ISOCORICAS, NORMORREACTIVAS A LA LUZ, FUERZA MUSCULAR 5/5 EN LAS CUATRO EXTREMIDADES, NO DEFICIT EN SENSIBILIDAD SUPERFICIAL NI PROFUNDA, NO SIGNOS MENINGEOS, REFLEJOS MUSCULO TENDINOSOS ++/++++");		
 	}
 	
 	public void listarHC() throws Exception {
