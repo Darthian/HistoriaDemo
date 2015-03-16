@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -106,12 +107,20 @@ public class PacienteDAO {
 	public List<Paciente> BuscarPorFiltro(String tablaFiltro, String campoFiltro, String valorFiltro) throws Exception {
 		System.out.println("LLEGA A CREAR EL QUERY");
 		try {
+			
+			 
 			session = HibernateUtil.getSessionFactory().openSession();
-			String hql = "FROM PACIENTE paciente INNER JOIN " + tablaFiltro + " filtro WHERE paciente.cedula = filtro.CEDULA AND filtro." + campoFiltro + " = '"+valorFiltro+"'";
+			String hql = "select paciente.id_Paciente, paciente.nombre_Paciente, paciente.edad, paciente.fecha_Nacimiento, paciente.cedula,"
+		+ "paciente.procedencia, paciente.genero, paciente.eps, paciente.estado_Financiero, paciente.ocupacion, paciente.estado_Civil,"
+		+ "paciente.escolaridad, paciente.telefono, paciente.fecha_creacion from Paciente paciente left join fetch paciente." + tablaFiltro + " filtro on filtro.cedula = paciente.cedula where filtro." + campoFiltro + " = 'Si'";
 			System.out.println("++++++++++++++++++++++"+hql);
-			HashMap<String, Object> parametros = new HashMap<String, Object>();
-			parametros.put("campoFiltro", campoFiltro);
-			Query query = session.createFilter(parametros, hql);
+			
+			Query query = session.createQuery(hql);
+			session.createCriteria(valorFiltro);
+			
+			
+//			query.setParameter("valorFiltro", valorFiltro);
+//			query.executeUpdate();
 			System.out.println("++++++++++++++++++++++"+hql);
 			System.out.println("++++++++++++++++++++++"+query);
 			

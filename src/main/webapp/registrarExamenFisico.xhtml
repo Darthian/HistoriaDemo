@@ -9,12 +9,6 @@
 	<title>Historia Clinica UN</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
-	<script type="text/javascript">
-		function volver(){
-			window.history.back();	
-		}
-	</script>
-	
 </h:head>
 <body>
 
@@ -49,7 +43,7 @@
 					<p:inputTextarea cols="25" rows="4" id="ojos" value="#{examenFisicoMB.ojos}" required="true" label="Ojos"/>
 					
 					<p>Nariz:</p>
-					<p:inputText id="nariz" value="#{examenFisicoMB.nariz}" required="true" label="Nariz"/>
+					<p:inputTextarea cols="25" rows="4" id="nariz" value="#{examenFisicoMB.exam.nariz}" required="true" label="Nariz" />
 					
 					<p>Boca:</p>
 					<p:inputText id="boca" value="#{examenFisicoMB.boca}" required="true" label="boca"/>
@@ -67,13 +61,13 @@
 					<p:inputTextarea cols="25" rows="4" id="pulmonar" value="#{examenFisicoMB.pulmonar}" required="true" label="pulmonar"/>
 					
 					<p>Abdomen:</p>
-					<p:inputTextarea cols="25" rows="4" id="abdomen" value="#{examenFisicoMB.abdomen}" required="true" label="abdomen"/>
+					<p:inputTextarea cols="25" rows="4" id="abdomen" value="#{examenFisicoMB.exam.abdomen}" required="true" label="abdomen" />
 					
 					<p>Extremidades:</p>
-					<p:inputTextarea cols="25" rows="4" id="extremidades" value="#{examenFisicoMB.extremidades}" required="true" label="extremidades"/>
+					<p:inputTextarea cols="25" rows="4" id="extremidades" value="#{examenFisicoMB.exam.extremidades}" required="true" label="extremidades"/>
 					
 					<p>Neurologico:</p>
-					<p:inputTextarea cols="25" rows="4" id="neurologico" value="#{examenFisicoMB.neurologico}" required="true" label="neurologico"/>
+					<p:inputTextarea cols="25" rows="4" id="neurologico" value="#{examenFisicoMB.exam.neurologico}" required="true" label="neurologico"/>
 					
 					<p>Temperatura (Grados Celcios):</p>
 					<p:inputText id="temperatura" value="#{examenFisicoMB.temperatura}" required="true" label="temperatura"/>

@@ -239,6 +239,7 @@ public class PacienteMB {
 			}
 		}catch(Exception ex){
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Esto es vergonzoso","Ha ocurrido un error al intentar hacer la busqueda"));
+			System.out.println("Traza:"+ex+ex.getMessage());
 		}
 	}
 

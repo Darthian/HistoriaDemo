@@ -33,7 +33,7 @@ public class Paraclinicos {
 	}
 	
 	public Paraclinicos(long cedula, float glicemia_ayunas, float glicemia_post_prandial, float hemoglobina_glicosilada, float trigliceridos, float hdl, float ldl, float vldl, 
-			float creatinina, float bun, String otros_paraclinicos, String parcial_orina, String consolidado){
+			float creatinina, float bun, String parcial_orina, String otros_paraclinicos, String consolidado){
 		this.cedula = cedula;
 		this.consolidado = consolidado;
 		this.glicemia_ayunas = glicemia_ayunas;
