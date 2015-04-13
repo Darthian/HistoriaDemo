@@ -30,6 +30,7 @@
 			<div id="contenedor-formulario">
 				<div id="formulario-leyendas">
 					<h:form>
+					<p:growl id="message" showDetail="true" />
 					<br/><br/><br/>
 					<br/><br/><br/>
 						<p:panelGrid>
@@ -57,7 +58,7 @@
 								</p:row>
 								<p:row>
 									<p:column colspan="2">
-										<p:commandButton action="#{loginController.verificarDatos}" value="Iniciar Sesion"></p:commandButton>
+										<p:commandButton action="#{loginController.verificarDatos}" value="Iniciar Sesion" update="message"></p:commandButton>
 									</p:column>
 								</p:row>
 							</f:facet>
