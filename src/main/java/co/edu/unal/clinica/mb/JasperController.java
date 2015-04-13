@@ -1,6 +1,8 @@
 package co.edu.unal.clinica.mb;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.HashMap;
 import java.util.List;
 
@@ -11,6 +13,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -54,14 +57,22 @@ public class JasperController {
 	public void initHistoria(long idConsulta) throws JRException{
 		try{
 			this.listaVistaHistoriaPrimeraVez = vistaHistoriaDao.BuscarIdConsulta(idConsulta);
-			System.out.println("Se cargo la lista "+this.listaVistaHistoriaPrimeraVez+" de la consulta con id "+idConsulta);
+			System.out.println("Se cargo la lista "+this.listaVistaHistoriaPrimeraVez+" de la consulta con id "+idConsulta+" y cedula: "+this.listaVistaHistoriaPrimeraVez.get(0).getCEDULA());
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/HISTORIA_CLINICA?user=root&password=admin");
+		
+			JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(this.listaVistaHistoriaPrimeraVez);
+			JasperCompileManager.compileReportToFile(FacesContext.getCurrentInstance().getExternalContext().getRealPath("reports/HistoriaClinica.jrxml"), FacesContext.getCurrentInstance().getExternalContext().getRealPath("reports/HistoriaClinica.jasper"));
+			String reportPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("reports/HistoriaClinica.jasper");
+			HashMap<String, Object> hm = new HashMap<String, Object>();
+			
+			hm.put("REPORT_CONNECTION", conn);
+			hm.put("REPORT_CEDULA", this.listaVistaHistoriaPrimeraVez.get(0).getCEDULA());
+			hm.put("REPORT_IDCONSULTA", idConsulta);
+			jasperPrint = JasperFillManager.fillReport(reportPath, hm, beanCollectionDataSource);
 		}catch(Exception e){
 			System.out.println("Ha fallado el llamado al reporte");
 			e.printStackTrace();
-		}
-		JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(this.listaVistaHistoriaPrimeraVez);
-		String reportPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("reports/HistoriaClinica.jasper");
-		jasperPrint = JasperFillManager.fillReport(reportPath, new HashMap(), beanCollectionDataSource);
+		}		
 	}
 	
 	public void PDF() throws JRException, IOException{

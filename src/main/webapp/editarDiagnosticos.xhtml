@@ -42,7 +42,7 @@
 					<h:outputLabel id="cedula" value="#{pacienteMB.paciente.cedula}"  />
 					
 					<p>Analisis:</p>
-					<p:inputTextarea cols="25" rows="4" id="analisis" value="#{diagnosticosMB.diag.analisis}" required="true" label="Analisis"/>
+					<p:inputTextarea cols="100" rows="10" id="analisis" value="#{diagnosticosMB.diag.analisis}" required="true" label="Analisis"/>
 					
 					<p>Diagnostico:</p>
 					<h:selectOneMenu id="diagnostico" value="#{diagnosticosMB.diag.diagnostico}">
@@ -50,7 +50,7 @@
 					</h:selectOneMenu>
 					
 					<p>Plan:</p>
-					<p:inputTextarea cols="25" rows="4" id="plan" value="#{diagnosticosMB.diag.plan}" required="true" label="Plan"/>
+					<p:inputTextarea cols="100" rows="10" id="plan" value="#{diagnosticosMB.diag.plan}" required="true" label="Plan"/>
 
 					<p:commandButton update="growl" actionListener="#{diagnosticosMB.modificar()}" value="Modificar" />
 					<p:commandButton action="adminDiagnosticos" immediate="true" value="Cancelar" />

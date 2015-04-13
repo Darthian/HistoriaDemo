@@ -13,9 +13,7 @@ public class LoginController {
 	
 	private String nickName;
 	private String password;
-	
 	private UsuarioDAO usuarioDAO = new UsuarioDAO();
-
 	private Usuario usuario = new Usuario();
 	
 	public String verificarDatos() throws Exception {
@@ -29,14 +27,9 @@ public class LoginController {
 
 			us = usuDAO.verificarDatos(this.usuario);
 			if (us != null) {
-
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", us);
 				this.usuario.setRol(us.getRol());
-				resultado = "index"; // recalcar que el
-											// faces-redirect=true,
-											// olvida la peticion anterior y se
-											// dirige a la vista
-				// this.usuario = us;
+				resultado = "index"; 
 			} else {
 				resultado = "error";
 			}
@@ -95,6 +88,4 @@ public class LoginController {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
-	
 }
